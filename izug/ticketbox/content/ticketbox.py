@@ -65,6 +65,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
             {'status_id' : 'id_moved', 'status_name' : _(u"Moved")},
             ),
           widget = DataGridWidget(
+            visible={'view': 'invisible', 'edit': 'visible'},
             label = _(u"Define a status"),
             description = _(u"add or delete possible status-information"),
             column_names = (_(u"status_id"), _(u"status_name")),
@@ -75,6 +76,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
         DataGridField(
                    name='availableReleases',
                    widget=DataGridWidget(
+                       visible={'view': 'invisible', 'edit': 'visible'},
                        label=_(u"Available Releases"),
                        description=_(u"Enter the Available Releases for this tracker."),
                        column_names=(_(u'Id'), _(u'Title')),
@@ -87,6 +89,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
        DataGridField(
                   name='availableSeverities',
                   widget=DataGridWidget(
+                      visible={'view': 'invisible', 'edit': 'visible'},
                       label=_(u"Available severities"),
                       description=_(u"Enter the different type of issue severities that should be available, one per line."),
                       column_names=(_(u'ID'), _(u'Title')),
@@ -99,6 +102,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
       DataGridField(
                  name='availableAreas',
                  widget=DataGridWidget(
+                     visible={'view': 'invisible', 'edit': 'visible'},
                      label=_(u"Areas"),
                      description=_(u"Enter the issue topics/areas for this tracker."),
                      column_names=(_(u'Short name'), _(u'Title')),
