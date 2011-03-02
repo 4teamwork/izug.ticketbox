@@ -9,16 +9,14 @@ from Products.Archetypes.atapi import TextField, TextAreaWidget
 
 from Products.DataGridField import DataGridField, DataGridWidget
 
-from Products.Archetypes.atapi import ATFieldProperty
-
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
 
 from izug.ticketbox import ticketboxMessageFactory as _
-
 from izug.ticketbox.interfaces import ITicketBox
 from izug.ticketbox.config import PROJECTNAME
 
+from Products.CMFCore.utils import getToolByName
 from transaction import savepoint
 
 TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
@@ -61,12 +59,12 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
           searchable = True,
           allow_empty_rows = False,
           default = (
-            {'id' : 'id_open', 'title' : _(u"Open")},
-            {'id' : 'id_at_work', 'title' : _(u"At work")},
-            {'id' : 'id_rejected', 'title' : _(u"Rejected")},
-            {'id' : 'id_to_test', 'title' : _(u"To test")},
-            {'id' : 'id_completed', 'title' : _(u"Completed")},
-            {'id' : 'id_moved', 'title' : _(u"Moved")},
+            {'id' : '', 'title' : _(u"Open")},
+            {'id' : '', 'title' : _(u"At work")},
+            {'id' : '', 'title' : _(u"Rejected")},
+            {'id' : '', 'title' : _(u"To test")},
+            {'id' : '', 'title' : _(u"Completed")},
+            {'id' : '', 'title' : _(u"Moved")},
             ),
           widget = DataGridWidget(
             visible={'view': 'invisible', 'edit': 'visible'},
@@ -137,18 +135,22 @@ class TicketBox(folder.ATBTreeFolder):
 
 def renameIdAfterCreation(obj, event):
 
-       # #save datagrid to change ids
-       # availableStatus = obj.getavailableStatus()
-       # availableReleases = obj.getavailableReleases()
-       # availableSeverities = obj.getavailableSeverities()
-       # availableAreas = obj.getavailableAreas()
-       #
-       # #change id from availableStatus
-       # for row in availableStatus:
-       #     name = row['name']
+    plone_tool = getToolByName(obj, 'plone_utils', None)
+    datagrid = []
+    # #save datagrid to change ids
+    datagrid.append(obj.getAvailableStatus())
+    datagrid.append(obj.getAvailableReleases())
+    datagrid.append(obj.getAvailableSeverities())
+    datagrid.append(obj.getAvailableAreas())
 
-       # Can't rename without a subtransaction commit when using
-       # portal_factory!
-       savepoint(optimistic=True)
+    #change id from datagrids
+    for dg in datagrid:
+        for row in dg:
+            name = row['title']
+            row['id'] =  plone_tool.normalizeString(name)
+
+    # Can't rename without a subtransaction commit when using
+    # portal_factory!
+    savepoint(optimistic=True)
 
 registerType(TicketBox, PROJECTNAME)
