@@ -6,9 +6,9 @@ from zope.interface import implements
 from Products.Archetypes.atapi import Schema, registerType, ATFieldProperty
 from Products.Archetypes.atapi import StringField, StringWidget
 from Products.Archetypes.atapi import TextField, TextAreaWidget
-from Products.Archetypes.atapi import LinesField, LinesWidget
+# from Products.Archetypes.atapi import LinesField, LinesWidget
 from Products.Archetypes.atapi import SelectionWidget
-from Products.Archetypes.atapi import BooleanField, BooleanWidget
+# from Products.Archetypes.atapi import BooleanField, BooleanWidget
 
 from Products.Archetypes.public import DisplayList
 
@@ -43,100 +43,77 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
     TextField(
         name='description',
         widget=TextAreaWidget(
-            label="Ticketbox description",
-            description="Describe the purpose of this Ticketbox",
+            label=_(u"Ticketbox description"),
+            description=_(u"Describe the purpose of this Ticketbox"),
         ),
         required=True,
         searchable=True
     ),
-    #Individual Identifier
     StringField(
-         name='individual_identifier',
-         widget=StringWidget(
-             label=_(u"Individual identifier"),
-             description=(u"Enter a individual identifier (max 7 positions)"),
-         ),
-         searchable=True
-     ),
-
-    DataGridField('DemoField',
+             name='individual_identifier',
+             widget=StringWidget(
+                 label=_(u"Individual identifier"),
+                 description=_(u"Enter a individual identifier (max 7 positions)"),
+                 maxlength = 7,
+             ),
+             searchable=True
+    ),
+     #Status
+    DataGridField(
+          name = 'status',
           searchable = True,
-          columns=("column1", "column2", "select_sample"),
+          allow_empty_rows = False,
+          default = (
+            {'status_id' : 'id_open', 'status_name' : _(u"Open")},
+            {'status_id' : 'id_at_work', 'status_name' : _(u"At work")},
+            {'status_id' : 'id_rejected', 'status_name' : _(u"Rejected")},
+            {'status_id' : 'id_to_test', 'status_name' : _(u"To test")},
+            {'status_id' : 'id_completed', 'status_name' : _(u"Completed")},
+            {'status_id' : 'id_moved', 'status_name' : _(u"Moved")},
+            ),
           widget = DataGridWidget(
-            columns={
-                 'column1' : Column("Toholampi city rox"),
-                 'column2' : Column("My friendly name"),
-                 'select_sample' : SelectColumn("Friendly name", vocabulary="getSampleVocabulary")
-                  },
+            label = _(u"Define a status"),
+            description = _(u"add or delete possible status-information"),
+            column_names = (_(u"status_id"), _(u"status_name")),
          ),
+         columns = ("status_id", "status_name"),
       ),
+      #Available Releases
+        DataGridField(
+                   name='availableReleases',
+                   widget=DataGridWidget(
+                       label=_(u"Available Releases"),
+                       description=_(u"Enter the Available Releases for this tracker."),
+                       column_names=(_(u'Id'), _(u'Title')),
+                   ),
+                   allow_empty_rows=False,
+                   required=False,
+                   columns=('id', 'title')
+               ),
+      #Available Severities
+       DataGridField(
+                  name='availableSeverities',
+                  widget=DataGridWidget(
+                      label=_(u"Available severities"),
+                      description=_(u"Enter the different type of issue severities that should be available, one per line."),
+                      column_names=(_(u'ID'), _(u'Title')),
+                  ),
+                  allow_empty_rows=False,
+                  required=False,
+                  columns=('id', 'title'),
+              ),
 
       DataGridField(
-           name='availableAreas',
-           default=({'id' : 'ui', 'title' : 'User interface', 'description' : 'User interface issues'}, {'id' : 'functionality', 'title' : 'Functionality', 'description' : 'Issues with the basic functionality'}, {'id' : 'process', 'title' : 'Process', 'description' : 'Issues relating to the development process itself'}),
-           widget=DataGridWidget(
-               label="Areas",
-               description="Enter the issue topics/areas for this tracker.",
-               column_names=('Short name', 'Title', 'Description'),
-           ),
-           allow_empty_rows=False,
-           required=True,
-           validators=('isDataGridFilled', ),
-           columns=('id', 'title', 'description',)
-       ),
-
-       DataGridField(
-           name='availableIssueTypes',
-           default=({'id' : 'bug', 'title' : 'Bug', 'description' : 'Functionality bugs in the software'}, {'id' : 'feature', 'title' : 'Feature', 'description' : 'Suggested features'}, {'id' : 'patch', 'title' : 'Patch', 'description' : 'Patches to the software'}),
-           widget=DataGridWidget(
-               label="Issue types",
-               description="Enter the issue types for this tracker.",
-               column_names=('Short name', 'Title', 'Description',),
-           ),
-           allow_empty_rows=False,
-           required=True,
-           validators=('isDataGridFilled',),
-           columns=('id', 'title', 'description')
-       ),
-
-       LinesField(
-           name='availableSeverities',
-           default=['Critical', 'Important', 'Medium', 'Low'],
-           widget=LinesWidget(
-               label="Available severities",
-               description="Enter the different type of issue severities that should be available, one per line.",
-           ),
-           required=True
-       ),
-
-       StringField(
-           name='defaultSeverity',
-           default='Medium',
-           widget=SelectionWidget(
-               label="Default severity",
-               description="Select the default severity for new issues.",
-           ),
-           enforceVocabulary=True,
-           vocabulary='getAvailableSeverities',
-           required=True
-       ),
-
-       LinesField(
-           name='availableReleases',
-           widget=LinesWidget(
-               label="Available releases",
-               description="Enter the releases which issues can be assigned to, one per line. If no releases are entered, issues will not be organised by release.",
-           ),
-
-       ),
-
-       LinesField(
-           name='managers',
-           widget=LinesWidget(
-               label="Tracker managers",
-               description="Enter the user ids of the users who will be allowed to manage this tracker, one per line.",
-           ),
-       ),
+                 name='availableAreas',
+                 widget=DataGridWidget(
+                     label=_(u"Areas"),
+                     description=_(u"Enter the issue topics/areas for this tracker."),
+                     column_names=(_(u'Short name'), _(u'Title')),
+                 ),
+                 allow_empty_rows=False,
+                 required=True,
+                 columns=('id', 'title')
+      ),
 
 ))
 
@@ -161,15 +138,15 @@ class TicketBox(folder.ATBTreeFolder):
     # description = ATFieldProperty('description')
     # individual_identifier = ATFieldProperty('individual_identifier')
     #
-    def getSampleVocabulary(self):
-        """
-        """
-        """ Get list of possible taggable features from ATVocabularyManager """
-        return DisplayList(
-
-            (("sample", "Sample value 1",),
-            ("sample2", "Sample value 2",),))
-
+    # def getSampleVocabulary(self):
+    #     """
+    #     """
+    #     """ Get list of possible taggable features from ATVocabularyManager """
+    #     return DisplayList(
+    #
+    #         (("sample", "Sample value 1",),
+    #         ("sample2", "Sample value 2",),))
+    #
 
 
 

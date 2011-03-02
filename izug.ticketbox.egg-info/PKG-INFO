@@ -30,11 +30,11 @@ Description: .. contents::
         Changelog
         =========
         
-        1.0 (xxxx-xx-xx)
-        ----------------
         
-        - Created recipe with ZopeSkel
-        [Elio Schmutz]
+        1.0dev (unreleased)
+        -------------------
+        
+        - Initial release
         
         Detailed Documentation
         **********************
