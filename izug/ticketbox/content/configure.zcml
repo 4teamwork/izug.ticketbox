@@ -23,4 +23,20 @@
                  Products.Archetypes.interfaces.IObjectInitializedEvent"
             handler=".ticketbox.renameIdAfterCreation" />
 
+	<utility component=".vocabularies.StatesVocabularyFactory"
+            name="ticketbox_values_states"
+            provides="zope.schema.interfaces.IVocabularyFactory"
+            />
+	<utility component=".vocabularies.ReleasesVocabularyFactory"
+            name="ticketbox_values_releases"
+            provides="zope.schema.interfaces.IVocabularyFactory"
+            />
+	<utility component=".vocabularies.SeveritiesVocabularyFactory"
+            name="ticketbox_values_severities"
+            provides="zope.schema.interfaces.IVocabularyFactory"
+            />
+	<utility component=".vocabularies.AreasVocabularyFactory"
+            name="ticketbox_values_areas"
+            provides="zope.schema.interfaces.IVocabularyFactory"
+            />
 </configure>
