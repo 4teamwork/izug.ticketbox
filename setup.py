@@ -17,7 +17,7 @@ long_description = (
     'Change history\n'
     '**************\n'
     + '\n' +
-    read('CHANGES.txt')
+    read('docs/HISTORY.txt')
     + '\n' +
     'Detailed Documentation\n'
     '**********************\n'
@@ -55,6 +55,7 @@ setup(name='izug.ticketbox',
       include_package_data=True,
       zip_safe=False,
       install_requires=['setuptools',
+                        'Products.DataGridField',
                         # -*- Extra requirements: -*-
                         ],
       tests_require=tests_require,

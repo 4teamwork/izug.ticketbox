@@ -1,6 +1,12 @@
+CHANGES.txt
+CONTRIBUTORS.txt
 MANIFEST.in
 README.txt
 setup.py
+docs/HISTORY.txt
+docs/INSTALL.txt
+docs/LICENSE.GPL
+docs/LICENSE.txt
 izug/__init__.py
 izug.ticketbox.egg-info/PKG-INFO
 izug.ticketbox.egg-info/SOURCES.txt
@@ -16,15 +22,12 @@ izug/ticketbox/__init__.py
 izug/ticketbox/config.py
 izug/ticketbox/configure.zcml
 izug/ticketbox/browser/__init__.py
-izug/ticketbox/browser/__init__.pyo
 izug/ticketbox/browser/configure.zcml
 izug/ticketbox/content/__init__.py
-izug/ticketbox/content/__init__.pyo
 izug/ticketbox/content/configure.zcml
 izug/ticketbox/content/ticket.py
 izug/ticketbox/content/ticketbox.py
 izug/ticketbox/interfaces/__init__.py
-izug/ticketbox/interfaces/__init__.pyo
 izug/ticketbox/interfaces/ticket.py
 izug/ticketbox/interfaces/ticketbox.py
 izug/ticketbox/profiles/default/factorytool.xml
@@ -34,6 +37,5 @@ izug/ticketbox/profiles/default/types.xml
 izug/ticketbox/profiles/default/types/Ticket.xml
 izug/ticketbox/profiles/default/types/Ticket_Box.xml
 izug/ticketbox/tests/__init__.py
-izug/ticketbox/tests/__init__.pyo
 izug/ticketbox/tests/base.py
 izug/ticketbox/tests/test_doctest.py
