@@ -1,5 +1,0 @@
-setuptools
-Products.DataGridField
-
-[tests]
-zope.testing
