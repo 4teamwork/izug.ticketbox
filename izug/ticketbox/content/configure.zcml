@@ -4,7 +4,7 @@
     i18n_domain="izug.ticketbox">
 
   <!-- configure your content components here -->
-  
+
   <!-- -*- extra stuff goes here -*- -->
   <class class=".ticket.Ticket">
     <require
@@ -18,5 +18,9 @@
         interface="..interfaces.ITicketBox"
         />
   </class>
+
+  <subscriber for="..interfaces.ITicketBox
+                 Products.Archetypes.interfaces.IObjectInitializedEvent"
+            handler=".ticketbox.renameIdAfterCreation" />
 
 </configure>
