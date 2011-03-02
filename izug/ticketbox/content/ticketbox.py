@@ -3,19 +3,11 @@
 
 from zope.interface import implements
 
-from Products.Archetypes.atapi import Schema, registerType, ATFieldProperty
+from Products.Archetypes.atapi import Schema, registerType
 from Products.Archetypes.atapi import StringField, StringWidget
 from Products.Archetypes.atapi import TextField, TextAreaWidget
-# from Products.Archetypes.atapi import LinesField, LinesWidget
-from Products.Archetypes.atapi import SelectionWidget
-# from Products.Archetypes.atapi import BooleanField, BooleanWidget
-
-from Products.Archetypes.public import DisplayList
 
 from Products.DataGridField import DataGridField, DataGridWidget
-from Products.DataGridField.Column import Column
-from Products.DataGridField.SelectColumn import SelectColumn
-
 
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
@@ -49,6 +41,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
         required=True,
         searchable=True
     ),
+    #Individual Identifier
     StringField(
              name='individual_identifier',
              widget=StringWidget(
@@ -102,7 +95,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                   required=False,
                   columns=('id', 'title'),
               ),
-
+      #Available Areas
       DataGridField(
                  name='availableAreas',
                  widget=DataGridWidget(
@@ -133,21 +126,5 @@ class TicketBox(folder.ATBTreeFolder):
 
     meta_type = "TicketBox"
     schema = TicketBoxSchema
-
-    # title = ATFieldProperty('title')
-    # description = ATFieldProperty('description')
-    # individual_identifier = ATFieldProperty('individual_identifier')
-    #
-    # def getSampleVocabulary(self):
-    #     """
-    #     """
-    #     """ Get list of possible taggable features from ATVocabularyManager """
-    #     return DisplayList(
-    #
-    #         (("sample", "Sample value 1",),
-    #         ("sample2", "Sample value 2",),))
-    #
-
-
 
 registerType(TicketBox, PROJECTNAME)
