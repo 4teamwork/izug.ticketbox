@@ -5,7 +5,6 @@ from zope.interface import implements
 
 from Products.Archetypes.atapi import Schema, registerType
 from Products.Archetypes.atapi import StringField, StringWidget
-from Products.Archetypes.atapi import TextField, TextAreaWidget
 
 from Products.DataGridField import DataGridField, DataGridWidget
 
@@ -23,26 +22,6 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
 
     # -*- Your Archetypes field definitions here ... -*-
 
-    #Title
-    StringField(
-         name='title',
-         widget=StringWidget(
-             label=_(u"Ticketbox name"),
-             description=(u"Enter a descriptive name for this Ticketbox"),
-         ),
-         required=True,
-         searchable=True
-    ),
-    #Description
-    TextField(
-        name='description',
-        widget=TextAreaWidget(
-            label=_(u"Ticketbox description"),
-            description=_(u"Describe the purpose of this Ticketbox"),
-        ),
-        required=True,
-        searchable=True
-    ),
     #Individual Identifier
     StringField(
              name='individual_identifier',

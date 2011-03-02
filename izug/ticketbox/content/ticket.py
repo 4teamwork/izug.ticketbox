@@ -3,39 +3,21 @@
 
 from zope.interface import implements
 from izug.ticketbox import ticketboxMessageFactory as _
-from Products.Archetypes.atapi import StringField, StringWidget
+from Products.Archetypes.atapi import StringField
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content import schemata
-from Products.Archetypes.atapi import TextField, TextAreaWidget
 from Products.Archetypes.atapi import SelectionWidget
 # # -*- Message Factory Imported Here -*-
 
 from izug.ticketbox.interfaces import ITicket
 from izug.ticketbox.config import PROJECTNAME
+from Acquisition import aq_parent
 
 TicketSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
 
     # -*- Your Archetypes field definitions here ... -*-
-    StringField(
-         name='title',
-         widget=StringWidget(
-             label=_(u"Ticketbox name"),
-             description=(u"Enter a descriptive name for this Ticketbox"),
-         ),
-         required=True,
-         searchable=True
-    ),
-    #Description
-    TextField(
-        name='description',
-        widget=TextAreaWidget(
-            label=_(u"Ticketbox description"),
-            description=_(u"Describe the purpose of this Ticketbox"),
-        ),
-        required=True,
-        searchable=True
-    ),
+
     StringField(
         name='State',
         vocabulary_factory='ticketbox_values_states',
@@ -85,6 +67,5 @@ class Ticket(base.ATCTContent):
 
     meta_type = "Ticket"
     schema = TicketSchema
-
 
 atapi.registerType(Ticket, PROJECTNAME)
