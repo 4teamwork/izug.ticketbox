@@ -53,9 +53,9 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
              ),
              searchable=True
     ),
-     #Available Status
+     #Available States
     DataGridField(
-          name = 'availableStatus',
+          name = 'availableStates',
           searchable = True,
           allow_empty_rows = False,
           default = (
@@ -68,9 +68,9 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
             ),
           widget = DataGridWidget(
             visible={'view': 'invisible', 'edit': 'visible'},
-            label = _(u"Define a status"),
-            description = _(u"add or delete possible status-information"),
-            column_names = (_(u"status_id"), _(u"status_name")),
+            label = _(u"Define a state"),
+            description = _(u"add or delete possible state-information"),
+            column_names = (_(u"state_id"), _(u"state_name")),
          ),
          columns = ("id", "title"),
       ),
@@ -133,12 +133,22 @@ class TicketBox(folder.ATBTreeFolder):
     meta_type = "TicketBox"
     schema = TicketBoxSchema
 
+    #stores the actual ticket number id
+    ticket_num = 0
+
+    @property
+    def get_unique_ticket_id(self):
+        #return unique ticket id
+        self.ticket_num += 1
+        return self.ticket_num
+
 def renameIdAfterCreation(obj, event):
 
     plone_tool = getToolByName(obj, 'plone_utils', None)
     datagrid = []
+
     # #save datagrid to change ids
-    datagrid.append(obj.getAvailableStatus())
+    datagrid.append(obj.getAvailableStates())
     datagrid.append(obj.getAvailableReleases())
     datagrid.append(obj.getAvailableSeverities())
     datagrid.append(obj.getAvailableAreas())
