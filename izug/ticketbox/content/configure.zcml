@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="izug.ticketbox">
+
+  <!-- configure your content components here -->
+  
+  <!-- -*- extra stuff goes here -*- -->
+  <class class=".ticket.Ticket">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.ITicket"
+        />
+  </class>
+  <class class=".ticketbox.TicketBox">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.ITicketBox"
+        />
+  </class>
+
+</configure>
