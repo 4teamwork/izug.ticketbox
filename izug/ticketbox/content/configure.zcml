@@ -23,6 +23,10 @@
                  Products.Archetypes.interfaces.IObjectInitializedEvent"
             handler=".ticketbox.renameIdAfterCreation" />
 
+  <subscriber for="..interfaces.ITicketBox
+                 Products.Archetypes.interfaces.IObjectEditedEvent"
+           	  handler=".ticketbox.renameIdAfterCreation" />
+
 	<utility component=".vocabularies.StatesVocabularyFactory"
             name="ticketbox_values_states"
             provides="zope.schema.interfaces.IVocabularyFactory"

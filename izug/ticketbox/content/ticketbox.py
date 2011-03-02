@@ -156,8 +156,9 @@ def renameIdAfterCreation(obj, event):
     #change id from datagrids
     for dg in datagrid:
         for row in dg:
-            name = row['title']
-            row['id'] =  plone_tool.normalizeString(name)
+            if not row['id']:
+                name = row['title']
+                row['id'] =  plone_tool.normalizeString(name)
 
     # Can't rename without a subtransaction commit when using
     # portal_factory!
