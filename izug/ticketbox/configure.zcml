@@ -22,4 +22,30 @@
 
   <!-- -*- extra stuff goes here -*- -->
 
+	<!-- ticketresponse -->
+
+  <subscriber
+      for="izug.ticketbox.adapters.IResponse
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".events.modifiedNewStyleResponse"
+      />
+
+  <subscriber
+      for="izug.ticketbox.adapters.IResponse
+           zope.app.container.interfaces.IObjectAddedEvent"
+      handler=".events.addedNewStyleResponse"
+      />
+
+  <subscriber
+      for="izug.ticketbox.adapters.IResponse
+           zope.app.container.interfaces.IObjectRemovedEvent"
+      handler=".events.removedResponse"
+      />
+
+  <adapter
+      provides=".adapters.IResponseContainer"
+      factory=".adapters.ResponseContainer"
+      />
+
+
 </configure>

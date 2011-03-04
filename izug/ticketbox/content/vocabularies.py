@@ -14,7 +14,7 @@ class TicketBoxVocabulary(object):
         self.field = field
         super(TicketBoxVocabulary, self).__init__
 
-    def __call__(self, context, membersonly=False):
+    def __call__(self, context):
         tracker = aq_parent(context)
         myField = tracker.getField(self.field)
         for item in myField.get(tracker):

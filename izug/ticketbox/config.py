@@ -8,3 +8,9 @@ ADD_PERMISSIONS = {
     'Ticket': 'izug.ticketbox: Add Ticket',
     'TicketBox': 'izug.ticketbox: Add Ticket Box',
 }
+
+
+# Add text/html to the list of mimetypes to allow HTML/kupu
+# issue/response text.
+ISSUE_MIME_TYPES = ('text/x-web-intelligent', )
+DEFAULT_ISSUE_MIME_TYPE = 'text/x-web-intelligent'

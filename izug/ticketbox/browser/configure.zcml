@@ -6,5 +6,41 @@
   <include package="plone.app.contentmenu" />
 
   <!-- -*- extra stuff goes here -*- -->
+  <browser:page
+     name="create_response"
+     for="izug.ticketbox.interfaces.IIssue"
+     permission="zope2.View"
+     class=".response.Create"
+     allowed_interface=".interfaces.ICreateResponse"
+     />
 
+  <browser:page
+     name="poi_response_delete"
+     for="izug.ticketbox.interfaces.IIssue"
+     permission="zope2.View"
+     class=".response.Delete"
+     />
+
+  <browser:page
+     name="poi_response_edit"
+     for="izug.ticketbox.interfaces.IIssue"
+     permission="zope2.View"
+     class=".response.Edit"
+     template="edit_response.pt"
+     />
+
+  <browser:page
+     name="poi_response_save"
+     for="izug.ticketbox.interfaces.IIssue"
+     permission="zope2.View"
+     class=".response.Save"
+     />
+
+  <browser:page
+     name="issuefolder"
+     for="izug.ticketbox.interfaces.ITracker"
+     permission="zope2.View"
+     class=".tracker.IssueFolderView"
+     allowed_interface=".interfaces.IIssueFolderView"
+     />
 </configure>
