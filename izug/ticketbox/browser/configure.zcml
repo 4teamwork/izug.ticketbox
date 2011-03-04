@@ -6,6 +6,19 @@
   <include package="plone.app.contentmenu" />
 
   <!-- -*- extra stuff goes here -*- -->
+  <browser:resourceDirectory
+      name="izug.ticketbox.css"
+      directory="stylesheets"
+      />
+
+  <browser:page
+     name="ticketboxfolder_view"
+     for="izug.ticketbox.interfaces.ITicketBox"
+     permission="zope2.View"
+     class=".ticketbox_view.TicketBoxView"
+     template="ticketbox_view.pt"
+     />
+
   <browser:page
      name="create_response"
      for="izug.ticketbox.interfaces.IIssue"
@@ -36,11 +49,4 @@
      class=".response.Save"
      />
 
-  <browser:page
-     name="issuefolder"
-     for="izug.ticketbox.interfaces.ITracker"
-     permission="zope2.View"
-     class=".tracker.IssueFolderView"
-     allowed_interface=".interfaces.IIssueFolderView"
-     />
 </configure>

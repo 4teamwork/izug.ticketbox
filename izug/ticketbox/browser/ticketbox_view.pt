@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="izug.ticketbox">
+
+  <head>
+    <metal:css fill-slot="css_slot">
+      <style type="text/css" media="all"
+        tal:content="string:@import url($portal_url/ticketbox.css);"></style>
+    </metal:css>
+  </head>
+
+
+<body>
+  <div metal:fill-slot="main">
+    <div metal:define-macro="body">
+
+      <h1 tal:content="here/Title" class="documentFirstHeading" />
+
+      <div class="documentDescription" tal:content="here/Description" />
+
+      <div class="formControls">
+        <table>
+          <tr>
+            <td>
+              <form action="createObject"
+                    id="poi-submit-new-issue-form"
+                    tal:condition="python: user.has_permission('Poi: Add Issue', here)">
+                <input name="type_name"
+                       type="hidden"
+                       value="Ticket"
+                       />
+                <div class="formControls">
+                  <input class="context"
+                         type="submit"
+                         i18n:attributes="value"
+                         value="Submit new issue"
+                         />
+                </div>
+              </form>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <h2 i18n:translate="poi_heading_open_issues">Open Issues</h2>
+
+
+
+      <p i18n:translate="poi_help_open_issues">
+          Click an area, release or issue state to see all open issues in that
+          category. For more advanced search options, click "search for issues".
+      </p>
+
+
+      <div id="open-issues-by-area" class="issue-quick-search-box">
+          <h3 i18n:translate="poi_heading_by_area">By states</h3>
+          <ul>
+              <tal:areas repeat="states here/getAvailableStates">
+                <li tal:define="stateId states/id;
+								stateTitle states/title;
+								tickets python:view.getFilteredTickets(state=stateId)
+								">
+                <a tal:attributes="title stateId"
+                   tal:content="stateTitle" /> (<span tal:replace="python:len(tickets)" />)
+                </li>
+              </tal:areas>
+          </ul>
+      </div>
+
+      <div class="visualClear"><!----></div>
+
+
+      <div class="poweredBy">
+        <tal:powered i18n:translate="label_powered_by">
+          Powered by
+        </tal:powered>
+        <a class="link-plain"
+           href="http://plone.org/products/poi">Poi</a>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+
+</html>
+

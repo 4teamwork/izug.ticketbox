@@ -4,25 +4,20 @@ from Products.CMFCore.utils import getToolByName
 from ZTUtils import make_query
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
-class TicketFolderView(BrowserView):
+class TicketBoxView(BrowserView):
 
     template = ViewPageTemplateFile('ticketbox_view.pt')
 
-    def getFilteredIssues(self, criteria=None, **kwargs):
+    def test(self):
+        return "me"
+
+    def getFilteredTickets(self, criteria=None, **kwargs):
         """Get the contained issues in the given criteria.
         """
         context = aq_inner(self.context)
         query = self.buildIssueSearchQuery(criteria, **kwargs)
         catalog = getToolByName(context, 'portal_catalog')
         return catalog.searchResults(query)
-
-    def getIssueSearchQueryString(self, criteria=None, **kwargs):
-        """Return a query string for an issue query.
-
-        Form of return string:name1=value1&name2=value2
-        """
-        query = self.buildIssueSearchQuery(criteria, **kwargs)
-        return make_query(query)
 
     def buildIssueSearchQuery(self, criteria=None, **kwargs):
         """Build canonical query for issue search.
@@ -49,7 +44,7 @@ class TicketFolderView(BrowserView):
 
         query                = {}
         query['path']        = '/'.join(context.getPhysicalPath())
-        query['portal_type'] = ['PoiIssue']
+        query['portal_type'] = ['Ticket']
 
         for k, v in allowedCriteria.items():
             if k in criteria:
@@ -92,58 +87,3 @@ class TicketFolderView(BrowserView):
             query['sort_limit'] = criteria.get('sort_limit')
 
         return query
-
-    def getMyIssues(self, openStates=['open', 'in-progress'],
-                    memberId=None, manager=False):
-        """Get a catalog query result set of my issues.
-
-        So: all issues assigned to or submitted by the current user,
-        with review state in openStates.
-
-        If manager is True, add unconfirmed to the states.
-        """
-        context = aq_inner(self.context)
-        if not memberId:
-            mtool = getToolByName(context, 'portal_membership')
-            member = mtool.getAuthenticatedMember()
-            memberId = member.getId()
-
-        if manager:
-            if 'unconfirmed' not in openStates:
-                openStates += ['unconfirmed']
-
-        open = self.getFilteredIssues(state=openStates)
-        issues = []
-
-        for i in open:
-            responsible = i.getResponsibleManager
-            creator = i.Creator
-            if memberId in (creator, responsible) or \
-                   (manager and responsible == '(UNASSIGNED)'):
-                issues.append(i)
-
-        return issues
-
-    def getOrphanedIssues(self, openStates=['open', 'in-progress'],
-                          memberId=None):
-        """Get a catalog query result set of orphaned issues.
-
-        Meaning: all open issues not assigned to anyone and not owned
-        by the given user.
-        """
-        context = aq_inner(self.context)
-        if not memberId:
-            mtool = getToolByName(context, 'portal_membership')
-            member = mtool.getAuthenticatedMember()
-            memberId = member.getId()
-
-        open = self.getFilteredIssues(state=openStates)
-        issues = []
-
-        for i in open:
-            responsible = i.getResponsibleManager
-            creator = i.Creator
-            if creator != memberId and responsible == '(UNASSIGNED)':
-                issues.append(i)
-
-        return issues

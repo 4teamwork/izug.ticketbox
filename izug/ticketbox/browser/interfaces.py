@@ -5,7 +5,7 @@ from zope.viewlet.interfaces import IViewletManager
 from zope.contentprovider.interfaces import ITALNamespaceData
 
 
-class IIssueFolderView(Interface):
+class ITicketFolderView(Interface):
     """Abstract a PoiTracker into a folder for issues.
     """
 

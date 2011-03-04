@@ -119,15 +119,6 @@ class TicketBox(folder.ATBTreeFolder):
     meta_type = "TicketBox"
     schema = TicketBoxSchema
 
-    #stores the actual ticket number id
-    ticket_num = 0
-
-    @property
-    def get_unique_ticket_id(self):
-        #return unique ticket id
-        self.ticket_num += 1
-        return self.ticket_num
-
 def renameIdAfterCreation(obj, event):
 
     plone_tool = getToolByName(obj, 'plone_utils', None)
