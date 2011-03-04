@@ -10,9 +10,10 @@ from Products.ATContentTypes.content import schemata
 from Products.Archetypes.atapi import SelectionWidget
 # # -*- Message Factory Imported Here -*-
 
-from izug.ticketbox.interfaces import ITicket
+from izug.ticketbox.interfaces import ITicket, ITicketBox
 from izug.ticketbox.config import PROJECTNAME
-from Acquisition import aq_parent
+from Acquisition import aq_chain
+from transaction import savepoint
 
 TicketSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
 
@@ -67,5 +68,41 @@ class Ticket(base.ATCTContent):
 
     meta_type = "Ticket"
     schema = TicketSchema
+
+    def _renameAfterCreation(self, check_auto_id=False):
+        """rename id after creation
+
+        save a unique id
+        """
+
+        parent = self.getTracker()
+        maxId = 0
+        for id in parent.objectIds():
+            try:
+                intId = int(id)
+                maxId = max(maxId, intId)
+            except (TypeError, ValueError):
+                pass
+        newId = str(maxId + 1)
+        # Can't rename without a subtransaction commit when using
+        # portal_factory!
+        savepoint(optimistic=True)
+        self.setId(newId)
+
+    def getTracker(self):
+        """Return the tracker.
+
+        This gets around the problem that the aq_parent of an issue
+        that is being created is not the tracker, but a temporary
+        folder.
+        """
+        for parent in aq_chain(self):
+            if ITicketBox.providedBy(parent):
+                return parent
+        raise Exception(
+            "Could not find PoiTracker in acquisition chain of %r" %
+            self)
+
+
 
 atapi.registerType(Ticket, PROJECTNAME)

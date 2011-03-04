@@ -27,7 +27,8 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
              name='individual_identifier',
              widget=StringWidget(
                  label=_(u"Individual identifier"),
-                 description=_(u"Enter a individual identifier (max 7 positions)"),
+                 description=_(
+                    u"Enter a individual identifier (max 7 positions)"),
                  maxlength = 7,
              ),
              searchable=True
@@ -59,7 +60,8 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                    widget=DataGridWidget(
                        visible={'view': 'invisible', 'edit': 'visible'},
                        label=_(u"Available Releases"),
-                       description=_(u"Enter the Available Releases for this tracker."),
+                       description=_(
+                           u"Enter the Available Releases for this tracker."),
                        column_names=(_(u'Releases_id'), _(u'Releases_title')),
                    ),
                    allow_empty_rows=False,
@@ -72,8 +74,12 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                   widget=DataGridWidget(
                       visible={'view': 'invisible', 'edit': 'visible'},
                       label=_(u"Available severities"),
-                      description=_(u"Enter the different type of issue severities that should be available, one per line."),
-                      column_names=(_(u'Severities_id'), _(u'Severities_title')),
+                      description=_(
+                            u"Enter the different type of issue severities" +
+                            " that should be available, one per line."),
+                      column_names=(
+                        _(u'Severities_id'),
+                        _(u'Severities_title')),
                   ),
                   allow_empty_rows=False,
                   required=False,
@@ -85,7 +91,8 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                  widget=DataGridWidget(
                      visible={'view': 'invisible', 'edit': 'visible'},
                      label=_(u"Areas"),
-                     description=_(u"Enter the issue topics/areas for this tracker."),
+                     description=_(
+                        u"Enter the issue topics/areas for this tracker."),
                      column_names=(_(u'Areas_id'), _(u'Areas_title')),
                  ),
                  allow_empty_rows=False,
