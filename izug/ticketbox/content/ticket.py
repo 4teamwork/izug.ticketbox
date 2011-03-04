@@ -2,26 +2,55 @@
 """
 
 from zope.interface import implements
-from izug.ticketbox import ticketboxMessageFactory as _
-from Products.Archetypes.atapi import StringField
-from Products.Archetypes import atapi
-from Products.ATContentTypes.content import base
-from Products.ATContentTypes.content import schemata
-from Products.Archetypes.atapi import SelectionWidget
-from Products.Archetypes.atapi import FileField
-from Products.Archetypes.atapi import FileWidget
-from Products.Archetypes.atapi import AttributeStorage
-# # -*- Message Factory Imported Here -*-
 
+from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.interfaces import ITicket, ITicketBox
 from izug.ticketbox.config import PROJECTNAME
+
 from Acquisition import aq_chain
 from transaction import savepoint
+from DateTime import DateTime
 
-TicketSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
+from Products.Archetypes.atapi import Schema
+from Products.ATContentTypes.content import base
+from Products.ATContentTypes.content import schemata
 
-    # -*- Your Archetypes field definitions here ... -*-
+from Products.Archetypes.atapi import StringField
+from Products.Archetypes.atapi import SelectionWidget, RichWidget
+from Products.Archetypes.atapi import FileField, FileWidget
+from Products.Archetypes.atapi import TextField
+from Products.Archetypes.atapi import DateTimeField, CalendarWidget
+from Products.Archetypes.atapi import AttributeStorage, AnnotationStorage
+from Products.Archetypes.atapi import registerType
 
+
+TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
+
+    #Description with editor
+    TextField(
+        name='description',
+        searchable=True,
+        required=False,
+        default_content_type='text/html',
+        default_output_type='text/html',
+        storage=AnnotationStorage(),
+        widget=RichWidget(
+            label=_(u"description"),
+            description=_(u"write down a description of the ticket")
+        )
+    ),
+
+    #Due-Date (default: x + 14 days)
+    DateTimeField(
+        name='Due-date',
+        default_method='default_due_date',
+        widget=CalendarWidget(
+            label=_(u"Due-date"),
+            description=_(u"Due-date of the ticket"),
+        )
+    ),
+
+    #State
     StringField(
         name='State',
         vocabulary_factory='ticketbox_values_states',
@@ -30,16 +59,19 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
             description=_(u"Define Which State the Ticket has"),
         ),
         required=True
-        ),
+    ),
+
+    #Priority
     StringField(
         name='Priority',
         vocabulary_factory='ticketbox_values_severities',
         widget=SelectionWidget(
             label=_(u"Select Priority"),
             description=_(u"Select the Priority"),
-            ),
-            required=False
-            ),
+        ),
+    ),
+
+    #Area
     StringField(
         name='Area',
         vocabulary_factory='ticketbox_values_areas',
@@ -47,8 +79,9 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
             label=_(u'Select Area'),
             description=_(u'Select Area'),
         ),
-        required=False
-        ),
+    ),
+
+    #Releases
     StringField(
         name='Releases',
         vocabulary_factory='ticketbox_values_releases',
@@ -56,11 +89,21 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
             label=_(u'Select Release'),
             description=_(u'Select the Release of the ticket'),
         ),
-        required=False
-        ),
+    ),
 
+    #Answer-date (default: x + 14 days)
+    DateTimeField(
+        name='Answer-date',
+        default_method='default_answer_date',
+        widget=CalendarWidget(
+            label=_(u"Answer-date"),
+            description=_(u"Answer-date of the ticket"),
+        )
+    ),
+
+    #Attachment
     FileField(
-        name='attachment',
+        name='Attachment',
         widget=FileWidget(
             label=_(u"Attachment"),
             description=_(u"You may optionally upload a file attachment. Please do not upload unnecessarily large files."),
@@ -116,6 +159,17 @@ class Ticket(base.ATCTContent):
             "Could not find TicketBox in acquisition chain of %r" %
             self)
 
+    def default_due_date(self):
+        """ Return a standard due-date (9.00 Clock in 14 days) """
+
+        a = DateTime() + 14
+        return DateTime(a.year(), a.month(), a.day(), 9, 00)
+
+    def default_answer_date(self):
+        """ Return a standard answer-date (9.00 Clock in 14 days) """
+
+        return self.default_due_date()
 
 
-atapi.registerType(Ticket, PROJECTNAME)
+
+registerType(Ticket, PROJECTNAME)
