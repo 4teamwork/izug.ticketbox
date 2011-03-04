@@ -21,7 +21,12 @@ from Products.Archetypes.atapi import FileField, FileWidget
 from Products.Archetypes.atapi import TextField
 from Products.Archetypes.atapi import DateTimeField, CalendarWidget
 from Products.Archetypes.atapi import AttributeStorage, AnnotationStorage
+from Products.Archetypes.atapi import BooleanField, BooleanWidget
+from Products.Archetypes.atapi import ReferenceField
+from Products.Archetypes.atapi import DisplayList
 from Products.Archetypes.atapi import registerType
+
+from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 
 TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
@@ -91,6 +96,18 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         ),
     ),
 
+    #Responsible
+    StringField(
+        name='responsibleManager',
+        index="FieldIndex:schema",
+        widget=SelectionWidget(
+            label="Responsible",
+            description="Select which manager, if any," +
+                " is responsible for this issue.",
+        ),
+        vocabulary='getResponsibleVocab',
+        default="(UNASSIGNED)",
+    ),
     #Answer-date (default: x + 14 days)
     DateTimeField(
         name='Answer-date',
@@ -106,11 +123,41 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         name='Attachment',
         widget=FileWidget(
             label=_(u"Attachment"),
-            description=_(u"You may optionally upload a file attachment. Please do not upload unnecessarily large files."),
+            description=_(u"You may optionally upload a file attachment." +
+                " Please do not upload unnecessarily large files."),
         ),
         storage=AttributeStorage(),
     ),
 
+    #References
+    ReferenceField(
+        name='references',
+        widget=ReferenceBrowserWidget(
+            label=_(u"References"),
+            allow_browse=True,
+            show_results_without_query=True,
+            restrict_browsing_to_startup_directory=True,
+            base_query={"portal_type": "Ticket Box", "sort_on": "sortable_title"},
+        ),
+        allowed_types=('Ticket','Ticket Box'),
+        multiValued=1,
+        schemata='default',
+        relationship='Ticket Box'
+    ),
+
+    #send Notification Emails
+    BooleanField(
+        name='sendNotificationEmails',
+        default=True,
+        widget=BooleanWidget(
+            label=_(u"Send notification emails"),
+            description=_(u"If selected, tracker managers will receive an email" +
+                " each time a new issue or response is posted, and issue" +
+                " submitters will receive an email when there is a new" +
+                " response and when an issue has been resolved," +
+                " awaiting confirmation."),
+        )
+    ),
 ))
 
 schemata.finalizeATCTSchema(TicketSchema, moveDiscussion=False)
@@ -170,6 +217,26 @@ class Ticket(base.ATCTContent):
 
         return self.default_due_date()
 
+    def sendNotificationMail(self):
+        """ Send a notification from the ticket
+        """
+
+        #TODO: implement notification
+        print "send email"
+
+    def getResponsibleVocab(self):
+        """
+        Get the managers available as a DisplayList. The first item is 'None',
+        with a key of '(UNASSIGNED)'.
+        """
+
+        #TODO: Vocabular from Managers in Arbeitsraum
+        vocab = DisplayList()
+        vocab.add('(UNASSIGNED)', _(u'None'), 'poi_vocab_none')
+        vocab.add('1', _(u'Test1'), 'poi_vocab_test1')
+        vocab.add('2', _(u'Test2'), 'poi_vocab_test2')
+        vocab.add('3', _(u'Test3'), 'poi_vocab_test3')
+        return vocab
 
 
 registerType(Ticket, PROJECTNAME)
