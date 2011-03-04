@@ -8,6 +8,9 @@ from Products.Archetypes import atapi
 from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content import schemata
 from Products.Archetypes.atapi import SelectionWidget
+from Products.Archetypes.atapi import FileField
+from Products.Archetypes.atapi import FileWidget
+from Products.Archetypes.atapi import AttributeStorage
 # # -*- Message Factory Imported Here -*-
 
 from izug.ticketbox.interfaces import ITicket, ITicketBox
@@ -56,11 +59,18 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         required=False
         ),
 
+    FileField(
+        name='attachment',
+        widget=FileWidget(
+            label=_(u"Attachment"),
+            description=_(u"You may optionally upload a file attachment. Please do not upload unnecessarily large files."),
+        ),
+        storage=AttributeStorage(),
+    ),
+
 ))
 
-
 schemata.finalizeATCTSchema(TicketSchema, moveDiscussion=False)
-
 
 class Ticket(base.ATCTContent):
     """Description of the Example Type"""
@@ -70,11 +80,10 @@ class Ticket(base.ATCTContent):
     schema = TicketSchema
 
     def _renameAfterCreation(self, check_auto_id=False):
-        """rename id after creation
+        """rename id and title after creation
 
-        save a unique id
+        save a unique id and the title with the id nr.
         """
-
         parent = self.getTracker()
         maxId = 0
         for id in parent.objectIds():
@@ -88,6 +97,10 @@ class Ticket(base.ATCTContent):
         # portal_factory!
         savepoint(optimistic=True)
         self.setId(newId)
+        self.setTitle("#%s - %s" % (newId, self.title))
+
+        self.reindexObject(idxs=['Title'])
+        self.reindexObject(idxs=['Id'])
 
     def getTracker(self):
         """Return the tracker.
@@ -100,7 +113,7 @@ class Ticket(base.ATCTContent):
             if ITicketBox.providedBy(parent):
                 return parent
         raise Exception(
-            "Could not find PoiTracker in acquisition chain of %r" %
+            "Could not find TicketBox in acquisition chain of %r" %
             self)
 
 
