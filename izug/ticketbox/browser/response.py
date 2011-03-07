@@ -8,18 +8,19 @@ from Products.Five.browser import BrowserView
 from izug.ticketbox.adapters import IResponseContainer
 from izug.ticketbox.adapters import Response
 from plone.memoize.view import memoize
-from Products.Archetypes.atapi import DisplayList
+#from Products.Archetypes.atapi import DisplayList
 from izug.ticketbox.config import DEFAULT_ISSUE_MIME_TYPE
-from Products.CMFPlone import PloneMessageFactory as PMF
 from Products.PageTemplates.GlobalTranslationService import \
     getGlobalTranslationService
 from izug.ticketbox import ticketboxMessageFactory as _
-from izug.ticketbox import permissions
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.lifecycleevent import modified
 from OFS.Image import File
 from Products.CMFPlone.utils import safe_unicode
 from Products.Archetypes.utils import contentDispositionHeader
+from zope.component import getUtility
+from zope.schema.interfaces import IVocabularyFactory
+
 try:
     from plone.i18n.normalizer.interfaces import \
         IUserPreferredFileNameNormalizer
@@ -87,7 +88,6 @@ class Base(BrowserView):
         context = aq_inner(self.context)
         trans = context.portal_transforms
         items = []
-        linkDetection = context.linkDetection
         for id, response in enumerate(self.folder):
             if response is None:
                 # Has been removed.
@@ -101,8 +101,6 @@ class Base(BrowserView):
                                            response.text,
                                            mimetype=response.mimetype)
                     html = html.getData()
-                # Detect links like #1 and r1234
-                html = linkDetection(html)
                 response.rendered_text = html
             html = response.rendered_text
             info = dict(id=id,
@@ -221,45 +219,39 @@ class Base(BrowserView):
         return context.getTargetRelease()
 
     @property
-    def responsibleManager(self):
-        context = aq_inner(self.context)
-        return context.getResponsibleManager()
+    @memoize
+    def transitions_for_display(self):
+        factory=getUtility(IVocabularyFactory,name='ticketbox_values_states')
+        result = []
+        for term in factory(self.context.aq_inner):
+            current_state = self.context.getState()
+            checked = term.token == current_state
+            result.append(
+                dict(
+                    value=term.token,
+                    lable=term.value,
+                    checked=checked))
+        return result
 
     @property
     @memoize
-    def transitions_for_display(self):
-        """Display the available transitions for this issue.
-        """
-        context = aq_inner(self.context)
-        if not self.memship.checkPermission(permissions.ModifyIssueState,
-                                            context):
-            return []
-        wftool = getToolByName(context, 'portal_workflow')
-        transitions = []
-        transitions.append(dict(value='', label=PMF(u'No change'),
-                                checked="checked"))
-        for tdef in wftool.getTransitionsFor(context):
-            transitions.append(dict(value=tdef['id'],
-                                    label=tdef['title_or_id'], checked=''))
-        return transitions
-
-    @property
-    def available_transitions(self):
-        """Get the available transitions for this issue.
-        """
-        return [x['value'] for x in self.transitions_for_display]
-
-    @property
     def severities_for_display(self):
-        """Get the available severities for this issue.
-        """
-        vocab = self.available_severities
-        options = []
-        for value in vocab:
-            checked = (value == self.severity) and "checked" or ""
-            options.append(dict(value=value, label=value,
-                                checked=checked))
-        return options
+        factory=getUtility(IVocabularyFactory,name='ticketbox_values_severities')
+        result = []
+        for term in factory(self.context.aq_inner):
+            current_state = self.context.getSeverity()
+            checked = term.token == current_state
+            result.append(
+                dict(
+                    value=term.token,
+                    lable=term.value,
+                    checked=checked))
+
+
+    @property
+    def responsibleManager(self):
+        context = aq_inner(self.context)
+        return context.getResponsibleManager()
 
     @property
     @memoize
@@ -268,9 +260,6 @@ class Base(BrowserView):
         """
         # get vocab from tracker so use aq_inner
         context = aq_inner(self.context)
-        if not self.memship.checkPermission(
-            permissions.ModifyIssueSeverity, context):
-            return []
         return context.getAvailableSeverities()
 
     @property
@@ -294,9 +283,6 @@ class Base(BrowserView):
         """
         # get vocab from issue
         context = aq_inner(self.context)
-        if not self.memship.checkPermission(
-            permissions.ModifyIssueTargetRelease, context):
-            return DisplayList()
         return context.getReleasesVocab()
 
     @property
@@ -322,9 +308,6 @@ class Base(BrowserView):
         """
         # get vocab from issue
         context = aq_inner(self.context)
-        if not self.memship.checkPermission(
-            permissions.ModifyIssueAssignment, context):
-            return DisplayList()
         return context.getManagersVocab()
 
     @property
@@ -332,9 +315,7 @@ class Base(BrowserView):
     def upload_allowed(self):
         """Is the user allowed to upload on attachment?
         """
-        context = aq_inner(self.context)
-        return self.memship.checkPermission(
-            permissions.UploadAttachment, context)
+        return True
 
 
 class AddForm(Base):

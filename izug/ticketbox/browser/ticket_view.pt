@@ -12,7 +12,7 @@
 	<table>
 		<tr>
 			<td i18n:translate='label_description'>Description</td>
-			<td tal:content="here/description" />
+			<td tal:content="here/Description" />
 		</tr>
 		<tr tal:condition="python: here.Due_date">
 			<td i18n:translate='label_duedate'>Due Date</td>
@@ -64,5 +64,6 @@
 
 		</div>
 	</div>
+	<div tal:replace="structure provider:poi.response.add" />
 </div>
 </html>

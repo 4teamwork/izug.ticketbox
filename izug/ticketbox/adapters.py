@@ -5,7 +5,7 @@ from zope.component import adapts
 from zope.annotation.interfaces import IAnnotations
 from persistent import Persistent
 from persistent.list import PersistentList
-from izug.ticketbox.interfaces import IIssue
+from izug.ticketbox.interfaces.ticket import ITicket
 from AccessControl import getSecurityManager
 from DateTime import DateTime
 from zope.app.container.contained import ObjectRemovedEvent
@@ -37,7 +37,7 @@ class IResponse(Interface):
 class ResponseContainer(Persistent):
 
     implements(IResponseContainer)
-    adapts(IIssue)
+    adapts(ITicket)
     ANNO_KEY = 'poi.responses'
 
     def __init__(self, context):

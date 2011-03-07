@@ -11,7 +11,6 @@ class TicketView(BrowserView):
 
     def getAttachments(self):
         """alsjd"""
-        import pdb; pdb.set_trace( )
         att = self.context.getAttachment()
         url = att.absolute_url()
         render_att= '<a href="'+ url+'"><img src="'+att.portal_url()+'/'+att.getIcon()+'" /></a>'

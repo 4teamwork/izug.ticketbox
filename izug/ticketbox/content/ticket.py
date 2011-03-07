@@ -15,7 +15,6 @@ from DateTime import DateTime
 from Products.Archetypes.atapi import Schema
 from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content import schemata
-
 from Products.Archetypes.atapi import StringField
 from Products.Archetypes.atapi import SelectionWidget
 from Products.Archetypes.atapi import FileField, FileWidget
@@ -24,7 +23,7 @@ from Products.Archetypes.atapi import AttributeStorage
 from Products.Archetypes.atapi import BooleanField, BooleanWidget
 from Products.Archetypes.atapi import ReferenceField
 from Products.Archetypes.atapi import registerType
-
+from AccessControl import ClassSecurityInfo
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 
@@ -150,9 +149,11 @@ class Ticket(base.ATCTContent):
     """Description of the Example Type"""
     implements(ITicket)
 
+    security = ClassSecurityInfo()
     meta_type = "Ticket"
     schema = TicketSchema
 
+    security.declarePrivate('linkDetection')
     def _renameAfterCreation(self, check_auto_id=False):
         """rename id and title after creation
 

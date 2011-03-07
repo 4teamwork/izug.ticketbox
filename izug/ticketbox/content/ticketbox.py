@@ -13,7 +13,7 @@ from Products.DataGridField.Column import Column
 
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
-
+from AccessControl import ClassSecurityInfo
 from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.interfaces import ITicketBox
 from izug.ticketbox.config import PROJECTNAME
@@ -130,6 +130,7 @@ class TicketBox(folder.ATBTreeFolder):
 
     meta_type = "TicketBox"
     schema = TicketBoxSchema
+    security = ClassSecurityInfo()
 
     def get_assignable_users(self):
         """
@@ -153,6 +154,7 @@ class TicketBox(folder.ATBTreeFolder):
             ))
 
 
+
 def renameIdAfterCreation(obj, event):
 
     plone_tool = getToolByName(obj, 'plone_utils', None)
@@ -174,5 +176,6 @@ def renameIdAfterCreation(obj, event):
     # Can't rename without a subtransaction commit when using
     # portal_factory!
     savepoint(optimistic=True)
+
 
 registerType(TicketBox, PROJECTNAME)
