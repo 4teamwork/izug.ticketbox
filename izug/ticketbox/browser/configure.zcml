@@ -11,16 +11,19 @@
       directory="stylesheets"
       />
 
+
+
+	<!-- XXX move to izug.arbeitsraum - prehaps -->
   <browser:page
-     name="ticketboxfolder_view"
+     name="arbeitsraum_view-overview"
      for="izug.ticketbox.interfaces.ITicketBox"
      permission="zope2.View"
      class=".ticketbox_view.TicketBoxView"
      template="ticketbox_view.pt"
      />
 
+
   <browser:page
-<<<<<<< .mine
      name="ticket_view"
      for="izug.ticketbox.interfaces.ITicket"
      permission="zope2.View"
@@ -29,7 +32,6 @@
      />
 
   <browser:page
-=======
      name="ticketboxfolder_view_all_tickets"
      for="izug.ticketbox.interfaces.ITicketBox"
      permission="zope2.View"
@@ -38,7 +40,6 @@
      />
 
   <browser:page
->>>>>>> .r43260
      name="create_response"
      for="izug.ticketbox.interfaces.IIssue"
      permission="zope2.View"

@@ -1,19 +1,5 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
-      lang="en-US"
-      metal:use-macro="here/main_template/macros/master"
-      i18n:domain="izug.ticketbox">
 
-  <head>
-    <metal:css fill-slot="css_slot">
-      <style type="text/css" media="all"
-        tal:content="string:@import url($portal_url/ticketbox.css);"></style>
-    </metal:css>
-  </head>
-
-
-<body>
-  <div metal:fill-slot="main">
-    <div metal:define-macro="body">
+    <div>
 
       <h1 tal:content="here/Title" class="documentFirstHeading" />
 
@@ -120,8 +106,5 @@
 
     </div>
 
-  </div>
-</body>
 
-</html>
 

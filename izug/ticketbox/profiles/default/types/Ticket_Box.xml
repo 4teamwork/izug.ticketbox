@@ -17,10 +17,10 @@
   	<element value="Ticket Response"/>
   </property>
   <property name="allow_discussion">False</property>
-  <property name="default_view">ticketboxfolder_view</property>
-  <property name="view_methods">
-    <element value="base_view" />
-  </property>
+  <property name="default_view">arbeitsraum_view</property>
+ <property name="view_methods">
+  <element value="arbeitsraum_view"/>
+ </property>
   <alias from="(Default)" to="(dynamic view)" />
   <alias from="edit" to="atct_edit" />
   <alias from="sharing" to="@@sharing" />
@@ -33,4 +33,13 @@
     url_expr="string:${object_url}/edit" visible="True">
     <permission value="Modify portal content" />
   </action>
+ <action title="Overview" action_id="overview" category="arbeitsraum-tabs"
+    condition_expr="" url_expr="string:${object_url}" visible="True">
+  <permission value="View"/>
+ </action>
+ <action title="All Tickets" action_id="all_tickets" category="arbeitsraum-tabs"
+    condition_expr="" url_expr="string:${object_url}?view=all_tickets"
+    visible="True">
+  <permission value="View"/>
+ </action>
 </object>
