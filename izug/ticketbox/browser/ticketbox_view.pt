@@ -48,26 +48,9 @@
 
 
       <p i18n:translate="poi_help_open_issues">
-          Click an area, release or issue state to see all open issues in that
+          Click an area, release or issue state to see all open tickets in that
           category. For more advanced search options, click "search for issues".
       </p>
-
-
-<!--       <div id="tickets-by-responsible" class="ticketbox-quick-search-box">
-          <h3 i18n:translate="ticketbox_heading_by_responsible">By responsible</h3>
-          <ul>
-              <tal:areas repeat="responsible here/getresponsibleManager">
-                <li tal:define="responsibleId responsible/id;
-								responsibleTitle responsible/title;
-								tickets python:view.getFilteredTickets(responsible=responsibleId)
-								">
-                <a tal:attributes="href string:${here/absolute_url}"
-                   tal:content="responsibleTitle" /> (<span tal:replace="python:len(tickets)" />)
-               </li>
-              </tal:areas>
-          </ul>
-      </div> -->
-
 
       <div id="tickets-by-state" class="ticketbox-quick-search-box">
           <h3 i18n:translate="ticketbox_heading_by_states">By states</h3>
@@ -120,13 +103,13 @@
       <div id="tickets-by-severities" class="ticketbox-quick-search-box">
           <h3 i18n:translate="ticketbox_heading_by_severities">By severities</h3>
           <ul>
-              <tal:areas repeat="severitie here/getAvailableSeverities">
-                <li tal:define="severitieId severitie/id;
-								severitieTitle severitie/title;
-								tickets python:view.getFilteredTickets(severitie=severitieId)
+              <tal:areas repeat="severity here/getAvailableSeverities">
+                <li tal:define="severityId severity/id;
+								severityTitle severity/title;
+								tickets python:view.getFilteredTickets(severity=severityId)
 								">
                 <a tal:attributes="href string:${here/absolute_url}"
-                   tal:content="severitieTitle" /> (<span tal:replace="python:len(tickets)" />)
+                   tal:content="severityTitle" /> (<span tal:replace="python:len(tickets)" />)
                </li>
               </tal:areas>
           </ul>
@@ -134,15 +117,6 @@
 
 
       <div class="visualClear"><!----></div>
-
-
-      <div class="poweredBy">
-        <tal:powered i18n:translate="label_powered_by">
-          Powered by
-        </tal:powered>
-        <a class="link-plain"
-           href="http://plone.org/products/poi">Poi</a>
-      </div>
 
     </div>
 

@@ -8,6 +8,7 @@ from izug.ticketbox.interfaces import ITicket, ITicketBox
 from izug.ticketbox.config import PROJECTNAME
 
 from Acquisition import aq_chain
+from Acquisition import aq_parent
 from transaction import savepoint
 from DateTime import DateTime
 
@@ -23,7 +24,6 @@ from Products.Archetypes.atapi import DateTimeField, CalendarWidget
 from Products.Archetypes.atapi import AttributeStorage, AnnotationStorage
 from Products.Archetypes.atapi import BooleanField, BooleanWidget
 from Products.Archetypes.atapi import ReferenceField
-from Products.Archetypes.atapi import DisplayList
 from Products.Archetypes.atapi import registerType
 
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
@@ -226,17 +226,12 @@ class Ticket(base.ATCTContent):
 
     def getResponsibleVocab(self):
         """
+        TEMP-Function
         Get the managers available as a DisplayList. The first item is 'None',
         with a key of '(UNASSIGNED)'.
         """
-
-        #TODO: Vocabular from Managers in Arbeitsraum
-        vocab = DisplayList()
-        vocab.add('(UNASSIGNED)', _(u'None'), 'poi_vocab_none')
-        vocab.add('1', _(u'Test1'), 'poi_vocab_test1')
-        vocab.add('2', _(u'Test2'), 'poi_vocab_test2')
-        vocab.add('3', _(u'Test3'), 'poi_vocab_test3')
-        return vocab
+        parent = aq_parent(self)
+        return parent.getResponsibleVocab()
 
 
 registerType(Ticket, PROJECTNAME)

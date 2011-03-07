@@ -5,6 +5,7 @@ from zope.interface import implements
 
 from Products.Archetypes.atapi import Schema, registerType
 from Products.Archetypes.atapi import StringField, StringWidget
+from Products.Archetypes.atapi import DisplayList
 
 from Products.DataGridField import DataGridField, DataGridWidget
 
@@ -99,7 +100,6 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                  required=True,
                  columns=('id', 'title')
       ),
-
 ))
 
 
@@ -118,6 +118,21 @@ class TicketBox(folder.ATBTreeFolder):
 
     meta_type = "TicketBox"
     schema = TicketBoxSchema
+
+    def getResponsibleVocab(self):
+        """
+        TEMP-Function
+        Get the managers available as a DisplayList. The first item is 'None',
+        with a key of '(UNASSIGNED)'.
+        """
+
+        #TODO: Vocabular from Managers in Arbeitsraum
+        vocab = DisplayList()
+        vocab.add('(UNASSIGNED)', _(u'None'), 'poi_vocab_none')
+        vocab.add('1', _(u'Test1'), 'poi_vocab_test1')
+        vocab.add('2', _(u'Test2'), 'poi_vocab_test2')
+        vocab.add('3', _(u'Test3'), 'poi_vocab_test3')
+        return vocab
 
 def renameIdAfterCreation(obj, event):
 

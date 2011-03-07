@@ -8,9 +8,6 @@ class TicketBoxView(BrowserView):
 
     template = ViewPageTemplateFile('ticketbox_view.pt')
 
-    def test(self):
-        return "me"
-
     def getFilteredTickets(self, criteria=None, **kwargs):
         """Get the contained issues in the given criteria.
         """
@@ -31,7 +28,7 @@ class TicketBoxView(BrowserView):
         allowedCriteria = {'release'       : 'Releases',
                            'area'          : 'Area',
                            'issueType'     : 'getIssueType',
-                           'severity'      : 'getSeverity',
+                           'severity'      : 'Priority',
                            'targetRelease' : 'getTargetRelease',
                            'state'         : 'State',
                            'tags'          : 'Subject',
