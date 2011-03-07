@@ -11,8 +11,6 @@ from Products.DataGridField import DataGridField, DataGridWidget
 from Products.DataGridField.SelectColumn import SelectColumn
 from Products.DataGridField.Column import Column
 
-
-
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
 
@@ -22,6 +20,9 @@ from izug.ticketbox.config import PROJECTNAME
 
 from Products.CMFCore.utils import getToolByName
 from transaction import savepoint
+
+from izug.arbeitsraum.interfaces import IArbeitsraum
+from izug.utils.users import getAssignableUsers
 
 TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
 
@@ -38,27 +39,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
              ),
              searchable=True
     ),
-    #  #Available States
-    # DataGridField(
-    #       name = 'availableStates',
-    #       searchable = True,
-    #       allow_empty_rows = False,
-    #       default = (
-    #         {'id' : '', 'title' : _(u"Open")},
-    #         {'id' : '', 'title' : _(u"At work")},
-    #         {'id' : '', 'title' : _(u"Rejected")},
-    #         {'id' : '', 'title' : _(u"To test")},
-    #         {'id' : '', 'title' : _(u"Completed")},
-    #         {'id' : '', 'title' : _(u"Moved")},
-    #         ),
-    #       widget = DataGridWidget(
-    #         visible={'view': 'invisible', 'edit': 'visible'},
-    #         label = _(u"Define a state"),
-    #         description = _(u"add or delete possible state-information"),
-    #         column_names = (_(u"state_id"), _(u"state_name"), _(u"show_in_all_tickets"), _(u"show_in_my_tickets")),
-    #      ),
-    #      columns = ("id", "title", "show_in_all_tickets", "show_in_my_tickets"),
-    #   ),
+
      #Available States
     DataGridField(
           name = 'availableStates',
@@ -145,30 +126,25 @@ schemata.finalizeATCTSchema(
 
 class TicketBox(folder.ATBTreeFolder):
     """Description of the Example Type"""
-    implements(ITicketBox)
+    implements(ITicketBox, IArbeitsraum)
 
     meta_type = "TicketBox"
     schema = TicketBoxSchema
 
-    def getResponsibleVocab(self):
+    def getAssignableUsers(self):
         """
-        TEMP-Function
         Get the managers available as a DisplayList. The first item is 'None',
         with a key of '(UNASSIGNED)'.
         """
 
-        #TODO: Vocabular from Managers in Arbeitsraum
-        vocab = DisplayList()
-        vocab.add('(UNASSIGNED)', _(u'None'), 'poi_vocab_none')
-        vocab.add('1', _(u'Test1'), 'poi_vocab_test1')
-        vocab.add('2', _(u'Test2'), 'poi_vocab_test2')
-        vocab.add('3', _(u'Test3'), 'poi_vocab_test3')
-        return vocab
+        users = getAssignableUsers(self,'Reader')
+        users.insert(0,['(UNASSIGNED)', _(u'None')])
+        return users
 
     def getYesOrNo(self):
         """
+        Return a DisplayList with yes or no (used for a dropdown)
         """
-        """ Get list of possible taggable features from ATVocabularyManager """
         return DisplayList(
 
             (

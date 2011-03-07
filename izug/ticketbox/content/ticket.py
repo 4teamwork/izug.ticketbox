@@ -90,8 +90,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             description="Select which manager, if any," +
                 " is responsible for this issue.",
         ),
-        vocabulary='getResponsibleVocab',
-        default="(UNASSIGNED)",
+        vocabulary='getAssignableUsers',
     ),
     #Answer-date (default: x + 14 days)
     DateTimeField(
@@ -209,14 +208,13 @@ class Ticket(base.ATCTContent):
         #TODO: implement notification
         print "send email"
 
-    def getResponsibleVocab(self):
+    def getAssignableUsers(self):
         """
-        TEMP-Function
         Get the managers available as a DisplayList. The first item is 'None',
         with a key of '(UNASSIGNED)'.
         """
-        parent = aq_parent(self)
-        return parent.getResponsibleVocab()
+
+        return aq_parent(self).getAssignableUsers()
 
 
 registerType(Ticket, PROJECTNAME)
