@@ -43,7 +43,7 @@
         </table>
       </div>
 
-      <h2 i18n:translate="poi_heading_open_issues">Open Issues</h2>
+      <h2 i18n:translate="poi_heading_open_issues">All Issues</h2>
 
 
 

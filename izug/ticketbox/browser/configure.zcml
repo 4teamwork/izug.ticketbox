@@ -20,6 +20,14 @@
      />
 
   <browser:page
+     name="ticketboxfolder_view_all_tickets"
+     for="izug.ticketbox.interfaces.ITicketBox"
+     permission="zope2.View"
+     class=".ticketbox_view_all_tickets.TicketBoxView"
+     template="ticketbox_view_all_tickets.pt"
+     />
+
+  <browser:page
      name="create_response"
      for="izug.ticketbox.interfaces.IIssue"
      permission="zope2.View"
