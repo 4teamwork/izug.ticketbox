@@ -23,7 +23,6 @@ class TicketBoxView(BrowserView):
         """Build canonical query for issue search.
         """
         context = aq_inner(self.context)
-
         if criteria is None:
             criteria = kwargs
         else:
@@ -34,7 +33,7 @@ class TicketBoxView(BrowserView):
                            'issueType'     : 'getIssueType',
                            'severity'      : 'getSeverity',
                            'targetRelease' : 'getTargetRelease',
-                           'state'         : 'review_state',
+                           'state'         : 'State',
                            'tags'          : 'Subject',
                            'responsible'   : 'getResponsibleManager',
                            'creator'       : 'Creator',
@@ -85,5 +84,4 @@ class TicketBoxView(BrowserView):
         query['sort_order'] = criteria.get('sort_order', 'reverse')
         if criteria.get('sort_limit'):
             query['sort_limit'] = criteria.get('sort_limit')
-
         return query

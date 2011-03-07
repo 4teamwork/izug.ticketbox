@@ -8,6 +8,8 @@ ADD_PERMISSIONS = {
     'Ticket': 'izug.ticketbox: Add Ticket',
     'TicketBox': 'izug.ticketbox: Add Ticket Box',
 }
+INDEXES = (('State', 'FieldIndex'),
+           )
 
 
 # Add text/html to the list of mimetypes to allow HTML/kupu

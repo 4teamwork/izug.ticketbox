@@ -53,17 +53,33 @@
       </p>
 
 
-      <div id="open-issues-by-area" class="issue-quick-search-box">
+      <div id="tickets-by-responsible" class="ticketbox-quick-search-box">
           <h3 i18n:translate="poi_heading_by_area">By states</h3>
           <ul>
               <tal:areas repeat="states here/getAvailableStates">
                 <li tal:define="stateId states/id;
 								stateTitle states/title;
-								tickets python:view.getFilteredTickets(state=stateId)
+								tickets python:view.getFilteredTickets(State=stateId)
 								">
-                <a tal:attributes="title stateId"
+                <a tal:attributes="href string:${here/absolute_url}"
                    tal:content="stateTitle" /> (<span tal:replace="python:len(tickets)" />)
-                </li>
+               </li>
+              </tal:areas>
+          </ul>
+      </div>
+
+
+      <div id="tickets-by-state" class="ticketbox-quick-search-box">
+          <h3 i18n:translate="poi_heading_by_area">By states</h3>
+          <ul>
+              <tal:areas repeat="states here/getAvailableStates">
+                <li tal:define="stateId states/id;
+								stateTitle states/title;
+								tickets python:view.getFilteredTickets(State=stateId)
+								">
+                <a tal:attributes="href string:${here/absolute_url}"
+                   tal:content="stateTitle" /> (<span tal:replace="python:len(tickets)" />)
+               </li>
               </tal:areas>
           </ul>
       </div>

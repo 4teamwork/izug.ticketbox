@@ -20,7 +20,15 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
-  <!-- -*- extra stuff goes here -*- -->
+
+    <!-- Register the import step -->
+    <genericsetup:importStep
+        name="izug.ticketbox"
+        title="izug.ticketbox special import handlers"
+        description=""
+        handler="izug.ticketbox.setuphandlers.import_various"
+		/>
+
 
 	<!-- ticketresponse -->
 

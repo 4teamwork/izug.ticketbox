@@ -1,0 +1,7 @@
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+<!--
+ Add indexes here on penalty of death or worse.
+         See INDEXES in config.py instead.
+-->
+<column value="State"/>
+</object>
