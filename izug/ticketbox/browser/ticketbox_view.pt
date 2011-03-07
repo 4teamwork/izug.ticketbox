@@ -38,6 +38,23 @@
           category. For more advanced search options, click "search for issues".
       </p>
 
+
+<!--       <div id="tickets-by-responsible" class="ticketbox-quick-search-box">
+          <h3 i18n:translate="ticketbox_heading_by_states">By responsible</h3>
+          <ul>
+              <tal:areas repeat="responsible here/get_assignable_users">
+                <li tal:define="responsibleId responsible;
+								responsibleTitle responsible;
+								tickets python:view.getFilteredTickets(responsible=responsibleId)
+								">
+                <a tal:attributes="href string:${here/absolute_url}"
+                   tal:content="responsibleTitle" /> (<span tal:replace="python:len(tickets)" />)
+               </li>
+              </tal:areas>
+          </ul>
+      </div>
+ -->
+
       <div id="tickets-by-state" class="ticketbox-quick-search-box">
           <h3 i18n:translate="ticketbox_heading_by_states">By states</h3>
           <ul>

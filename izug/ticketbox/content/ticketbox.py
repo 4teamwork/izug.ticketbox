@@ -110,7 +110,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                  ),
                  allow_empty_rows=False,
                  required=True,
-                 columns=('id', 'title')
+                 columns=('id', 'title'),
       ),
 ))
 
