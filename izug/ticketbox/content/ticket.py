@@ -17,11 +17,10 @@ from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content import schemata
 
 from Products.Archetypes.atapi import StringField
-from Products.Archetypes.atapi import SelectionWidget, RichWidget
+from Products.Archetypes.atapi import SelectionWidget
 from Products.Archetypes.atapi import FileField, FileWidget
-from Products.Archetypes.atapi import TextField
 from Products.Archetypes.atapi import DateTimeField, CalendarWidget
-from Products.Archetypes.atapi import AttributeStorage, AnnotationStorage
+from Products.Archetypes.atapi import AttributeStorage
 from Products.Archetypes.atapi import BooleanField, BooleanWidget
 from Products.Archetypes.atapi import ReferenceField
 from Products.Archetypes.atapi import registerType
@@ -30,20 +29,6 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 
 
 TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
-
-    #Description with editor
-    TextField(
-        name='description',
-        searchable=True,
-        required=False,
-        default_content_type='text/html',
-        default_output_type='text/html',
-        storage=AnnotationStorage(),
-        widget=RichWidget(
-            label=_(u"description"),
-            description=_(u"write down a description of the ticket")
-        )
-    ),
 
     #Due-Date (default: x + 14 days)
     DateTimeField(
