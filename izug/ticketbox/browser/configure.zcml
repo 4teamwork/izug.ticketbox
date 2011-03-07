@@ -20,6 +20,16 @@
      />
 
   <browser:page
+<<<<<<< .mine
+     name="ticket_view"
+     for="izug.ticketbox.interfaces.ITicket"
+     permission="zope2.View"
+     class=".ticket_view.TicketView"
+	 template="ticket_view.pt"
+     />
+
+  <browser:page
+=======
      name="ticketboxfolder_view_all_tickets"
      for="izug.ticketbox.interfaces.ITicketBox"
      permission="zope2.View"
@@ -28,6 +38,7 @@
      />
 
   <browser:page
+>>>>>>> .r43260
      name="create_response"
      for="izug.ticketbox.interfaces.IIssue"
      permission="zope2.View"

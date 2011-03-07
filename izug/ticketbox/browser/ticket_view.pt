@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="izug.ticketbox">
+
+<div metal:fill-slot="main">
+  <div metal:define-macro="body">
+
+    <h1 tal:content="here/Title" class="documentFirstHeading" />
+
+	<div>
+	<table>
+		<tr>
+			<td i18n:translate='label_description'>Description</td>
+			<td tal:content="here/description" />
+		</tr>
+		<tr tal:condition="python: here.Due_date">
+			<td i18n:translate='label_duedate'>Due Date</td>
+			<td tal:content="python: here.Due_date.strftime('%d.%m.%Y')" />
+		</tr>
+		<tr>
+			<td i18n:translate='label_state'>State</td>
+			<td tal:content="here/State" />
+		</tr>
+		<tr>
+			<td i18n:translate='label_Priority'>Priority</td>
+			<td tal:content="here/Priority"/>
+		</tr>
+		<tr>
+			<td i18n:translate='label_Area'>Area</td>
+			<td tal:content="here/Area" />
+		</tr>
+		<tr>
+			<td i18n:translate='label_Releases'>Release</td>
+			<td tal:content="here/Releases" />
+		</tr>
+		<tr>
+			<td i18n:translate='label_responsibleManager'>responsible Manager</td>
+			<td tal:content="here/responsibleManager" />
+		</tr>
+		<tr>
+			<td i18n:translate='label_Answer-date'>Answer Date</td>
+			<td tal:content="python:here.Answer_date.strftime('%d.%m.%Y')" />
+		</tr>
+		<tr tal:condition="python: here.getAttachment().filename != ''">
+			<td i18n:translate='label_Attachment'>Attachments</td>
+			<td tal:content="structure view/getAttachments" />
+		</tr>
+		<tr tal:condition="python: here.getReferences() != []">
+			<td i18n:translate='label_references'>References</td>
+			<td tal:content="structure view/getReferences"/>
+		</tr>
+		<tr>
+			<td i18n:translate='label_responses'>Responses</td>
+			<td tal:content="view/getResponses" />
+		</tr>
+		</table>
+		<form style="display: inline"
+		                action="createObject">
+		            <input name="type_name" type="hidden" value="Response" />
+		            <input class="standalone" type="submit"
+		                   value="Antwort hinzufügen" />
+		          </form>
+
+		</div>
+	</div>
+</div>
+</html>

@@ -47,7 +47,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 
     #Due-Date (default: x + 14 days)
     DateTimeField(
-        name='Due-date',
+        name='Due_date',
         default_method='default_due_date',
         widget=CalendarWidget(
             label=_(u"Due-date"),
@@ -110,7 +110,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
     ),
     #Answer-date (default: x + 14 days)
     DateTimeField(
-        name='Answer-date',
+        name='Answer_date',
         default_method='default_answer_date',
         widget=CalendarWidget(
             label=_(u"Answer-date"),
