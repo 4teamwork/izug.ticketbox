@@ -90,7 +90,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             description="Select which manager, if any," +
                 " is responsible for this issue.",
         ),
-        vocabulary='getAssignableUsers',
+        vocabulary='get_assignable_users',
     ),
     #Answer-date (default: x + 14 days)
     DateTimeField(
@@ -158,7 +158,7 @@ class Ticket(base.ATCTContent):
 
         save a unique id and the title with the id nr.
         """
-        parent = self.getTracker()
+        parent = self.get_tracker()
         maxId = 0
         for id in parent.objectIds():
             try:
@@ -176,7 +176,7 @@ class Ticket(base.ATCTContent):
         self.reindexObject(idxs=['Title'])
         self.reindexObject(idxs=['Id'])
 
-    def getTracker(self):
+    def get_tracker(self):
         """Return the tracker.
 
         This gets around the problem that the aq_parent of an issue
@@ -201,20 +201,20 @@ class Ticket(base.ATCTContent):
 
         return self.default_due_date()
 
-    def sendNotificationMail(self):
+    def send_notification_mail(self):
         """ Send a notification from the ticket
         """
 
         #TODO: implement notification
         print "send email"
 
-    def getAssignableUsers(self):
+    def get_assignable_users(self):
         """
         Get the managers available as a DisplayList. The first item is 'None',
         with a key of '(UNASSIGNED)'.
         """
 
-        return aq_parent(self).getAssignableUsers()
+        return aq_parent(self).get_assignable_users()
 
 
 registerType(Ticket, PROJECTNAME)

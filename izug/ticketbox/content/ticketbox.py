@@ -60,8 +60,8 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
             columns = {
                 'id' : Column(_(u"id")),
                 'title' : Column(_(u"title")),
-                'show_in_all_tickets' : SelectColumn(_(u"show in 'all tickets'"), vocabulary="getYesOrNo"),
-                'show_in_my_tickets' : SelectColumn(_(u"show in 'my tickets'"), vocabulary="getYesOrNo"),
+                'show_in_all_tickets' : SelectColumn(_(u"show in 'all tickets'"), vocabulary="get_yes_or_no"),
+                'show_in_my_tickets' : SelectColumn(_(u"show in 'my tickets'"), vocabulary="get_yes_or_no"),
             }
 
          ),
@@ -131,7 +131,7 @@ class TicketBox(folder.ATBTreeFolder):
     meta_type = "TicketBox"
     schema = TicketBoxSchema
 
-    def getAssignableUsers(self):
+    def get_assignable_users(self):
         """
         Get the managers available as a DisplayList. The first item is 'None',
         with a key of '(UNASSIGNED)'.
@@ -141,7 +141,7 @@ class TicketBox(folder.ATBTreeFolder):
         users.insert(0,['(UNASSIGNED)', _(u'None')])
         return users
 
-    def getYesOrNo(self):
+    def get_yes_or_no(self):
         """
         Return a DisplayList with yes or no (used for a dropdown)
         """
@@ -158,7 +158,7 @@ def renameIdAfterCreation(obj, event):
     plone_tool = getToolByName(obj, 'plone_utils', None)
     datagrid = []
 
-    # #save datagrid to change ids
+    #save datagrid to change ids
     datagrid.append(obj.getAvailableStates())
     datagrid.append(obj.getAvailableReleases())
     datagrid.append(obj.getAvailableSeverities())
