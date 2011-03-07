@@ -8,6 +8,10 @@ from Products.Archetypes.atapi import StringField, StringWidget
 from Products.Archetypes.atapi import DisplayList
 
 from Products.DataGridField import DataGridField, DataGridWidget
+from Products.DataGridField.SelectColumn import SelectColumn
+from Products.DataGridField.Column import Column
+
+
 
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
@@ -34,26 +38,53 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
              ),
              searchable=True
     ),
+    #  #Available States
+    # DataGridField(
+    #       name = 'availableStates',
+    #       searchable = True,
+    #       allow_empty_rows = False,
+    #       default = (
+    #         {'id' : '', 'title' : _(u"Open")},
+    #         {'id' : '', 'title' : _(u"At work")},
+    #         {'id' : '', 'title' : _(u"Rejected")},
+    #         {'id' : '', 'title' : _(u"To test")},
+    #         {'id' : '', 'title' : _(u"Completed")},
+    #         {'id' : '', 'title' : _(u"Moved")},
+    #         ),
+    #       widget = DataGridWidget(
+    #         visible={'view': 'invisible', 'edit': 'visible'},
+    #         label = _(u"Define a state"),
+    #         description = _(u"add or delete possible state-information"),
+    #         column_names = (_(u"state_id"), _(u"state_name"), _(u"show_in_all_tickets"), _(u"show_in_my_tickets")),
+    #      ),
+    #      columns = ("id", "title", "show_in_all_tickets", "show_in_my_tickets"),
+    #   ),
      #Available States
     DataGridField(
           name = 'availableStates',
           searchable = True,
           allow_empty_rows = False,
           default = (
-            {'id' : '', 'title' : _(u"Open")},
-            {'id' : '', 'title' : _(u"At work")},
-            {'id' : '', 'title' : _(u"Rejected")},
-            {'id' : '', 'title' : _(u"To test")},
-            {'id' : '', 'title' : _(u"Completed")},
-            {'id' : '', 'title' : _(u"Moved")},
-            ),
+           {'id' : '', 'title' : _(u"Open"), 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '1'},
+           {'id' : '', 'title' : _(u"At work"), 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '1'},
+           {'id' : '', 'title' : _(u"Rejected"), 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '1'},
+           {'id' : '', 'title' : _(u"To test"), 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '1'},
+           {'id' : '', 'title' : _(u"Completed"), 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '0'},
+           {'id' : '', 'title' : _(u"Moved"), 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '1'},
+           ),
           widget = DataGridWidget(
             visible={'view': 'invisible', 'edit': 'visible'},
-            label = _(u"Define a state"),
+            label = _(u"Define states"),
             description = _(u"add or delete possible state-information"),
-            column_names = (_(u"state_id"), _(u"state_name")),
+            columns = {
+                'id' : Column(_(u"id")),
+                'title' : Column(_(u"title")),
+                'show_in_all_tickets' : SelectColumn(_(u"show in 'all tickets'"), vocabulary="getYesOrNo"),
+                'show_in_my_tickets' : SelectColumn(_(u"show in 'my tickets'"), vocabulary="getYesOrNo"),
+            }
+
          ),
-         columns = ("id", "title"),
+         columns = ("id", "title", "show_in_all_tickets", "show_in_my_tickets"),
       ),
       #Available Releases
         DataGridField(
@@ -133,6 +164,18 @@ class TicketBox(folder.ATBTreeFolder):
         vocab.add('2', _(u'Test2'), 'poi_vocab_test2')
         vocab.add('3', _(u'Test3'), 'poi_vocab_test3')
         return vocab
+
+    def getYesOrNo(self):
+        """
+        """
+        """ Get list of possible taggable features from ATVocabularyManager """
+        return DisplayList(
+
+            (
+            ("1", _(u"yes"),),
+            ("0", _(u"no"),),
+            ))
+
 
 def renameIdAfterCreation(obj, event):
 
