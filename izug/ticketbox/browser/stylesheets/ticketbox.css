@@ -1,17 +1,9 @@
-/*
-** Poi style sheet for CSS2-capable browsers.
-**
-** Copyright Martin Aspeli - optilude@gmx.net
-**
-** Feel free to use whole or parts of this for your own designs, but give credit
-** where credit is due.
-**
-*/
+/* Ticketbox front page */
+.ticketbox-quick-search-box{
+    float:left;
+    padding: 0 1em 1em 0;
 
-/* <dtml-with base_properties> */
-
-/* Tracker front page */
-
+}
 .issue-quick-search-box {
     width: 30%;
     float: left;

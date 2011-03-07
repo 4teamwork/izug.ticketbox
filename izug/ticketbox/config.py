@@ -9,6 +9,9 @@ ADD_PERMISSIONS = {
     'TicketBox': 'izug.ticketbox: Add Ticket Box',
 }
 INDEXES = (('State', 'FieldIndex'),
+            ('Releases', 'FieldIndex'),
+            ('Area', 'FieldIndex'),
+            ('Priority', 'FieldIndex'),
            )
 
 

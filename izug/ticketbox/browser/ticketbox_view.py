@@ -28,8 +28,8 @@ class TicketBoxView(BrowserView):
         else:
             criteria = dict(criteria)
 
-        allowedCriteria = {'release'       : 'getRelease',
-                           'area'          : 'getArea',
+        allowedCriteria = {'release'       : 'Releases',
+                           'area'          : 'Area',
                            'issueType'     : 'getIssueType',
                            'severity'      : 'getSeverity',
                            'targetRelease' : 'getTargetRelease',

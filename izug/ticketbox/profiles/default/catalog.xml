@@ -4,4 +4,7 @@
          See INDEXES in config.py instead.
 -->
 <column value="State"/>
+<column value="Releases"/>
+<column value="Area"/>
+<column value="Priority"/>
 </object>

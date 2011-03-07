@@ -53,29 +53,29 @@
       </p>
 
 
-      <div id="tickets-by-responsible" class="ticketbox-quick-search-box">
-          <h3 i18n:translate="poi_heading_by_area">By states</h3>
+<!--       <div id="tickets-by-responsible" class="ticketbox-quick-search-box">
+          <h3 i18n:translate="ticketbox_heading_by_responsible">By responsible</h3>
           <ul>
-              <tal:areas repeat="states here/getAvailableStates">
-                <li tal:define="stateId states/id;
-								stateTitle states/title;
-								tickets python:view.getFilteredTickets(State=stateId)
+              <tal:areas repeat="responsible here/getresponsibleManager">
+                <li tal:define="responsibleId responsible/id;
+								responsibleTitle responsible/title;
+								tickets python:view.getFilteredTickets(responsible=responsibleId)
 								">
                 <a tal:attributes="href string:${here/absolute_url}"
-                   tal:content="stateTitle" /> (<span tal:replace="python:len(tickets)" />)
+                   tal:content="responsibleTitle" /> (<span tal:replace="python:len(tickets)" />)
                </li>
               </tal:areas>
           </ul>
-      </div>
+      </div> -->
 
 
       <div id="tickets-by-state" class="ticketbox-quick-search-box">
-          <h3 i18n:translate="poi_heading_by_area">By states</h3>
+          <h3 i18n:translate="ticketbox_heading_by_states">By states</h3>
           <ul>
               <tal:areas repeat="states here/getAvailableStates">
                 <li tal:define="stateId states/id;
 								stateTitle states/title;
-								tickets python:view.getFilteredTickets(State=stateId)
+								tickets python:view.getFilteredTickets(state=stateId)
 								">
                 <a tal:attributes="href string:${here/absolute_url}"
                    tal:content="stateTitle" /> (<span tal:replace="python:len(tickets)" />)
@@ -83,6 +83,55 @@
               </tal:areas>
           </ul>
       </div>
+
+
+      <div id="tickets-by-release" class="ticketbox-quick-search-box">
+          <h3 i18n:translate="ticketbox_heading_by_release">By release</h3>
+          <ul>
+              <tal:areas repeat="release here/getAvailableReleases">
+                <li tal:define="releaseId release/id;
+								releaseTitle release/title;
+								tickets python:view.getFilteredTickets(release=releaseId)
+								">
+                <a tal:attributes="href string:${here/absolute_url}"
+                   tal:content="releaseTitle" /> (<span tal:replace="python:len(tickets)" />)
+               </li>
+              </tal:areas>
+          </ul>
+      </div>
+
+
+      <div id="tickets-by-area" class="ticketbox-quick-search-box">
+          <h3 i18n:translate="ticketbox_heading_by_area">By area</h3>
+          <ul>
+              <tal:areas repeat="area here/getAvailableAreas">
+                <li tal:define="areaId area/id;
+								areaTitle area/title;
+								tickets python:view.getFilteredTickets(area=areaId)
+								">
+                <a tal:attributes="href string:${here/absolute_url}"
+                   tal:content="areaTitle" /> (<span tal:replace="python:len(tickets)" />)
+               </li>
+              </tal:areas>
+          </ul>
+      </div>
+
+
+      <div id="tickets-by-severities" class="ticketbox-quick-search-box">
+          <h3 i18n:translate="ticketbox_heading_by_severities">By severities</h3>
+          <ul>
+              <tal:areas repeat="severitie here/getAvailableSeverities">
+                <li tal:define="severitieId severitie/id;
+								severitieTitle severitie/title;
+								tickets python:view.getFilteredTickets(severitie=severitieId)
+								">
+                <a tal:attributes="href string:${here/absolute_url}"
+                   tal:content="severitieTitle" /> (<span tal:replace="python:len(tickets)" />)
+               </li>
+              </tal:areas>
+          </ul>
+      </div>
+
 
       <div class="visualClear"><!----></div>
 
