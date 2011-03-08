@@ -1,7 +1,6 @@
 
-    <div>
-
-      <h1 tal:content="here/Title" class="documentFirstHeading" />
+    <div tal:define="TicketQueryString python:'%s/ticketbox_ticket_search?' %
+      (context.absolute_url(),);">
 
       <div class="documentDescription" tal:content="here/Description" />
 
@@ -29,31 +28,21 @@
         </table>
       </div>
 
-      <h2 i18n:translate="poi_heading_open_issues">All Issues</h2>
-
-
-
-      <p i18n:translate="poi_help_open_issues">
-          Click an area, release or issue state to see all open tickets in that
-          category. For more advanced search options, click "search for issues".
-      </p>
-
-
-<!--       <div id="tickets-by-responsible" class="ticketbox-quick-search-box">
+      <div id="tickets-by-responsible" class="ticketbox-quick-search-box">
           <h3 i18n:translate="ticketbox_heading_by_states">By responsible</h3>
           <ul>
               <tal:areas repeat="responsible here/get_assignable_users">
-                <li tal:define="responsibleId responsible;
-								responsibleTitle responsible;
+                <li tal:define="responsibleId python:responsible[0];
+								responsibleTitle python:responsible[1];
 								tickets python:view.getFilteredTickets(responsible=responsibleId)
 								">
-                <a tal:attributes="href string:${here/absolute_url}"
+                <a tal:attributes="href string:${TicketQueryString}responsible=${responsibleId}"
                    tal:content="responsibleTitle" /> (<span tal:replace="python:len(tickets)" />)
                </li>
               </tal:areas>
           </ul>
       </div>
- -->
+
 
       <div id="tickets-by-state" class="ticketbox-quick-search-box">
           <h3 i18n:translate="ticketbox_heading_by_states">By states</h3>
@@ -63,7 +52,7 @@
 								stateTitle states/title;
 								tickets python:view.getFilteredTickets(state=stateId)
 								">
-                <a tal:attributes="href string:${here/absolute_url}"
+                <a tal:attributes="href string:${TicketQueryString}state=${stateId}"
                    tal:content="stateTitle" /> (<span tal:replace="python:len(tickets)" />)
                </li>
               </tal:areas>
@@ -79,7 +68,7 @@
 								releaseTitle release/title;
 								tickets python:view.getFilteredTickets(release=releaseId)
 								">
-                <a tal:attributes="href string:${here/absolute_url}"
+                <a tal:attributes="href string:${TicketQueryString}release=${releaseId}"
                    tal:content="releaseTitle" /> (<span tal:replace="python:len(tickets)" />)
                </li>
               </tal:areas>
@@ -95,7 +84,7 @@
 								areaTitle area/title;
 								tickets python:view.getFilteredTickets(area=areaId)
 								">
-                <a tal:attributes="href string:${here/absolute_url}"
+                <a tal:attributes="href string:${TicketQueryString}area=${areaId}"
                    tal:content="areaTitle" /> (<span tal:replace="python:len(tickets)" />)
                </li>
               </tal:areas>
@@ -111,7 +100,7 @@
 								severityTitle severity/title;
 								tickets python:view.getFilteredTickets(severity=severityId)
 								">
-                <a tal:attributes="href string:${here/absolute_url}"
+                <a tal:attributes="href string:${TicketQueryString}severity=${severityId}"
                    tal:content="severityTitle" /> (<span tal:replace="python:len(tickets)" />)
                </li>
               </tal:areas>

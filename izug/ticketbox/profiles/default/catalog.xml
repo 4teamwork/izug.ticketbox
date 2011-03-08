@@ -7,4 +7,6 @@
 <column value="Releases"/>
 <column value="Area"/>
 <column value="Priority"/>
+<column value="responsibleManager"/>
+<column value="Due_date"/>
 </object>

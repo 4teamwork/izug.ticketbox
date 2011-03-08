@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="izug.arbeitsraum">
+
+  <head>
+      <metal:block fill-slot="top_slot"
+                   tal:define="dummy python:request.set('layoutClass', 'two-column-left')" />
+  </head>
+
+  <body>
+    <metal:block fill-slot="column_two_slot" />
+    <div metal:fill-slot="main" class="tabbedview_view"
+         tal:define="came_from python:request.get('HTTP_REFERER', here.absolute_url()).split('?')[0];">
+      <metal:main-macro define-macro="main">
+           <div id="arbeitsraeume" class="searchform-visible hidden"></div>
+
+        <div id="arbeitsraum-header">
+
+          <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+
+          <h1 class="documentFirstHeading">
+            <tal:title replace="context/Title" />
+          </h1>
+          <div tal:replace="structure provider:plone.belowcontenttitle" />
+          <div class="tabbedview_search">
+            <input type="text" name="searchable_text" id="tabbedview-searchbox" class="inputLabel" title="Suchen" autocomplete="false"/>
+          </div>
+          <br />
+          <div class="tabbedview-tabs">
+            <ul>
+              <li tal:repeat="tab view/get_tabs">
+                <a  tal:define="tab_id tab/id;
+                                class python: tab['id'] == view.selected_tab and 'selected' or None;"
+                    tal:attributes="href string:${context/absolute_url}/tabbedview_changeview?view_name=${tab_id};
+                                    class string: ${class}  ${tab/class} searchform-visible;
+                                    id tab_id;
+                                    title string:${tab_id} overview;"
+                    i18n:attributes="title"
+                    >
+                  <span tal:content="tab_id" i18n:translate="" />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="visualClear" ></div>
+        <div id="tabbedview-body" class="panes">
+          <tal:panes repeat="tab view/get_tabs">
+            <div tal:attributes="id python:'%s_overview' % tab['id'].capitalize()">&nbsp;</div>
+          </tal:panes>
+        </div>
+
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+        <div id="tabbedview-spinner" style="display:none">
+          <img src="/++resource++ftw.tabbedview-resources/spinner.gif" tal:attributes="src string: ${portal_url}/++resource++ftw.tabbedview-resources/spinner.gif"/>
+        </div>
+      </metal:main-macro>
+    </div>
+  </body>
+</html>

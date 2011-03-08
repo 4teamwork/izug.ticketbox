@@ -89,6 +89,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             description="Select which manager, if any," +
                 " is responsible for this issue.",
         ),
+        required=True,
         vocabulary='get_assignable_users',
     ),
     #Answer-date (default: x + 14 days)

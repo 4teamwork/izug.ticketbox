@@ -21,7 +21,7 @@ from izug.ticketbox.config import PROJECTNAME
 from Products.CMFCore.utils import getToolByName
 from transaction import savepoint
 
-from izug.arbeitsraum.interfaces import IArbeitsraum
+from ftw.tabbedview.interfaces import ITabbedView
 from izug.utils.users import getAssignableUsers
 
 TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
@@ -126,7 +126,7 @@ schemata.finalizeATCTSchema(
 
 class TicketBox(folder.ATBTreeFolder):
     """Description of the Example Type"""
-    implements(ITicketBox, IArbeitsraum)
+    implements(ITicketBox, ITabbedView)
 
     meta_type = "TicketBox"
     schema = TicketBoxSchema
@@ -138,7 +138,7 @@ class TicketBox(folder.ATBTreeFolder):
         with a key of '(UNASSIGNED)'.
         """
 
-        users = getAssignableUsers(self,'Reader')
+        users = getAssignableUsers(self,'Contributor')
         users.insert(0,['(UNASSIGNED)', _(u'None')])
         return users
 

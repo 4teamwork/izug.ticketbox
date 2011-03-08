@@ -12,6 +12,8 @@ INDEXES = (('State', 'FieldIndex'),
             ('Releases', 'FieldIndex'),
             ('Area', 'FieldIndex'),
             ('Priority', 'FieldIndex'),
+            ('responsibleManager', 'FieldIndex'),
+            ('Due_date', 'FieldIndex'),
            )
 
 

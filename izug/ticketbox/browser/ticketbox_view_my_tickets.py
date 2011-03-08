@@ -1,11 +1,11 @@
 from izug.arbeitsraum.browser.views import izug_files_linked
 from izug.ticketbox.browser.ticketbox_baseview import TabbedTicketBoxBaseView
 
-class TicketBoxViewAllTickets(TabbedTicketBoxBaseView):
+class TicketBoxViewMyTickets(TabbedTicketBoxBaseView):
 
     types = 'Ticket'
     #this is a attribute in the DataGrid States from TicketBox ContentType
-    filter_state = "show_in_all_tickets"
+    filter_state = "show_in_my_tickets"
     sort_on = 'id'
 
     columns = (
@@ -17,4 +17,3 @@ class TicketBoxViewAllTickets(TabbedTicketBoxBaseView):
                ('Priority', 'sortable_title', ),
                ('Area', 'sortable_title', ),
                )
-

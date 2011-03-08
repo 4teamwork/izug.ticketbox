@@ -11,17 +11,50 @@
       directory="stylesheets"
       />
 
+	<!-- XXX move to izug.arbeitsraum - perhaps -->
 
 
-	<!-- XXX move to izug.arbeitsraum - prehaps -->
+    <browser:page
+        for="izug.ticketbox.interfaces.ITicketBox"
+        name="tabbed_ticketbox_view"
+        permission="zope.Public"
+        class=".tabbed_ticketbox.TabbedTicketBoxView"
+        template="tabbed_ticketbox.pt"
+        />
+
   <browser:page
-     name="arbeitsraum_view-overview"
+     name="tabbedview_view-overview"
      for="izug.ticketbox.interfaces.ITicketBox"
      permission="zope2.View"
      class=".ticketbox_view.TicketBoxView"
      template="ticketbox_view.pt"
      />
 
+    <browser:page
+      for="izug.ticketbox.interfaces.ITicketBox"
+      name="tabbedview_view-all_tickets"
+      permission="zope2.View"
+      class=".ticketbox_view_all_tickets.TicketBoxViewAllTickets"
+      template="tabbedview_generic.pt"
+      />
+
+    <browser:page
+      for="izug.ticketbox.interfaces.ITicketBox"
+      name="tabbedview_view-my_tickets"
+      permission="zope2.View"
+      class=".ticketbox_view_my_tickets.TicketBoxViewMyTickets"
+      template="tabbedview_generic.pt"
+      />
+
+   <!-- ************************************** -->
+
+  <browser:page
+     name="ticketbox_ticket_search"
+     for="izug.ticketbox.interfaces.ITicketBox"
+     permission="zope2.View"
+     class=".ticketbox_ticket_search.TicketBoxSearch"
+	 template="ticketbox_ticket_search.pt"
+     />
 
   <browser:page
      name="ticket_view"
@@ -29,14 +62,6 @@
      permission="zope2.View"
      class=".ticket_view.TicketView"
 	 template="ticket_view.pt"
-     />
-
-  <browser:page
-     name="ticketboxfolder_view_all_tickets"
-     for="izug.ticketbox.interfaces.ITicketBox"
-     permission="zope2.View"
-     class=".ticketbox_view_all_tickets.TicketBoxView"
-     template="ticketbox_view_all_tickets.pt"
      />
 
   <browser:page
