@@ -6,6 +6,10 @@ class TabbedTicketBoxBaseView(MyListing):
     resonsibleManager = None
     filter_state = None
 
+    request_filters = [
+        ('responsibleManager', 'responsible', None),
+        ('State', 'state', None),
+        ]
 
     def search(self, kwargs):
         """Custom search method for ticketbox"""
@@ -28,6 +32,4 @@ class TabbedTicketBoxBaseView(MyListing):
             self.contents = result
 
         self.len_results = len(self.contents)
-
-
 

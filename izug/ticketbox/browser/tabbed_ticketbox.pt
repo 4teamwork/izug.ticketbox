@@ -18,6 +18,8 @@
       <metal:main-macro define-macro="main">
            <div id="arbeitsraeume" class="searchform-visible hidden"></div>
 
+
+
         <div id="arbeitsraum-header">
 
           <div tal:replace="structure provider:plone.abovecontenttitle" />

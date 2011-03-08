@@ -3,10 +3,13 @@ from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
 from ZTUtils import make_query
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from ticketbox_baseview import TabbedTicketBoxBaseView
 
-class TicketBoxView(BrowserView):
+
+class TicketBoxView(TabbedTicketBoxBaseView):
 
     template = ViewPageTemplateFile('ticketbox_view.pt')
+
 
     def getFilteredTickets(self, criteria=None, **kwargs):
         """Get the contained issues in the given criteria.

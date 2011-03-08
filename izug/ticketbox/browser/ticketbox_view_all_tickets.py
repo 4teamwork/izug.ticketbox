@@ -12,7 +12,7 @@ class TicketBoxViewAllTickets(TabbedTicketBoxBaseView):
                ('getId', 'sortable_title',),
                ('Title', 'sortable_title', izug_files_linked),
                ('responsibleManager', 'sortable_title',),
-               ('State', 'sortable_title', ),
+               ('State', 'State', ),
                ('Due_date', 'sortable_title', ),
                ('Priority', 'sortable_title', ),
                ('Area', 'sortable_title', ),
