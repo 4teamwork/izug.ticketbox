@@ -229,23 +229,24 @@ class Base(BrowserView):
             result.append(
                 dict(
                     value=term.token,
-                    lable=term.value,
+                    label=term.value,
                     checked=checked))
         return result
 
     @property
-    @memoize
     def severities_for_display(self):
         factory=getUtility(IVocabularyFactory,name='ticketbox_values_severities')
         result = []
         for term in factory(self.context.aq_inner):
-            current_state = self.context.getSeverity()
+            current_state = self.context.getPriority()
             checked = term.token == current_state
             result.append(
                 dict(
                     value=term.token,
-                    lable=term.value,
+                    label=term.value,
                     checked=checked))
+
+        return result
 
 
     @property
@@ -269,21 +270,25 @@ class Base(BrowserView):
         Usually nothing, unless you use Poi in combination with
         PloneSoftwareCenter.
         """
-        vocab = self.available_releases
-        current = self.targetRelease
-        return voc2dict(vocab, current)
-
+        result = []
+        factory=getUtility(IVocabularyFactory,name='ticketbox_values_releases')
+        for term in factory(self.context.aq_inner):
+            current_state = self.context.getReleases()
+            checked = term.token == current_state
+            result.append(
+                dict(
+                    value=term.token,
+                    label=term.value,
+                    checked=checked))
+        return result
+        
     @property
     @memoize
     def available_releases(self):
         """Get the releases from the project.
-
-        Usually nothing, unless you use Poi in combination with
-        PloneSoftwareCenter.
         """
-        # get vocab from issue
-        context = aq_inner(self.context)
-        return context.getReleasesVocab()
+        
+        return self.releases_for_display
 
     @property
     def show_target_releases(self):
@@ -298,8 +303,10 @@ class Base(BrowserView):
     def managers_for_display(self):
         """Get the tracker managers.
         """
-        vocab = self.available_managers
-        return voc2dict(vocab, self.responsibleManager)
+        result = []
+        for item in self.available_managers:
+            result.append(dict(value=item[1]))
+        return 
 
     @property
     @memoize
@@ -307,8 +314,7 @@ class Base(BrowserView):
         """Get the tracker managers.
         """
         # get vocab from issue
-        context = aq_inner(self.context)
-        return context.getManagersVocab()
+        return self.context.aq_inner.get_assignable_users()
 
     @property
     @memoize
@@ -356,8 +362,6 @@ class Create(Base):
     def __call__(self):
         form = self.request.form
         context = aq_inner(self.context)
-        if not self.memship.checkPermission('Poi: Add Response', context):
-            raise Unauthorized
         ts = getGlobalTranslationService()
 
         response_text = form.get('response', u'')
@@ -367,13 +371,12 @@ class Create(Base):
 
         issue_has_changed = False
         transition = form.get('transition', u'')
-        if transition and transition in self.available_transitions:
+        if transition != context.getState():
             wftool = getToolByName(context, 'portal_workflow')
-            before = wftool.getInfoFor(context, 'review_state')
-            before = wftool.getTitleForStateOnType(before, 'PoiIssue')
-            wftool.doActionFor(context, transition)
-            after = wftool.getInfoFor(context, 'review_state')
-            after = wftool.getTitleForStateOnType(after, 'PoiIssue')
+            before = context.getState()
+            # Save new state on ticket
+            context.setState(transition)
+            after = transition
             new_response.add_change('review_state', _(u'Issue state'),
                                     before, after)
             issue_has_changed = True
@@ -428,6 +431,7 @@ class Create(Base):
             context.update(**changes)
             # Add response
             self.folder.add(new_response)
+            self.folder.reindexObject()
         self.request.response.redirect(context.absolute_url())
 
 

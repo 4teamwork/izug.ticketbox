@@ -35,7 +35,7 @@
       <div class="response-info">
         <span i18n:translate="poi_added_by">Added by</span>
         <span class="contact-user"
-              tal:content="python:here.poi_niceName(username=response.creator)" />
+              tal:content="python:response.creator" />
         <span i18n:translate="poi_added_on">on</span>
         <span class="contact-user"
               tal:content="python:here.toLocalizedTime(response.date, long_format=True)" />
@@ -96,7 +96,9 @@
   <tal:add condition="python:user.has_permission('Poi: Add Response', here)">
   <h3 i18n:translate="title_add_response">Add response</h3>
 
-  <form method="post" action="@@create_response"
+  <form method="post" 
+        tal:attributes="action string:${context/absolute_url}/@@create_response"
+        action="@@create_response"
         enctype="multipart/form-data">
 
     <div class="field">

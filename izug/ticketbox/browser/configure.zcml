@@ -49,14 +49,14 @@
 
   <browser:page
      name="poi_response_delete"
-     for="izug.ticketbox.interfaces.IIssue"
+     for="izug.ticketbox.interfaces.ticket.ITicket"
      permission="zope2.View"
      class=".response.Delete"
      />
 
   <browser:page
      name="poi_response_edit"
-     for="izug.ticketbox.interfaces.IIssue"
+     for="izug.ticketbox.interfaces.ticket.ITicket"
      permission="zope2.View"
      class=".response.Edit"
      template="edit_response.pt"
@@ -64,7 +64,7 @@
 
   <browser:page
      name="poi_response_save"
-     for="izug.ticketbox.interfaces.IIssue"
+     for="izug.ticketbox.interfaces.ticket.ITicket"
      permission="zope2.View"
      class=".response.Save"
      />
