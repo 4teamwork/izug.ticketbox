@@ -2,8 +2,11 @@
 .ticketbox-quick-search-box{
     float:left;
     padding: 0 1em 1em 0;
-
 }
+/*#overview_overview .sortable-table{
+    display:none;
+}*/
+
 .issue-quick-search-box {
     width: 30%;
     float: left;

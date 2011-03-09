@@ -141,7 +141,6 @@
 	<script type="text/javascript">
 		jq(function(){
 			var $links = jq('.ticketbox-quick-search-box a');
-
 			$links.bind('click', function(e){
 			  e.preventDefault();
 			  $this = jq(this);
@@ -150,6 +149,7 @@
 			  params_searchkey = params['searchkey']
 			  tabbedview.add_param(params_searchkey, params_searchvalue);
 			  tabbedview.reload_view();
+			  <!-- jq('.sortable-table').show() -->
 			  tabbedview.delete_param(params_searchkey, params_searchvalue);
 			});
 

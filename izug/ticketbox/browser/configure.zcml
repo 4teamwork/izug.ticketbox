@@ -23,7 +23,7 @@
         />
 
   <browser:page
-     name="tabbedview_view-overview"
+     name="tabbedview_view-Overview"
      for="izug.ticketbox.interfaces.ITicketBox"
      permission="zope2.View"
      class=".ticketbox_view.TicketBoxView"
