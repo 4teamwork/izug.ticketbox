@@ -9,6 +9,9 @@ class TabbedTicketBoxBaseView(MyListing):
     request_filters = [
         ('responsibleManager', 'responsible', None),
         ('State', 'state', None),
+        ('Releases', 'release', None),
+        ('Area', 'area', None),
+        ('Priority', 'priority', None),
         ]
 
     def search(self, kwargs):

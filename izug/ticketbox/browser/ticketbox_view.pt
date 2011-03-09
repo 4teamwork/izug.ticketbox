@@ -36,7 +36,7 @@
 								responsibleTitle python:responsible[1];
 								tickets python:view.getFilteredTickets(responsible=responsibleId)
 								">
-                <a tal:attributes="href string:${TicketQueryString}responsible=${responsibleId}"
+                <a tal:attributes="href string:${context/absolute_url}?searchkey=responsible&searchvalue=${responsibleId}"
                    tal:content="responsibleTitle" /> (<span tal:replace="python:len(tickets)" />)
                </li>
               </tal:areas>
@@ -52,7 +52,7 @@
 								stateTitle states/title;
 								tickets python:view.getFilteredTickets(state=stateId)
 								">
-                <a tal:attributes="href string:${TicketQueryString}state=${stateId}"
+                <a tal:attributes="href string:${context/absolute_url}?searchkey=state&searchvalue=${stateId}"
                    tal:content="stateTitle" /> (<span tal:replace="python:len(tickets)" />)
                </li>
               </tal:areas>
@@ -68,7 +68,7 @@
 								releaseTitle release/title;
 								tickets python:view.getFilteredTickets(release=releaseId)
 								">
-                <a tal:attributes="href string:${TicketQueryString}release=${releaseId}"
+                <a tal:attributes="href string:${context/absolute_url}?searchkey=release&searchvalue=${releaseId}"
                    tal:content="releaseTitle" /> (<span tal:replace="python:len(tickets)" />)
                </li>
               </tal:areas>
@@ -84,7 +84,7 @@
 								areaTitle area/title;
 								tickets python:view.getFilteredTickets(area=areaId)
 								">
-                <a tal:attributes="href string:${TicketQueryString}area=${areaId}"
+                <a tal:attributes="href string:${context/absolute_url}?searchkey=area&searchvalue=${areaId}"
                    tal:content="areaTitle" /> (<span tal:replace="python:len(tickets)" />)
                </li>
               </tal:areas>
@@ -92,16 +92,16 @@
       </div>
 
 
-      <div id="tickets-by-severities" class="ticketbox-quick-search-box">
-          <h3 i18n:translate="ticketbox_heading_by_severities">By severities</h3>
+      <div id="tickets-by-priority" class="ticketbox-quick-search-box">
+          <h3 i18n:translate="ticketbox_heading_by_severities">By prioirty</h3>
           <ul>
-              <tal:areas repeat="severity here/getAvailableSeverities">
-                <li tal:define="severityId severity/id;
-								severityTitle severity/title;
-								tickets python:view.getFilteredTickets(severity=severityId)
+              <tal:areas repeat="priority here/getAvailableSeverities">
+                <li tal:define="priorityId priority/id;
+								priorityTitle priority/title;
+								tickets python:view.getFilteredTickets(priority=priorityId)
 								">
-                <a tal:attributes="href string:${TicketQueryString}severity=${severityId}"
-                   tal:content="severityTitle" /> (<span tal:replace="python:len(tickets)" />)
+                <a tal:attributes="href string:${context/absolute_url}?searchkey=priority&searchvalue=${priorityId}"
+                   tal:content="priorityTitle" /> (<span tal:replace="python:len(tickets)" />)
                </li>
               </tal:areas>
           </ul>
@@ -141,14 +141,16 @@
 	<script type="text/javascript">
 		jq(function(){
 			var $links = jq('.ticketbox-quick-search-box a');
-            console.info($links);
+
 			$links.bind('click', function(e){
 			  e.preventDefault();
 			  $this = jq(this);
 			  params =jq.find_param($this.attr('href'));
-			  tabbedview.add_param('responsible', params['responsible']);
+			  params_searchvalue = params['searchvalue']
+			  params_searchkey = params['searchkey']
+			  tabbedview.add_param(params_searchkey, params_searchvalue);
 			  tabbedview.reload_view();
-			  tabbedview.delete_param('responsible', params['responsible']);
+			  tabbedview.delete_param(params_searchkey, params_searchvalue);
 			});
 
 		});

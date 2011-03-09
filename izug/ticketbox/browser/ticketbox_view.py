@@ -1,14 +1,27 @@
 from Acquisition import aq_inner
-from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
-from ZTUtils import make_query
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ticketbox_baseview import TabbedTicketBoxBaseView
+from izug.arbeitsraum.browser.views import izug_files_linked
 
 
 class TicketBoxView(TabbedTicketBoxBaseView):
 
     template = ViewPageTemplateFile('ticketbox_view.pt')
+    types = 'Ticket'
+    #this is a attribute in the DataGrid States from TicketBox ContentType
+    filter_state = "show_in_my_tickets"
+    sort_on = 'getId'
+
+    columns = (
+                 ('getId', 'getId',),
+                 ('Title', 'sortable_title', izug_files_linked),
+                 ('responsibleManager', 'responsibleManager',),
+                 ('State', 'State', ),
+                 ('Due_date', 'Due_date', ),
+                 ('Priority', 'Priority', ),
+                 ('Area', 'Area', ),
+                 )
 
 
     def getFilteredTickets(self, criteria=None, **kwargs):
@@ -31,7 +44,7 @@ class TicketBoxView(TabbedTicketBoxBaseView):
         allowedCriteria = {'release'       : 'Releases',
                            'area'          : 'Area',
                            'issueType'     : 'getIssueType',
-                           'severity'      : 'Priority',
+                           'priority'      : 'Priority',
                            'state'         : 'State',
                            'responsible'   : 'responsibleManager',
                            'creator'       : 'Creator',
