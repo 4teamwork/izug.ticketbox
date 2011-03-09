@@ -174,9 +174,7 @@ class Ticket(base.ATCTContent):
         # portal_factory!
         savepoint(optimistic=True)
         self.setId(newId)
-        self.setTitle("#%s - %s" % (newId, self.title))
 
-        self.reindexObject(idxs=['Title'])
         self.reindexObject(idxs=['Id'])
 
     def get_tracker(self):

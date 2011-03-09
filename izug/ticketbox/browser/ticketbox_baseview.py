@@ -1,6 +1,9 @@
 from Products.CMFCore.utils import getToolByName
 from izug.arbeitsraum.browser.views import MyListing
 from izug.ticketbox import ticketboxMessageFactory as _
+from ftw.table import helper
+from izug.arbeitsraum.browser.views import izug_files_linked
+
 
 def readable_author(item, author):
     if not author:
@@ -17,7 +20,7 @@ def readable_author(item, author):
 
 class TabbedTicketBoxBaseView(MyListing):
 
-    resonsibleManager = None
+    filter_my_tickets = False
     filter_state = None
 
     request_filters = [
@@ -28,8 +31,49 @@ class TabbedTicketBoxBaseView(MyListing):
         ('Priority', 'priority', None),
         ]
 
+
+    def __init__(self, context, request):
+        super(TabbedTicketBoxBaseView, self).__init__(context, request)
+
+        self.columns = ({'column':'getId',
+                        'column_title':_(u"Id"),
+                        },
+                        {'column':'Title',
+                        'column_title':_(u"Title"),
+                        'sort_index': 'sortable_title',
+                        'transform':izug_files_linked,
+                        },
+                        {'column':'responsibleManager',
+                        'column_title':_(u"responsibleManager"),
+                        'transform':readable_author,
+                        },
+                        {'column':'State',
+                        'column_title':_(u"State"),
+                        'transform':self.map_state,
+                        },
+                        {'column':'Due_date',
+                        'column_title':_(u"Due_Date"),
+                        'transform':helper.readable_date_time_text,
+                        },
+                        {'column':'Priority',
+                        'column_title':_(u"Priority"),
+                        'transform':self.map_priority,
+                        },
+                        {'column':'Area',
+                        'column_title':_(u"Area"),
+                        'transform':self.map_area,
+                        },
+                        )
+
+
     def search(self, kwargs):
+
         """Custom search method for ticketbox"""
+
+        # show only my_tickets
+        if self.filter_my_tickets:
+            kwargs['responsibleManager'] = \
+                self.context.aq_inner.portal_membership.getAuthenticatedMember().getId()
         self.catalog = catalog = getToolByName(self.context,'portal_catalog')
         query = self.build_query(**kwargs)
         tmpresults = catalog(**query)
@@ -47,6 +91,7 @@ class TabbedTicketBoxBaseView(MyListing):
                 if state_mapping[item.State] == '1':
                     result.append(item)
             self.contents = result
+
 
         self.len_results = len(self.contents)
 

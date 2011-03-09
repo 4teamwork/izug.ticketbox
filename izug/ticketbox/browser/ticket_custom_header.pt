@@ -1,0 +1,9 @@
+<metal:header_macro define-macro="header"
+                    tal:define="kssClassesView context/@@kss_field_decorator_view;
+                                getKssClasses nocall:kssClassesView/getKssClassesInlineEditable">
+  <div tal:replace="structure provider:plone.abovecontenttitle" />
+	<h1 class="documentFirstHeading" >
+		#<span tal:replace="here/getId" /> - <span tal:replace="here/pretty_title_or_id" />
+	</h1>
+  <div tal:replace="structure provider:plone.belowcontenttitle" />
+</metal:header_macro>

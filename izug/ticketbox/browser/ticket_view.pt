@@ -6,7 +6,7 @@
 <div metal:fill-slot="main">
   <div metal:define-macro="body">
 
-    <h1 tal:content="here/Title" class="documentFirstHeading" />
+    <metal:block metal:use-macro="here/@@custom_header/macros/header | here/base/macros/header" />
 
 	<div>
 	<table>

@@ -11,9 +11,6 @@
       directory="stylesheets"
       />
 
-	<!-- XXX move to izug.arbeitsraum - perhaps -->
-
-
     <browser:page
         for="izug.ticketbox.interfaces.ITicketBox"
         name="tabbed_ticketbox_view"
@@ -102,5 +99,14 @@
       template="response.pt"
       for="izug.ticketbox.interfaces.ticket.ITicket"
       />
+
+	<!-- Override izug's custom header -->
+    <browser:page
+        for="izug.ticketbox.interfaces.ticket.ITicket"
+        name="custom_header"
+		permission="zope2.View"
+        template="ticket_custom_header.pt"
+        />
+
 
 </configure>

@@ -117,7 +117,7 @@ msgstr "Geben sie die verfügbaren Bereiche ein"
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox_view_all_tickets.py:18
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox_view_my_tickets.py:18
 msgid "Id"
-msgstr ""
+msgstr "Nr."
 
 #: izug.ticketbox/izug/ticketbox/content/ticket.py:138
 msgid "If selected, tracker managers will receive an email each time a new issue or response is posted, and issue submitters will receive an email when there is a new response and when an issue has been resolved, awaiting confirmation."
@@ -336,7 +336,7 @@ msgstr "Auftragsbox"
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox_view_all_tickets.py:21
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox_view_my_tickets.py:21
 msgid "Title"
-msgstr "Titel"
+msgstr "Beschreibung"
 
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:52
 msgid "To test"
