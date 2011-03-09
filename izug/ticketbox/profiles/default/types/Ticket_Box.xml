@@ -33,18 +33,4 @@
     url_expr="string:${object_url}/edit" visible="True">
     <permission value="Modify portal content" />
   </action>
- <!-- <action title="Overview" action_id="overview" category="arbeitsraum-tabs"
-    condition_expr="" url_expr="string:${object_url}" visible="True">
-  <permission value="View"/>
- </action> -->
- <!-- <action title="AllTickets" action_id="all_tickets" category="arbeitsraum-tabs"
-    condition_expr="" url_expr="string:${object_url}?view=all_tickets"
-    visible="True">
-  <permission value="View"/>
- </action>
- <action title="My Tickets" action_id="my_tickets" category="arbeitsraum-tabs"
-    condition_expr="" url_expr="string:${object_url}?view=my_tickets"
-    visible="True">
-  <permission value="View"/>
- </action> -->
 </object>

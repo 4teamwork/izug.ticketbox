@@ -81,7 +81,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                    required=False,
                    columns=('id', 'title')
                ),
-      #Available Severities
+      #Available Priorities
        DataGridField(
                   name='availablePriorities',
                   widget=DataGridWidget(
@@ -113,6 +113,8 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                  columns=('id', 'title'),
       ),
 ))
+
+TicketBoxSchema['description'].required = True
 
 
 schemata.finalizeATCTSchema(

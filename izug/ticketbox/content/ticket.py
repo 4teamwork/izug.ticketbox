@@ -144,6 +144,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
     ),
 ))
 
+TicketSchema['description'].required = True
 schemata.finalizeATCTSchema(TicketSchema, moveDiscussion=False)
 
 class Ticket(base.ATCTContent):
