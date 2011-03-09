@@ -334,6 +334,7 @@ class Base(BrowserView):
                                 label=user[1],
                                 checked=assignedUser==user[0])
                         )
+        return result
 
     @property
     @memoize
@@ -341,7 +342,10 @@ class Base(BrowserView):
         """Get the tracker managers.
         """
         # get vocab from issue
-        return self.context.aq_inner.get_assignable_users()
+        result = []
+        for user in self.context.aq_inner.get_assignable_users():
+            result.append(user[0])
+        return result
 
     @property
     @memoize
@@ -516,7 +520,7 @@ class Save(Base):
                 response.text = response_text
                 # Remove cached rendered response.
                 response.rendered_text = None
-                msg = _(u"Changes saved to response id ${response_id}.",
+                msg = _(u"Changes saved to response.",
                       mapping=dict(response_id=response_id))
                 msg = ts.translate('Poi', msg, context=context)
                 status.addStatusMessage(msg, type='info')
@@ -567,7 +571,7 @@ class Delete(Base):
                     status.addStatusMessage(msg, type='error')
                 else:
                     self.folder.delete(response_id)
-                    msg = _(u"Removed response id ${response_id}.",
+                    msg = _(u"Removed response.",
                             mapping=dict(response_id=response_id))
                     msg = ts.translate('Poi', msg, context=context)
                     status.addStatusMessage(msg, type='info')

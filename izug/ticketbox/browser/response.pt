@@ -1,5 +1,5 @@
 <div class="response-adder"
-     i18n:domain="Poi">
+     i18n:domain="izug.ticketbox">
   <tal:responses repeat="response_info view/responses">
     <div class="response-reply"
          tal:define="id response_info/id;
@@ -11,7 +11,7 @@
       <div class="response-actions"
            tal:condition="view/can_edit_response|view/can_delete_response">
         <form method="post"
-              tal:attributes="action string:@@poi_response_edit"
+              tal:attributes="action string:${context/absolute_url}/@@edit_response"
               tal:condition="view/can_edit_response">
           <input type="hidden" name="response_id" tal:attributes="value id" />
           <input class="standalone"
@@ -21,7 +21,7 @@
                  />
         </form>
         <form method="post"
-              tal:attributes="action string:@@poi_response_delete"
+              tal:attributes="action string:${context/absolute_url}/@@delete_response"
               tal:condition="view/can_delete_response">
           <input type="hidden" name="response_id" tal:attributes="value id" />
           <input class="destructive"

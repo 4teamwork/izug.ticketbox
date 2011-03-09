@@ -43,7 +43,7 @@
                i18n:translate="label_return_to_issue">Return to issue.</a>
           </p>
 
-          <form method="post" action="@@poi_response_save"
+          <form method="post" tal:attributes="action string:${context/absolute_url}/@@save_response"
                 tal:condition="view/can_edit_response">
 
             <div class="field">

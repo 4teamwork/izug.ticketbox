@@ -73,14 +73,14 @@
      />
 
   <browser:page
-     name="poi_response_delete"
+     name="delete_response"
      for="izug.ticketbox.interfaces.ticket.ITicket"
      permission="zope2.View"
      class=".response.Delete"
      />
 
   <browser:page
-     name="poi_response_edit"
+     name="edit_response"
      for="izug.ticketbox.interfaces.ticket.ITicket"
      permission="zope2.View"
      class=".response.Edit"
@@ -88,7 +88,7 @@
      />
 
   <browser:page
-     name="poi_response_save"
+     name="save_response"
      for="izug.ticketbox.interfaces.ticket.ITicket"
      permission="zope2.View"
      class=".response.Save"
