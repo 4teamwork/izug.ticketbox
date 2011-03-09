@@ -95,10 +95,11 @@
       <div id="tickets-by-priority" class="ticketbox-quick-search-box">
           <h3 i18n:translate="ticketbox_heading_by_severities">By prioirty</h3>
           <ul>
-              <tal:areas repeat="priority here/getAvailableSeverities">
+              <tal:areas repeat="severity here/getAvailablePriorities">
                 <li tal:define="priorityId priority/id;
 								priorityTitle priority/title;
 								tickets python:view.getFilteredTickets(priority=priorityId)
+
 								">
                 <a tal:attributes="href string:${context/absolute_url}?searchkey=priority&searchvalue=${priorityId}"
                    tal:content="priorityTitle" /> (<span tal:replace="python:len(tickets)" />)

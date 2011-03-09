@@ -50,18 +50,7 @@
 			<td i18n:translate='label_references'>References</td>
 			<td tal:content="structure view/getReferences"/>
 		</tr>
-		<tr>
-			<td i18n:translate='label_responses'>Responses</td>
-			<td tal:content="view/getResponses" />
-		</tr>
 		</table>
-		<form style="display: inline"
-		                action="createObject">
-		            <input name="type_name" type="hidden" value="Response" />
-		            <input class="standalone" type="submit"
-		                   value="Antwort hinzufügen" />
-		          </form>
-
 		</div>
 	</div>
 	<div tal:replace="structure provider:poi.response.add" />

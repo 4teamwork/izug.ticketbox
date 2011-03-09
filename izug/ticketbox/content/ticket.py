@@ -53,7 +53,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
     #Priority
     StringField(
         name='Priority',
-        vocabulary_factory='ticketbox_values_severities',
+        vocabulary_factory='ticketbox_values_priorities',
         widget=SelectionWidget(
             label=_(u"Select Priority"),
             description=_(u"Select the Priority"),

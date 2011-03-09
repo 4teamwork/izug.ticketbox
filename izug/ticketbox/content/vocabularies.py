@@ -24,5 +24,5 @@ class TicketBoxVocabulary(object):
 
 StatesVocabularyFactory=TicketBoxVocabulary('availableStates')
 ReleasesVocabularyFactory=TicketBoxVocabulary('availableReleases')
-SeveritiesVocabularyFactory=TicketBoxVocabulary('availableSeverities')
+PrioritiesVocabularyFactory=TicketBoxVocabulary('availablePriorities')
 AreasVocabularyFactory=TicketBoxVocabulary('availableAreas')

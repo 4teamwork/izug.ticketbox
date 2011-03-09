@@ -83,16 +83,16 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                ),
       #Available Severities
        DataGridField(
-                  name='availableSeverities',
+                  name='availablePriorities',
                   widget=DataGridWidget(
                       visible={'view': 'invisible', 'edit': 'visible'},
-                      label=_(u"Available severities"),
+                      label=_(u"Available priorities"),
                       description=_(
                             u"Enter the different type of issue severities" +
                             " that should be available, one per line."),
                       column_names=(
-                        _(u'Severities_id'),
-                        _(u'Severities_title')),
+                        _(u'Priorities_id'),
+                        _(u'Priorities_title')),
                   ),
                   allow_empty_rows=False,
                   required=False,
@@ -163,7 +163,7 @@ def renameIdAfterCreation(obj, event):
     #save datagrid to change ids
     datagrid.append(obj.getAvailableStates())
     datagrid.append(obj.getAvailableReleases())
-    datagrid.append(obj.getAvailableSeverities())
+    datagrid.append(obj.getAvailablePriorities())
     datagrid.append(obj.getAvailableAreas())
 
     #change id from datagrids

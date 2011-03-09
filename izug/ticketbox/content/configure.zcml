@@ -35,8 +35,8 @@
             name="ticketbox_values_releases"
             provides="zope.schema.interfaces.IVocabularyFactory"
             />
-	<utility component=".vocabularies.SeveritiesVocabularyFactory"
-            name="ticketbox_values_severities"
+	<utility component=".vocabularies.PrioritiesVocabularyFactory"
+            name="ticketbox_values_priorities"
             provides="zope.schema.interfaces.IVocabularyFactory"
             />
 	<utility component=".vocabularies.AreasVocabularyFactory"

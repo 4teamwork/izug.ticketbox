@@ -209,9 +209,9 @@ class Base(BrowserView):
         return -1
 
     @property
-    def severity(self):
+    def priority(self):
         context = aq_inner(self.context)
-        return context.getSeverity()
+        return context.getPriority()
 
     @property
     def targetRelease(self):
@@ -234,16 +234,16 @@ class Base(BrowserView):
         return result
 
     @property
-    def severities_for_display(self):
-        factory=getUtility(IVocabularyFactory,name='ticketbox_values_severities')
+    def priorities_for_display(self):
+        context = self.context.aq_inner
         result = []
-        for term in factory(self.context.aq_inner):
+        for term in context.getAvailablePriorities():
             current_state = self.context.getPriority()
-            checked = term.token == current_state
+            checked = term['id'] == current_state
             result.append(
                 dict(
-                    value=term.token,
-                    label=term.value,
+                    value=term['id'],
+                    label=term['title'],
                     checked=checked))
 
         return result
@@ -256,12 +256,16 @@ class Base(BrowserView):
 
     @property
     @memoize
-    def available_severities(self):
+    def available_priorities(self):
         """Get the available severities for this issue.
         """
         # get vocab from tracker so use aq_inner
         context = aq_inner(self.context)
-        return context.getAvailableSeverities()
+        priorities = context.getAvailablePriorities()
+        result = []
+        for priority in priorities:
+            result.append(priority['id'])
+        return result
 
     @property
     def releases_for_display(self):
@@ -281,13 +285,13 @@ class Base(BrowserView):
                     label=term.value,
                     checked=checked))
         return result
-        
+
     @property
     @memoize
     def available_releases(self):
         """Get the releases from the project.
         """
-        
+
         return self.releases_for_display
 
     @property
@@ -300,13 +304,29 @@ class Base(BrowserView):
         return len(self.available_releases) > 1
 
     @property
+    def multiple_priorities(self):
+        """Should the option for selecting a target release be shown?
+
+        There is always at least one option: None.  So only show when
+        there is more than one option.
+        """
+        return len(self.context.getAvailablePriorities()) > 1
+
+    @property
+    def multiple_transitions(self):
+        """Should the option for selecting a target release be shown?
+
+        There is always at least one option: None.  So only show when
+        there is more than one option.
+        """
+        return len(self.transitions_for_display) > 1
+
+    @property
     def managers_for_display(self):
         """Get the tracker managers.
         """
-        result = []
-        for item in self.available_managers:
-            result.append(dict(value=item[1]))
-        return 
+        context = self.context.aq_inner
+        return context.get_assignable_users()
 
     @property
     @memoize
@@ -372,7 +392,6 @@ class Create(Base):
         issue_has_changed = False
         transition = form.get('transition', u'')
         if transition != context.getState():
-            wftool = getToolByName(context, 'portal_workflow')
             before = context.getState()
             # Save new state on ticket
             context.setState(transition)
@@ -382,7 +401,7 @@ class Create(Base):
             issue_has_changed = True
 
         options = [
-            ('severity', _(u'Severity'), 'available_severities'),
+            ('Priority', _(u'Priority'), 'available_priorities'),
             ('responsibleManager', _(u'Responsible manager'),
              'available_managers'),
             ]
@@ -391,8 +410,9 @@ class Create(Base):
         changes = {}
         for option, title, vocab in options:
             new = form.get(option, u'')
+            import pdb; pdb.set_trace( )
             if new and new in self.__getattribute__(vocab):
-                current = self.__getattribute__(option)
+                current = context.__getattribute__(option)
                 if current != new:
                     changes[option] = new
                     new_response.add_change(option, title,
@@ -402,13 +422,17 @@ class Create(Base):
 
         #('targetRelease', 'Target release', 'available_releases'),
         new = form.get('targetRelease', u'')
-        if new and new in self.available_releases:
-            current = self.targetRelease
+        if new:
+            context = aq_inner(self.context)
+            current = context.getReleases()
             if current != new:
                 # from value (uid) to key (id)
-                new_label = self.available_releases.getValue(new)
-                current_label = self.available_releases.getValue(current)
-                changes['targetRelease'] = new
+                for item in self.available_releases:
+                    if item['value'] == new:
+                        new_label = item['label']
+                    elif item['value'] == current:
+                        current_label = item['label']
+                changes['Releases'] = new
                 new_response.add_change(option, _(u'Target release'),
                                         current_label, new_label)
                 issue_has_changed = True
@@ -431,7 +455,7 @@ class Create(Base):
             context.update(**changes)
             # Add response
             self.folder.add(new_response)
-            self.folder.reindexObject()
+            self.context.reindexObject()
         self.request.response.redirect(context.absolute_url())
 
 
