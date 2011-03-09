@@ -24,6 +24,7 @@ from Products.Archetypes.atapi import BooleanField, BooleanWidget
 from Products.Archetypes.atapi import ReferenceField
 from Products.Archetypes.atapi import registerType
 from AccessControl import ClassSecurityInfo
+from plone.i18n.normalizer import IDNormalizer
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 
@@ -113,6 +114,21 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         storage=AttributeStorage(),
     ),
 
+    ReferenceField(
+        name='attachments',
+        widget=ReferenceBrowserWidget(
+            label=_(u"Attachments"),
+            allow_browse=True,
+            show_results_without_query=True,
+            restrict_browsing_to_startup_directory=True,
+            base_query={"portal_type": "TicketAttachment", "sort_on": "sortable_title"},
+        ),
+        allowed_types=('TicketAttachment'),
+        multiValued=1,
+        schemata='default',
+        relationship='TicketAttachment'
+    ),
+
     #References
     ReferenceField(
         name='references',
@@ -128,6 +144,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         schemata='default',
         relationship='Ticket Box'
     ),
+
 
     #send Notification Emails
     BooleanField(
@@ -147,7 +164,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 TicketSchema['description'].required = True
 schemata.finalizeATCTSchema(TicketSchema, moveDiscussion=False)
 
-class Ticket(base.ATCTContent):
+class Ticket(base.ATCTFolder):
     """Description of the Example Type"""
     implements(ITicket)
 
@@ -219,3 +236,27 @@ class Ticket(base.ATCTContent):
 
 
 registerType(Ticket, PROJECTNAME)
+
+
+def move_document_to_reference(obj, event):
+    """Create own File and add it to References"""
+    _file = obj.getAttachment()
+    if _file != '':
+        new_id = IDNormalizer.normalize(IDNormalizer(), _file.filename)
+        import pdb; pdb.set_trace( )
+        new_file_id = obj.invokeFactory(type_name="TicketAttachment",id=new_id,
+        title=_file.filename, file=_file)
+        new_file = obj.get(new_file_id, None)
+        if new_file is None:
+            return
+        uid = new_file.UID()
+        references = obj.getRawAttachments()
+        if isinstance(references,list):
+            references.append(uid)
+            obj.setAttachments(references)
+        else:
+            references = [references]
+            references.append(uid)
+            obj.setAttachments(references)
+        obj.setAttachment('DELETE_FILE')
+        obj.reindexObject()

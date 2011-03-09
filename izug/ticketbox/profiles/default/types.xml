@@ -12,4 +12,6 @@
     meta_type="Factory-based Type Information with dynamic views" />
   <object name="Ticket Box"
     meta_type="Factory-based Type Information with dynamic views" />
+  <object name="TicketAttachment"
+    meta_type="Factory-based Type Information with dynamic views" />
 </object>

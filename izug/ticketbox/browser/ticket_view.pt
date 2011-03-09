@@ -42,15 +42,24 @@
 			<td i18n:translate='label_Answer-date'>Answer Date</td>
 			<td tal:content="python:here.Answer_date.strftime('%d.%m.%Y')" />
 		</tr>
-		<tr tal:condition="python: here.getAttachment().filename != ''">
+		<tr tal:condition="python: here.getAttachments()">
 			<td i18n:translate='label_Attachment'>Attachments</td>
-			<td tal:content="structure view/getAttachments" />
+			<td>
+				<div tal:repeat="att here/getAttachments">
+					<metal:attachment use-macro="python:att.widget('file')"/>
+				</div>
+
+			</td>
 		</tr>
-		<tr tal:condition="python: here.getReferences() != []">
-			<td i18n:translate='label_references'>References</td>
-			<td tal:content="structure view/getReferences"/>
-		</tr>
-		</table>
+		<tr tal:condition="here/aq_explicit/getReferences">
+			<td i18n:translate='label_References'>References</td>
+			<td>
+				<div tal:repeat="ref here/aq_explicit/getReferences">
+					<span tal:content="ref/title"></span>
+				</div>
+
+			</td>
+		</tr>		</table>
 		</div>
 	</div>
 	<div class="Collapsible" tal:content="structure provider:ticketbox.response.add"></div>
