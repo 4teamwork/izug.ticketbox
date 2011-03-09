@@ -33,10 +33,10 @@
       </div>
 
       <div class="response-info">
-        <span i18n:translate="poi_added_by">Added by</span>
+        <span i18n:translate="response_added_by">Added by</span>
         <span class="contact-user"
               tal:content="python:response.creator" />
-        <span i18n:translate="poi_added_on">on</span>
+        <span i18n:translate="response_added_on">on</span>
         <span class="contact-user"
               tal:content="python:here.toLocalizedTime(response.date, long_format=True)" />
         <div tal:repeat="delta response/changes">
@@ -56,7 +56,7 @@
       <span tal:replace="structure html" />
 
       <div class="issue-attachment" tal:condition="attachment">
-        <div class="issue-attachment-label" i18n:translate="poi_label_attachment">Attached:</div>
+        <div class="issue-attachment-label" i18n:translate="response_label_attachment">Attached:</div>
         <img tal:attributes="src attachment/icon" />
         <a tal:attributes="href attachment/url"
            tal:content="attachment/filename" />
@@ -141,7 +141,7 @@
 
     </div>
 
-    <div class="field" id="poi-fieldname-attachment"
+    <div class="field" id="response-fieldname-attachment"
          tal:condition="view/upload_allowed">
       <label for="attachment"
              i18n:translate="Response_label_attachment">Attachment</label>

@@ -53,6 +53,6 @@
 		</table>
 		</div>
 	</div>
-	<div class="Collapsible" tal:content="structure provider:poi.response.add"></div>
+	<div class="Collapsible" tal:content="structure provider:ticketbox.response.add"></div>
 </div>
 </html>

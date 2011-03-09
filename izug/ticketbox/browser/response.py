@@ -271,7 +271,7 @@ class Base(BrowserView):
     def releases_for_display(self):
         """Get the releases from the project.
 
-        Usually nothing, unless you use Poi in combination with
+        Usually nothing, unless you use Ticketbox in combination with
         PloneSoftwareCenter.
         """
         result = []

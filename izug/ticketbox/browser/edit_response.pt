@@ -7,11 +7,6 @@
     <metal:block
         fill-slot="top_slot"
         tal:define="dummy python:request.set('disable_border',1)" />
-
-    <metal:css fill-slot="css_slot">
-      <style type="text/css" media="all"
-             tal:content="string:@import url($portal_url/poi.css);"></style>
-    </metal:css>
   </head>
 
   <body>

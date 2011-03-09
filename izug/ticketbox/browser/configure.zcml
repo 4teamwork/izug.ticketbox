@@ -92,7 +92,7 @@
      />
 
    <browser:viewletManager
-      name="poi.response.add"
+      name="ticketbox.response.add"
       provides=".interfaces.IResponseAdder"
       permission="zope2.View"
       class=".response.AddForm"

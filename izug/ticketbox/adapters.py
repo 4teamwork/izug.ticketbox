@@ -38,7 +38,7 @@ class ResponseContainer(Persistent):
 
     implements(IResponseContainer)
     adapts(ITicket)
-    ANNO_KEY = 'poi.responses'
+    ANNO_KEY = 'izug.ticketbox.responses'
 
     def __init__(self, context):
         self.context = context

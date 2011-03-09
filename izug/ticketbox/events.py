@@ -10,7 +10,7 @@ from Products.PageTemplates.GlobalTranslationService import \
 from izug.ticketbox.interfaces import IIssue
 from izug.ticketbox import ticketboxMessageFactory as _
 
-logger = logging.getLogger('Poi')
+logger = logging.getLogger('Ticketbox')
 
 
 def removedResponse(object, event):
@@ -105,11 +105,11 @@ def sendResponseNotificationMail(issue, response):
         changes += u"%s -> %s\n" % (before, after)
         if response.attachment:
             extra = _(
-                'poi_attachment_added',
+                'ticketbox_attachment_added',
                 u"An attachment has been added with id ${attachment_id}",
                 mapping=dict(
                     attachment_id=response.attachment.getId()))
-            extra = ts.translate(extra, 'Poi', context=issue)
+            extra = ts.translate(extra, 'izug.ticketbox', context=issue)
             changes += extra + "\n"
 
     mailText = _(
