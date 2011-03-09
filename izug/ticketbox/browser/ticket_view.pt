@@ -53,6 +53,6 @@
 		</table>
 		</div>
 	</div>
-	<div tal:replace="structure provider:poi.response.add" />
+	<div class="collapsable" tal:content="structure provider:poi.response.add"></div>
 </div>
 </html>

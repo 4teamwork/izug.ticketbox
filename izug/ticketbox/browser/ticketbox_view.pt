@@ -93,9 +93,9 @@
 
 
       <div id="tickets-by-priority" class="ticketbox-quick-search-box">
-          <h3 i18n:translate="ticketbox_heading_by_severities">By prioirty</h3>
+          <h3 i18n:translate="ticketbox_heading_by_severities">By priority</h3>
           <ul>
-              <tal:areas repeat="severity here/getAvailablePriorities">
+              <tal:areas repeat="priority here/getAvailablePriorities">
                 <li tal:define="priorityId priority/id;
 								priorityTitle priority/title;
 								tickets python:view.getFilteredTickets(priority=priorityId)

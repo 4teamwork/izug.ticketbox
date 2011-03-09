@@ -326,7 +326,14 @@ class Base(BrowserView):
         """Get the tracker managers.
         """
         context = self.context.aq_inner
-        return context.get_assignable_users()
+        users=context.get_assignable_users()
+        result = []
+        assignedUser = context.getResponsibleManager()
+        for user in users:
+            result.append(dict(value=user[0],
+                                label=user[1],
+                                checked=assignedUser==user[0])
+                        )
 
     @property
     @memoize

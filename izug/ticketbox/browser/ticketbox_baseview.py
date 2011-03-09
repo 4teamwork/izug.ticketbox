@@ -65,7 +65,7 @@ class TabbedTicketBoxBaseView(MyListing):
         """
         search the title-name of a list with the id
         """
-        priorities = self.context.getAvailableSeverities()
+        priorities = self.context.getAvailablePriorities()
 
         for priority in priorities:
             if id == priority['id']:
