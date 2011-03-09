@@ -6,7 +6,7 @@ from zope.contentprovider.interfaces import ITALNamespaceData
 
 
 class ITicketFolderView(Interface):
-    """Abstract a PoiTracker into a folder for issues.
+    """Abstract a Ticketbox into a folder for tickets.
     """
 
     def getFilteredIssues(criteria, **kwargs):

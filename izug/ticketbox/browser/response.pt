@@ -103,10 +103,10 @@
 
     <div class="field">
       <label for="response"
-             i18n:translate="Poi_label_response">Response</label>
+             i18n:translate="Response_label_response">Response</label>
 
       <div class="formHelp" id="response_help"
-           i18n:translate="Poi_help_response">
+           i18n:translate="Response_help_response">
         Please enter your response below
       </div>
       <div>
@@ -144,10 +144,10 @@
     <div class="field" id="poi-fieldname-attachment"
          tal:condition="view/upload_allowed">
       <label for="attachment"
-             i18n:translate="Poi_label_attachment">Attachment</label>
+             i18n:translate="Response_label_attachment">Attachment</label>
 
       <div class="formHelp" id="attachment_help"
-           i18n:translate="Poi_help_attachment">
+           i18n:translate="Response_help_attachment">
         You may optionally upload a file attachment. Please do not
         upload unnecessarily large files.
       </div>
@@ -167,13 +167,13 @@
     <div class="field"
          tal:condition="view/multiple_transitions">
       <label for="transition"
-             i18n:translate="Poi_label_issueTransition">
+             i18n:translate="Response_label_issueTransition">
         Change issue state
       </label>
 
       <div class="formHelp"
            id="issueTransition_help"
-           i18n:translate="Poi_help_issueTransition">
+           i18n:translate="Response_help_issueTransition">
         Select a change of state in the issue this response is for, if applicable
       </div>
 
@@ -199,12 +199,12 @@
     <div class="field"
          tal:condition="view/multiple_priorities">
       <label for="priority"
-           i18n:translate="Poi_label_newSeverity">
+           i18n:translate="Response_label_newSeverity">
         Change issue severity
       </label>
 
       <div class="formHelp" id="priority_help"
-           i18n:translate="Poi_help_newSeverity">
+           i18n:translate="Response_help_newSeverity">
         Select the severity for this issue
       </div>
 
@@ -227,12 +227,12 @@
     <div class="field"
          tal:condition="view/show_target_releases">
       <label for="newTargetRelease"
-           i18n:translate="Poi_label_newTargetRelease">
+           i18n:translate="Response_label_newTargetRelease">
         Change target release
       </label>
 
       <div class="formHelp" id="newTargetRelease_help"
-           i18n:translate="Poi_help_newTargetRelease">
+           i18n:translate="Response_help_newTargetRelease">
         Set the target release for this issue
       </div>
 
@@ -256,12 +256,12 @@
     <div class="field"
          tal:condition="view/managers_for_display">
       <label for="responsibleManager"
-             i18n:translate="Poi_label_newResponsibleManager">
+             i18n:translate="Response_label_newResponsibleManager">
         Change responsible manager
       </label>
 
       <div class="formHelp" id="manager_help"
-           i18n:translate="Poi_help_newResponsibleManager">
+           i18n:translate="Response_help_newResponsibleManager">
         Select the responsible manager for this issue
       </div>
 

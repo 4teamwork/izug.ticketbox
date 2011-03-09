@@ -72,9 +72,9 @@ def voc2dict(vocab, current=None):
 
 
 class Base(BrowserView):
-    """Base view for PoiIssues.
+    """Base view for Ticketbox Response.
 
-    Mostly meant as helper for adding a PoiResponse.
+    Mostly meant as helper for adding a Ticketbox Response.
     """
 
     def __init__(self, context, request):
@@ -457,9 +457,9 @@ class Create(Base):
 
         if len(response_text) == 0 and not issue_has_changed:
             status = IStatusMessage(self.request)
-            ts = getGlobalTranslationService()
             msg = _(u"No response text added and no issue changes made.")
-            msg = ts.translate('Poi', msg, context=context)
+            #
+            # msg = self.context.translate(msg)
             status.addStatusMessage(msg, type='error')
         else:
             # Apply changes to issue

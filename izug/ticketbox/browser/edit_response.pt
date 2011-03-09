@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
       lang="en-US"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="Poi">
+      i18n:domain="izug.ticketbox">
 
   <head>
     <metal:block
@@ -48,7 +48,7 @@
 
             <div class="field">
               <label for="response"
-                     i18n:translate="Poi_label_response">Response</label>
+                     i18n:translate="Response_label_response">Response</label>
 
               <div class="formHelp" id="response_help"
                    i18n:translate="label_enter_response">Please enter your response below</div>
