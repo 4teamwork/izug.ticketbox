@@ -83,8 +83,8 @@
             <input type="hidden" name="response_id" tal:attributes="value request/response_id" />
 
             <div class="formControls">
-              <input class="standalone" value="Submit" type="submit"
-                     i18n:domain="plone" i18n:attributes="value"/>
+              <input class="standalone" value="Submit" type="submit" 
+                     i18n:attributes="value label_save_response"/>
             </div>
           </form>
         </tal:response>
