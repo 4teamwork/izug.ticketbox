@@ -8,7 +8,6 @@ from Products.Five.browser import BrowserView
 from izug.ticketbox.adapters import IResponseContainer
 from izug.ticketbox.adapters import Response
 from plone.memoize.view import memoize
-#from Products.Archetypes.atapi import DisplayList
 from izug.ticketbox.config import DEFAULT_ISSUE_MIME_TYPE
 from Products.PageTemplates.GlobalTranslationService import \
     getGlobalTranslationService
@@ -185,7 +184,7 @@ class Base(BrowserView):
         ts = getGlobalTranslationService()
         if response_id is None:
             msg = _(u"No response selected.")
-            msg = ts.translate('Poi', msg, context=self.context)
+            msg = self.context.translate(msg)
             status.addStatusMessage(msg, type='error')
             return -1
         else:
@@ -194,13 +193,13 @@ class Base(BrowserView):
             except ValueError:
                 msg = _(u"Response id ${response_id} is no integer.",
                         mapping=dict(response_id=response_id))
-                msg = ts.translate('Poi', msg, context=self.context)
+                msg = self.context.translate(msg)
                 status.addStatusMessage(msg, type='error')
                 return -1
             if response_id >= len(self.folder):
                 msg = _(u"Response id ${response_id} does not exist.",
                         mapping=dict(response_id=response_id))
-                msg = ts.translate('Poi', msg, context=self.context)
+                msg = self.context.translate(msg)
                 status.addStatusMessage(msg, type='error')
                 return -1
             else:
@@ -501,18 +500,18 @@ class Save(Base):
         ts = getGlobalTranslationService()
         if not self.can_edit_response:
             msg = _(u"You are not allowed to edit responses.")
-            msg = ts.translate('Poi', msg, context=context)
+            msg = self.context.translate(msg)
             status.addStatusMessage(msg, type='error')
         else:
             response_id = form.get('response_id', None)
             if response_id is None:
                 msg = _(u"No response selected for saving.")
-                msg = ts.translate('Poi', msg, context=context)
+                msg = self.context.translate(msg)
                 status.addStatusMessage(msg, type='error')
             elif self.folder[response_id] is None:
                 msg = _(u"Response does not exist anymore; perhaps it was "
                         "removed by another user.")
-                msg = translate(msg, 'Poi', context=self.request)
+                msg = self.context.translate(msg)
                 status.addStatusMessage(msg, type='error')
             else:
                 response = self.folder[response_id]
@@ -522,7 +521,7 @@ class Save(Base):
                 response.rendered_text = None
                 msg = _(u"Changes saved to response.",
                       mapping=dict(response_id=response_id))
-                msg = ts.translate('Poi', msg, context=context)
+                msg = self.context.translate(msg)
                 status.addStatusMessage(msg, type='info')
                 # Fire event.  We put the context in the descriptions
                 # so event handlers can use this fully acquisition
@@ -544,13 +543,13 @@ class Delete(Base):
 
         if not self.can_delete_response:
             msg = _(u"You are not allowed to delete responses.")
-            msg = ts.translate('Poi', msg, context=context)
+            msg = self.context.translate(msg)
             status.addStatusMessage(msg, type='error')
         else:
             response_id = self.request.form.get('response_id', None)
             if response_id is None:
                 msg = _(u"No response selected for removal.")
-                msg = ts.translate('Poi', msg, context=context)
+                msg = self.context.translate(msg)
                 status.addStatusMessage(msg, type='error')
             else:
                 try:
@@ -559,7 +558,7 @@ class Delete(Base):
                     msg = _(u"Response id ${response_id} is no integer so it "
                             "cannot be removed.",
                             mapping=dict(response_id=response_id))
-                    msg = ts.translate('Poi', msg, context=context)
+                    msg = self.context.translate(msg)
                     status.addStatusMessage(msg, type='error')
                     self.request.response.redirect(context.absolute_url())
                     return
@@ -567,13 +566,13 @@ class Delete(Base):
                     msg = _(u"Response id ${response_id} does not exist so it "
                             "cannot be removed.",
                             mapping=dict(response_id=response_id))
-                    msg = ts.translate('Poi', msg, context=context)
+                    msg = self.context.translate(msg)
                     status.addStatusMessage(msg, type='error')
                 else:
                     self.folder.delete(response_id)
                     msg = _(u"Removed response.",
                             mapping=dict(response_id=response_id))
-                    msg = ts.translate('Poi', msg, context=context)
+                    msg = self.context.translate(msg)
                     status.addStatusMessage(msg, type='info')
         self.request.response.redirect(context.absolute_url())
 
@@ -595,7 +594,7 @@ class Download(Base):
                 ts = getGlobalTranslationService()
                 msg = _(u"Response id ${response_id} has no attachment.",
                         mapping=dict(response_id=response_id))
-                msg = ts.translate('Poi', msg, context=context)
+                msg = self.context.translate(msg)
                 status.addStatusMessage(msg, type='error')
         if file is None:
             request.response.redirect(context.absolute_url())

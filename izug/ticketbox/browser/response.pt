@@ -70,7 +70,7 @@
     </div>
   </tal:responses>
 
-  <tal:noadd condition="python:not user.has_permission('Poi: Add Response', here)">
+  <tal:noadd condition="python:not user.has_permission('izug.ticketbox: Add Ticket', here)">
     <p class="discreet"
        i18n:translate="msg_no_responses_can_be_added">
       No responses can be added.
@@ -93,7 +93,7 @@
              />
     </form>
   </div>
-  <tal:add condition="python:user.has_permission('Poi: Add Response', here)">
+  <tal:add condition="python:user.has_permission('izug.ticketbox: Add Ticket', here)">
   <h3 i18n:translate="title_add_response">Add response</h3>
 
   <form method="post"

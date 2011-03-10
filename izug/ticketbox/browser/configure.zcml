@@ -19,6 +19,16 @@
         template="tabbed_ticketbox.pt"
         />
 
+
+   <browser:page
+       for="izug.ticketbox.interfaces.ITicketBox"
+       name="tabbed_ticketbox-info_view"
+       class=".ticketbox_view_info_view.TicketBoxInfoView"
+       permission="zope.Public"
+       template="ticketbox_view_info_view.pt"
+       allowed_attributes="description"
+       />
+
   <browser:page
      name="tabbedview_view-Overview"
      for="izug.ticketbox.interfaces.ITicketBox"

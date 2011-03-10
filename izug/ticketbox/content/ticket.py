@@ -139,7 +139,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             restrict_browsing_to_startup_directory=True,
             base_query={"portal_type": "Ticket Box", "sort_on": "sortable_title"},
         ),
-        allowed_types=('Ticket','Ticket Box'),
+        allowed_types=('Ticket','Ticket Box', 'TicketAttachment'),
         multiValued=1,
         schemata='default',
         relationship='Ticket Box'

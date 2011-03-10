@@ -20,7 +20,7 @@
 
 
 
-        <div id="arbeitsraum-header">
+        <div id="ticketboxheader-header">
 
           <div tal:replace="structure provider:plone.abovecontenttitle" />
 

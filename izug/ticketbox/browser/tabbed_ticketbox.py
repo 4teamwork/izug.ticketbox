@@ -10,6 +10,7 @@ class TabbedTicketBoxView(views.TabbedView):
                 {'id':'all_tickets','class':''},
                 {'id':'my_tickets','class':''},
                 {'id':'attachments','class':''},
+                {'id':'info_view','class':''},
                ]
 
 

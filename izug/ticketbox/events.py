@@ -7,7 +7,7 @@ from Products.CMFPlone.utils import safe_unicode
 from Products.PageTemplates.GlobalTranslationService import \
     getGlobalTranslationService
 
-from izug.ticketbox.interfaces import IIssue
+from izug.ticketbox.interfaces.ticket import ITicket
 from izug.ticketbox import ticketboxMessageFactory as _
 
 logger = logging.getLogger('Ticketbox')
@@ -15,7 +15,7 @@ logger = logging.getLogger('Ticketbox')
 
 def removedResponse(object, event):
     issue = event.oldParent
-    if IIssue.providedBy(issue):
+    if ITicket.providedBy(issue):
         issue.reindexObject(idxs=['SearchableText'])
         issue.notifyModified()
 
@@ -26,7 +26,7 @@ def modifiedNewStyleResponse(object, event):
 
     if len(event.descriptions) > 0:
         parent = event.descriptions[0]
-        if IIssue.providedBy(parent):
+        if ITicket.providedBy(parent):
             parent.reindexObject(idxs=['SearchableText'])
             parent.notifyModified()
 
@@ -35,7 +35,7 @@ def addedNewStyleResponse(object, event):
     """A response has been added.
     """
     issue = event.newParent
-    if IIssue.providedBy(issue):
+    if ITicket.providedBy(issue):
         issue.reindexObject(idxs=['SearchableText'])
         issue.notifyModified()
         sendResponseNotificationMail(issue, object)
