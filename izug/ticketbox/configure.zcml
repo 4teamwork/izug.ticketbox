@@ -17,7 +17,7 @@
   <!-- Register the installation GenericSetup extension profile -->
   <genericsetup:registerProfile
       name="default"
-      title="iZug Ticketbox"
+      title="izug.ticketbox"
       directory="profiles/default"
       description="A tracker-like task management system"
       provides="Products.GenericSetup.interfaces.EXTENSION"

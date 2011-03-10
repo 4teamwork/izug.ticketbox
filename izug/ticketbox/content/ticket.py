@@ -131,7 +131,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 
     #References
     ReferenceField(
-        name='references',
+        name='ticketReferences',
         widget=ReferenceBrowserWidget(
             label=_(u"References"),
             allow_browse=True,
@@ -142,7 +142,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         allowed_types=('Ticket','Ticket Box', 'TicketAttachment'),
         multiValued=1,
         schemata='default',
-        relationship='Ticket Box'
+        relationship='TicketBox'
     ),
 
 
@@ -243,14 +243,17 @@ def move_document_to_reference(obj, event):
     _file = obj.getAttachment()
     if _file.data != '':
         new_id = IDNormalizer.normalize(IDNormalizer(), _file.filename)
-        new_file_id = obj.invokeFactory(type_name="TicketAttachment",id=new_id,
-        title=_file.filename, file=_file)
+        new_file_id = obj.invokeFactory(
+            type_name="TicketAttachment",
+            id=new_id,
+            title=_file.filename,
+            file=_file)
         new_file = obj.get(new_file_id, None)
         if new_file is None:
             return
         uid = new_file.UID()
         references = obj.getRawAttachments()
-        if isinstance(references,list):
+        if isinstance(references, list):
             references.append(uid)
             obj.setAttachments(references)
         else:

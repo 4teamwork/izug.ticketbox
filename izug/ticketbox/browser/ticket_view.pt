@@ -8,60 +8,62 @@
 
     <metal:block metal:use-macro="here/@@custom_header/macros/header | here/base/macros/header" />
 
-	<div>
-	<table>
-		<tr>
-			<td i18n:translate='label_description'>Description</td>
-			<td tal:content="here/Description" />
-		</tr>
-		<tr tal:condition="python: here.Due_date">
-			<td i18n:translate='label_duedate'>Due Date</td>
-			<td tal:content="python: here.Due_date.strftime('%d.%m.%Y')" />
-		</tr>
-		<tr>
-			<td i18n:translate='label_state'>State</td>
-			<td tal:content="here/State" />
-		</tr>
-		<tr>
-			<td i18n:translate='label_Priority'>Priority</td>
-			<td tal:content="here/Priority"/>
-		</tr>
-		<tr>
-			<td i18n:translate='label_Area'>Area</td>
-			<td tal:content="here/Area" />
-		</tr>
-		<tr>
-			<td i18n:translate='label_Releases'>Release</td>
-			<td tal:content="here/Releases" />
-		</tr>
-		<tr>
-			<td i18n:translate='label_responsibleManager'>responsible Manager</td>
-			<td tal:content="here/responsibleManager" />
-		</tr>
-		<tr>
-			<td i18n:translate='label_Answer-date'>Answer Date</td>
-			<td tal:content="python:here.Answer_date.strftime('%d.%m.%Y')" />
-		</tr>
-		<tr tal:condition="python: here.getAttachments()">
-			<td i18n:translate='label_Attachment'>Attachments</td>
-			<td>
-				<div tal:repeat="att here/getAttachments">
-					<metal:attachment use-macro="python:att.widget('file')"/>
-				</div>
+    <div>
+    <table>
+        <tr>
+            <td i18n:translate='label_description'>Description</td>
+            <td tal:content="here/Description" />
+        </tr>
+        <tr tal:condition="python: here.Due_date">
+            <td i18n:translate='label_duedate'>Due Date</td>
+            <td tal:content="python: here.Due_date.strftime('%d.%m.%Y')" />
+        </tr>
+        <tr>
+            <td i18n:translate='label_state'>State</td>
+            <td tal:content="here/State" />
+        </tr>
+        <tr>
+            <td i18n:translate='label_Priority'>Priority</td>
+            <td tal:content="here/Priority"/>
+        </tr>
+        <tr>
+            <td i18n:translate='label_Area'>Area</td>
+            <td tal:content="here/Area" />
+        </tr>
+        <tr>
+            <td i18n:translate='label_Releases'>Release</td>
+            <td tal:content="here/Releases" />
+        </tr>
+        <tr>
+            <td i18n:translate='label_responsibleManager'>responsible Manager</td>
+            <td tal:content="here/responsibleManager" />
+        </tr>
+        <tr>
+            <td i18n:translate='label_Answer-date'>Answer Date</td>
+            <td tal:content="python:here.Answer_date.strftime('%d.%m.%Y')" />
+        </tr>
+        <tr tal:condition="python: here.getAttachments()">
+            <td i18n:translate='label_Attachment'>Attachments</td>
+            <td>
+                <div tal:repeat="att here/getAttachments">
+                    <metal:attachment use-macro="python:att.widget('file')"/>
+                </div>
 
-			</td>
-		</tr>
-		<tr tal:condition="here/aq_explicit/getReferences">
-			<td i18n:translate='label_References'>References</td>
-			<td>
-				<div tal:repeat="ref here/aq_explicit/getReferences">
-					<span tal:content="ref/title"></span>
-				</div>
+            </td>
+        </tr>
+        <tr tal:condition="here/getTicketReferences">
+            <td i18n:translate='label_References'>References</td>
+            <td>
+                <div tal:repeat="ref here/getTicketReferences">
+                    <a tal:attributes="href ref/absolute_url" 
+                       tal:content="ref/title"></a>
+                </div>
 
-			</td>
-		</tr>		</table>
-		</div>
-	</div>
-	<div class="Collapsible" tal:content="structure provider:ticketbox.response.add"></div>
+            </td>
+        </tr>
+    </table>
+    </div>
+    </div>
+    <div class="collapsible" tal:content="structure provider:ticketbox.response.add"></div>
 </div>
 </html>

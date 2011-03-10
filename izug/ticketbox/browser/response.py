@@ -1,4 +1,3 @@
-from AccessControl import Unauthorized
 from Products.CMFCore.utils import getToolByName
 from izug.ticketbox.browser.interfaces import IResponseAdder
 from zope.interface import implements
@@ -15,59 +14,9 @@ from izug.ticketbox import ticketboxMessageFactory as _
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.lifecycleevent import modified
 from OFS.Image import File
-from Products.CMFPlone.utils import safe_unicode
-from Products.Archetypes.utils import contentDispositionHeader
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
-
-try:
-    from plone.i18n.normalizer.interfaces import \
-        IUserPreferredFileNameNormalizer
-    FILE_NORMALIZER = True
-except ImportError:
-    FILE_NORMALIZER = False
-
-
-def pretty_size(size):
-    if size <= 0:
-        return "0 Kb"
-    kb = size / 1024
-    size = "%d Kb" % kb
-    if kb > 999:
-        mb = kb / 1024
-        size = "%d Mb" % mb
-        if mb > 999:
-            gb = mb / 1024
-            size = "%d Gb" % gb
-    return size
-
-
-def voc2dict(vocab, current=None):
-    """Make a dictionary from a vocabulary.
-
-    >>> from Products.Archetypes.atapi import DisplayList
-    >>> vocab = DisplayList()
-    >>> vocab.add('a', "The letter A")
-    >>> voc2dict(vocab)
-    [{'checked': '', 'value': 'a', 'label': 'The letter A'}]
-    >>> vocab.add('b', "The letter B")
-    >>> voc2dict(vocab)
-    [{'checked': '', 'value': 'a', 'label': 'The letter A'},
-    {'checked': '', 'value': 'b', 'label': 'The letter B'}]
-    >>> voc2dict(vocab, current='c')
-    [{'checked': '', 'value': 'a', 'label': 'The letter A'},
-    {'checked': '', 'value': 'b', 'label': 'The letter B'}]
-    >>> voc2dict(vocab, current='b')
-    [{'checked': '', 'value': 'a', 'label': 'The letter A'},
-    {'checked': 'checked', 'value': 'b', 'label': 'The letter B'}]
-
-    """
-    options = []
-    for value, label in vocab.items():
-        checked = (value == current) and "checked" or ""
-        options.append(dict(value=value, label=label,
-                            checked=checked))
-    return options
+from plone.i18n.normalizer import IDNormalizer
 
 
 class Base(BrowserView):
@@ -117,42 +66,17 @@ class Base(BrowserView):
         return plone.portal_url()
 
     def attachment_info(self, id):
-        """Get icon and other info for attachment
-
-        Taken partly from Archetypes/skins/archetypes/getBestIcon.py
+        """Return TicketAttachment object
         """
         context = aq_inner(self.context)
         response = self.folder[id]
-        attachment = response.attachment
-        if attachment is None:
+        # Get attachment uid
+        # In future this could be a list of attachments
+        attachment_uid = response.attachment
+        if attachment_uid is None:
             return None
 
-        from zExceptions import NotFound
-
-        icon = None
-        mtr = getToolByName(context, 'mimetypes_registry', None)
-        if mtr is None:
-            icon = context.getIcon()
-        lookup = mtr.lookup(attachment.content_type)
-        if lookup:
-            mti = lookup[0]
-            try:
-                context.restrictedTraverse(mti.icon_path)
-                icon = mti.icon_path
-            except (NotFound, KeyError, AttributeError):
-                pass
-        if icon is None:
-            icon = context.getIcon()
-        filename = getattr(attachment, 'filename', attachment.getId())
-        info = dict(
-            icon=self.portal_url + '/' + icon,
-            url=context.absolute_url() +\
-                '/@@poi_response_attachment?response_id=' + str(id),
-            content_type=attachment.content_type,
-            size=pretty_size(attachment.size),
-            filename=filename,
-            )
-        return info
+        return context.reference_catalog.lookupObject(attachment_uid)
 
     @Lazy
     def memship(self):
@@ -392,7 +316,6 @@ class Create(Base):
     def __call__(self):
         form = self.request.form
         context = aq_inner(self.context)
-        ts = getGlobalTranslationService()
 
         response_text = form.get('response', u'')
         new_response = Response(response_text)
@@ -420,7 +343,6 @@ class Create(Base):
         changes = {}
         for option, title, vocab in options:
             new = form.get(option, u'')
-            import pdb; pdb.set_trace( )
             if new and new in self.__getattribute__(vocab):
                 current = context.__getattribute__(option)
                 if current != new:
@@ -451,7 +373,19 @@ class Create(Base):
         if attachment:
             # File(id, title, file)
             data = File(attachment.filename, attachment.filename, attachment)
-            new_response.attachment = data
+            if not hasattr(data, 'filename'):
+                setattr(data, 'filename', attachment.filename)
+            # Create TicketAttachment and save the uid in attachment attr of
+            # new_response
+            new_id = IDNormalizer.normalize(IDNormalizer(), attachment.filename)
+            new_file_id = context.invokeFactory(
+                type_name="TicketAttachment",
+                id=new_id,
+                title=attachment.filename,
+                file=data)
+            new_file = context.get(new_file_id, None)
+            
+            new_response.attachment = new_file.UID()
             issue_has_changed = True
 
         if len(response_text) == 0 and not issue_has_changed:
@@ -575,41 +509,3 @@ class Delete(Base):
                     msg = self.context.translate(msg)
                     status.addStatusMessage(msg, type='info')
         self.request.response.redirect(context.absolute_url())
-
-
-class Download(Base):
-    """Download the attachment of a response.
-    """
-
-    def __call__(self):
-        context = aq_inner(self.context)
-        request = self.request
-        response_id = self.validate_response_id()
-        file = None
-        if response_id != -1:
-            response = self.folder[response_id]
-            file = response.attachment
-            if file is None:
-                status = IStatusMessage(request)
-                ts = getGlobalTranslationService()
-                msg = _(u"Response id ${response_id} has no attachment.",
-                        mapping=dict(response_id=response_id))
-                msg = self.context.translate(msg)
-                status.addStatusMessage(msg, type='error')
-        if file is None:
-            request.response.redirect(context.absolute_url())
-
-        # From now on file exists.
-        # Code mostly taken from Archetypes/Field.py:FileField.download
-        filename = getattr(file, 'filename', file.getId())
-        if filename is not None:
-            if FILE_NORMALIZER:
-                filename = IUserPreferredFileNameNormalizer(request).normalize(
-                    safe_unicode(filename, context.getCharset()))
-            else:
-                filename = safe_unicode(filename, context.getCharset())
-            header_value = contentDispositionHeader(
-                disposition='attachment',
-                filename=filename)
-            request.response.setHeader("Content-disposition", header_value)
-        return file.index_html(request, request.response)
