@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-03-09 15:52+0000\n"
+"POT-Creation-Date: 2011-03-10 09:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,11 +12,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:100
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:101
 msgid "Answer-date"
 msgstr "Antwort erbeten bis"
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:101
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:102
 msgid "Answer-date of the ticket"
 msgstr "Bis wann wird eine Antwort erwartet."
 
@@ -36,13 +36,13 @@ msgstr ""
 msgid "Areas_title"
 msgstr "Bereichname"
 
-#: izug.ticketbox/izug/ticketbox/content/ticketbox.py:50
-msgid "At work"
-msgstr "In Arbeit"
-
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:109
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:110
 msgid "Attachment"
 msgstr "Anhang"
+
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:120
+msgid "Attachments"
+msgstr ""
 
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:75
 msgid "Available Releases"
@@ -56,11 +56,7 @@ msgstr "Prioritäten"
 msgid "Changes saved to response."
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/content/ticketbox.py:53
-msgid "Completed"
-msgstr "Erledigt"
-
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:48
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:49
 msgid "Define Which State the Ticket has"
 msgstr "Definieren sie den Ticket-Status"
 
@@ -77,11 +73,11 @@ msgstr "Löschen"
 msgid "Description of the Example Type"
 msgstr "Ein einfacher Ticket-Tracker"
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:37
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:38
 msgid "Due-date"
 msgstr "Fälligkeit des Tickets"
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:38
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:39
 msgid "Due-date of the ticket"
 msgstr "Bis wann soll das Ticket erledigt sein."
 
@@ -113,7 +109,7 @@ msgstr "Geben sie die verfügbaren Bereiche ein"
 msgid "Id"
 msgstr "Nr."
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:138
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:155
 msgid "If selected, tracker managers will receive an email each time a new issue or response is posted, and issue submitters will receive an email when there is a new response and when an issue has been resolved, awaiting confirmation."
 msgstr "Trackermanagers erhalten jedesmal wenn ein neues Ticket oder eine neue Antwort erstellt wurde eine E-Mail"
 
@@ -124,10 +120,6 @@ msgstr "ID der Auftragsbox"
 #: izug.ticketbox/izug/ticketbox/browser/response.py:410
 msgid "Issue state"
 msgstr "Ticket-Status"
-
-#: izug.ticketbox/izug/ticketbox/content/ticketbox.py:54
-msgid "Moved"
-msgstr "Verschoben"
 
 #: izug.ticketbox/izug/ticketbox/browser/response.py:552
 msgid "No response selected for removal."
@@ -149,9 +141,8 @@ msgstr "Kein Antworttext hinzugefügt. Keine Ticketänderungen vorgenommen"
 msgid "None"
 msgstr "Unbestimmt"
 
-#: izug.ticketbox/izug/ticketbox/content/ticketbox.py:49
-msgid "Open"
-msgstr "Offen"
+msgid "Overview"
+msgstr "Übersicht"
 
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:94
 msgid "Priorities_id"
@@ -166,13 +157,9 @@ msgstr "Prioritätname"
 msgid "Priority"
 msgstr "Priorität"
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:120
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:136
 msgid "References"
 msgstr "Referenzen"
-
-#: izug.ticketbox/izug/ticketbox/content/ticketbox.py:51
-msgid "Rejected"
-msgstr "Zurückgewiesen"
 
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:78
 msgid "Releases_id"
@@ -275,31 +262,31 @@ msgstr "Antwort"
 msgid "Responsible manager"
 msgstr "Zuständig für dieses Ticket"
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:68
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:69
 msgid "Select Area"
 msgstr "Bereich"
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:58
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:59
 msgid "Select Priority"
 msgstr "Priorität"
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:78
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:79
 msgid "Select Release"
 msgstr "Lieferpaket"
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:47
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:48
 msgid "Select State"
 msgstr "Status"
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:59
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:60
 msgid "Select the Priority"
 msgstr "Wählen Sie eine Priorität aus."
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:79
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:80
 msgid "Select the Release of the ticket"
 msgstr "Wählen sie ein Lieferpaket aus."
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:137
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:154
 msgid "Send notification emails"
 msgstr "Benachrichtigung versenden."
 
@@ -327,10 +314,6 @@ msgstr "Auftragsbox"
 msgid "Title"
 msgstr "Beschreibung"
 
-#: izug.ticketbox/izug/ticketbox/content/ticketbox.py:52
-msgid "To test"
-msgstr "Zum Testen"
-
 #: izug.ticketbox/izug/ticketbox/browser/response.py:546
 msgid "You are not allowed to delete responses."
 msgstr "Sie sind nicht berechtig, Antworten zu löschen"
@@ -339,13 +322,16 @@ msgstr "Sie sind nicht berechtig, Antworten zu löschen"
 msgid "You are not allowed to edit responses."
 msgstr "Sie sind nicht berechtig, Antworten zu bearbeiten."
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:110
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:111
 msgid "You may optionally upload a file attachment. Please do not upload unnecessarily large files."
 msgstr "Fügen sie Anhänge zum Auftrag hinzu."
 
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:59
 msgid "add or delete possible state-information"
 msgstr "Geben Sie die verfügbaren Status ein."
+
+msgid "all_tickets"
+msgstr "Alle Aufträge"
 
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:61
 msgid "id"
@@ -370,6 +356,11 @@ msgstr "Anhang"
 #: izug.ticketbox/izug/ticketbox/browser/ticket_view.pt:26
 msgid "label_Priority"
 msgstr "Priorität"
+
+#. Default: "References"
+#: izug.ticketbox/izug/ticketbox/browser/ticket_view.pt:55
+msgid "label_References"
+msgstr ""
 
 #. Default: "Release"
 #: izug.ticketbox/izug/ticketbox/browser/ticket_view.pt:34
@@ -396,11 +387,6 @@ msgstr "Sie sind nicht berechtig diese Antwort zu bearbeiten"
 msgid "label_enter_response"
 msgstr "Geben Sie hier ihre Antwort ein"
 
-#. Default: "References"
-#: izug.ticketbox/izug/ticketbox/browser/ticket_view.pt:50
-msgid "label_references"
-msgstr "Referenzen"
-
 #. Default: "responsible Manager"
 #: izug.ticketbox/izug/ticketbox/browser/ticket_view.pt:38
 msgid "label_responsibleManager"
@@ -425,6 +411,9 @@ msgstr "Bitte loggen sie sich ein bevor sie das Formular abschicken"
 #: izug.ticketbox/izug/ticketbox/browser/response.pt:74
 msgid "msg_no_responses_can_be_added"
 msgstr "Antworten können nicht hinzugefügt werden"
+
+msgid "my_tickets"
+msgstr "Meine Aufträge"
 
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:155
 msgid "no"

@@ -46,12 +46,12 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
           searchable = True,
           allow_empty_rows = False,
           default = (
-           {'id' : '', 'title' : _(u"Open"), 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '1'},
-           {'id' : '', 'title' : _(u"At work"), 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '1'},
-           {'id' : '', 'title' : _(u"Rejected"), 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '1'},
-           {'id' : '', 'title' : _(u"To test"), 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '1'},
-           {'id' : '', 'title' : _(u"Completed"), 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '0'},
-           {'id' : '', 'title' : _(u"Moved"), 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '1'},
+           {'id' : '', 'title' : "offen", 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '1'},
+           {'id' : '', 'title' : "in Bearbeitung", 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '1'},
+           {'id' : '', 'title' : "zurückgewiesen", 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '1'},
+           {'id' : '', 'title' : "zum Testen", 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '1'},
+           {'id' : '', 'title' : "erledigt", 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '0'},
+           {'id' : '', 'title' : "verschoben", 'show_in_all_tickets' : '1', 'show_in_my_tickets' : '1'},
            ),
           widget = DataGridWidget(
             visible={'view': 'invisible', 'edit': 'visible'},
