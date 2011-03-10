@@ -47,7 +47,9 @@ def sendResponseNotificationMail(issue, response):
     """
 
     tracker = aq_parent(issue)
-    addresses = tracker.getNotificationEmailAddresses(issue)
+    #addresses = tracker.getNotificationEmailAddresses(issue)
+    addresses = None
+    # XXX IMPLEMENT ME
     if not addresses:
         # This also catches the case where there may be addresses but
         # the tracker is not configured to send emails.
