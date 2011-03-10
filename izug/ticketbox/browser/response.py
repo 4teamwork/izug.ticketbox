@@ -8,8 +8,6 @@ from izug.ticketbox.adapters import IResponseContainer
 from izug.ticketbox.adapters import Response
 from plone.memoize.view import memoize
 from izug.ticketbox.config import DEFAULT_ISSUE_MIME_TYPE
-from Products.PageTemplates.GlobalTranslationService import \
-    getGlobalTranslationService
 from izug.ticketbox import ticketboxMessageFactory as _
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.lifecycleevent import modified
@@ -87,7 +85,9 @@ class Base(BrowserView):
     @memoize
     def can_edit_response(self):
         context = aq_inner(self.context)
-        return self.memship.checkPermission('Poi: Edit response', context)
+        return self.memship.checkPermission(
+            'izug.ticketbox: Add Ticket',
+            context)
 
     @property
     @memoize
@@ -105,7 +105,6 @@ class Base(BrowserView):
         """
         status = IStatusMessage(self.request)
         response_id = self.request.form.get('response_id', None)
-        ts = getGlobalTranslationService()
         if response_id is None:
             msg = _(u"No response selected.")
             msg = self.context.translate(msg)
@@ -144,7 +143,7 @@ class Base(BrowserView):
     @property
     @memoize
     def transitions_for_display(self):
-        factory=getUtility(IVocabularyFactory,name='ticketbox_values_states')
+        factory=getUtility(IVocabularyFactory, name='ticketbox_values_states')
         result = []
         for term in factory(self.context.aq_inner):
             current_state = self.context.getState()
@@ -170,7 +169,6 @@ class Base(BrowserView):
                     checked=checked))
 
         return result
-
 
     @property
     def responsibleManager(self):
@@ -198,7 +196,9 @@ class Base(BrowserView):
         PloneSoftwareCenter.
         """
         result = []
-        factory=getUtility(IVocabularyFactory,name='ticketbox_values_releases')
+        factory=getUtility(
+            IVocabularyFactory,
+            name='ticketbox_values_releases')
         for term in factory(self.context.aq_inner):
             current_state = self.context.getReleases()
             checked = term.token == current_state
@@ -255,8 +255,7 @@ class Base(BrowserView):
         for user in users:
             result.append(dict(value=user[0],
                                 label=user[1],
-                                checked=assignedUser==user[0])
-                        )
+                                checked=assignedUser==user[0]))
         return result
 
     @property
@@ -280,7 +279,6 @@ class Base(BrowserView):
 
 class AddForm(Base):
     implements(IResponseAdder)
-    #template = ViewPageTemplateFile('response.pt')
 
     def __init__(self, context, request, view):
         super(AddForm, self).__init__(context, request)
@@ -377,14 +375,16 @@ class Create(Base):
                 setattr(data, 'filename', attachment.filename)
             # Create TicketAttachment and save the uid in attachment attr of
             # new_response
-            new_id = IDNormalizer.normalize(IDNormalizer(), attachment.filename)
+            new_id = IDNormalizer.normalize(
+                IDNormalizer(),
+                attachment.filename)
             new_file_id = context.invokeFactory(
                 type_name="TicketAttachment",
                 id=new_id,
                 title=attachment.filename,
                 file=data)
             new_file = context.get(new_file_id, None)
-            
+
             new_response.attachment = new_file.UID()
             issue_has_changed = True
 
@@ -431,7 +431,6 @@ class Save(Base):
         form = self.request.form
         context = aq_inner(self.context)
         status = IStatusMessage(self.request)
-        ts = getGlobalTranslationService()
         if not self.can_edit_response:
             msg = _(u"You are not allowed to edit responses.")
             msg = self.context.translate(msg)
@@ -473,7 +472,6 @@ class Delete(Base):
     def __call__(self):
         context = aq_inner(self.context)
         status = IStatusMessage(self.request)
-        ts = getGlobalTranslationService()
 
         if not self.can_delete_response:
             msg = _(u"You are not allowed to delete responses.")
