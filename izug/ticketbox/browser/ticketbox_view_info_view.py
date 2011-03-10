@@ -4,8 +4,9 @@ from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from plone.app.workflow.interfaces import ISharingPageRole
 from zope.component import getUtilitiesFor
 from izug.ticketbox import ticketboxMessageFactory as _
+from ticketbox_baseview import TabbedTicketBoxBaseView
 
-class TicketBoxInfoView(InfoView):
+class TicketBoxInfoView(TabbedTicketBoxBaseView):
     """Info Tabbview
     """
     template = ViewPageTemplateFile('ticketbox_view_info_view.pt')
@@ -46,22 +47,3 @@ class TicketBoxInfoView(InfoView):
             return ''
         else:
             return translated
-    # @memoize
-    # def roles(self):
-    #     """Get a list of roles that can be managed.
-    #
-    #     Returns a list of dicts with keys:
-    #
-    #         - id
-    #         - title
-    #     """
-    #     return [
-    #         {
-    #             'id'        : 'Reader',
-    #             'title'     : 'read',
-    #         },
-    #         {
-    #             'id'        : 'Editor',
-    #             'title'     : 'write',
-    #         },
-    #     ]

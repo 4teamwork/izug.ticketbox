@@ -20,7 +20,7 @@
 
 
 
-        <div id="ticketboxheader-header">
+        <div id="ticketbox-header">
 
           <div tal:replace="structure provider:plone.abovecontenttitle" />
 

@@ -4,7 +4,6 @@ from izug.ticketbox import ticketboxMessageFactory as _
 class TicketBoxViewAttachments(TabbedTicketBoxBaseView):
 
     types = 'TicketAttachment'
-    #this is a attribute in the DataGrid States from TicketBox ContentType
     sort_on = 'sortable_title'
     columns = None
 
