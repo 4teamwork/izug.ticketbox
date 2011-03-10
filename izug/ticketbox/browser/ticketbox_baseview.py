@@ -20,7 +20,8 @@ def readable_author(item, author):
 
 class TabbedTicketBoxBaseView(MyListing):
 
-    filter_my_tickets = False
+    filter_my_created_tickets = False
+    filter_responsibleManager = False
     filter_state = None
 
     request_filters = [
@@ -70,10 +71,16 @@ class TabbedTicketBoxBaseView(MyListing):
 
         """Custom search method for ticketbox"""
 
-        # show only my_tickets
-        if self.filter_my_tickets:
+        # show only tickets tickets, where creater is me
+        if self.filter_my_created_tickets:
+            kwargs['Creator'] = \
+                self.context.aq_inner.portal_membership.getAuthenticatedMember().getId()
+
+        # show only tickets, where responsibleManager is me
+        if self.filter_my_created_tickets:
             kwargs['responsibleManager'] = \
                 self.context.aq_inner.portal_membership.getAuthenticatedMember().getId()
+
         self.catalog = catalog = getToolByName(self.context,'portal_catalog')
         query = self.build_query(**kwargs)
         tmpresults = catalog(**query)

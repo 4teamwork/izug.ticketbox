@@ -241,9 +241,8 @@ registerType(Ticket, PROJECTNAME)
 def move_document_to_reference(obj, event):
     """Create own File and add it to References"""
     _file = obj.getAttachment()
-    if _file != '':
+    if _file.data != '':
         new_id = IDNormalizer.normalize(IDNormalizer(), _file.filename)
-        import pdb; pdb.set_trace( )
         new_file_id = obj.invokeFactory(type_name="TicketAttachment",id=new_id,
         title=_file.filename, file=_file)
         new_file = obj.get(new_file_id, None)

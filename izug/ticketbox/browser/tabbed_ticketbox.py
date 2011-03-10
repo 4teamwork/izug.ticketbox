@@ -9,7 +9,7 @@ class TabbedTicketBoxView(views.TabbedView):
         return [{'id':'Overview', 'class':''},
                 {'id':'all_tickets','class':''},
                 {'id':'my_tickets','class':''},
-                # {'id':'Meetings','class':''},
+                {'id':'attachments','class':''},
                ]
 
 

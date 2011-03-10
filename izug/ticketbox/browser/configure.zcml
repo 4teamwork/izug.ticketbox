@@ -37,6 +37,14 @@
 
     <browser:page
       for="izug.ticketbox.interfaces.ITicketBox"
+      name="tabbedview_view-attachments"
+      permission="zope2.View"
+      class=".ticketbox_view_attachments.TicketBoxViewAttachments"
+      template="tabbedview_generic.pt"
+      />
+
+    <browser:page
+      for="izug.ticketbox.interfaces.ITicketBox"
       name="tabbedview_view-my_tickets"
       permission="zope2.View"
       class=".ticketbox_view_my_tickets.TicketBoxViewMyTickets"
@@ -44,14 +52,6 @@
       />
 
    <!-- ************************************** -->
-
-  <browser:page
-     name="ticketbox_ticket_search"
-     for="izug.ticketbox.interfaces.ITicketBox"
-     permission="zope2.View"
-     class=".ticketbox_ticket_search.TicketBoxSearch"
-	 template="ticketbox_ticket_search.pt"
-     />
 
   <browser:page
      name="ticket_view"

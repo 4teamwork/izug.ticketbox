@@ -10,8 +10,7 @@
           <tr>
             <td>
               <form action="createObject"
-                    id="ticketbox-submit-new-ticket-form"
-                    tal:condition="python: user.has_permission('Poi: Add Issue', here)">
+                    id="ticketbox-submit-new-ticket-form">
                 <input name="type_name"
                        type="hidden"
                        value="Ticket"
