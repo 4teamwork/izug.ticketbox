@@ -1,5 +1,28 @@
 /* Ticketbox front page */
-.ticketbox-quick-search-box{
+.ticketbox-quick-search-box {
     float:left;
     padding: 0 2em 1em 0;
+}
+.response-clarification {
+    padding: 0 0 1em 0;
+    margin: 2em 0 0 0;
+}
+.response-adder dl.collapsible dd.collapsibleContent {
+    padding: 1em 0 1em 1em;
+}
+.response-actions {
+    display:block;
+    padding-top:2em;
+}
+.response-reply {
+    margin-bottom: 2em;
+    border: 1px dashed #454545;
+    padding: 1em;
+}
+.response-reply .response-actions form {
+    float: left;
+    margin-right: 1em;
+}
+.issue-attachment{
+    margin-top: 2em;
 }

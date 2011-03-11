@@ -20,23 +20,23 @@
         </tr>
         <tr>
             <td i18n:translate='label_state'>State</td>
-            <td tal:content="here/State" />
+            <td tal:content="view/map_state" />
         </tr>
         <tr>
             <td i18n:translate='label_Priority'>Priority</td>
-            <td tal:content="here/Priority"/>
+            <td tal:content="view/map_priority"/>
         </tr>
         <tr>
             <td i18n:translate='label_Area'>Area</td>
-            <td tal:content="here/Area" />
+            <td tal:content="view/map_area" />
         </tr>
         <tr>
             <td i18n:translate='label_Releases'>Release</td>
-            <td tal:content="here/Releases" />
+            <td tal:content="view/map_release" />
         </tr>
         <tr>
             <td i18n:translate='label_responsibleManager'>responsible Manager</td>
-            <td tal:content="here/responsibleManager" />
+            <td tal:content="view/readable_author" />
         </tr>
         <tr>
             <td i18n:translate='label_Answer-date'>Answer Date</td>
@@ -55,7 +55,7 @@
             <td i18n:translate='label_References'>References</td>
             <td>
                 <div tal:repeat="ref here/getTicketReferences">
-                    <a tal:attributes="href ref/absolute_url" 
+                    <a tal:attributes="href ref/absolute_url"
                        tal:content="ref/title"></a>
                 </div>
 

@@ -5,7 +5,7 @@ from ftw.table import helper
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from ftw.table.interfaces import ITableGenerator
 from zope.component import queryUtility
-
+from izug.ticketbox.browser.helper import map_attribute
 class TabbedTicketBoxBaseView(BaseListingView):
 
     filter_my_created_tickets = False
@@ -130,30 +130,19 @@ class TabbedTicketBoxBaseView(BaseListingView):
         """
         search the title-name of a list with the id
         """
-        states = self.context.getAvailableStates()
-        for state in states:
-            if id == state['id']:
-                return state['title']
+        return map_attribute(self.context, "State", id)
 
     def map_priority(self, item, id):
         """
         search the title-name of a list with the id
         """
-        priorities = self.context.getAvailablePriorities()
-
-        for priority in priorities:
-            if id == priority['id']:
-                return priority['title']
+        return map_attribute(self.context, "Priority", id)
 
     def map_area(self, item, id):
         """
         search the title-name of a list with the id
         """
-        areas = self.context.getAvailableAreas()
-
-        for area in areas:
-            if id == area['id']:
-                return area['title']
+        return map_attribute(self.context, "Area", id)
 
     def get_attachment_ticket_nr(self, item, id):
         """

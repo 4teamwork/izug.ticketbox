@@ -15,7 +15,7 @@ from OFS.Image import File
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 from plone.i18n.normalizer import IDNormalizer
-
+from izug.ticketbox.browser.helper import map_attribute
 
 class Base(BrowserView):
     """Base view for Ticketbox Response.
@@ -131,18 +131,25 @@ class Base(BrowserView):
         return -1
 
     @property
-    def priority(self):
+    def Priority(self):
         context = aq_inner(self.context)
         return context.getPriority()
 
     @property
-    def targetRelease(self):
+    def Release(self):
         context = aq_inner(self.context)
-        return context.getTargetRelease()
+        return context.getReleases()
+
+    @property
+    def State(self):
+        context = aq_inner(self.context)
+        return context.getState()
+
+
 
     @property
     @memoize
-    def transitions_for_display(self):
+    def states_for_display(self):
         factory=getUtility(IVocabularyFactory, name='ticketbox_values_states')
         result = []
         for term in factory(self.context.aq_inner):
@@ -151,9 +158,14 @@ class Base(BrowserView):
             result.append(
                 dict(
                     value=term.token,
-                    label=term.value,
+                    label=term.title,
                     checked=checked))
         return result
+
+    @property
+    def available_states(self):
+        return [t['value'] for t in self.states_for_display]
+
 
     @property
     def priorities_for_display(self):
@@ -171,6 +183,28 @@ class Base(BrowserView):
         return result
 
     @property
+    def areas_for_display(self):
+        context = self.context.aq_inner
+        result = []
+        for term in context.getAvailableAreas():
+            current_state = self.context.getArea()
+            checked = term['id'] == current_state
+            result.append(
+                dict(
+                    value=term['id'],
+                    label=term['title'],
+                    checked=checked))
+
+        return result
+
+    @property
+    @memoize
+    def available_areas(self):
+        """Get the available severities for this issue.
+        """
+        return [t['value'] for t in self.areas_for_display]
+
+    @property
     def responsibleManager(self):
         context = aq_inner(self.context)
         return context.getResponsibleManager()
@@ -180,13 +214,7 @@ class Base(BrowserView):
     def available_priorities(self):
         """Get the available severities for this issue.
         """
-        # get vocab from tracker so use aq_inner
-        context = aq_inner(self.context)
-        priorities = context.getAvailablePriorities()
-        result = []
-        for priority in priorities:
-            result.append(priority['id'])
-        return result
+        return [t['value'] for t in self.priorities_for_display]
 
     @property
     def releases_for_display(self):
@@ -205,7 +233,7 @@ class Base(BrowserView):
             result.append(
                 dict(
                     value=term.token,
-                    label=term.value,
+                    label=term.title,
                     checked=checked))
         return result
 
@@ -215,7 +243,7 @@ class Base(BrowserView):
         """Get the releases from the project.
         """
 
-        return self.releases_for_display
+        return [t['value'] for t in self.releases_for_display]
 
     @property
     def show_target_releases(self):
@@ -236,13 +264,23 @@ class Base(BrowserView):
         return len(self.context.getAvailablePriorities()) > 1
 
     @property
-    def multiple_transitions(self):
+    def multiple_states(self):
         """Should the option for selecting a target release be shown?
 
         There is always at least one option: None.  So only show when
         there is more than one option.
         """
-        return len(self.transitions_for_display) > 1
+        return len(self.states_for_display) > 1
+
+    @property
+    def multiple_areas(self):
+        """Should the option for selecting a target area be shown?
+
+        There is always at least one option: None.  So only show when
+        there is more than one option.
+        """
+        return len(self.areas_for_display) > 1
+
 
     @property
     def managers_for_display(self):
@@ -321,20 +359,24 @@ class Create(Base):
         new_response.type = self.determine_response_type(new_response)
 
         issue_has_changed = False
-        transition = form.get('transition', u'')
-        if transition != context.getState():
-            before = context.getState()
+        responsibleManager = form.get('responsibleManager', u'')
+        if responsibleManager != context.getResponsibleManager():
+            before = context.getResponsibleManager()
             # Save new state on ticket
-            context.setState(transition)
-            after = transition
-            new_response.add_change('review_state', _(u'Issue state'),
+            context.setResponsibleManager(responsibleManager)
+            member = self.context.portal_membership.getMemberById(responsibleManager)
+            if member:
+                after = member.getProperty('fullname', responsibleManager)
+            new_response.add_change('responsibleManager', _(u'Issue state'),
                                     before, after)
             issue_has_changed = True
 
         options = [
             ('Priority', _(u'Priority'), 'available_priorities'),
-            ('responsibleManager', _(u'Responsible manager'),
-             'available_managers'),
+            #('responsibleManager', _(u'Responsible manager'), 'available_managers'),
+            ('Releases', _(u'Target release'), 'available_releases'),
+            ('State', _(u'States'), 'available_states'),
+            ('Area', _(u'Areas'), 'available_areas'),
             ]
         # Changes that need to be applied to the issue (apart from
         # workflow changes that need to be handled separately).
@@ -345,27 +387,12 @@ class Create(Base):
                 current = context.__getattribute__(option)
                 if current != new:
                     changes[option] = new
+
                     new_response.add_change(option, title,
-                                            current, new)
+                                            map_attribute(self.context, option, current),
+                                            map_attribute(self.context, option, new))
                     issue_has_changed = True
 
-
-        #('targetRelease', 'Target release', 'available_releases'),
-        new = form.get('targetRelease', u'')
-        if new:
-            context = aq_inner(self.context)
-            current = context.getReleases()
-            if current != new:
-                # from value (uid) to key (id)
-                for item in self.available_releases:
-                    if item['value'] == new:
-                        new_label = item['label']
-                    elif item['value'] == current:
-                        current_label = item['label']
-                changes['Releases'] = new
-                new_response.add_change(option, _(u'Target release'),
-                                        current_label, new_label)
-                issue_has_changed = True
 
         attachment = form.get('attachment')
         if attachment:
@@ -378,18 +405,14 @@ class Create(Base):
             new_id = IDNormalizer.normalize(
                 IDNormalizer(),
                 attachment.filename)
-            if context.get(new_id, None):
-                IStatusMessage(self.request).addStatusMessage(_(u"A File with this id already exists,\
-                 the File wasn't uploaded"), type='error')
-            else:
-                new_file_id = context.invokeFactory(
-                    type_name="TicketAttachment",
-                    id=new_id,
-                    title=attachment.filename,
-                    file=data)
-                new_file = context.get(new_file_id, None)
+            new_file_id = context.invokeFactory(
+                type_name="TicketAttachment",
+                id=new_id,
+                title=attachment.filename,
+                file=data)
+            new_file = context.get(new_file_id, None)
 
-                new_response.attachment = new_file.UID()
+            new_response.attachment = new_file.UID()
             issue_has_changed = True
 
         if len(response_text) == 0 and not issue_has_changed:

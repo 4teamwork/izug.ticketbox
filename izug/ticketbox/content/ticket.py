@@ -74,6 +74,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
     ),
 
     #Releases
+    # XXX: RENAME TO RELEASE
     StringField(
         name='Releases',
         vocabulary_factory='ticketbox_values_releases',

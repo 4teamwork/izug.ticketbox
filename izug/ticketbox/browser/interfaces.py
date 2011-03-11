@@ -43,7 +43,7 @@ class IResponseAdder(IViewletManager):
     mimetype = Attribute("Mime type for response.")
     use_wysiwyg = Attribute("Boolean: Use kupu-like editor.")
 
-    def transitions_for_display():
+    def states_for_display():
         """Get the available transitions for this issue.
         """
 

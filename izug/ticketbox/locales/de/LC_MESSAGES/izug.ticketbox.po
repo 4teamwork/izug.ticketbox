@@ -472,12 +472,12 @@ msgstr "Antwort hinzugefügt von"
 #. Default: "on"
 #: izug.ticketbox/izug/ticketbox/browser/response.pt:39
 msgid "response_added_on"
-msgstr "auf"
+msgstr "am"
 
 #. Default: "Attached:"
 #: izug.ticketbox/izug/ticketbox/browser/response.pt:59
 msgid "response_label_attachment"
-msgstr "Hinzugefügt:"
+msgstr "Anhang:"
 
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox_baseview.py:40
 msgid "responsibleManager"

@@ -13,7 +13,6 @@ from zope.app.container.contained import ObjectAddedEvent
 from zope.app.container.interfaces import UnaddableError
 from zope.event import notify
 
-
 class IResponseContainer(Interface):
     pass
 
@@ -32,7 +31,6 @@ class IResponse(Interface):
     def add_change(id, name, before, after):
         """Add change to the list of changes.
         """
-
 
 class ResponseContainer(Persistent):
 
@@ -147,6 +145,10 @@ class Response(Persistent):
             after = after)
         self.changes.append(delta)
 
+    def creator_fullname(self):
+        sm = getSecurityManager()
+        user  = sm.getUser()
+        return user.getProperty('fullname', user.getId())
 
 class EmptyExporter(object):
 
