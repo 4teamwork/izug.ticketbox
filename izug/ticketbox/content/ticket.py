@@ -146,19 +146,6 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
     ),
 
 
-    #send Notification Emails
-    BooleanField(
-        name='sendNotificationEmails',
-        default=True,
-        widget=BooleanWidget(
-            label=_(u"Send notification emails"),
-            description=_(u"If selected, tracker managers will receive an email" +
-                " each time a new issue or response is posted, and issue" +
-                " submitters will receive an email when there is a new" +
-                " response and when an issue has been resolved," +
-                " awaiting confirmation."),
-        )
-    ),
 ))
 
 TicketSchema['description'].required = True

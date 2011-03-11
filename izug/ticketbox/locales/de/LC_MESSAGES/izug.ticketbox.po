@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-03-11 08:00+0000\n"
+"POT-Creation-Date: 2011-03-11 11:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 msgid "A File with this id already exists,                 the File wasn't uploaded"
 msgstr "Eine Datei mit dieser ID existiert bereits, die Datei wurde nicht hochgeladen."
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:248
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:235
 msgid "A File with this id already exists,             the File wasn't uploaded"
 msgstr "Eine Datei mit dieser ID existiert bereits, die Datei wurde nicht hochgeladen."
 
@@ -120,10 +120,6 @@ msgstr "Geben sie die verfügbaren Bereiche ein"
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox_baseview.py:32
 msgid "Id"
 msgstr "Nr."
-
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:155
-msgid "If selected, tracker managers will receive an email each time a new issue or response is posted, and issue submitters will receive an email when there is a new response and when an issue has been resolved, awaiting confirmation."
-msgstr "Trackermanagers erhalten jedesmal wenn ein neues Ticket oder eine neue Antwort erstellt wurde eine E-Mail"
 
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:35
 msgid "Individual identifier"
@@ -294,10 +290,6 @@ msgstr "Wählen Sie eine Priorität aus."
 msgid "Select the Release of the ticket"
 msgstr "Wählen sie ein Lieferpaket aus."
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:154
-msgid "Send notification emails"
-msgstr "Benachrichtigung versenden."
-
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox_baseview.py:44
 msgid "State"
 msgstr "Status"
@@ -358,6 +350,11 @@ msgstr ""
 
 msgid "info_view"
 msgstr ""
+
+#. Default: "Issue Information<br /><br /> Title:<br /> ${issue_name}(${issue_url})<br /><br /> Description:<br /> ${issue_description}<br /><br /> Responsible:<br /> ${responsible}<br /><br /> Priority:<br /> ${priority}<br /><br /> Area:<br /> ${area}<br /><br /> Target Release:<br /> ${targetRelease}<br /><br /> This is an automated email, please do not reply"
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:18
+msgid "issue_details"
+msgstr "Ticket Information<br /><br /> Titel:<br /> ${issue_name}(${issue_url})<br /><br /> Beschreibung:<br /> ${issue_description}<br /><br /> Verantwortlich:<br /> ${responsible}<br /><br /> Priorität:<br /> ${priority}<br /><br /> Bereich:<br /> ${area}<br /><br /> Ziellieferpacket:<br /> ${targetRelease}<br /><br /> Das ist eine automatisch generierte email, bitte antworten sie nicht"
 
 #. Default: "Answer Date"
 #: izug.ticketbox/izug/ticketbox/browser/ticket_view.pt:42
@@ -434,6 +431,11 @@ msgstr "Status"
 #: izug.ticketbox/izug/ticketbox/browser/response.pt:75
 msgid "login_suggestion_response"
 msgstr "Bitte loggen sie sich ein bevor sie das Formular abschicken"
+
+#. Default: "A new Ticket has been created by ${creator} in the Tracker ${tracker_name}(${tracker_url})"
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:3
+msgid "message_text"
+msgstr "Ein neues Ticket wurde von ${creator} im Tracker ${tracker_name}(${tracker_url})"
 
 #. Default: "No responses can be added."
 #: izug.ticketbox/izug/ticketbox/browser/response.pt:67

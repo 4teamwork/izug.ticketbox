@@ -116,5 +116,10 @@
         template="ticket_custom_header.pt"
         />
 
+  <adapter
+      factory=".notification.ticket_notification.TicketEmailRepresentation"
+      for="izug.ticketbox.interfaces.ticket.ITicket"
+      provides="ftw.notification.email.interfaces.IEMailRepresentation"
+      />
 
 </configure>

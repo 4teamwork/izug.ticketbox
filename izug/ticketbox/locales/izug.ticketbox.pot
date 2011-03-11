@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-03-11 08:00+0000\n"
+"POT-Creation-Date: 2011-03-11 11:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "A File with this id already exists,                 the File wasn't uploaded"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:248
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:235
 msgid "A File with this id already exists,             the File wasn't uploaded"
 msgstr ""
 
@@ -124,10 +124,6 @@ msgstr ""
 
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox_baseview.py:32
 msgid "Id"
-msgstr ""
-
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:155
-msgid "If selected, tracker managers will receive an email each time a new issue or response is posted, and issue submitters will receive an email when there is a new response and when an issue has been resolved, awaiting confirmation."
 msgstr ""
 
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:35
@@ -299,10 +295,6 @@ msgstr ""
 msgid "Select the Release of the ticket"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/content/ticket.py:154
-msgid "Send notification emails"
-msgstr ""
-
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox_baseview.py:44
 msgid "State"
 msgstr ""
@@ -362,6 +354,11 @@ msgid "id"
 msgstr ""
 
 msgid "info_view"
+msgstr ""
+
+#. Default: "Issue Information<br /><br /> Title:<br /> ${issue_name}(${issue_url})<br /><br /> Description:<br /> ${issue_description}<br /><br /> Responsible:<br /> ${responsible}<br /><br /> Priority:<br /> ${priority}<br /><br /> Area:<br /> ${area}<br /><br /> Target Release:<br /> ${targetRelease}<br /><br /> This is an automated email, please do not reply"
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:18
+msgid "issue_details"
 msgstr ""
 
 #. Default: "Answer Date"
@@ -438,6 +435,11 @@ msgstr ""
 #. Default: "If you can, please log in before submitting a reaction."
 #: izug.ticketbox/izug/ticketbox/browser/response.pt:75
 msgid "login_suggestion_response"
+msgstr ""
+
+#. Default: "A new Ticket has been created by ${creator} in the Tracker ${tracker_name}(${tracker_url})"
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:3
+msgid "message_text"
 msgstr ""
 
 #. Default: "No responses can be added."
