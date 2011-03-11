@@ -44,6 +44,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         name='State',
         vocabulary_factory='ticketbox_values_states',
         widget=SelectionWidget(
+            format="select",
             label=_(u"Select State"),
             description=_(u"Define Which State the Ticket has"),
         ),
@@ -55,6 +56,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         name='Priority',
         vocabulary_factory='ticketbox_values_priorities',
         widget=SelectionWidget(
+            format="select",
             label=_(u"Select Priority"),
             description=_(u"Select the Priority"),
         ),
@@ -65,6 +67,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         name='Area',
         vocabulary_factory='ticketbox_values_areas',
         widget=SelectionWidget(
+            format="select",
             label=_(u'Select Area'),
             description=_(u'Select Area'),
         ),
@@ -75,6 +78,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         name='Releases',
         vocabulary_factory='ticketbox_values_releases',
         widget=SelectionWidget(
+            format="select",
             label=_(u'Select Release'),
             description=_(u'Select the Release of the ticket'),
         ),
@@ -85,6 +89,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         name='responsibleManager',
         index="FieldIndex:schema",
         widget=SelectionWidget(
+            format="select",
             label="Responsible",
             description="Select which manager, if any," +
                 " is responsible for this issue.",
@@ -219,7 +224,6 @@ class Ticket(base.ATCTFolder):
         """
 
         return aq_parent(self).get_assignable_users()
-
 
 registerType(Ticket, PROJECTNAME)
 
