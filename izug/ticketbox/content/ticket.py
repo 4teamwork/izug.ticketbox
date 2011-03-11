@@ -20,7 +20,6 @@ from Products.Archetypes.atapi import SelectionWidget
 from Products.Archetypes.atapi import FileField, FileWidget
 from Products.Archetypes.atapi import DateTimeField, CalendarWidget
 from Products.Archetypes.atapi import AttributeStorage
-from Products.Archetypes.atapi import BooleanField, BooleanWidget
 from Products.Archetypes.atapi import ReferenceField
 from Products.Archetypes.atapi import registerType
 from AccessControl import ClassSecurityInfo
