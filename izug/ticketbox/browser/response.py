@@ -378,14 +378,18 @@ class Create(Base):
             new_id = IDNormalizer.normalize(
                 IDNormalizer(),
                 attachment.filename)
-            new_file_id = context.invokeFactory(
-                type_name="TicketAttachment",
-                id=new_id,
-                title=attachment.filename,
-                file=data)
-            new_file = context.get(new_file_id, None)
+            if context.get(new_id, None):
+                IStatusMessage(self.request).addStatusMessage(_(u"A File with this id already exists,\
+                 the File wasn't uploaded"), type='error')
+            else:
+                new_file_id = context.invokeFactory(
+                    type_name="TicketAttachment",
+                    id=new_id,
+                    title=attachment.filename,
+                    file=data)
+                new_file = context.get(new_file_id, None)
 
-            new_response.attachment = new_file.UID()
+                new_response.attachment = new_file.UID()
             issue_has_changed = True
 
         if len(response_text) == 0 and not issue_has_changed:

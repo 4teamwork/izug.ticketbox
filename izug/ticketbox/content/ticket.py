@@ -26,7 +26,7 @@ from Products.Archetypes.atapi import registerType
 from AccessControl import ClassSecurityInfo
 from plone.i18n.normalizer import IDNormalizer
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
-
+from Products.statusmessages.interfaces import IStatusMessage
 
 TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 
@@ -243,6 +243,12 @@ def move_document_to_reference(obj, event):
     _file = obj.getAttachment()
     if _file.data != '':
         new_id = IDNormalizer.normalize(IDNormalizer(), _file.filename)
+
+        if obj.get(new_id, None):
+            IStatusMessage(obj.REQUEST).addStatusMessage(_(u"A File with this id already exists,\
+             the File wasn't uploaded"), type='error')
+            obj.setAttachment('DELETE_FILE')
+            return
         new_file_id = obj.invokeFactory(
             type_name="TicketAttachment",
             id=new_id,

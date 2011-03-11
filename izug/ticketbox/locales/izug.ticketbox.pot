@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-03-10 16:05+0000\n"
+"POT-Creation-Date: 2011-03-11 08:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,14 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ftw.tabbedview\n"
+
+#: izug.ticketbox/izug/ticketbox/browser/response.py:382
+msgid "A File with this id already exists,                 the File wasn't uploaded"
+msgstr ""
+
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:248
+msgid "A File with this id already exists,             the File wasn't uploaded"
+msgstr ""
 
 #: izug.ticketbox/izug/ticketbox/content/ticket.py:101
 msgid "Answer-date"
@@ -57,7 +65,7 @@ msgstr ""
 msgid "Available priorities"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:455
+#: izug.ticketbox/izug/ticketbox/browser/response.py:459
 msgid "Changes saved to response."
 msgstr ""
 
@@ -130,11 +138,11 @@ msgstr ""
 msgid "Issue state"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:483
+#: izug.ticketbox/izug/ticketbox/browser/response.py:487
 msgid "No response selected for removal."
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:441
+#: izug.ticketbox/izug/ticketbox/browser/response.py:445
 msgid "No response selected for saving."
 msgstr ""
 
@@ -142,7 +150,7 @@ msgstr ""
 msgid "No response selected."
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:393
+#: izug.ticketbox/izug/ticketbox/browser/response.py:397
 msgid "No response text added and no issue changes made."
 msgstr ""
 
@@ -178,15 +186,15 @@ msgstr ""
 msgid "Releases_title"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:505
+#: izug.ticketbox/izug/ticketbox/browser/response.py:509
 msgid "Removed response."
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:445
+#: izug.ticketbox/izug/ticketbox/browser/response.py:449
 msgid "Response does not exist anymore; perhaps it was removed by another user."
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:498
+#: izug.ticketbox/izug/ticketbox/browser/response.py:502
 msgid "Response id ${response_id} does not exist so it cannot be removed."
 msgstr ""
 
@@ -194,7 +202,7 @@ msgstr ""
 msgid "Response id ${response_id} does not exist."
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:490
+#: izug.ticketbox/izug/ticketbox/browser/response.py:494
 msgid "Response id ${response_id} is no integer so it cannot be removed."
 msgstr ""
 
@@ -315,23 +323,23 @@ msgstr ""
 msgid "Ticket Box"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view_attachments.py:25
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view_attachments.py:24
 msgid "Ticketnr"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view_attachments.py:20
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view_attachments.py:19
 msgid "Title"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view_attachments.py:15
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view_attachments.py:14
 msgid "Type"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:477
+#: izug.ticketbox/izug/ticketbox/browser/response.py:481
 msgid "You are not allowed to delete responses."
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:435
+#: izug.ticketbox/izug/ticketbox/browser/response.py:439
 msgid "You are not allowed to edit responses."
 msgstr ""
 
@@ -445,17 +453,17 @@ msgid "no"
 msgstr ""
 
 #. Default: "[${tracker_title}] #${issue_id} - Re: ${issue_title}"
-#: izug.ticketbox/izug/ticketbox/events.py:140
+#: izug.ticketbox/izug/ticketbox/events.py:142
 msgid "poi_email_new_response_subject_template"
 msgstr ""
 
 #. Default: "A new response has been given to the issue **${issue_title}**\nin the tracker **${tracker_title}** by **${response_author}**.\n\nResponse Information\n--------------------\n\nIssue\n  ${issue_title} (${issue_url})\n\n${changes}\n\n${response_details}\n\n* This is an automated email, please do not reply - ${from_name}"
-#: izug.ticketbox/izug/ticketbox/events.py:115
+#: izug.ticketbox/izug/ticketbox/events.py:117
 msgid "poi_email_new_response_template"
 msgstr ""
 
 #. Default: "Response Details"
-#: izug.ticketbox/izug/ticketbox/events.py:91
+#: izug.ticketbox/izug/ticketbox/events.py:93
 msgid "poi_heading_response_details"
 msgstr ""
 
@@ -487,7 +495,7 @@ msgid "show in 'my tickets'"
 msgstr ""
 
 #. Default: "An attachment has been added with id ${attachment_id}"
-#: izug.ticketbox/izug/ticketbox/events.py:107
+#: izug.ticketbox/izug/ticketbox/events.py:109
 msgid "ticketbox_attachment_added"
 msgstr ""
 
@@ -535,7 +543,7 @@ msgstr ""
 msgid "title_error_no_response"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view_info_view.py:44
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view_info_view.py:45
 msgid "tooltip_info"
 msgstr ""
 
