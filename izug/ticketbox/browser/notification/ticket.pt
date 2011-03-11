@@ -1,0 +1,21 @@
+<tal:translate i18n:domain="izug.ticketbox">
+<p i18n:translate="message_text">
+	A new Ticket has been created by <span i18n:name="creator" tal:content="view/creator" /> in the Tracker <span i18n:name="tracker_name" tal:content="python: view.getTracker().title" />(<span i18n:name="tracker_url" tal:content="python: view.getTracker().absolute_url()" />)
+</p>
+<p i18n:translate="issue_details">
+Issue Information<br /><br />
+Title:<br />
+<span i18n:name="issue_name" tal:content="context/title" />(<span i18n:name="issue_url" tal:content="context/absolute_url" />)<br /><br />
+Description:<br />
+<span i18n:name="issue_description" tal:content="context/description" /><br /><br />
+Responsible:<br />
+<span i18n:name="responsible" tal:content="context/responsibleManager" /><br /><br />
+Priority:<br />
+<span i18n:name="priority" tal:content="context/Priority" /><br /><br />
+Area:<br />
+<span i18n:name="area" tal:content="context/Area" /><br /><br />
+Target Release:<br />
+<span i18n:name="targetRelease" tal:content="context/Releases" /><br /><br />
+This is an automated email, please do not reply
+</p>
+</tal:translate>
