@@ -48,7 +48,6 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             label=_(u"Select State"),
             description=_(u"Define Which State the Ticket has"),
         ),
-        required=True
     ),
 
     #Priority
@@ -95,7 +94,6 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             description="Select which manager, if any," +
                 " is responsible for this issue.",
         ),
-        required=True,
         vocabulary='get_assignable_users',
     ),
     #Answer-date (default: x + 14 days)
@@ -225,6 +223,7 @@ class Ticket(base.ATCTFolder):
         """
 
         return aq_parent(self).get_assignable_users()
+
 
 registerType(Ticket, PROJECTNAME)
 

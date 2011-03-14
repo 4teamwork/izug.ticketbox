@@ -8,7 +8,6 @@ class TicketBoxView(TabbedTicketBoxBaseView):
     template = ViewPageTemplateFile('ticketbox_view.pt')
     types = 'Ticket'
     #this is a attribute in the DataGrid States from TicketBox ContentType
-    sort_on = 'getId'
     columns = None
 
     def getFilteredTickets(self, criteria=None, **kwargs):

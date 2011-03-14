@@ -13,6 +13,7 @@ class TabbedTicketBoxBaseView(BaseListingView):
     filter_state = None
 
     show_searchform = True
+    sort_on = 'sortable_id'
 
     #template for the table generated from ftw.table
     table = ViewPageTemplateFile('table.pt')
@@ -30,6 +31,7 @@ class TabbedTicketBoxBaseView(BaseListingView):
 
         self.columns = ({'column':'getId',
                         'column_title':_(u"Id"),
+                        'sort_index':'sortable_id',
                         },
                         {'column':'Title',
                         'column_title':_(u"Description"),
@@ -38,6 +40,7 @@ class TabbedTicketBoxBaseView(BaseListingView):
                         },
                         {'column':'responsibleManager',
                         'column_title':_(u"responsibleManager"),
+                        'sort_index': 'responsibleManager',
                         'transform':self.readable_author,
                         },
                         {'column':'State',

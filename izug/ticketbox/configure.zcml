@@ -58,5 +58,11 @@
       factory=".adapters.ResponseContainer"
       />
 
+  <adapter
+	 name="sortable_id"
+	 factory=".indexer.sortable_id"
+	 />
+
+
 
 </configure>

@@ -14,6 +14,7 @@ INDEXES = (('State', 'FieldIndex'),
             ('Priority', 'FieldIndex'),
             ('responsibleManager', 'FieldIndex'),
             ('Due_date', 'FieldIndex'),
+            ('sortable_id', 'FieldIndex'),
            )
 
 
