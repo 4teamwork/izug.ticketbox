@@ -359,14 +359,35 @@ class Create(Base):
         new_response.type = self.determine_response_type(new_response)
 
         issue_has_changed = False
-        responsibleManager = form.get('responsibleManager', u'')
-        if responsibleManager != context.getResponsibleManager():
-            before = context.getResponsibleManager()
+        #Unassigned is no member in portal_membership.
+        #So we have to set it manually
+        unassigned = _(u'unassigned')
+
+        responsible_after = form.get('responsibleManager', u'')
+        if responsible_after != context.getResponsibleManager():
+
+            #get responsibleManager and member-infos before changes
+            responsible_before = context.getResponsibleManager()
+            member_before = self.context.portal_membership.getMemberById(responsible_before)
+
             # Save new state on ticket
-            context.setResponsibleManager(responsibleManager)
-            member = self.context.portal_membership.getMemberById(responsibleManager)
-            if member:
-                after = member.getProperty('fullname', responsibleManager)
+            context.setResponsibleManager(responsible_after)
+
+            #get member-infos after changes
+            member_after = self.context.portal_membership.getMemberById(responsible_after)
+
+            #get fullname from member before changes
+            if member_before:
+                before = member_before.getProperty('fullname', responsible_before)
+            else:
+                before = unassigned
+
+            #get fullname from member after changes
+            if member_after:
+                after = member_after.getProperty('fullname', responsible_after)
+            else:
+                after = unassigned
+
             new_response.add_change('responsibleManager', _(u'Issue state'),
                                     before, after)
             issue_has_changed = True
