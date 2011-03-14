@@ -1,21 +1,27 @@
-<tal:translate i18n:domain="izug.ticketbox">
-<p i18n:translate="message_text">
-	A new Ticket has been created by <span i18n:name="creator" tal:content="view/creator" /> in the Tracker <span i18n:name="tracker_name" tal:content="python: view.getTracker().title" />(<span i18n:name="tracker_url" tal:content="python: view.getTracker().absolute_url()" />)
+<tal:translate i18n:domain="izug.ticketbox" tal:define="infos view/infos">
+<p i18n:translate="message_text" tal:condition="python: infos['response']==False">
+	A new Ticket has been created by <span i18n:name="creator" tal:content="view/creator" /> in the Tracker <span i18n:name="tracker_name" tal:content="infos/tracker_title" />(<span i18n:name="tracker_url" tal:content="infos/tracker_url" />)
 </p>
-<p i18n:translate="issue_details">
-Issue Information<br /><br />
-Title:<br />
-<span i18n:name="issue_name" tal:content="context/title" />(<span i18n:name="issue_url" tal:content="context/absolute_url" />)<br /><br />
-Description:<br />
-<span i18n:name="issue_description" tal:content="context/description" /><br /><br />
-Responsible:<br />
-<span i18n:name="responsible" tal:content="context/responsibleManager" /><br /><br />
-Priority:<br />
-<span i18n:name="priority" tal:content="context/Priority" /><br /><br />
-Area:<br />
-<span i18n:name="area" tal:content="context/Area" /><br /><br />
-Target Release:<br />
-<span i18n:name="targetRelease" tal:content="context/Releases" /><br /><br />
-This is an automated email, please do not reply
+<p i18n:translate="message_text_response" tal:condition="python:infos['response']==True">
+	A new Answer has been Added by <span i18n:name="creator" tal:content="view/creator" /> in the Tracker <span i18n:name="tracker_name" tal:content="infos/tracker_title" />(<span i18n:name="tracker_url" tal:content="infos/tracker_url" />)
 </p>
+
+<span tal:condition="python: infos['response']==False" i18n:translate="">Issue Information</span>
+<span tal:condition="python: infos['response']==True" i18n:translate="">Response Information</span>
+<br /><br />
+<span i18n:translate="label_title">Title:</span><br />
+<span tal:content="structure infos/title" />(<span tal:content="infos/url" />)<br /><br />
+<span tal:condition="infos/text" i18n:translate="label_Description">Description:</span><br />
+<span tal:content="structure infos/text" />
+<span tal:condition="infos/State|nothing"><br /><br /><span i18n:translate="label_State">State:</span><br /></span>
+<span tal:content="structure infos/State" />
+<span tal:condition="infos/responsibleManager|nothing"><br /><br /><span i18n:translate="label_responsible">Responsible:</span><br /></span>
+<span tal:content="structure infos/responsibleManager" />
+<span tal:condition="infos/Priority|nothing"><br /><br /><span i18n:translate="label_priority">Priority:</span><br /></span>
+<span tal:content="structure infos/Priority" />
+<span tal:condition="infos/Area|nothing"><br /><br /><span i18n:translate="label_area">Area:</span><br /></span>
+<span tal:content="structure infos/Area" />
+<span tal:condition="infos/Releases"><br /><br /><span i18n:translate="label_release">Target Release:</span><br /></span>
+<span tal:content="structure infos/Releases" />
+<br /><br /><span i18n:translate="label_automated">This is an automated email, please do not reply</span>
 </tal:translate>

@@ -289,7 +289,11 @@
 			        <br />
 			      </tal:options>
 			    </div>
-
+				<div>
+					<input id="sendNotification" class="noborder" type="checkbox" name="sendNotification:boolean" value="off" />
+					<input type="hidden" name="sendNotification:boolean:default" value="" originalvalue="" />
+					<label class="formQuestion" for="sendNotification">Benachrichtigung versenden</label><br />
+				</div>
 			    <div class="formControls">
 			      <input class="standalone" value="Submit" type="submit" i18n:attributes="value label_save_response"/>
 			    </div>
@@ -320,6 +324,6 @@
              i18n:attributes="value label_log_in;"
              />
     </form>
-  </div>
+</div>
 
 </div>

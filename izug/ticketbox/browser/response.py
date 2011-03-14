@@ -242,8 +242,8 @@ class Base(BrowserView):
     def available_releases(self):
         """Get the releases from the project.
         """
-
         return [t['value'] for t in self.releases_for_display]
+
 
     @property
     def show_target_releases(self):
@@ -352,7 +352,7 @@ class Create(Base):
     def __call__(self):
         form = self.request.form
         context = aq_inner(self.context)
-
+        modifiedDate = context.modified()
         response_text = form.get('response', u'')
         new_response = Response(response_text)
         new_response.mimetype = self.mimetype
@@ -370,7 +370,6 @@ class Create(Base):
             responsible_before = context.getResponsibleManager()
             member_before = self.context.portal_membership.getMemberById(responsible_before)
 
-            # Save new state on ticket
             context.setResponsibleManager(responsible_after)
 
             #get member-infos after changes
@@ -414,7 +413,6 @@ class Create(Base):
                                             map_attribute(self.context, option, new))
                     issue_has_changed = True
 
-
         attachment = form.get('attachment')
         if attachment:
             # File(id, title, file)
@@ -446,10 +444,17 @@ class Create(Base):
             # Apply changes to issue
             context.update(**changes)
             # Add response
+            catalog_tool = self.context.portal_catalog
+            # re-set the modification date - this must be the last modifying access
+            context.reindexObject()
             self.folder.add(new_response)
-            self.context.reindexObject()
-        self.request.response.redirect(context.absolute_url())
-
+            context.setModificationDate(modifiedDate)
+            catalog_tool.catalog_object(context,
+                '/'.join(context.getPhysicalPath()))
+        if form.get('sendNotification', None):
+            self.request.response.redirect(context.absolute_url()+'/notification_form')
+        else:
+            self.request.response.redirect(context.absolute_url())
 
 class Edit(Base):
 

@@ -70,6 +70,13 @@
      />
 
   <browser:page
+	name="base_response"
+	for="izug.ticketbox.interfaces.ticket.ITicket"
+	permission="zope2.View"
+	class=".response.Base"
+	/>
+
+  <browser:page
      name="create_response"
      for="izug.ticketbox.interfaces.ticket.ITicket"
      permission="zope2.View"
