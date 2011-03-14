@@ -1,7 +1,10 @@
 
     <div i18n:domain="izug.ticketbox"
-		tal:define="TicketQueryString python:'%s?' %
-      (context.absolute_url(),);">
+		tal:define="priorities context/getAvailablePriorities;
+              		areas context/getAvailableAreas;
+                    releases context/getAvailableReleases;
+                    states context/getAvailableStates;
+                    responsibles context/get_assignable_users">
 
       <div class="documentDescription" tal:content="here/Description" />
 
@@ -31,7 +34,7 @@
       <div id="tickets-by-responsible" class="ticketbox-quick-search-box">
           <h3 i18n:translate="ticketbox_heading_by_responsible">By responsible</h3>
           <ul>
-              <tal:areas repeat="responsible here/get_assignable_users">
+              <tal:areas repeat="responsible responsibles">
                 <li tal:define="responsibleId python:responsible[0];
 								responsibleTitle python:responsible[1];
 								tickets python:view.getFilteredTickets(responsible=responsibleId)
@@ -44,12 +47,12 @@
       </div>
 
 
-      <div id="tickets-by-state" class="ticketbox-quick-search-box">
+      <div tal:condition="states" id="tickets-by-state" class="ticketbox-quick-search-box">
           <h3 i18n:translate="ticketbox_heading_by_states">By states</h3>
           <ul>
-              <tal:areas repeat="states here/getAvailableStates">
-                <li tal:define="stateId states/id;
-								stateTitle states/title;
+              <tal:areas repeat="state states">
+                <li tal:define="stateId state/id;
+								stateTitle state/title;
 								tickets python:view.getFilteredTickets(state=stateId)
 								">
                 <a tal:attributes="href string:${context/absolute_url}?searchkey=state&searchvalue=${stateId}"
@@ -60,10 +63,10 @@
       </div>
 
 
-      <div id="tickets-by-release" class="ticketbox-quick-search-box">
+      <div tal:condition="releases" id="tickets-by-release" class="ticketbox-quick-search-box">
           <h3 i18n:translate="ticketbox_heading_by_release">By release</h3>
           <ul>
-              <tal:areas repeat="release here/getAvailableReleases">
+              <tal:areas repeat="release releases">
                 <li tal:define="releaseId release/id;
 								releaseTitle release/title;
 								tickets python:view.getFilteredTickets(release=releaseId)
@@ -76,10 +79,10 @@
       </div>
 
 
-      <div id="tickets-by-area" class="ticketbox-quick-search-box">
+      <div tal:condition="areas" id="tickets-by-area" class="ticketbox-quick-search-box">
           <h3 i18n:translate="ticketbox_heading_by_area">By area</h3>
           <ul>
-              <tal:areas repeat="area here/getAvailableAreas">
+              <tal:areas repeat="area areas">
                 <li tal:define="areaId area/id;
 								areaTitle area/title;
 								tickets python:view.getFilteredTickets(area=areaId)
@@ -92,10 +95,10 @@
       </div>
 
 
-      <div id="tickets-by-priority" class="ticketbox-quick-search-box">
+      <div tal:condition="priorities" id="tickets-by-priority" class="ticketbox-quick-search-box">
           <h3 i18n:translate="ticketbox_heading_by_severities">By priority</h3>
           <ul>
-              <tal:areas repeat="priority here/getAvailablePriorities">
+              <tal:areas repeat="priority priorities">
                 <li tal:define="priorityId priority/id;
 								priorityTitle priority/title;
 								tickets python:view.getFilteredTickets(priority=priorityId)
