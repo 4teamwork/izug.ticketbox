@@ -145,13 +145,19 @@
 			$links.bind('click', function(e){
 			  e.preventDefault();
 			  $this = jq(this);
+
+				<!-- TODO: alle parameter so flushen -->
+			  tabbedview.flush_params("state");
+			  tabbedview.flush_params("responsible");
+			  tabbedview.flush_params("area");
+			  tabbedview.flush_params("priority");
+   			  tabbedview.flush_params("release");
+
 			  params =jq.find_param($this.attr('href'));
 			  params_searchvalue = params['searchvalue']
 			  params_searchkey = params['searchkey']
-			  tabbedview.add_param(params_searchkey, params_searchvalue);
+			  tabbedview.param(params_searchkey, params_searchvalue);
 			  tabbedview.reload_view();
-			  <!-- jq('.sortable-table').show() -->
-			  tabbedview.delete_param(params_searchkey, params_searchvalue);
 			});
 
 		});
