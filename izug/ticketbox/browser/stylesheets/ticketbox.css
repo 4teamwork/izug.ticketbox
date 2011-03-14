@@ -26,3 +26,7 @@
 .issue-attachment{
     margin-top: 2em;
 }
+div.collapsible dl.collapsedBlockCollapsible dt.collapsibleHeader{
+    /*IE 7*/
+    margin-bottom:10px;
+}
