@@ -60,8 +60,14 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
             columns = {
                 'id' : Column(_(u"id")),
                 'title' : Column(_(u"title")),
-                'show_in_all_tickets' : SelectColumn(_(u"show in 'all tickets'"), vocabulary="get_yes_or_no"),
-                'show_in_my_tickets' : SelectColumn(_(u"show in 'my tickets'"), vocabulary="get_yes_or_no"),
+                'show_in_all_tickets' : SelectColumn(_(u"show in 'all tickets'"), vocabulary=DisplayList((
+                                ("1", (u"yes"),),
+                               ("0", (u"no"),),
+                               ))),
+                'show_in_my_tickets' : SelectColumn(_(u"show in 'my tickets'"), vocabulary=DisplayList((
+                                               ("1", (u"yes"),),
+                                              ("0", (u"no"),),
+                                              ))),
             }
 
          ),
@@ -143,19 +149,6 @@ class TicketBox(folder.ATBTreeFolder):
         users = getAssignableUsers(self,'Contributor')
         users.insert(0,['(UNASSIGNED)', _(u'None')])
         return users
-
-    def get_yes_or_no(self):
-        """
-        Return a DisplayList with yes or no (used for a dropdown)
-        """
-        return DisplayList(
-
-            (
-            ("1", _(u"yes"),),
-            ("0", _(u"no"),),
-            ))
-
-
 
 def renameIdAfterCreation(obj, event):
 

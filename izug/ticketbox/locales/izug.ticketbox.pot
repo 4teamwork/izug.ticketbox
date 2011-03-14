@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-03-14 12:57+0000\n"
+"POT-Creation-Date: 2011-03-14 13:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Area"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:399
+#: izug.ticketbox/izug/ticketbox/browser/response.py:400
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:106
 msgid "Areas"
 msgstr ""
@@ -62,7 +62,7 @@ msgstr ""
 msgid "Available priorities"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:509
+#: izug.ticketbox/izug/ticketbox/browser/response.py:503
 msgid "Changes saved to response."
 msgstr ""
 
@@ -127,19 +127,15 @@ msgstr ""
 msgid "Individual identifier"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:9
-msgid "Issue Information"
-msgstr ""
-
-#: izug.ticketbox/izug/ticketbox/browser/response.py:390
+#: izug.ticketbox/izug/ticketbox/browser/response.py:391
 msgid "Issue state"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:537
+#: izug.ticketbox/izug/ticketbox/browser/response.py:531
 msgid "No response selected for removal."
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:495
+#: izug.ticketbox/izug/ticketbox/browser/response.py:489
 msgid "No response selected for saving."
 msgstr ""
 
@@ -147,7 +143,7 @@ msgstr ""
 msgid "No response selected."
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:440
+#: izug.ticketbox/izug/ticketbox/browser/response.py:441
 msgid "No response text added and no issue changes made."
 msgstr ""
 
@@ -166,7 +162,7 @@ msgstr ""
 msgid "Priorities_title"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:395
+#: izug.ticketbox/izug/ticketbox/browser/response.py:396
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox_baseview.py:55
 msgid "Priority"
 msgstr ""
@@ -183,19 +179,15 @@ msgstr ""
 msgid "Releases_title"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:559
+#: izug.ticketbox/izug/ticketbox/browser/response.py:553
 msgid "Removed response."
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:10
-msgid "Response Information"
-msgstr ""
-
-#: izug.ticketbox/izug/ticketbox/browser/response.py:499
+#: izug.ticketbox/izug/ticketbox/browser/response.py:493
 msgid "Response does not exist anymore; perhaps it was removed by another user."
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:552
+#: izug.ticketbox/izug/ticketbox/browser/response.py:546
 msgid "Response id ${response_id} does not exist so it cannot be removed."
 msgstr ""
 
@@ -203,7 +195,7 @@ msgstr ""
 msgid "Response id ${response_id} does not exist."
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:544
+#: izug.ticketbox/izug/ticketbox/browser/response.py:538
 msgid "Response id ${response_id} is no integer so it cannot be removed."
 msgstr ""
 
@@ -310,15 +302,15 @@ msgstr ""
 msgid "State"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:398
+#: izug.ticketbox/izug/ticketbox/browser/response.py:399
 msgid "States"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:19
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:22
 msgid "Submit new issue"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:397
+#: izug.ticketbox/izug/ticketbox/browser/response.py:398
 msgid "Target release"
 msgstr ""
 
@@ -342,11 +334,11 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:531
+#: izug.ticketbox/izug/ticketbox/browser/response.py:525
 msgid "You are not allowed to delete responses."
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:489
+#: izug.ticketbox/izug/ticketbox/browser/response.py:483
 msgid "You are not allowed to edit responses."
 msgstr ""
 
@@ -468,7 +460,7 @@ msgstr ""
 
 #. Default: "Submit"
 #: izug.ticketbox/izug/ticketbox/browser/edit_response.pt:86
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:298
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:294
 msgid "label_save_response"
 msgstr ""
 
@@ -483,7 +475,7 @@ msgid "label_title"
 msgstr ""
 
 #. Default: "If you can, please log in before submitting a reaction."
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:314
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:310
 msgid "login_suggestion_response"
 msgstr ""
 
@@ -498,7 +490,7 @@ msgid "message_text_response"
 msgstr ""
 
 #. Default: "No responses can be added."
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:306
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:302
 msgid "msg_no_responses_can_be_added"
 msgstr ""
 
@@ -557,27 +549,27 @@ msgid "ticketbox_attachment_added"
 msgstr ""
 
 #. Default: "By area"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:80
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:83
 msgid "ticketbox_heading_by_area"
 msgstr ""
 
 #. Default: "By release"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:64
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:67
 msgid "ticketbox_heading_by_release"
 msgstr ""
 
 #. Default: "By responsible"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:32
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:35
 msgid "ticketbox_heading_by_responsible"
 msgstr ""
 
 #. Default: "By priority"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:96
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:99
 msgid "ticketbox_heading_by_severities"
 msgstr ""
 
 #. Default: "By states"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:48
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:51
 msgid "ticketbox_heading_by_states"
 msgstr ""
 

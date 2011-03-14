@@ -17,7 +17,6 @@ INDEXES = (('State', 'FieldIndex'),
             ('sortable_id', 'FieldIndex'),
            )
 
-
 # Add text/html to the list of mimetypes to allow HTML/kupu
 # issue/response text.
 ISSUE_MIME_TYPES = ('text/x-web-intelligent', )

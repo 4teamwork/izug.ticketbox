@@ -122,6 +122,7 @@ msgstr "Nr."
 msgid "Individual identifier"
 msgstr "ID der Auftragsbox"
 
+#: izug.ticketbox/izug/ticketbox/browser/response.py:391
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:9
 msgid "Issue Information"
 msgstr "Ticket Informationen"
@@ -133,6 +134,7 @@ msgstr "Ticket-Status"
 #: izug.ticketbox/izug/ticketbox/browser/response.py:537
 msgid "No response selected for removal."
 msgstr "Keine Antwort zum löschen ausgewählt."
+
 
 #: izug.ticketbox/izug/ticketbox/browser/response.py:495
 msgid "No response selected for saving."
@@ -307,7 +309,7 @@ msgstr "Status"
 
 #: izug.ticketbox/izug/ticketbox/browser/response.py:398
 msgid "States"
-msgstr "Stati"
+msgstr "Status"
 
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:19
 msgid "Submit new issue"
@@ -553,27 +555,27 @@ msgid "ticketbox_attachment_added"
 msgstr "Ein Anhang wurde hinzugefügt mit der Id ${attachment_id} "
 
 #. Default: "By area"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:80
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:83
 msgid "ticketbox_heading_by_area"
 msgstr "Nach Bereich"
 
 #. Default: "By release"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:64
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:67
 msgid "ticketbox_heading_by_release"
 msgstr "Nach Lieferpaket"
 
 #. Default: "By responsible"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:32
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:35
 msgid "ticketbox_heading_by_responsible"
 msgstr "Nach Zuständigkeit"
 
 #. Default: "By priority"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:96
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:99
 msgid "ticketbox_heading_by_severities"
 msgstr "Nach Priorität"
 
 #. Default: "By states"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:48
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox_view.pt:51
 msgid "ticketbox_heading_by_states"
 msgstr "Nach Status"
 
