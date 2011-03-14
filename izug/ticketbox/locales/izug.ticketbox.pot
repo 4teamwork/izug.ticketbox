@@ -127,14 +127,20 @@ msgstr ""
 msgid "Individual identifier"
 msgstr ""
 
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:8
+msgid "Issue Information"
+msgstr ""
+
 #: izug.ticketbox/izug/ticketbox/browser/response.py:391
 msgid "Issue state"
 msgstr ""
 
+#: izug.ticketbox/izug/ticketbox/browser/response.py:536
 #: izug.ticketbox/izug/ticketbox/browser/response.py:531
 msgid "No response selected for removal."
 msgstr ""
 
+#: izug.ticketbox/izug/ticketbox/browser/response.py:494
 #: izug.ticketbox/izug/ticketbox/browser/response.py:489
 msgid "No response selected for saving."
 msgstr ""
@@ -181,6 +187,10 @@ msgstr ""
 
 #: izug.ticketbox/izug/ticketbox/browser/response.py:553
 msgid "Removed response."
+msgstr ""
+
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:9
+msgid "Response Information"
 msgstr ""
 
 #: izug.ticketbox/izug/ticketbox/browser/response.py:493
@@ -338,6 +348,7 @@ msgstr ""
 msgid "You are not allowed to delete responses."
 msgstr ""
 
+#: izug.ticketbox/izug/ticketbox/browser/response.py:488
 #: izug.ticketbox/izug/ticketbox/browser/response.py:483
 msgid "You are not allowed to edit responses."
 msgstr ""
@@ -379,7 +390,7 @@ msgid "label_Attachment"
 msgstr ""
 
 #. Default: "Description:"
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:14
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:13
 msgid "label_Description"
 msgstr ""
 
@@ -399,17 +410,17 @@ msgid "label_Releases"
 msgstr ""
 
 #. Default: "State:"
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:16
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:15
 msgid "label_State"
 msgstr ""
 
 #. Default: "Area:"
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:22
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:21
 msgid "label_area"
 msgstr ""
 
 #. Default: "This is an automated email, please do not reply"
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:26
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:25
 msgid "label_automated"
 msgstr ""
 
@@ -434,17 +445,17 @@ msgid "label_enter_response"
 msgstr ""
 
 #. Default: "Priority:"
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:20
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:19
 msgid "label_priority"
 msgstr ""
 
 #. Default: "Target Release:"
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:24
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:23
 msgid "label_release"
 msgstr ""
 
 #. Default: "Responsible:"
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:18
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:17
 msgid "label_responsible"
 msgstr ""
 
@@ -470,7 +481,7 @@ msgid "label_state"
 msgstr ""
 
 #. Default: "Title:"
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:12
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:11
 msgid "label_title"
 msgstr ""
 
@@ -479,12 +490,12 @@ msgstr ""
 msgid "login_suggestion_response"
 msgstr ""
 
-#. Default: "A new Ticket has been created by ${creator} in the Tracker ${tracker_name}(${tracker_url})"
+#. Default: "A new Ticket has been created by ${creator} in the Ticketbox ${tracker_name}(${tracker_identifier}) at ${tracker_url}"
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:3
 msgid "message_text"
 msgstr ""
 
-#. Default: "A new Answer has been Added by ${creator} in the Tracker ${tracker_name}(${tracker_url})"
+#. Default: "A new Answer has been Added by ${creator} in the Ticketbox ${tracker_name} (${tracker_identifier}) at ${tracker_url}"
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:6
 msgid "message_text_response"
 msgstr ""
@@ -597,7 +608,7 @@ msgid "tooltip_info"
 msgstr ""
 
 #: izug.ticketbox/izug/ticketbox/browser/response.py:364
-#: izug.ticketbox/izug/ticketbox/browser/ticket_view.py:59
+#: izug.ticketbox/izug/ticketbox/browser/ticket_view.py:49
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox_baseview.py:201
 msgid "unassigned"
 msgstr ""

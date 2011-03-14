@@ -30,7 +30,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
 
     #Individual Identifier
     StringField(
-             name='individual_identifier',
+             name='individualIdentifier',
              widget=StringWidget(
                  label=_(u"Individual identifier"),
                  description=_(

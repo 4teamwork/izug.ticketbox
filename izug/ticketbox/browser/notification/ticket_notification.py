@@ -24,6 +24,8 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
         ticket_infos = {'tracker_title': self.context.aq_parent.title,
                     'tracker_url': self.context.aq_parent.absolute_url(),
                     'title': self.context.Title(),
+                    'individualIdendifier':
+                    self.context.aq_parent.individualIdentifier,
                     'url': self.context.absolute_url(),
                     'text': self.context.Description(),
                     'State': self.context.getState(),
@@ -43,6 +45,8 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                 changes = {'tracker_title': self.context.aq_parent.title,
                            'tracker_url': self.context.aq_parent.absolute_url(),
                            'title':self.context.Title(),
+                           'individualIdendifier':
+                           self.context.aq_parent.individualIdentifier,
                            'url':self.context.absolute_url(),
                            'text':'',
                            'State':'',

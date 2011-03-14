@@ -33,4 +33,10 @@
     url_expr="string:${object_url}/edit" visible="True">
     <permission value="Modify portal content" />
   </action>
+	<action title="add Ticket" action_id="overview-addticket"
+	    category="arbeitsraum-types" condition_expr=""
+	    url_expr="string:${object_url}/createObject?type_name=Ticket"
+	    visible="True">
+	  <permission value="View"/>
+	 </action>
 </object>

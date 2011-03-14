@@ -1,10 +1,9 @@
 <tal:translate i18n:domain="izug.ticketbox" tal:define="infos view/infos">
 <p i18n:translate="message_text" tal:condition="python: infos['response']==False">
-	A new Ticket has been created by <span i18n:name="creator" tal:content="view/creator" /> in the Tracker <span i18n:name="tracker_name" tal:content="infos/tracker_title" />(<span i18n:name="tracker_url" tal:content="infos/tracker_url" />)
+	A new Ticket has been created by <span i18n:name="creator" tal:content="view/creator" /> in the Ticketbox <span i18n:name="tracker_name" tal:content="infos/tracker_title" />(<span i18n:name="tracker_identifier" tal:content="infos/individualIdendifier" />) at <span i18n:name="tracker_url" tal:content="infos/tracker_url" />
 </p>
 <p i18n:translate="message_text_response" tal:condition="python:infos['response']==True">
-	A new Answer has been Added by <span i18n:name="creator" tal:content="view/creator" /> in the Tracker <span i18n:name="tracker_name" tal:content="infos/tracker_title" />(<span i18n:name="tracker_url" tal:content="infos/tracker_url" />)
-</p>
+	A new Answer has been Added by <span i18n:name="creator" tal:content="view/creator" /> in the Ticketbox <span i18n:name="tracker_name" tal:content="infos/tracker_title" /> (<span i18n:name="tracker_identifier" tal:content="infos/individualIdendifier" />) at <span i18n:name="tracker_url" tal:content="infos/tracker_url" />	</p>
 
 <span tal:condition="python: infos['response']==False" i18n:translate="">Issue Information</span>
 <span tal:condition="python: infos['response']==True" i18n:translate="">Response Information</span>
