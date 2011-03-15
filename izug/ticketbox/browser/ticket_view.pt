@@ -14,9 +14,9 @@
             <td i18n:translate='label_description'>Description</td>
             <td tal:content="here/Description" />
         </tr>
-        <tr tal:condition="python: here.Due_date">
+        <tr tal:condition="python: context.getDueDate()">
             <td i18n:translate='label_duedate'>Due Date</td>
-            <td tal:content="python: here.Due_date.strftime('%d.%m.%Y')" />
+            <td tal:content="python: context.getDueDate().strftime('%d.%m.%Y')" />
         </tr>
         <tr>
             <td i18n:translate='label_state'>State</td>
@@ -35,17 +35,17 @@
             <td tal:content="view/map_release" />
         </tr>
         <tr>
-            <td i18n:translate='label_responsibleManager'>responsible Manager</td>
-            <td tal:content="view/readable_author " />
+            <td i18n:translate='label_ResponsibleManager'>responsible Manager</td>
+            <td tal:content="view/map_author" />
         </tr>
         <tr>
             <td i18n:translate='label_Answer-date'>Answer Date</td>
-            <td tal:content="python:here.Answer_date.strftime('%d.%m.%Y')" />
+            <td tal:content="python:context.getAnswerDate().strftime('%d.%m.%Y')" />
         </tr>
-        <tr tal:condition="python: here.getAttachments()">
+        <tr tal:condition="python: context.getAttachments()">
             <td i18n:translate='label_Attachment'>Attachments</td>
             <td>
-                <div tal:repeat="att here/getAttachments">
+                <div tal:repeat="att context/getAttachments">
                     <metal:attachment use-macro="python:att.widget('file')"/>
                 </div>
 

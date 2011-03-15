@@ -4,7 +4,6 @@ from DateTime import DateTime
 from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.config import PROJECTNAME
 from izug.ticketbox.interfaces import ITicket
-from plone.i18n.normalizer import IDNormalizer
 from Products.Archetypes.atapi import AttributeStorage
 from Products.Archetypes.atapi import DateTimeField, CalendarWidget
 from Products.Archetypes.atapi import FileField, FileWidget
@@ -17,14 +16,14 @@ from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content import schemata
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget \
     import ReferenceBrowserWidget
-from Products.statusmessages.interfaces import IStatusMessage
 from zope.interface import implements
+
 
 TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 
     #Due-Date (default: x + 14 days)
     DateTimeField(
-        name='Due_date',
+        name='dueDate',
         default_method='default_due_date',
         widget=CalendarWidget(
             label=_(u"Due-date"),
@@ -34,7 +33,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 
     #State
     StringField(
-        name='State',
+        name='state',
         vocabulary_factory='ticketbox_values_states',
         widget=SelectionWidget(
             format="select",
@@ -45,7 +44,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 
     #Priority
     StringField(
-        name='Priority',
+        name='priority',
         vocabulary_factory='ticketbox_values_priorities',
         widget=SelectionWidget(
             format="select",
@@ -56,7 +55,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 
     #Area
     StringField(
-        name='Area',
+        name='area',
         vocabulary_factory='ticketbox_values_areas',
         widget=SelectionWidget(
             format="select",
@@ -68,7 +67,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
     #Releases
     # XXX: RENAME TO RELEASE
     StringField(
-        name='Releases',
+        name='releases',
         vocabulary_factory='ticketbox_values_releases',
         widget=SelectionWidget(
             format="select",
@@ -92,7 +91,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 
     #Answer-date (default: x + 14 days)
     DateTimeField(
-        name='Answer_date',
+        name='answerDate',
         default_method='default_answer_date',
         widget=CalendarWidget(
             label=_(u"Answer-date"),
@@ -102,7 +101,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 
     #Attachment
     FileField(
-        name='Attachment',
+        name='attachment',
         widget=FileWidget(
             label=_(u"Attachment"),
             description=_(u"You may optionally upload a file attachment." +
@@ -196,36 +195,3 @@ class Ticket(base.ATCTFolder):
 
 
 registerType(Ticket, PROJECTNAME)
-
-
-def move_document_to_reference(obj, event):
-    """Create own File and add it to References"""
-    file_ = obj.getAttachment()
-    if file_.data != '':
-        new_id = IDNormalizer.normalize(IDNormalizer(), file_.filename)
-
-        if obj.get(new_id, None):
-            IStatusMessage(obj.REQUEST).addStatusMessage(
-                _(u"A File with this id already exists,\
-                the File wasn't uploaded"), type='error')
-            obj.setAttachment('DELETE_FILE')
-            return
-        new_file_id = obj.invokeFactory(
-            type_name="TicketAttachment",
-            id=new_id,
-            title=file_.filename,
-            file=file_)
-        new_file = obj.get(new_file_id, None)
-        if new_file is None:
-            return
-        uid = new_file.UID()
-        import pdb; pdb.set_trace( )
-        references = obj.getRawAttachments()
-
-        if not isinstance(references, list):
-            references = [references]
-
-        references.append(uid)
-        obj.setAttachments(references)
-        obj.setAttachment('DELETE_FILE')
-        obj.reindexObject()

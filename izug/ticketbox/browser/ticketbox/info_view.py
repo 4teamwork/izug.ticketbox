@@ -2,7 +2,7 @@ from Acquisition import aq_inner
 from izug.arbeitsraum.browser.views import InfoView
 from izug.ticketbox import ticketboxMessageFactory as _
 from plone.app.workflow.interfaces import ISharingPageRole
-from ticketbox_baseview import TabbedTicketBoxBaseView
+from baseview import TabbedTicketBoxBaseView
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import getUtilitiesFor
 

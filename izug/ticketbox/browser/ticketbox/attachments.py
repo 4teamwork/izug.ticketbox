@@ -1,5 +1,5 @@
 from izug.ticketbox import ticketboxMessageFactory as _
-from ticketbox_baseview import TabbedTicketBoxBaseView
+from baseview import TabbedTicketBoxBaseView
 
 class TicketBoxViewAttachments(TabbedTicketBoxBaseView):
 

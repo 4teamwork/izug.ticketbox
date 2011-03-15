@@ -1,14 +1,16 @@
+from izug.ticketbox import ticketboxMessageFactory as _
+
 def map_attribute(context, listname, id=None):
     """search the title-name from a list with the id
     """
 
-    if listname == "Priority":
+    if listname == "priority":
         mapped_title = map_priority(context, id)
-    elif listname == "State":
+    elif listname == "state":
         mapped_title = map_state(context, id)
-    elif listname == "Area":
+    elif listname == "area":
         mapped_title = map_area(context, id)
-    elif listname == "Releases":
+    elif listname == "releases":
         mapped_title = map_release(context, id)
     else:
         mapped_title = ""
@@ -68,3 +70,21 @@ def map_release(context, id=None):
         if id == release['id']:
             return release['title']
     return "-"
+
+
+def readable_author(context):
+    """
+    get the full name of a user-id
+    """
+    author = context.responsibleManager
+    if not author:
+        return '-'
+    name = author
+    user = context.acl_users.getUserById(author)
+    if user is None:
+        return _(u"unassigned")
+    else:
+        name = user.getProperty('fullname', author)
+        if not len(name):
+            name = author
+        return name

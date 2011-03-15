@@ -1,6 +1,6 @@
 from AccessControl import getSecurityManager
 from DateTime import DateTime
-from izug.ticketbox.interfaces import ITicket,IResponseContainer, IResponse
+from izug.ticketbox.interfaces import ITicket, IResponseContainer, IResponse
 from persistent import Persistent
 from persistent.list import PersistentList
 from zope.annotation.interfaces import IAnnotations
@@ -127,8 +127,9 @@ class Response(Persistent):
 
     def creator_fullname(self):
         sm = getSecurityManager()
-        user  = sm.getUser()
+        user = sm.getUser()
         return user.getProperty('fullname', user.getId())
+
 
 class EmptyExporter(object):
 

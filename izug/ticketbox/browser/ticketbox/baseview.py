@@ -12,6 +12,8 @@ class TabbedTicketBoxBaseView(BaseListingView):
 
     filter_my_created_tickets = False
     filter_responsibleManager = False
+
+    #str: show_in_my_tickets or show_in_all_tickets
     filter_state = None
 
     show_searchform = True
@@ -22,10 +24,10 @@ class TabbedTicketBoxBaseView(BaseListingView):
 
     request_filters = [
         ('responsibleManager', 'responsible', None),
-        ('State', 'state', None),
-        ('Releases', 'release', None),
-        ('Area', 'area', None),
-        ('Priority', 'priority', None),
+        ('state', 'state', None),
+        ('releases', 'release', None),
+        ('area', 'area', None),
+        ('priority', 'priority', None),
         ]
 
     def __init__(self, context, request):
@@ -45,19 +47,19 @@ class TabbedTicketBoxBaseView(BaseListingView):
                         'sort_index': 'responsibleManager',
                         'transform': self.readable_author,
                         },
-                        {'column': 'State',
+                        {'column': 'state',
                         'column_title': _(u"State"),
                         'transform': self.map_state,
                         },
-                        {'column': 'Due_date',
-                        'column_title': _(u"Due_Date"),
+                        {'column': 'dueDate',
+                        'column_title': _(u"DueDate"),
                         'transform': helper.readable_date_time_text,
                         },
-                        {'column': 'Priority',
+                        {'column': 'priority',
                         'column_title': _(u"Priority"),
                         'transform': self.map_priority,
                         },
-                        {'column': 'Area',
+                        {'column': 'area',
                         'column_title': _(u"Area"),
                         'transform': self.map_area,
                         },
@@ -83,7 +85,6 @@ class TabbedTicketBoxBaseView(BaseListingView):
     def search(self, kwargs):
 
         """Custom search method for ticketbox"""
-
         membership = self.context.aq_inner.portal_membership
         member_id = membership.getAuthenticatedMember().getId()
 
@@ -112,7 +113,7 @@ class TabbedTicketBoxBaseView(BaseListingView):
         if self.filter_my_created_tickets:
             kwargs['Creator'] = member_id
 
-        # show only tickets, where responsibleManager is me
+        # show only tickets, where ResponsibleManager is me
         if self.filter_responsibleManager:
             kwargs['responsibleManager'] = member_id
 
@@ -130,31 +131,34 @@ class TabbedTicketBoxBaseView(BaseListingView):
                 state_mapping[item['id']] = item[self.filter_state]
             result = []
             for item in tmpresults:
-                if state_mapping[item.State] == '1':
+                if state_mapping[item.state] == '1':
                     result.append(item)
+
             self.contents = result
 
 
         self.len_results = len(self.contents)
+
+
 
     # HELPER Methods for ftw.table generator
     def map_state(self, item, id):
         """
         search the title-name of a list with the id
         """
-        return map_attribute(self.context, "State", id)
+        return map_attribute(self.context, "state", id)
 
     def map_priority(self, item, id):
         """
         search the title-name of a list with the id
         """
-        return map_attribute(self.context, "Priority", id)
+        return map_attribute(self.context, "priority", id)
 
     def map_area(self, item, id):
         """
         search the title-name of a list with the id
         """
-        return map_attribute(self.context, "Area", id)
+        return map_attribute(self.context, "area", id)
 
     def get_attachment_ticket_nr(self, item, id):
         """

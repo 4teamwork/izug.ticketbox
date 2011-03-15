@@ -1,5 +1,4 @@
-from izug.ticketbox import ticketboxMessageFactory as _
-from izug.ticketbox.browser.helper import map_attribute
+from izug.ticketbox.browser.helper import map_attribute, readable_author
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -13,40 +12,28 @@ class TicketView(BrowserView):
         """
         search the title-name of a list with the id
         """
-        return map_attribute(self.context, "State")
+        return map_attribute(self.context, "state")
 
     def map_priority(self):
         """
         search the title-name of a list with the id
         """
-        return map_attribute(self.context, "Priority")
+        return map_attribute(self.context, "priority")
 
     def map_area(self):
         """
         search the title-name of a list with the id
         """
-        return map_attribute(self.context, "Area")
+        return map_attribute(self.context, "area")
 
     def map_release(self):
         """
         search the title-name of a list with the id
         """
-        return map_attribute(self.context, "Releases")
+        return map_attribute(self.context, "releases")
 
-    def readable_author(self):
+    def map_author(self):
         """
         get the full name of a user-id
         """
-
-        author = self.context.responsibleManager
-        if not author:
-            return '-'
-        name = author
-        user = self.context.acl_users.getUserById(author)
-        if user is None:
-            return _(u"unassigned")
-        else:
-            name = user.getProperty('fullname', author)
-            if not len(name):
-                name = author
-            return name
+        return readable_author(self.context)

@@ -10,7 +10,6 @@ from Products.Archetypes.atapi import Schema, registerType
 from Products.Archetypes.atapi import StringField, StringWidget
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
-from Products.CMFCore.utils import getToolByName
 from Products.DataGridField import DataGridField, DataGridWidget
 from Products.DataGridField.Column import Column
 from Products.DataGridField.SelectColumn import SelectColumn
@@ -21,14 +20,14 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
 
     #Individual Identifier
     StringField(
-        name='individual_identifier',
+        name='individualIdentifier',
         searchable=True,
         widget=StringWidget(
             label=_(
-                u"label_individual_identifier",
+                u"label_individualIdentifier",
                 default=u"Individual identifier"),
             description=_(
-                u"help_individual_identifier",
+                u"help_individualIdentifier",
                 default=u"Enter a individual identifier (max 7 positions)"),
             maxlength=7,
         ),
@@ -100,7 +99,6 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
             column_names=(_(u'Releases_id'), _(u'Releases_title')),
         ),
         allow_empty_rows=False,
-        required=False,
         columns=('id', 'title')
     ),
 
@@ -119,7 +117,6 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                 _(u'Priorities_title')),
             ),
         allow_empty_rows=False,
-        required=False,
         columns=('id', 'title'),
     ),
 
@@ -137,7 +134,6 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                 _(u'Areas_title')),
             ),
         allow_empty_rows=False,
-        required=True,
         columns=('id', 'title'),
     ),
 ))
@@ -178,25 +174,5 @@ class TicketBox(folder.ATBTreeFolder):
             ("1", _(u"yes")),
             ("0", _(u"no")),
             ))
-
-
-def renameIdAfterCreation(obj, event):
-
-    plone_tool = getToolByName(obj, 'plone_utils', None)
-    datagrid = []
-
-    #save datagrid to change ids
-    datagrid.append(obj.getAvailableStates())
-    datagrid.append(obj.getAvailableReleases())
-    datagrid.append(obj.getAvailablePriorities())
-    datagrid.append(obj.getAvailableAreas())
-
-    #change id from datagrids
-    for dg in datagrid:
-        for row in dg:
-            if not row['id']:
-                name = row['title']
-                row['id'] = plone_tool.normalizeString(name)
-
 
 registerType(TicketBox, PROJECTNAME)

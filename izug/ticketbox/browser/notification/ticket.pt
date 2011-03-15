@@ -12,15 +12,15 @@
 <span tal:content="structure infos/title" />(<span tal:content="infos/url" />)<br /><br />
 <span tal:condition="infos/text" i18n:translate="label_Description">Description:</span><br />
 <span tal:content="structure infos/text" />
-<span tal:condition="infos/State|nothing"><br /><br /><span i18n:translate="label_State">State:</span><br /></span>
-<span tal:content="structure infos/State" />
+<span tal:condition="infos/state|nothing"><br /><br /><span i18n:translate="label_State">State:</span><br /></span>
+<span tal:content="structure infos/state" />
 <span tal:condition="infos/responsibleManager|nothing"><br /><br /><span i18n:translate="label_responsible">Responsible:</span><br /></span>
 <span tal:content="structure infos/responsibleManager" />
-<span tal:condition="infos/Priority|nothing"><br /><br /><span i18n:translate="label_priority">Priority:</span><br /></span>
-<span tal:content="structure infos/Priority" />
-<span tal:condition="infos/Area|nothing"><br /><br /><span i18n:translate="label_area">Area:</span><br /></span>
-<span tal:content="structure infos/Area" />
-<span tal:condition="infos/Releases"><br /><br /><span i18n:translate="label_release">Target Release:</span><br /></span>
-<span tal:content="structure infos/Releases" />
+<span tal:condition="infos/priority|nothing"><br /><br /><span i18n:translate="label_priority">Priority:</span><br /></span>
+<span tal:content="structure infos/priority" />
+<span tal:condition="infos/area|nothing"><br /><br /><span i18n:translate="label_area">Area:</span><br /></span>
+<span tal:content="structure infos/area" />
+<span tal:condition="infos/releases"><br /><br /><span i18n:translate="label_release">Target Release:</span><br /></span>
+<span tal:content="structure infos/releases" />
 <br /><br /><span i18n:translate="label_automated">This is an automated email, please do not reply</span>
 </tal:translate>

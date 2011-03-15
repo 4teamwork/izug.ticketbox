@@ -18,21 +18,4 @@
         interface="..interfaces.ITicketBox"
         />
   </class>
-
-  <subscriber for="..interfaces.ITicketBox
-                 Products.Archetypes.interfaces.IObjectInitializedEvent"
-            handler=".ticketbox.renameIdAfterCreation" />
-
-  <subscriber for="..interfaces.ITicketBox
-                 Products.Archetypes.interfaces.IObjectEditedEvent"
-           	  handler=".ticketbox.renameIdAfterCreation" />
-
-  <subscriber for="..interfaces.ITicket
-                 Products.Archetypes.interfaces.IObjectInitializedEvent"
-            handler=".ticket.move_document_to_reference" />
-
-  <subscriber for="..interfaces.ITicket
-                 Products.Archetypes.interfaces.IObjectEditedEvent"
-           	  handler=".ticket.move_document_to_reference" />
-
 </configure>

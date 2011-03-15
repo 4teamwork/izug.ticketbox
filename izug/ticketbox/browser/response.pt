@@ -144,7 +144,7 @@
 
 			    <div class="field"
 			         tal:condition="view/multiple_states">
-			      <label for="State"
+			      <label for="state"
 			             i18n:translate="Response_label_issueTransition">
 			        Change issue state
 			      </label>
@@ -156,18 +156,18 @@
 			      </div>
 
 			      <tal:states
-			          repeat="state view/states_for_display">
-			        <input class="noborder" name="State"
+			          repeat="option view/states_for_display">
+			        <input class="noborder" name="state"
 			               value="" id="state_1" type="radio"
-			               tal:attributes="value state/label;
-			                               id state/value;
-			                               checked state/checked;" />
+			               tal:attributes="value option/value;
+			                               id option/value;
+			                               checked option/checked;" />
 
 			        <label
 			            i18n:domain="plone"
 			            i18n:translate=""
-			            tal:attributes="for state/value"
-			            tal:content="state/label" />
+			            tal:attributes="for option/value"
+			            tal:content="option/label" />
 
 			        <br />
 			      </tal:states>
@@ -176,7 +176,7 @@
 
 			    <div class="field"
 			         tal:condition="view/multiple_priorities">
-			      <label for="P	riority"
+			      <label for="priority"
 			           i18n:translate="Response_label_newSeverity">
 			        Change issue severity
 			      </label>
@@ -188,7 +188,7 @@
 
 			      <tal:options
 			          repeat="option view/priorities_for_display">
-			        <input class="noborder" name="Priority"
+			        <input class="noborder" name="priority"
 			               value="" id="" type="radio"
 			               tal:attributes="value option/value;
 			                               id option/value;
@@ -205,7 +205,7 @@
 
 			    <div class="field"
 			         tal:condition="view/multiple_areas">
-			      <label for="Areas"
+			      <label for="area"
 			           i18n:translate="Response_label_new_areas">
 			        Change issue areas
 			      </label>
@@ -217,7 +217,7 @@
 
 			      <tal:options
 			          repeat="option view/areas_for_display">
-			        <input class="noborder" name="Area"
+			        <input class="noborder" name="area"
 			               value="" id="" type="radio"
 			               tal:attributes="value option/value;
 			                               id option/value;
@@ -234,7 +234,7 @@
 
 			    <div class="field"
 			         tal:condition="view/show_target_releases">
-			      <label for="newTargetRelease"
+			      <label for="releases"
 			           i18n:translate="Response_label_newTargetRelease">
 			        Change target release
 			      </label>
@@ -246,7 +246,7 @@
 
 			      <tal:options
 			          repeat="option view/releases_for_display">
-			        <input class="noborder" name="Releases"
+			        <input class="noborder" name="releases"
 			               value="" id="" type="radio"
 			               tal:attributes="value option/value;
 			                               id option/value;

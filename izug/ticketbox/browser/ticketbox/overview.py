@@ -1,7 +1,7 @@
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from ticketbox_baseview import TabbedTicketBoxBaseView
+from baseview import TabbedTicketBoxBaseView
 
 
 class TicketBoxView(TabbedTicketBoxBaseView):
@@ -28,11 +28,11 @@ class TicketBoxView(TabbedTicketBoxBaseView):
         else:
             criteria = dict(criteria)
 
-        allowedCriteria = {'releas': 'Releases',
-                           'area': 'Area',
+        allowedCriteria = {'release': 'releases',
+                           'area': 'area',
                            'issueType': 'getIssueType',
-                           'priority': 'Priority',
-                           'state': 'State',
+                           'priority': 'priority',
+                           'state': 'state',
                            'responsible': 'responsibleManager',
                            'creator': 'Creator',
                            'text': 'SearchableText',

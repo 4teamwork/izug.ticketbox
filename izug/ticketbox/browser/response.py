@@ -131,17 +131,17 @@ class Base(BrowserView):
         return -1
 
     @property
-    def Priority(self):
+    def priority(self):
         context = aq_inner(self.context)
         return context.getPriority()
 
     @property
-    def Release(self):
+    def releases(self):
         context = aq_inner(self.context)
         return context.getReleases()
 
     @property
-    def State(self):
+    def state(self):
         context = aq_inner(self.context)
         return context.getState()
 
@@ -357,11 +357,10 @@ class Create(Base):
         #Unassigned is no member in portal_membership.
         #So we have to set it manually
         unassigned = _(u'unassigned')
-
         responsible_after = form.get('responsibleManager', u'')
         if responsible_after != context.getResponsibleManager():
 
-            #get responsibleManager and member-infos before changes
+            #get ResponsibleManager and member-infos before changes
             responsible_before = context.getResponsibleManager()
             member_before = self.context.portal_membership.getMemberById(
                 responsible_before)
@@ -391,10 +390,10 @@ class Create(Base):
             issue_has_changed = True
 
         options = [
-            ('Priority', _(u'Priority'), 'available_priorities'),
-            ('Releases', _(u'Target release'), 'available_releases'),
-            ('State', _(u'States'), 'available_states'),
-            ('Area', _(u'Areas'), 'available_areas'),
+            ('priority', _(u'Priority'), 'available_priorities'),
+            ('releases', _(u'Target release'), 'available_releases'),
+            ('state', _(u'States'), 'available_states'),
+            ('area', _(u'Areas'), 'available_areas'),
             ]
         # Changes that need to be applied to the issue (apart from
         # workflow changes that need to be handled separately).
@@ -405,7 +404,6 @@ class Create(Base):
                 current = context.__getattribute__(option)
                 if current != new:
                     changes[option] = new
-
                     new_response.add_change(
                         option, title,
                         map_attribute(self.context, option, current),

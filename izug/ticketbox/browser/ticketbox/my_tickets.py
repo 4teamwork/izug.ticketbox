@@ -1,4 +1,4 @@
-from ticketbox_baseview import TabbedTicketBoxBaseView
+from baseview import TabbedTicketBoxBaseView
 
 
 class TicketBoxViewMyTickets(TabbedTicketBoxBaseView):

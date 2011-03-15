@@ -1,5 +1,6 @@
 from ftw.notification.email.templates.base import BaseEmailRepresentation
 from zope.app.pagetemplate import ViewPageTemplateFile
+from izug.ticketbox.browser.helper import map_attribute, readable_author
 
 
 class TicketEmailRepresentation(BaseEmailRepresentation):
@@ -20,18 +21,19 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
         """Returns Infos for email-template"""
         base_response = self.context.restrictedTraverse('base_response')
         responses = base_response.responses()
+
         ticket_infos = {'tracker_title': self.context.aq_parent.title,
                     'tracker_url': self.context.aq_parent.absolute_url(),
                     'title': self.context.Title(),
                     'individualIdendifier':
-                    self.context.aq_parent.getIndividual_identifier,
+                    self.context.aq_parent.getIndividualIdentifier,
                     'url': self.context.absolute_url(),
                     'text': self.context.Description(),
-                    'State': self.context.getState(),
-                    'responsibleManager': self.context.getResponsibleManager(),
-                    'Priority': self.context.getPriority(),
-                    'Area': self.context.getArea(),
-                    'Releases': self.context.getReleases(),
+                    'state': map_attribute(self.context, "state"),
+                    'responsibleManager': readable_author(self.context),
+                    'priority': map_attribute(self.context, "priority"),
+                    'area': map_attribute(self.context, "area"),
+                    'releases': map_attribute(self.context, "releases"),
                     'response': False}
         if responses == []:
             return ticket_infos
@@ -46,14 +48,14 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                     'tracker_url': self.context.aq_parent.absolute_url(),
                     'title': self.context.Title(),
                     'individualIdendifier':
-                        self.context.aq_parent.getIndividual_identifier,
+                        self.context.aq_parent.getIndividualIdentifier,
                     'url': self.context.absolute_url(),
                     'text': '',
-                    'State': '',
+                    'state': '',
                     'responsibleManager': '',
-                    'Priority': '',
-                    'Area': '',
-                    'Releases': '',
+                    'priority': '',
+                    'area': '',
+                    'releases': '',
                     'response': True}
                 for item in response['response'].changes:
                     changes[item['id']] = (
