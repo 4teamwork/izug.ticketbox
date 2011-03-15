@@ -32,27 +32,6 @@
         handler="izug.ticketbox.setuphandlers.import_various"
 		/>
 
-
-	<!-- ticketresponse -->
-
-  <subscriber
-      for="izug.ticketbox.interfaces.IResponse
-           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-      handler=".events.modifiedNewStyleResponse"
-      />
-
-  <subscriber
-      for="izug.ticketbox.interfaces.IResponse
-           zope.app.container.interfaces.IObjectAddedEvent"
-      handler=".events.addedNewStyleResponse"
-      />
-
-  <subscriber
-      for="izug.ticketbox.interfaces.IResponse
-           zope.app.container.interfaces.IObjectRemovedEvent"
-      handler=".events.removedResponse"
-      />
-
   <adapter
       provides=".interfaces.IResponseContainer"
       factory=".adapters.ResponseContainer"
@@ -63,6 +42,22 @@
 	 factory=".indexer.sortable_id"
 	 />
 
+	<utility component=".vocabularies.StatesVocabularyFactory"
+	           name="ticketbox_values_states"
+	           provides="zope.schema.interfaces.IVocabularyFactory"
+	           />
+	<utility component=".vocabularies.ReleasesVocabularyFactory"
+	           name="ticketbox_values_releases"
+	           provides="zope.schema.interfaces.IVocabularyFactory"
+	           />
+	<utility component=".vocabularies.PrioritiesVocabularyFactory"
+	           name="ticketbox_values_priorities"
+	           provides="zope.schema.interfaces.IVocabularyFactory"
+	           />
+	<utility component=".vocabularies.AreasVocabularyFactory"
+	           name="ticketbox_values_areas"
+	           provides="zope.schema.interfaces.IVocabularyFactory"
+	           />
 
 
 </configure>

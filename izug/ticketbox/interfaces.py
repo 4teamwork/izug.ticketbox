@@ -72,25 +72,26 @@ class ITicketFolderView(Interface):
         by the given user.
         """
 
-    class IResponseAdder(IViewletManager):
 
-        mimetype = Attribute("Mime type for response.")
-        use_wysiwyg = Attribute("Boolean: Use kupu-like editor.")
+class IResponseAdder(IViewletManager):
 
-        def states_for_display():
-            """Get the available transitions for this issue.
-            """
+    mimetype = Attribute("Mime type for response.")
+    use_wysiwyg = Attribute("Boolean: Use kupu-like editor.")
 
-        def severities_for_display():
-            """Get the available severities for this issue.
-            """
+    def states_for_display():
+        """Get the available transitions for this issue.
+        """
 
-        def releases_for_display():
-            """Get the releases from the project.
-            """
+    def severities_for_display():
+        """Get the available severities for this issue.
+        """
 
-        def managers_for_display():
-            """Get the tracker managers.
-            """
+    def releases_for_display():
+        """Get the releases from the project.
+        """
 
-    directlyProvides(IResponseAdder, ITALNamespaceData)
+    def managers_for_display():
+        """Get the tracker managers.
+        """
+
+directlyProvides(IResponseAdder, ITALNamespaceData)

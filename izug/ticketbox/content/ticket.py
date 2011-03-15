@@ -1,12 +1,9 @@
-"""Definition of the Ticket content type
-"""
 from AccessControl import ClassSecurityInfo
-from Acquisition import aq_chain
 from Acquisition import aq_parent
 from DateTime import DateTime
 from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.config import PROJECTNAME
-from izug.ticketbox.interfaces import ITicket, ITicketBox
+from izug.ticketbox.interfaces import ITicket
 from plone.i18n.normalizer import IDNormalizer
 from Products.Archetypes.atapi import AttributeStorage
 from Products.Archetypes.atapi import DateTimeField, CalendarWidget
@@ -21,7 +18,6 @@ from Products.ATContentTypes.content import schemata
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget \
     import ReferenceBrowserWidget
 from Products.statusmessages.interfaces import IStatusMessage
-from transaction import savepoint
 from zope.interface import implements
 
 TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
@@ -115,6 +111,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         storage=AttributeStorage(),
     ),
 
+    #References for Atachments
     ReferenceField(
         name='attachments',
         widget=ReferenceBrowserWidget(
@@ -122,9 +119,10 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             allow_browse=True,
             show_results_without_query=True,
             restrict_browsing_to_startup_directory=True,
-            base_query={"portal_type": "TicketAttachment",
-                        "sort_on": "sortable_title"},
-            # visible={'view': 'visible', 'edit': 'invisible'},
+            base_query={
+                "portal_type": "TicketAttachment",
+                "sort_on": "sortable_title"},
+            visible={'view': 'visible', 'edit': 'invisible'},
         ),
         allowed_types=('TicketAttachment'),
         multiValued=1,
@@ -162,14 +160,12 @@ class Ticket(base.ATCTFolder):
     meta_type = "Ticket"
     schema = TicketSchema
 
-    security.declarePrivate('linkDetection')
-
-    def _renameAfterCreation(self, check_auto_id=False):
-        """rename id and title after creation
-
-        save a unique id and the title with the id nr.
+    def generateNewId(self):
+        """generate a new ticket id.
+        get all tickets from parent (ticketbox)
+        and looks for the higherst id and add one to be unique
         """
-        parent = self.get_tracker()
+        parent = self.aq_parent
         maxId = 0
         for id in parent.objectIds():
             try:
@@ -177,27 +173,7 @@ class Ticket(base.ATCTFolder):
                 maxId = max(maxId, intId)
             except (TypeError, ValueError):
                 pass
-        newId = str(maxId + 1)
-        # Can't rename without a subtransaction commit when using
-        # portal_factory!
-        savepoint(optimistic=True)
-        self.setId(newId)
-
-        self.reindexObject(idxs=['Id'])
-
-    def get_tracker(self):
-        """Return the tracker.
-
-        This gets around the problem that the aq_parent of an issue
-        that is being created is not the tracker, but a temporary
-        folder.
-        """
-        for parent in aq_chain(self):
-            if ITicketBox.providedBy(parent):
-                return parent
-        raise Exception(
-            "Could not find TicketBox in acquisition chain of %r" %
-            self)
+        return str(maxId + 1)
 
     def default_due_date(self):
         """ Return a standard due-date (9.00 Clock in 14 days) """
@@ -209,13 +185,6 @@ class Ticket(base.ATCTFolder):
         """ Return a standard answer-date (9.00 Clock in 14 days) """
 
         return self.default_due_date()
-
-    def send_notification_mail(self):
-        """ Send a notification from the ticket
-        """
-
-        #TODO: implement notification
-        print "send email"
 
     def get_assignable_users(self):
         """
@@ -231,9 +200,9 @@ registerType(Ticket, PROJECTNAME)
 
 def move_document_to_reference(obj, event):
     """Create own File and add it to References"""
-    _file = obj.getAttachment()
-    if _file.data != '':
-        new_id = IDNormalizer.normalize(IDNormalizer(), _file.filename)
+    file_ = obj.getAttachment()
+    if file_.data != '':
+        new_id = IDNormalizer.normalize(IDNormalizer(), file_.filename)
 
         if obj.get(new_id, None):
             IStatusMessage(obj.REQUEST).addStatusMessage(
@@ -244,19 +213,19 @@ def move_document_to_reference(obj, event):
         new_file_id = obj.invokeFactory(
             type_name="TicketAttachment",
             id=new_id,
-            title=_file.filename,
-            file=_file)
+            title=file_.filename,
+            file=file_)
         new_file = obj.get(new_file_id, None)
         if new_file is None:
             return
         uid = new_file.UID()
+        import pdb; pdb.set_trace( )
         references = obj.getRawAttachments()
-        if isinstance(references, list):
-            references.append(uid)
-            obj.setAttachments(references)
-        else:
+
+        if not isinstance(references, list):
             references = [references]
-            references.append(uid)
-            obj.setAttachments(references)
+
+        references.append(uid)
+        obj.setAttachments(references)
         obj.setAttachment('DELETE_FILE')
         obj.reindexObject()

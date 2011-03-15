@@ -29,7 +29,7 @@
      for="izug.ticketbox.interfaces.ITicket"
      permission="zope2.View"
      class=".response.Create"
-     allowed_interface="..interfaces.ICreateResponse"
+     allowed_interface="izug.ticketbox.interfaces.ICreateResponse"
      />
 
   <browser:page
@@ -56,7 +56,7 @@
 
    <browser:viewletManager
       name="ticketbox.response.add"
-      provides=".interfaces.IResponseAdder"
+      provides="izug.ticketbox.interfaces.IResponseAdder"
       permission="zope2.View"
       class=".response.AddForm"
       template="response.pt"

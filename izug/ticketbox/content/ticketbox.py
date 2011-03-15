@@ -14,7 +14,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.DataGridField import DataGridField, DataGridWidget
 from Products.DataGridField.Column import Column
 from Products.DataGridField.SelectColumn import SelectColumn
-from transaction import savepoint
 from zope.interface import implements
 
 
@@ -25,9 +24,12 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
         name='individual_identifier',
         searchable=True,
         widget=StringWidget(
-            label=_(u"Individual identifier"),
+            label=_(
+                u"label_individual_identifier",
+                default=u"Individual identifier"),
             description=_(
-                u"Enter a individual identifier (max 7 positions)"),
+                u"help_individual_identifier",
+                default=u"Enter a individual identifier (max 7 positions)"),
             maxlength=7,
         ),
     ),
@@ -195,10 +197,6 @@ def renameIdAfterCreation(obj, event):
             if not row['id']:
                 name = row['title']
                 row['id'] = plone_tool.normalizeString(name)
-
-    # Can't rename without a subtransaction commit when using
-    # portal_factory!
-    savepoint(optimistic=True)
 
 
 registerType(TicketBox, PROJECTNAME)

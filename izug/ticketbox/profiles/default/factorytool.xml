@@ -12,5 +12,6 @@
     <!-- -*- extra stuff goes here -*- -->
     <type portal_type="Ticket" />
     <type portal_type="Ticket Box" />
+    <type portal_type="TicketAttachment" />
   </factorytypes>
 </object>
