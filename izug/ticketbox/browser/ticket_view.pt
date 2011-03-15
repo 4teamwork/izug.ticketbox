@@ -36,7 +36,7 @@
         </tr>
         <tr>
             <td i18n:translate='label_responsibleManager'>responsible Manager</td>
-            <td tal:content="view/readable_author" />
+            <td tal:content="view/readable_author " />
         </tr>
         <tr>
             <td i18n:translate='label_Answer-date'>Answer Date</td>

@@ -1,31 +1,28 @@
 """Definition of the Ticket content type
 """
-
-from zope.interface import implements
-
-from izug.ticketbox import ticketboxMessageFactory as _
-from izug.ticketbox.interfaces import ITicket, ITicketBox
-from izug.ticketbox.config import PROJECTNAME
-
+from AccessControl import ClassSecurityInfo
 from Acquisition import aq_chain
 from Acquisition import aq_parent
-from transaction import savepoint
 from DateTime import DateTime
-
-from Products.Archetypes.atapi import Schema
-from Products.ATContentTypes.content import base
-from Products.ATContentTypes.content import schemata
-from Products.Archetypes.atapi import StringField
-from Products.Archetypes.atapi import SelectionWidget
-from Products.Archetypes.atapi import FileField, FileWidget
-from Products.Archetypes.atapi import DateTimeField, CalendarWidget
+from izug.ticketbox import ticketboxMessageFactory as _
+from izug.ticketbox.config import PROJECTNAME
+from izug.ticketbox.interfaces import ITicket, ITicketBox
+from plone.i18n.normalizer import IDNormalizer
 from Products.Archetypes.atapi import AttributeStorage
+from Products.Archetypes.atapi import DateTimeField, CalendarWidget
+from Products.Archetypes.atapi import FileField, FileWidget
 from Products.Archetypes.atapi import ReferenceField
 from Products.Archetypes.atapi import registerType
-from AccessControl import ClassSecurityInfo
-from plone.i18n.normalizer import IDNormalizer
-from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
+from Products.Archetypes.atapi import Schema
+from Products.Archetypes.atapi import SelectionWidget
+from Products.Archetypes.atapi import StringField
+from Products.ATContentTypes.content import base
+from Products.ATContentTypes.content import schemata
+from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget \
+    import ReferenceBrowserWidget
 from Products.statusmessages.interfaces import IStatusMessage
+from transaction import savepoint
+from zope.interface import implements
 
 TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 
@@ -96,6 +93,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         ),
         vocabulary='get_assignable_users',
     ),
+
     #Answer-date (default: x + 14 days)
     DateTimeField(
         name='Answer_date',
@@ -124,7 +122,9 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             allow_browse=True,
             show_results_without_query=True,
             restrict_browsing_to_startup_directory=True,
-            base_query={"portal_type": "TicketAttachment", "sort_on": "sortable_title"},
+            base_query={"portal_type": "TicketAttachment",
+                        "sort_on": "sortable_title"},
+            # visible={'view': 'visible', 'edit': 'invisible'},
         ),
         allowed_types=('TicketAttachment'),
         multiValued=1,
@@ -140,22 +140,22 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             allow_browse=True,
             show_results_without_query=True,
             restrict_browsing_to_startup_directory=True,
-            base_query={"portal_type": "Ticket Box", "sort_on": "sortable_title"},
+            base_query={"portal_type": "Ticket Box",
+                        "sort_on": "sortable_title"},
         ),
-        allowed_types=('Ticket','Ticket Box', 'TicketAttachment'),
+        allowed_types=('Ticket', 'Ticket Box', 'TicketAttachment'),
         multiValued=1,
         schemata='default',
         relationship='TicketBox'
     ),
-
-
 ))
 
 TicketSchema['description'].required = True
 schemata.finalizeATCTSchema(TicketSchema, moveDiscussion=False)
 
+
 class Ticket(base.ATCTFolder):
-    """Description of the Example Type"""
+    """A ticket for a tracker-like task management system"""
     implements(ITicket)
 
     security = ClassSecurityInfo()
@@ -163,6 +163,7 @@ class Ticket(base.ATCTFolder):
     schema = TicketSchema
 
     security.declarePrivate('linkDetection')
+
     def _renameAfterCreation(self, check_auto_id=False):
         """rename id and title after creation
 
@@ -235,8 +236,9 @@ def move_document_to_reference(obj, event):
         new_id = IDNormalizer.normalize(IDNormalizer(), _file.filename)
 
         if obj.get(new_id, None):
-            IStatusMessage(obj.REQUEST).addStatusMessage(_(u"A File with this id already exists,\
-             the File wasn't uploaded"), type='error')
+            IStatusMessage(obj.REQUEST).addStatusMessage(
+                _(u"A File with this id already exists,\
+                the File wasn't uploaded"), type='error')
             obj.setAttachment('DELETE_FILE')
             return
         new_file_id = obj.invokeFactory(

@@ -1,11 +1,13 @@
-from Products.CMFCore.utils import getToolByName
 from ftw.tabbedview.browser.views.views import BaseListingView
-from izug.ticketbox import ticketboxMessageFactory as _
 from ftw.table import helper
-from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from ftw.table.interfaces import ITableGenerator
-from zope.component import queryUtility
+from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.browser.helper import map_attribute
+from Products.CMFCore.utils import getToolByName
+from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
+from zope.component import queryUtility
+
+
 class TabbedTicketBoxBaseView(BaseListingView):
 
     filter_my_created_tickets = False
@@ -29,35 +31,35 @@ class TabbedTicketBoxBaseView(BaseListingView):
     def __init__(self, context, request):
         super(TabbedTicketBoxBaseView, self).__init__(context, request)
 
-        self.columns = ({'column':'getId',
-                        'column_title':_(u"Id"),
-                        'sort_index':'sortable_id',
+        self.columns = ({'column': 'getId',
+                        'column_title': _(u"Id"),
+                        'sort_index': 'sortable_id',
                         },
-                        {'column':'Title',
-                        'column_title':_(u"Description"),
+                        {'column': 'Title',
+                        'column_title': _(u"Description"),
                         'sort_index': 'sortable_title',
-                        'transform':self.izug_files_linked,
+                        'transform': self.izug_files_linked,
                         },
-                        {'column':'responsibleManager',
-                        'column_title':_(u"responsibleManager"),
+                        {'column': 'responsibleManager',
+                        'column_title': _(u"responsibleManager"),
                         'sort_index': 'responsibleManager',
-                        'transform':self.readable_author,
+                        'transform': self.readable_author,
                         },
-                        {'column':'State',
-                        'column_title':_(u"State"),
-                        'transform':self.map_state,
+                        {'column': 'State',
+                        'column_title': _(u"State"),
+                        'transform': self.map_state,
                         },
-                        {'column':'Due_date',
-                        'column_title':_(u"Due_Date"),
-                        'transform':helper.readable_date_time_text,
+                        {'column': 'Due_date',
+                        'column_title': _(u"Due_Date"),
+                        'transform': helper.readable_date_time_text,
                         },
-                        {'column':'Priority',
-                        'column_title':_(u"Priority"),
-                        'transform':self.map_priority,
+                        {'column': 'Priority',
+                        'column_title': _(u"Priority"),
+                        'transform': self.map_priority,
                         },
-                        {'column':'Area',
-                        'column_title':_(u"Area"),
-                        'transform':self.map_area,
+                        {'column': 'Area',
+                        'column_title': _(u"Area"),
+                        'transform': self.map_area,
                         },
                         )
 
@@ -73,16 +75,20 @@ class TabbedTicketBoxBaseView(BaseListingView):
                                   self.columns,
                                   sortable=True,
                                   selected=(self.sort_on, self.sort_order),
-                                  template = self.table,
-                                  auto_count = self.auto_count,
-                                  css_mapping = dict(table='sortable-table')
+                                  template=self.table,
+                                  auto_count=self.auto_count,
+                                  css_mapping=dict(table='sortable-table'),
                                   )
 
     def search(self, kwargs):
 
         """Custom search method for ticketbox"""
 
-        # Huck for overview tab. Should return nothing if no filter criteria is present.
+        membership = self.context.aq_inner.portal_membership
+        member_id = membership.getAuthenticatedMember().getId()
+
+        # Huck for overview tab.
+        # Should return nothing if no filter criteria is present.
         view_name = self.request.get('view_name')
         if view_name == "Overview":
 
@@ -92,22 +98,25 @@ class TabbedTicketBoxBaseView(BaseListingView):
             is_set_area = self.request.get('area')
             is_set_priority = self.request.get('priority')
 
-            if not (is_set_responsible or is_set_state or is_set_release or is_set_area or is_set_priority):
+            if not (is_set_responsible or
+                    is_set_state or
+                    is_set_release or
+                    is_set_area or
+                    is_set_priority):
+
                 self.contents = []
                 self.len_results = 0
                 return
 
         # show only tickets, where creater is me
         if self.filter_my_created_tickets:
-            kwargs['Creator'] = \
-                self.context.aq_inner.portal_membership.getAuthenticatedMember().getId()
+            kwargs['Creator'] = member_id
 
         # show only tickets, where responsibleManager is me
         if self.filter_responsibleManager:
-            kwargs['responsibleManager'] = \
-                self.context.aq_inner.portal_membership.getAuthenticatedMember().getId()
+            kwargs['responsibleManager'] = member_id
 
-        self.catalog = catalog = getToolByName(self.context,'portal_catalog')
+        self.catalog = catalog = getToolByName(self.context, 'portal_catalog')
         query = self.build_query(**kwargs)
         tmpresults = catalog(**query)
 
@@ -186,7 +195,8 @@ class TabbedTicketBoxBaseView(BaseListingView):
         elif hasattr(item, 'absolute_url'):
             url_method = item.absolute_url
         value = len(value) >= 47 and value[:47] + '...' or value
-        link = u'<a href="%s/view">%s</a>' % (url_method(), value.decode('utf8'))
+        link = u'<a href="%s/view">%s</a>' \
+            % (url_method(), value.decode('utf8'))
         return link
 
     def readable_author(self, item, author):

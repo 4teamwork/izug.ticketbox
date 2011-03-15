@@ -1,10 +1,11 @@
-from plone.indexer.decorator import indexer
 from izug.ticketbox.interfaces import ITicket
-from Products.CMFPlone.utils import safe_unicode
+from plone.indexer.decorator import indexer
 from Products.CMFPlone.utils import safe_callable
+from Products.CMFPlone.utils import safe_unicode
 import re
 
 num_sort_regex = re.compile('\d+')
+
 
 @indexer(ITicket)
 def sortable_id(obj):
@@ -20,6 +21,7 @@ def sortable_id(obj):
             sortable_id = safe_unicode(sortable_id)[:40].encode('utf-8')
             return sortable_id
     return ''
+
 
 def zero_fill(matchobj):
     return matchobj.group().zfill(8)

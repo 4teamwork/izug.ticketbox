@@ -1,7 +1,8 @@
+from Acquisition import aq_parent
+from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary
-from zope.interface import implements
-from Acquisition import aq_parent
+
 
 
 class TicketBoxVocabulary(object):

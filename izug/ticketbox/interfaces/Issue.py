@@ -35,7 +35,6 @@ class Issue(Base):
     """
 
     # Methods
-
     def toggleWatching():
         """
         Add or remove the current authenticated member from the list of

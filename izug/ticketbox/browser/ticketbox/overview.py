@@ -3,9 +3,10 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ticketbox_baseview import TabbedTicketBoxBaseView
 
+
 class TicketBoxView(TabbedTicketBoxBaseView):
 
-    template = ViewPageTemplateFile('ticketbox_view.pt')
+    template = ViewPageTemplateFile('overview.pt')
     types = 'Ticket'
     #this is a attribute in the DataGrid States from TicketBox ContentType
     columns = None
@@ -27,19 +28,19 @@ class TicketBoxView(TabbedTicketBoxBaseView):
         else:
             criteria = dict(criteria)
 
-        allowedCriteria = {'release'       : 'Releases',
-                           'area'          : 'Area',
-                           'issueType'     : 'getIssueType',
-                           'priority'      : 'Priority',
-                           'state'         : 'State',
-                           'responsible'   : 'responsibleManager',
-                           'creator'       : 'Creator',
-                           'text'          : 'SearchableText',
-                           'id'            : 'getId',
+        allowedCriteria = {'releas': 'Releases',
+                           'area': 'Area',
+                           'issueType': 'getIssueType',
+                           'priority': 'Priority',
+                           'state': 'State',
+                           'responsible': 'responsibleManager',
+                           'creator': 'Creator',
+                           'text': 'SearchableText',
+                           'id': 'getId',
                            }
 
-        query                = {}
-        query['path']        = '/'.join(context.getPhysicalPath())
+        query = {}
+        query['path'] = '/'.join(context.getPhysicalPath())
         query['portal_type'] = ['Ticket']
 
         for k, v in allowedCriteria.items():

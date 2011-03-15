@@ -1,21 +1,20 @@
-from zope.interface import implements
-from zope.interface import Attribute
-from zope.interface import Interface
-from zope.component import adapts
-from zope.annotation.interfaces import IAnnotations
-from persistent import Persistent
-from persistent.list import PersistentList
-from izug.ticketbox.interfaces.ticket import ITicket
 from AccessControl import getSecurityManager
 from DateTime import DateTime
-from zope.app.container.contained import ObjectRemovedEvent
+from izug.ticketbox.interfaces.ticket import ITicket
+from persistent import Persistent
+from persistent.list import PersistentList
+from zope.annotation.interfaces import IAnnotations
 from zope.app.container.contained import ObjectAddedEvent
+from zope.app.container.contained import ObjectRemovedEvent
 from zope.app.container.interfaces import UnaddableError
+from zope.component import adapts
 from zope.event import notify
+from zope.interface import Attribute
+from zope.interface import implements
+from zope.interface import Interface
 
 class IResponseContainer(Interface):
     pass
-
 
 class IResponse(Interface):
 

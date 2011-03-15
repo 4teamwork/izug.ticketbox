@@ -1,8 +1,5 @@
 from zope.interface import Interface
-# -*- Additional Imports Here -*-
 
 
 class ITicket(Interface):
-    """Description of the Example Type"""
-
-    # -*- schema definition goes here -*-
+    """A ticket for a tracker-like task management system"""

@@ -1,7 +1,6 @@
-import logging
 from izug.ticketbox.config import INDEXES
 from Products.CMFCore.utils import getToolByName
-
+import logging
 
 PROFILE_ID = 'profile-izug.ticketbox:default'
 
@@ -42,6 +41,7 @@ def add_catalog_indexes(context, logger=None):
     if len(indexables) > 0:
         logger.info("Indexing new indexes %s.", ', '.join(indexables))
         catalog.manage_reindexIndex(ids=indexables)
+
 
 def import_various(context):
     """Import step for configuration that is not handled in xml files.

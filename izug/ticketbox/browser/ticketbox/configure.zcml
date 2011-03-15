@@ -1,0 +1,58 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="izug.ticketbox">
+
+  <include package="plone.app.contentmenu" />
+
+  <browser:page
+       for="izug.ticketbox.interfaces.ITicketBox"
+       name="tabbed_ticketbox_view"
+       permission="zope.Public"
+       class=".tabbed_ticketbox.TabbedTicketBoxView"
+       template="tabbed_ticketbox.pt"
+       />
+
+<browser:page
+   name="tabbedview_view-Overview"
+   for="izug.ticketbox.interfaces.ITicketBox"
+   permission="zope2.View"
+   class=".overview.TicketBoxView"
+   template="overview.pt"
+   />
+
+  <browser:page
+    for="izug.ticketbox.interfaces.ITicketBox"
+    name="tabbedview_view-all_tickets"
+    permission="zope2.View"
+    class=".all_tickets.TicketBoxViewAllTickets"
+    template="tabbedview_generic.pt"
+    />
+
+  <browser:page
+    for="izug.ticketbox.interfaces.ITicketBox"
+    name="tabbedview_view-attachments"
+    permission="zope2.View"
+    class=".attachments.TicketBoxViewAttachments"
+    template="tabbedview_generic.pt"
+    />
+
+  <browser:page
+    for="izug.ticketbox.interfaces.ITicketBox"
+    name="tabbedview_view-my_tickets"
+    permission="zope2.View"
+    class=".my_tickets.TicketBoxViewMyTickets"
+    template="tabbedview_generic.pt"
+    />
+
+	 <browser:page
+    for="izug.ticketbox.interfaces.ITicketBox"
+    name="tabbedview_view-info"
+    class=".info_view.TicketBoxInfoView"
+    permission="zope2.View"
+    template="info_view.pt"
+    />
+
+
+
+</configure>

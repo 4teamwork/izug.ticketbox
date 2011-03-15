@@ -1,8 +1,8 @@
-from zope.interface import Interface
-from zope.interface import directlyProvides
-from zope.interface import Attribute
-from zope.viewlet.interfaces import IViewletManager
 from zope.contentprovider.interfaces import ITALNamespaceData
+from zope.interface import Attribute
+from zope.interface import directlyProvides
+from zope.interface import Interface
+from zope.viewlet.interfaces import IViewletManager
 
 
 class ITicketFolderView(Interface):
@@ -64,4 +64,3 @@ directlyProvides(IResponseAdder, ITALNamespaceData)
 
 class ICreateResponse(Interface):
     pass
-

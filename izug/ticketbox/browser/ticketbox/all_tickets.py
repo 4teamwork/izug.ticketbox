@@ -1,4 +1,5 @@
-from izug.ticketbox.browser.ticketbox_baseview import TabbedTicketBoxBaseView
+from ticketbox_baseview import TabbedTicketBoxBaseView
+
 
 class TicketBoxViewAllTickets(TabbedTicketBoxBaseView):
 

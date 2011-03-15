@@ -16,7 +16,6 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
         context = self.context.aq_inner
         return context.Creator()
 
-
     def infos(self):
         """Returns Infos for email-template"""
         base_response = self.context.restrictedTraverse('base_response')
@@ -42,20 +41,22 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                 return ticket_infos
             else:
                 response = responses[len(responses)-1]
-                changes = {'tracker_title': self.context.aq_parent.title,
-                           'tracker_url': self.context.aq_parent.absolute_url(),
-                           'title':self.context.Title(),
-                           'individualIdendifier':
-                           self.context.aq_parent.individualIdentifier,
-                           'url':self.context.absolute_url(),
-                           'text':'',
-                           'State':'',
-                           'responsibleManager':'',
-                           'Priority':'',
-                           'Area':'',
-                           'Releases':'',
-                           'response':True}
+                changes = {
+                    'tracker_title': self.context.aq_parent.title,
+                    'tracker_url': self.context.aq_parent.absolute_url(),
+                    'title': self.context.Title(),
+                    'individualIdendifier':
+                        self.context.aq_parent.individualIdentifier,
+                    'url': self.context.absolute_url(),
+                    'text': '',
+                    'State': '',
+                    'responsibleManager': '',
+                    'Priority': '',
+                    'Area': '',
+                    'Releases': '',
+                    'response': True}
                 for item in response['response'].changes:
-                    changes[item['id']] = item['before'] + 	' &rarr; ' + item['after']
+                    changes[item['id']] = (
+                        item['before'] + 	' &rarr; ' + item['after'])
                 changes['text'] = response['response'].text
                 return changes

@@ -4,71 +4,19 @@
     i18n_domain="izug.ticketbox">
 
   <include package="plone.app.contentmenu" />
-
+  <include package=".ticketbox" />
   <!-- -*- extra stuff goes here -*- -->
   <browser:resourceDirectory
       name="izug.ticketbox.css"
       directory="stylesheets"
       />
-
-    <browser:page
-        for="izug.ticketbox.interfaces.ITicketBox"
-        name="tabbed_ticketbox_view"
-        permission="zope.Public"
-        class=".tabbed_ticketbox.TabbedTicketBoxView"
-        template="tabbed_ticketbox.pt"
-        />
-
-
-
-  <browser:page
-     name="tabbedview_view-Overview"
-     for="izug.ticketbox.interfaces.ITicketBox"
-     permission="zope2.View"
-     class=".ticketbox_view.TicketBoxView"
-     template="ticketbox_view.pt"
-     />
-
-    <browser:page
-      for="izug.ticketbox.interfaces.ITicketBox"
-      name="tabbedview_view-all_tickets"
-      permission="zope2.View"
-      class=".ticketbox_view_all_tickets.TicketBoxViewAllTickets"
-      template="tabbedview_generic.pt"
-      />
-
-    <browser:page
-      for="izug.ticketbox.interfaces.ITicketBox"
-      name="tabbedview_view-attachments"
-      permission="zope2.View"
-      class=".ticketbox_view_attachments.TicketBoxViewAttachments"
-      template="tabbedview_generic.pt"
-      />
-
-    <browser:page
-      for="izug.ticketbox.interfaces.ITicketBox"
-      name="tabbedview_view-my_tickets"
-      permission="zope2.View"
-      class=".ticketbox_view_my_tickets.TicketBoxViewMyTickets"
-      template="tabbedview_generic.pt"
-      />
-
-	 <browser:page
-      for="izug.ticketbox.interfaces.ITicketBox"
-      name="tabbedview_view-info"
-      class=".ticketbox_view_info_view.TicketBoxInfoView"
-      permission="zope2.View"
-      template="ticketbox_view_info_view.pt"
-      />
-
-  <browser:page
-     name="ticket_view"
-     for="izug.ticketbox.interfaces.ITicket"
-     permission="zope2.View"
-     class=".ticket_view.TicketView"
-	 template="ticket_view.pt"
-     />
-
+	<browser:page
+	   name="ticket_view"
+	   for="izug.ticketbox.interfaces.ITicket"
+	   permission="zope2.View"
+	   class=".ticket_view.TicketView"
+		 template="ticket_view.pt"
+	   />
   <browser:page
 	name="base_response"
 	for="izug.ticketbox.interfaces.ticket.ITicket"

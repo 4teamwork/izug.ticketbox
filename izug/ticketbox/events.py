@@ -1,14 +1,12 @@
-import logging
-import textwrap
-
 from Acquisition import aq_parent
+from izug.ticketbox import ticketboxMessageFactory as _
+from izug.ticketbox.interfaces.ticket import ITicket
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
-from Products.PageTemplates.GlobalTranslationService import \
-    getGlobalTranslationService
-
-from izug.ticketbox.interfaces.ticket import ITicket
-from izug.ticketbox import ticketboxMessageFactory as _
+from Products.PageTemplates.GlobalTranslationService \
+    import getGlobalTranslationService
+import logging
+import textwrap
 
 logger = logging.getLogger('Ticketbox')
 
@@ -65,7 +63,6 @@ def sendResponseNotificationMail(issue, response):
 
     # We are going to use the same encoding everywhere, so we will
     # make that easy.
-
     def su(value):
         return safe_unicode(value, encoding=charset)
 

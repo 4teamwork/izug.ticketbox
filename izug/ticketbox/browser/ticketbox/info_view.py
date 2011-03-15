@@ -1,15 +1,17 @@
-from izug.arbeitsraum.browser.views import InfoView
 from Acquisition import aq_inner
-from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
-from plone.app.workflow.interfaces import ISharingPageRole
-from zope.component import getUtilitiesFor
+from izug.arbeitsraum.browser.views import InfoView
 from izug.ticketbox import ticketboxMessageFactory as _
+from plone.app.workflow.interfaces import ISharingPageRole
 from ticketbox_baseview import TabbedTicketBoxBaseView
+from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
+from zope.component import getUtilitiesFor
+
 
 class TicketBoxInfoView(TabbedTicketBoxBaseView):
     """Info Tabbview
     """
-    template = ViewPageTemplateFile('ticketbox_view_info_view.pt')
+    template = ViewPageTemplateFile('info_view.pt')
+
     def roles(self):
         """Get a list of roles that can be managed.
 
@@ -21,8 +23,15 @@ class TicketBoxInfoView(TabbedTicketBoxBaseView):
         context = aq_inner(self.context)
 
         pairs = []
-        has_manage_portal = context.portal_membership.checkPermission('ManagePortal', context)
-        aviable_roles_for_users = [u'Editor', u'Reader', u'Contributor', u'Administrator']
+        has_manage_portal = context.portal_membership.checkPermission(
+            'ManagePortal', context)
+
+        aviable_roles_for_users = [
+            u'Editor',
+            u'Reader',
+            u'Contributor',
+            u'Administrator']
+
         for name, utility in getUtilitiesFor(ISharingPageRole):
             if not has_manage_portal and name not in aviable_roles_for_users:
                 continue
@@ -35,7 +44,9 @@ class TicketBoxInfoView(TabbedTicketBoxBaseView):
         context = self.context
         results = super(InfoView, self).role_settings()
 
-        if not context.portal_membership.checkPermission('ManagePortal', context):
+        if not context.portal_membership.checkPermission(
+            'ManagePortal', context):
+
             results = [r for r in results if r['type']!='group']
 
         return results

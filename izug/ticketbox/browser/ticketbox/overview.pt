@@ -1,0 +1,196 @@
+
+    <div i18n:domain="izug.ticketbox"
+		tal:define="priorities context/getAvailablePriorities;
+              		areas context/getAvailableAreas;
+                    releases context/getAvailableReleases;
+                    states context/getAvailableStates;
+                    responsibles context/get_assignable_users
+                    ">
+
+      <div class="documentDescription" tal:content="here/Description" />
+
+      <div class="formControls">
+        <table>
+          <tr>
+            <td>
+              <form action="createObject"
+                    id="ticketbox-submit-new-ticket-form">
+                <input name="type_name"
+                       type="hidden"
+                       value="Ticket"
+                       />
+                <div class="formControls">
+                  <input class="context"
+                         type="submit"
+                         i18n:attributes="value"
+						 value="Submit new issue"
+                         />
+                </div>
+              </form>
+            </td>
+          </tr>
+        </table>
+      </div>
+		<table class="ticketbox-overview">
+			<tr>
+				<td class="long-text">
+					<div id="tickets-by-responsible" class="ticketbox-quick-search-box">
+			          <h3 i18n:translate="ticketbox_heading_by_responsible">By responsible</h3>
+			          <ul>
+			              <tal:areas repeat="responsible responsibles">
+			                <li tal:define="responsibleId python:responsible[0];
+											responsibleTitle python:responsible[1];
+											tickets python:view.getFilteredTickets(responsible=responsibleId)
+											">
+			                <a tal:attributes="href string:${context/absolute_url}?searchkey=responsible&searchvalue=${responsibleId}"
+			                   tal:content="responsibleTitle" /> (<span tal:replace="python:len(tickets)" />)
+			               </li>
+			              </tal:areas>
+			          </ul>
+			      </div>
+
+				</td>
+				<td>
+					<div tal:condition="states" id="tickets-by-state" class="ticketbox-quick-search-box">
+				          <h3 i18n:translate="ticketbox_heading_by_states">By states</h3>
+				          <ul>
+				              <tal:areas repeat="state states">
+				                <li tal:define="stateId state/id;
+												stateTitle state/title;
+												tickets python:view.getFilteredTickets(state=stateId)
+												">
+				                <a tal:attributes="href string:${context/absolute_url}?searchkey=state&searchvalue=${stateId}"
+				                   tal:content="stateTitle" /> (<span tal:replace="python:len(tickets)" />)
+				               </li>
+				              </tal:areas>
+				          </ul>
+				      </div>
+
+				</td>
+				<td>
+						<div tal:condition="releases" id="tickets-by-release" class="ticketbox-quick-search-box">
+				          <h3 i18n:translate="ticketbox_heading_by_release">By release</h3>
+				          <ul>
+				              <tal:areas repeat="release releases">
+				                <li tal:define="releaseId release/id;
+												releaseTitle release/title;
+												tickets python:view.getFilteredTickets(release=releaseId)
+												">
+				                <a tal:attributes="href string:${context/absolute_url}?searchkey=release&searchvalue=${releaseId}"
+				                   tal:content="releaseTitle" /> (<span tal:replace="python:len(tickets)" />)
+				               </li>
+				              </tal:areas>
+				          </ul>
+				      </div>
+				</td>
+				<td>
+
+				<div tal:condition="areas" id="tickets-by-area" class="ticketbox-quick-search-box">
+		          <h3 i18n:translate="ticketbox_heading_by_area">By area</h3>
+		          <ul>
+		              <tal:areas repeat="area areas">
+		                <li tal:define="areaId area/id;
+										areaTitle area/title;
+										tickets python:view.getFilteredTickets(area=areaId)
+										">
+		                <a tal:attributes="href string:${context/absolute_url}?searchkey=area&searchvalue=${areaId}"
+		                   tal:content="areaTitle" /> (<span tal:replace="python:len(tickets)" />)
+		               </li>
+		              </tal:areas>
+		          </ul>
+		      </div>
+			</td>
+				<td>
+
+			      <div tal:condition="priorities" id="tickets-by-priority" class="ticketbox-quick-search-box">
+			          <h3 i18n:translate="ticketbox_heading_by_severities">By priority</h3>
+			          <ul>
+			              <tal:areas repeat="priority priorities">
+			                <li tal:define="priorityId priority/id;
+											priorityTitle priority/title;
+											tickets python:view.getFilteredTickets(priority=priorityId)
+
+											">
+			                <a tal:attributes="href string:${context/absolute_url}?searchkey=priority&searchvalue=${priorityId}"
+			                   tal:content="priorityTitle" /> (<span tal:replace="python:len(tickets)" />)
+			               </li>
+			              </tal:areas>
+			          </ul>
+			      </div>
+				</td>
+			</tr>
+		</table>
+
+
+
+
+
+
+
+
+
+
+
+      <div class="visualClear"><!----></div>
+
+
+	<tal:translation>
+	  <form name="tabbedview_form"
+	        method="post"
+	        action="folder_object"
+	        tal:attributes="action context/absolute_url"
+	        tal:define="Batch python:modules['Products.CMFPlone'].Batch;
+	        			b_size python:50;
+	        			b_size request/b_size | b_size;
+	        			b_size python: type(b_size) == type([]) and b_size[-1] or b_size;
+	        			b_start python:0;b_start request/b_start | b_start;
+	        			b_range python: b_start==0 and 5 or 3;
+	        			batch python:Batch(view.contents, int(b_size), int(b_start), orphan=1,pagerange=int(b_range));"
+	        >
+
+	    <input type="hidden" name="orig_template" tal:attributes="value string:${here/absolute_url}/#${view/view_name}" />
+
+	    <tal:cond tal:condition="view/contents">
+	        <div metal:use-macro="here/batch_macros_search/macros/navigation" tal:condition="request/show" />
+	        <div tal:content="structure view/render_listing" />
+	    </tal:cond>
+
+	    <p tal:condition="not: view/contents">
+	        Keine Inhalte vorhanden
+	    </p>
+
+	  </form>
+
+	<script type="text/javascript">
+		jq(function(){
+			var $links = jq('.ticketbox-quick-search-box a');
+			$links.bind('click', function(e){
+			  e.preventDefault();
+			  $this = jq(this);
+
+				<!-- TODO: alle parameter so flushen -->
+			  tabbedview.flush_params("state");
+			  tabbedview.flush_params("responsible");
+			  tabbedview.flush_params("area");
+			  tabbedview.flush_params("priority");
+   			  tabbedview.flush_params("release");
+
+			  params =jq.find_param($this.attr('href'));
+			  params_searchvalue = params['searchvalue']
+			  params_searchkey = params['searchkey']
+			  tabbedview.param(params_searchkey, params_searchvalue);
+			  tabbedview.reload_view();
+			});
+
+		});
+
+	</script>
+
+	</tal:translation>
+
+
+    </div>
+
+
+
+

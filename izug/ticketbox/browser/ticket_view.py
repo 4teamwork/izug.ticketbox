@@ -1,14 +1,13 @@
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.browser.helper import map_attribute
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
 
 class TicketView(BrowserView):
 
     template = ViewPageTemplateFile('ticket_view.pt')
 
-
-    #
     # HELPER Methods for ftw.table generator
     def map_state(self):
         """
@@ -34,21 +33,20 @@ class TicketView(BrowserView):
         """
         return map_attribute(self.context, "Releases")
 
-
     def readable_author(self):
-         """
-         get the full name of a user-id
-         """
+        """
+        get the full name of a user-id
+        """
 
-         author = self.context.responsibleManager
-         if not author:
-             return '-'
-         name = author
-         user = self.context.acl_users.getUserById(author)
-         if user is None:
-             return _(u"unassigned")
-         else:
-             name = user.getProperty('fullname', author)
-             if not len(name):
-                 name = author
-             return name
+        author = self.context.responsibleManager
+        if not author:
+            return '-'
+        name = author
+        user = self.context.acl_users.getUserById(author)
+        if user is None:
+            return _(u"unassigned")
+        else:
+            name = user.getProperty('fullname', author)
+            if not len(name):
+                name = author
+            return name

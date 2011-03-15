@@ -1,25 +1,25 @@
-from Products.CMFCore.utils import getToolByName
-from izug.ticketbox.browser.interfaces import IResponseAdder
-from zope.interface import implements
-from zope.cachedescriptors.property import Lazy
 from Acquisition import aq_inner
-from Products.Five.browser import BrowserView
+from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.adapters import IResponseContainer
 from izug.ticketbox.adapters import Response
-from plone.memoize.view import memoize
-from izug.ticketbox.config import DEFAULT_ISSUE_MIME_TYPE
-from izug.ticketbox import ticketboxMessageFactory as _
-from Products.statusmessages.interfaces import IStatusMessage
-from zope.lifecycleevent import modified
-from OFS.Image import File
-from zope.component import getUtility
-from zope.schema.interfaces import IVocabularyFactory
-from plone.i18n.normalizer import IDNormalizer
 from izug.ticketbox.browser.helper import map_attribute
+from izug.ticketbox.browser.interfaces import IResponseAdder
+from izug.ticketbox.config import DEFAULT_ISSUE_MIME_TYPE
+from OFS.Image import File
+from plone.i18n.normalizer import IDNormalizer
+from plone.memoize.view import memoize
+from Products.CMFCore.utils import getToolByName
+from Products.Five.browser import BrowserView
+from Products.statusmessages.interfaces import IStatusMessage
+from zope.cachedescriptors.property import Lazy
+from zope.component import getUtility
+from zope.interface import implements
+from zope.lifecycleevent import modified
+from zope.schema.interfaces import IVocabularyFactory
+
 
 class Base(BrowserView):
     """Base view for Ticketbox Response.
-
     Mostly meant as helper for adding a Ticketbox Response.
     """
 
@@ -145,8 +145,6 @@ class Base(BrowserView):
         context = aq_inner(self.context)
         return context.getState()
 
-
-
     @property
     @memoize
     def states_for_display(self):
@@ -165,7 +163,6 @@ class Base(BrowserView):
     @property
     def available_states(self):
         return [t['value'] for t in self.states_for_display]
-
 
     @property
     def priorities_for_display(self):
@@ -244,7 +241,6 @@ class Base(BrowserView):
         """
         return [t['value'] for t in self.releases_for_display]
 
-
     @property
     def show_target_releases(self):
         """Should the option for selecting a target release be shown?
@@ -280,7 +276,6 @@ class Base(BrowserView):
         there is more than one option.
         """
         return len(self.areas_for_display) > 1
-
 
     @property
     def managers_for_display(self):
@@ -368,22 +363,26 @@ class Create(Base):
 
             #get responsibleManager and member-infos before changes
             responsible_before = context.getResponsibleManager()
-            member_before = self.context.portal_membership.getMemberById(responsible_before)
+            member_before = self.context.portal_membership.getMemberById(
+                responsible_before)
 
             context.setResponsibleManager(responsible_after)
 
             #get member-infos after changes
-            member_after = self.context.portal_membership.getMemberById(responsible_after)
+            member_after = self.context.portal_membership.getMemberById(
+                responsible_after)
 
             #get fullname from member before changes
             if member_before:
-                before = member_before.getProperty('fullname', responsible_before)
+                before = member_before.getProperty(
+                    'fullname', responsible_before)
             else:
                 before = unassigned
 
             #get fullname from member after changes
             if member_after:
-                after = member_after.getProperty('fullname', responsible_after)
+                after = member_after.getProperty(
+                    'fullname', responsible_after)
             else:
                 after = unassigned
 
@@ -393,7 +392,6 @@ class Create(Base):
 
         options = [
             ('Priority', _(u'Priority'), 'available_priorities'),
-            #('responsibleManager', _(u'Responsible manager'), 'available_managers'),
             ('Releases', _(u'Target release'), 'available_releases'),
             ('State', _(u'States'), 'available_states'),
             ('Area', _(u'Areas'), 'available_areas'),
@@ -408,9 +406,10 @@ class Create(Base):
                 if current != new:
                     changes[option] = new
 
-                    new_response.add_change(option, title,
-                                            map_attribute(self.context, option, current),
-                                            map_attribute(self.context, option, new))
+                    new_response.add_change(
+                        option, title,
+                        map_attribute(self.context, option, current),
+                        map_attribute(self.context, option, new))
                     issue_has_changed = True
 
         attachment = form.get('attachment')
@@ -445,16 +444,19 @@ class Create(Base):
             context.update(**changes)
             # Add response
             catalog_tool = self.context.portal_catalog
-            # re-set the modification date - this must be the last modifying access
+            # re-set the modification date -
+            # this must be the last modifying access
             context.reindexObject()
             self.folder.add(new_response)
             context.setModificationDate(modifiedDate)
             catalog_tool.catalog_object(context,
                 '/'.join(context.getPhysicalPath()))
         if form.get('sendNotification', None):
-            self.request.response.redirect(context.absolute_url()+'/notification_form')
+            self.request.response.redirect(
+                context.absolute_url()+'/notification_form')
         else:
             self.request.response.redirect(context.absolute_url())
+
 
 class Edit(Base):
 

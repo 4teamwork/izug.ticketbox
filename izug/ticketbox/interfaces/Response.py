@@ -35,7 +35,6 @@ class Response(Base):
     """
 
     # Methods
-
     def setNewIssueState(transition):
         """
         Set a new review state for the parent issue, by executing
@@ -67,6 +66,3 @@ class Response(Base):
             before: The state of the field before
             after: The new state of the field
         """
-
-
-# end of class Response
