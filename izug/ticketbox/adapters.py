@@ -1,6 +1,6 @@
 from AccessControl import getSecurityManager
 from DateTime import DateTime
-from izug.ticketbox.interfaces.ticket import ITicket
+from izug.ticketbox.interfaces import ITicket,IResponseContainer, IResponse
 from persistent import Persistent
 from persistent.list import PersistentList
 from zope.annotation.interfaces import IAnnotations
@@ -9,27 +9,8 @@ from zope.app.container.contained import ObjectRemovedEvent
 from zope.app.container.interfaces import UnaddableError
 from zope.component import adapts
 from zope.event import notify
-from zope.interface import Attribute
 from zope.interface import implements
-from zope.interface import Interface
 
-class IResponseContainer(Interface):
-    pass
-
-class IResponse(Interface):
-
-    text = Attribute("Text of this response")
-    rendered_text = Attribute("Rendered text (html) for caching")
-    changes = Attribute("Changes made to the issue in this response.")
-    creator = Attribute("Id of user making this change.")
-    date = Attribute("Date (plus time) this response was made.")
-    type = Attribute("Type of response (additional/clarification/reply).")
-    mimetype = Attribute("Mime type of the response.")
-    attachment = Attribute("File attachment.")
-
-    def add_change(id, name, before, after):
-        """Add change to the list of changes.
-        """
 
 class ResponseContainer(Persistent):
 

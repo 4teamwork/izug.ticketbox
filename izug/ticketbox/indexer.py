@@ -9,6 +9,10 @@ num_sort_regex = re.compile('\d+')
 
 @indexer(ITicket)
 def sortable_id(obj):
+    """put any zeros before the id
+    so its possible to sort the id correctly
+    """
+
     _id = getattr(obj, 'getId', None)
     if _id is not None:
         if safe_callable(_id):

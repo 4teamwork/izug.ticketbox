@@ -1,6 +1,6 @@
 from Acquisition import aq_parent
 from izug.ticketbox import ticketboxMessageFactory as _
-from izug.ticketbox.interfaces.ticket import ITicket
+from izug.ticketbox.interfaces import ITicket
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from Products.PageTemplates.GlobalTranslationService \

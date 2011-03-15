@@ -19,29 +19,29 @@
 	   />
   <browser:page
 	name="base_response"
-	for="izug.ticketbox.interfaces.ticket.ITicket"
+	for="izug.ticketbox.interfaces.ITicket"
 	permission="zope2.View"
 	class=".response.Base"
 	/>
 
   <browser:page
      name="create_response"
-     for="izug.ticketbox.interfaces.ticket.ITicket"
+     for="izug.ticketbox.interfaces.ITicket"
      permission="zope2.View"
      class=".response.Create"
-     allowed_interface=".interfaces.ICreateResponse"
+     allowed_interface="..interfaces.ICreateResponse"
      />
 
   <browser:page
      name="delete_response"
-     for="izug.ticketbox.interfaces.ticket.ITicket"
+     for="izug.ticketbox.interfaces.ITicket"
      permission="zope2.View"
      class=".response.Delete"
      />
 
   <browser:page
      name="edit_response"
-     for="izug.ticketbox.interfaces.ticket.ITicket"
+     for="izug.ticketbox.interfaces.ITicket"
      permission="zope2.View"
      class=".response.Edit"
      template="edit_response.pt"
@@ -49,7 +49,7 @@
 
   <browser:page
      name="save_response"
-     for="izug.ticketbox.interfaces.ticket.ITicket"
+     for="izug.ticketbox.interfaces.ITicket"
      permission="zope2.View"
      class=".response.Save"
      />
@@ -60,12 +60,12 @@
       permission="zope2.View"
       class=".response.AddForm"
       template="response.pt"
-      for="izug.ticketbox.interfaces.ticket.ITicket"
+      for="izug.ticketbox.interfaces.ITicket"
       />
 
 	<!-- Override izug's custom header -->
     <browser:page
-        for="izug.ticketbox.interfaces.ticket.ITicket"
+        for="izug.ticketbox.interfaces.ITicket"
         name="custom_header"
 		permission="zope2.View"
         template="ticket_custom_header.pt"
@@ -73,7 +73,7 @@
 
   <adapter
       factory=".notification.ticket_notification.TicketEmailRepresentation"
-      for="izug.ticketbox.interfaces.ticket.ITicket"
+      for="izug.ticketbox.interfaces.ITicket"
       provides="ftw.notification.email.interfaces.IEMailRepresentation"
       />
 

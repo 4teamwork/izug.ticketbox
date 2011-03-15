@@ -36,25 +36,25 @@
 	<!-- ticketresponse -->
 
   <subscriber
-      for="izug.ticketbox.adapters.IResponse
+      for="izug.ticketbox.interfaces.IResponse
            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
       handler=".events.modifiedNewStyleResponse"
       />
 
   <subscriber
-      for="izug.ticketbox.adapters.IResponse
+      for="izug.ticketbox.interfaces.IResponse
            zope.app.container.interfaces.IObjectAddedEvent"
       handler=".events.addedNewStyleResponse"
       />
 
   <subscriber
-      for="izug.ticketbox.adapters.IResponse
+      for="izug.ticketbox.interfaces.IResponse
            zope.app.container.interfaces.IObjectRemovedEvent"
       handler=".events.removedResponse"
       />
 
   <adapter
-      provides=".adapters.IResponseContainer"
+      provides=".interfaces.IResponseContainer"
       factory=".adapters.ResponseContainer"
       />
 

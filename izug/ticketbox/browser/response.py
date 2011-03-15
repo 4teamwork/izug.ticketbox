@@ -1,6 +1,6 @@
 from Acquisition import aq_inner
 from izug.ticketbox import ticketboxMessageFactory as _
-from izug.ticketbox.adapters import IResponseContainer
+from izug.ticketbox.interfaces import IResponseContainer
 from izug.ticketbox.adapters import Response
 from izug.ticketbox.browser.helper import map_attribute
 from izug.ticketbox.browser.interfaces import IResponseAdder
