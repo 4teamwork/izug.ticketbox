@@ -42,7 +42,6 @@ class TicketBoxInfoView(SharingView):
 
     def role_settings(self):
         context = self.context
-        import pdb; pdb.set_trace( )
         results = super(TicketBoxInfoView, self).role_settings()
 
         if not context.portal_membership.checkPermission(
