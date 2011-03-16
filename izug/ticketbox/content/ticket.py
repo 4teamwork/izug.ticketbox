@@ -17,7 +17,7 @@ from Products.ATContentTypes.content import schemata
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget \
     import ReferenceBrowserWidget
 from zope.interface import implements
-
+from Products.Archetypes import atapi
 
 TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 
@@ -148,6 +148,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 ))
 
 TicketSchema['description'].required = True
+TicketSchema['description'].widget = atapi.RichWidget(label=_(u"label_description",default=u"Description"))
 schemata.finalizeATCTSchema(TicketSchema, moveDiscussion=False)
 
 

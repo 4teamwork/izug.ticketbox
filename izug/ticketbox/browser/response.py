@@ -427,6 +427,12 @@ class Create(Base):
             # new_response
             new_id = queryUtility(IIDNormalizer).normalize(
                 attachment.filename.decode('utf-8'))
+            if context.get(new_id, None):
+                IStatusMessage(context.REQUEST).addStatusMessage(
+                    _(u"A File with this id already exists,\
+                    the File wasn't uploaded"), type='error')
+                context.setAttachment('DELETE_FILE')
+                return self.request.response.redirect(context.absolute_url())
             new_file_id = context.invokeFactory(
                 type_name="TicketAttachment",
                 id=new_id,
