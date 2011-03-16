@@ -86,7 +86,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             description="Select which manager, if any," +
                 " is responsible for this issue.",
         ),
-        vocabulary='get_assignable_users',
+        vocabulary='assignable_users',
     ),
 
     #Answer-date (default: x + 14 days)
@@ -185,13 +185,13 @@ class Ticket(base.ATCTFolder):
 
         return self.default_due_date()
 
-    def get_assignable_users(self):
+    def assignable_users(self):
         """
         Get the managers available as a DisplayList. The first item is 'None',
         with a key of '(UNASSIGNED)'.
         """
 
-        return aq_parent(self).get_assignable_users()
+        return aq_parent(self).assignable_users()
 
 
 registerType(Ticket, PROJECTNAME)

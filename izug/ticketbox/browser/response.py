@@ -284,7 +284,7 @@ class Base(BrowserView):
         """Get the tracker managers.
         """
         context = self.context.aq_inner
-        users=context.get_assignable_users()
+        users=context.assignable_users()
         result = []
         assignedUser = context.getResponsibleManager()
         for user in users:
@@ -300,7 +300,7 @@ class Base(BrowserView):
         """
         # get vocab from issue
         result = []
-        for user in self.context.aq_inner.get_assignable_users():
+        for user in self.context.aq_inner.assignable_users():
             result.append(user[0])
         return result
 

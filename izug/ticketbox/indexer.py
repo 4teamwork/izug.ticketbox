@@ -2,6 +2,8 @@ from izug.ticketbox.interfaces import ITicket
 from plone.indexer.decorator import indexer
 from Products.CMFPlone.utils import safe_callable
 from Products.CMFPlone.utils import safe_unicode
+from izug.ticketbox.browser.helper import readable_author
+from Products.ATContentTypes.interface.file import IATFile
 import re
 
 num_sort_regex = re.compile('\d+')
@@ -27,5 +29,23 @@ def sortable_id(obj):
     return ''
 
 
+@indexer(IATFile)
+def sortable_ticket_references(obj):
+    """put any zeros before the id
+    so its possible to sort the id correctly
+    """
+
+    parent = obj.aq_inner.aq_parent
+    if ITicket.providedBy(parent):
+        return sortable_id(obj)
+
+
 def zero_fill(matchobj):
     return matchobj.group().zfill(8)
+
+
+@indexer(ITicket)
+def sortable_responsibleManager(obj):
+    """get the fullname of the author to sort correctly"""
+
+    return readable_author(obj)

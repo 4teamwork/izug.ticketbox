@@ -4,7 +4,7 @@
               		areas context/getAvailableAreas;
                     releases context/getAvailableReleases;
                     states context/getAvailableStates;
-                    responsibles context/get_assignable_users
+                    responsibles context/assignable_users
                     ">
 
       <div class="documentDescription" tal:content="here/Description" />

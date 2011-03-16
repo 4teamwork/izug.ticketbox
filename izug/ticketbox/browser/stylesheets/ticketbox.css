@@ -28,3 +28,15 @@ div.collapsible dl.collapsedBlockCollapsible dt.collapsibleHeader{
 table.ticketbox-overview td{
     width:20%;
 }
+
+body.template-atct_edit #datagridwidget-table-availableStates tr th:first-child,
+body.template-atct_edit #datagridwidget-table-availableStates tr td:first-child,
+body.template-atct_edit #datagridwidget-table-availableReleases tr th:first-child,
+body.template-atct_edit #datagridwidget-table-availableReleases tr td:first-child,
+body.template-atct_edit #datagridwidget-table-availablePriorities tr th:first-child,
+body.template-atct_edit #datagridwidget-table-availablePriorities tr td:first-child,
+body.template-atct_edit #datagridwidget-table-availableAreas tr th:first-child,
+body.template-atct_edit #datagridwidget-table-availableAreas tr td:first-child{
+    display:none;
+    width:0px;
+}

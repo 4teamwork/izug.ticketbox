@@ -22,6 +22,7 @@ class TicketBoxViewAttachments(TabbedTicketBoxBaseView):
                         },
                         {'column': 'getId',
                         'column_title': _(u"Ticketnr"),
+                        'sort_index': 'sortable_ticket_references',
                         'transform': self.get_attachment_ticket_nr,
                         },
                         )

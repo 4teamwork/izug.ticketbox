@@ -155,22 +155,20 @@
 			        Select a change of state in the issue this response is for, if applicable
 			      </div>
 
-			      <tal:states
-			          repeat="option view/states_for_display">
-			        <input class="noborder" name="state"
-			               value="" id="state_1" type="radio"
-			               tal:attributes="value option/value;
-			                               id option/value;
-			                               checked option/checked;" />
+				<!-- dropdown for states -->
+					  <select name="state">
+					  	<tal:options
+					          repeat="option view/states_for_display">
+							<option value="" id=""
+								tal:attributes="value option/value;
+	                       						id option/value;
+	                                            selected option/checked;" />
+							    <label
+						            tal:attributes="for option/value"
+						            tal:content="option/label" />
+								</tal:options>
+					  </select>
 
-			        <label
-			            i18n:domain="plone"
-			            i18n:translate=""
-			            tal:attributes="for option/value"
-			            tal:content="option/label" />
-
-			        <br />
-			      </tal:states>
 			    </div>
 
 
@@ -185,21 +183,19 @@
 			           i18n:translate="Response_help_newSeverity">
 			        Select the severity for this issue
 			      </div>
-
-			      <tal:options
-			          repeat="option view/priorities_for_display">
-			        <input class="noborder" name="priority"
-			               value="" id="" type="radio"
-			               tal:attributes="value option/value;
-			                               id option/value;
-			                               checked option/checked;" />
-
-			        <label
-			            tal:attributes="for option/value"
-			            tal:content="option/label" />
-
-			        <br />
-			      </tal:options>
+			<!-- dropdown for priority -->
+				  <select name="priority">
+				  	<tal:options
+				          repeat="option view/priorities_for_display">
+						<option value="" id=""
+							tal:attributes="value option/value;
+                       						id option/value;
+                                            selected option/checked;" />
+						    <label
+					            tal:attributes="for option/value"
+					            tal:content="option/label" />
+							</tal:options>
+				  </select>
 			    </div>
 
 
@@ -215,20 +211,19 @@
 			        Select the area for this issue
 			      </div>
 
-			      <tal:options
-			          repeat="option view/areas_for_display">
-			        <input class="noborder" name="area"
-			               value="" id="" type="radio"
-			               tal:attributes="value option/value;
-			                               id option/value;
-			                               checked option/checked;" />
-
-			        <label
-			            tal:attributes="for option/value"
-			            tal:content="option/label" />
-
-			        <br />
-			      </tal:options>
+				<!-- dropdown for area -->
+					  <select name="area">
+					  	<tal:options
+					          repeat="option view/areas_for_display">
+							<option value="" id=""
+								tal:attributes="value option/value;
+	                       						id option/value;
+	                                            selected option/checked;" />
+							    <label
+						            tal:attributes="for option/value"
+						            tal:content="option/label" />
+								</tal:options>
+					  </select>
 			    </div>
 
 
@@ -244,21 +239,20 @@
 			        Set the target release for this issue
 			      </div>
 
-			      <tal:options
-			          repeat="option view/releases_for_display">
-			        <input class="noborder" name="releases"
-			               value="" id="" type="radio"
-			               tal:attributes="value option/value;
-			                               id option/value;
-			                               checked option/checked;" />
+				<!-- dropdown for releases -->
+					  <select name="releases">
+					  	<tal:options
+					          repeat="option view/releases_for_display">
+							<option value="" id=""
+								tal:attributes="value option/value;
+	                       						id option/value;
+	                                            selected option/checked;" />
+							    <label
+						            tal:attributes="for option/value"
+						            tal:content="option/label" />
+								</tal:options>
+					  </select>
 
-			        <label
-			            i18n:translate=""
-			            tal:attributes="for option/value"
-			            tal:content="option/label" />
-
-			        <br />
-			      </tal:options>
 			    </div>
 
 			    <div class="field"
@@ -272,22 +266,20 @@
 			           i18n:translate="Response_help_newResponsibleManager">
 			        Select the responsible manager for this issue
 			      </div>
+				<!-- dropdown for responsibleManager -->
+					  <select name="responsibleManager">
+					  	<tal:options
+					          repeat="option view/managers_for_display">
+							<option value="" id=""
+								tal:attributes="value option/value;
+	                       						id option/value;
+	                                            selected option/checked;" />
+							    <label
+						            tal:attributes="for option/value"
+						            tal:content="option/label" />
+								</tal:options>
+					  </select>
 
-			      <tal:options
-			          repeat="option view/managers_for_display">
-			        <input class="noborder" name="responsibleManager"
-			               value="" id="" type="radio"
-			               tal:attributes="value option/value;
-			                               id option/value;
-			                               checked option/checked;" />
-
-			        <label
-			            i18n:translate=""
-			            tal:attributes="for option/value"
-			            tal:content="option/label" />
-
-			        <br />
-			      </tal:options>
 			    </div>
 				<div>
 					<input id="sendNotification" class="noborder" type="checkbox" name="sendNotification:boolean" value="off" />

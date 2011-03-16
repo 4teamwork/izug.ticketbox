@@ -79,10 +79,13 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                 'title': Column(_(u"title")),
                 'show_in_all_tickets': SelectColumn(
                     _(u"show in 'all tickets'"),
-                    vocabulary="getBla"),
+                    # DatagridFields SelectColumn doesn not behave like an
+                    # archetype field. It always does
+                    # a getattr to get the vocab.
+                    vocabulary="yes_no"),
                 'show_in_my_tickets': SelectColumn(
                     _(u"show in 'my tickets'"),
-                    vocabulary="getBla"),
+                    vocabulary="yes_no"),
             }
         ),
         columns=("id", "title", "show_in_all_tickets", "show_in_my_tickets"),
@@ -157,7 +160,7 @@ class TicketBox(folder.ATBTreeFolder):
     schema = TicketBoxSchema
     security = ClassSecurityInfo()
 
-    def get_assignable_users(self):
+    def assignable_users(self):
         """
         Get the managers available as a DisplayList. The first item is 'None',
         with a key of '(UNASSIGNED)'.
@@ -167,8 +170,9 @@ class TicketBox(folder.ATBTreeFolder):
         users.insert(0, ['(UNASSIGNED)', _(u'None')])
         return users
 
-    def getBla(self):
-        """return displaylist
+    def yes_no(self):
+        """return displaylist with two static rows
+        contents: yes and no
         """
         return DisplayList((
             ("1", _(u"yes")),

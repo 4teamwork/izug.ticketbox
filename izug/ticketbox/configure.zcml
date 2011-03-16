@@ -41,6 +41,14 @@
 	 name="sortable_id"
 	 factory=".indexer.sortable_id"
 	 />
+  <adapter
+	 name="sortable_responsibleManager"
+	 factory=".indexer.sortable_responsibleManager"
+	 />
+	<adapter
+	 name="sortable_ticket_references"
+	 factory=".indexer.sortable_ticket_references"
+	 />
 
 	<utility component=".vocabularies.StatesVocabularyFactory"
 	           name="ticketbox_values_states"

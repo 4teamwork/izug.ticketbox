@@ -44,7 +44,7 @@ class TabbedTicketBoxBaseView(BaseListingView):
                         },
                         {'column': 'responsibleManager',
                         'column_title': _(u"responsibleManager"),
-                        'sort_index': 'responsibleManager',
+                        'sort_index': 'sortable_responsibleManager',
                         'transform': self.readable_author,
                         },
                         {'column': 'state',
