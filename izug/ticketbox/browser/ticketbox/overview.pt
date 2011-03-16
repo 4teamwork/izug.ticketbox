@@ -9,28 +9,7 @@
 
       <div class="documentDescription" tal:content="here/Description" />
 
-      <div class="formControls">
-        <table>
-          <tr>
-            <td>
-              <form action="createObject"
-                    id="ticketbox-submit-new-ticket-form">
-                <input name="type_name"
-                       type="hidden"
-                       value="Ticket"
-                       />
-                <div class="formControls">
-                  <input class="context"
-                         type="submit"
-                         i18n:attributes="value"
-						 value="Submit new issue"
-                         />
-                </div>
-              </form>
-            </td>
-          </tr>
-        </table>
-      </div>
+ 
 		<table class="ticketbox-overview">
 			<tr>
 				<td class="long-text">

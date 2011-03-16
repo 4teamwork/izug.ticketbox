@@ -88,7 +88,7 @@ class Base(BrowserView):
     def can_edit_response(self):
         context = aq_inner(self.context)
         return self.memship.checkPermission(
-            'izug.ticketbox: Add Ticket',
+            'izug.ticketbox: Add Ticket Box',
             context)
 
     @property

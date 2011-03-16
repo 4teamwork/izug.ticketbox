@@ -37,7 +37,7 @@
 			      </div>
 
    				 <div class="response-actions"
-   				     	    tal:condition="view/can_edit_response|view/can_delete_response">
+   				     	    tal:condition="view/can_edit_response">
 
    				       <form method="post"
    				             tal:attributes="action string:${context/absolute_url}/@@edit_response"
