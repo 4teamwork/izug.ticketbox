@@ -108,7 +108,7 @@ class Base(BrowserView):
         status = IStatusMessage(self.request)
         response_id = self.request.form.get('response_id', None)
         if response_id is None:
-            msg = _(u"No response selected.")
+            msg = _(u"msg_no_response", default=u"No Response was selected")
             msg = self.context.translate(msg)
             status.addStatusMessage(msg, type='error')
             return -1
@@ -116,13 +116,15 @@ class Base(BrowserView):
             try:
                 response_id = int(response_id)
             except ValueError:
-                msg = _(u"Response id ${response_id} is no integer.",
+                msg = _(u"msg_nointeger",
+                        default=u"Response id ${response_id} is no integer.",
                         mapping=dict(response_id=response_id))
                 msg = self.context.translate(msg)
                 status.addStatusMessage(msg, type='error')
                 return -1
             if response_id >= len(self.folder):
-                msg = _(u"Response id ${response_id} does not exist.",
+                msg = _(u"msg_invalid",
+                        default=u"The Response ID ${response_id} doesn't exist.",
                         mapping=dict(response_id=response_id))
                 msg = self.context.translate(msg)
                 status.addStatusMessage(msg, type='error')
@@ -358,7 +360,7 @@ class Create(Base):
         issue_has_changed = False
         #Unassigned is no member in portal_membership.
         #So we have to set it manually
-        unassigned = _(u'unassigned')
+        unassigned = _(u'label_unassigned',default=u'unassigned')
         responsible_after = form.get('responsibleManager', u'')
         if responsible_after != context.getResponsibleManager():
 
@@ -387,15 +389,18 @@ class Create(Base):
             else:
                 after = unassigned
 
-            new_response.add_change('responsibleManager', _(u'Issue state'),
+            new_response.add_change('responsibleManager',
+                                    _(u'label_responsibleManager',default=u"Responsible"),
                                     before, after)
             issue_has_changed = True
 
         options = [
-            ('priority', _(u'Priority'), 'available_priorities'),
-            ('releases', _(u'Target release'), 'available_releases'),
-            ('state', _(u'States'), 'available_states'),
-            ('area', _(u'Areas'), 'available_areas'),
+            ('priority', _(u'label_priority_',default=u"Priority"),
+             'available_priorities'),
+            ('releases', _(u'label_releases',default=u"Target Release"),
+             'available_releases'),
+            ('state', _(u'label_state', default=u"State"), 'available_states'),
+            ('area', _(u'label_areas', default=u"Area"), 'available_areas'),
             ]
         # Changes that need to be applied to the issue (apart from
         # workflow changes that need to be handled separately).
@@ -434,7 +439,8 @@ class Create(Base):
 
         if len(response_text) == 0 and not issue_has_changed:
             status = IStatusMessage(self.request)
-            msg = _(u"No response text added and no issue changes made.")
+            msg = _(u"msg_no_changes",
+                   default="No response text added and no issue changes made.")
             #
             # msg = self.context.translate(msg)
             status.addStatusMessage(msg, type='error')
@@ -486,18 +492,21 @@ class Save(Base):
         context = aq_inner(self.context)
         status = IStatusMessage(self.request)
         if not self.can_edit_response:
-            msg = _(u"You are not allowed to edit responses.")
+            msg = _(u"msg_not_restricted",
+                    default=u"You are not allowed to edit responses.")
             msg = self.context.translate(msg)
             status.addStatusMessage(msg, type='error')
         else:
             response_id = form.get('response_id', None)
             if response_id is None:
-                msg = _(u"No response selected for saving.")
+                msg = _(u"msg_no_response_selected",
+                        default=u"No response selected for saving.")
                 msg = self.context.translate(msg)
                 status.addStatusMessage(msg, type='error')
             elif self.folder[response_id] is None:
-                msg = _(u"Response does not exist anymore; perhaps it was "
-                        "removed by another user.")
+                msg = _(u"msg_doesnt_exists",
+                        default=u"Response does not exist anymore; \
+                        perhaps it was removed by another user.")
                 msg = self.context.translate(msg)
                 status.addStatusMessage(msg, type='error')
             else:
@@ -506,7 +515,7 @@ class Save(Base):
                 response.text = response_text
                 # Remove cached rendered response.
                 response.rendered_text = None
-                msg = _(u"Changes saved to response.",
+                msg = _(u"msg_changes_saved", default="Changes Saved",
                       mapping=dict(response_id=response_id))
                 msg = self.context.translate(msg)
                 status.addStatusMessage(msg, type='info')
@@ -528,35 +537,37 @@ class Delete(Base):
         status = IStatusMessage(self.request)
 
         if not self.can_delete_response:
-            msg = _(u"You are not allowed to delete responses.")
+            msg = _(u"msg_restricted_delete",
+            default=u"You are not allowed to delete Responses")
             msg = self.context.translate(msg)
             status.addStatusMessage(msg, type='error')
         else:
             response_id = self.request.form.get('response_id', None)
             if response_id is None:
-                msg = _(u"No response selected for removal.")
+                msg = _(u"msg_no_response_delete",
+                 default=u"No response selected for removal.")
                 msg = self.context.translate(msg)
                 status.addStatusMessage(msg, type='error')
             else:
                 try:
                     response_id = int(response_id)
                 except ValueError:
-                    msg = _(u"Response id ${response_id} is no integer so it "
-                            "cannot be removed.",
+                    msg = _(u"msg_nointeger",
+                            default=u"Response id ${response_id} is no integer.",
                             mapping=dict(response_id=response_id))
                     msg = self.context.translate(msg)
                     status.addStatusMessage(msg, type='error')
                     self.request.response.redirect(context.absolute_url())
                     return
                 if response_id >= len(self.folder):
-                    msg = _(u"Response id ${response_id} does not exist so it "
-                            "cannot be removed.",
+                    msg = _(u"msg_invalid",
+                            default=u"The Response ID ${response_id} doesn't exist.",
                             mapping=dict(response_id=response_id))
                     msg = self.context.translate(msg)
                     status.addStatusMessage(msg, type='error')
                 else:
                     self.folder.delete(response_id)
-                    msg = _(u"Removed response.",
+                    msg = _(u"msg_removed", default="Removed response.",
                             mapping=dict(response_id=response_id))
                     msg = self.context.translate(msg)
                     status.addStatusMessage(msg, type='info')

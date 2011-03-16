@@ -39,7 +39,7 @@
             <td tal:content="view/map_author" />
         </tr>
         <tr>
-            <td i18n:translate='label_Answer-date'>Answer Date</td>
+            <td i18n:translate='label_AnswerDate'>Answer Date</td>
             <td tal:content="python:context.getAnswerDate().strftime('%d.%m.%Y')" />
         </tr>
         <tr tal:condition="python: context.getAttachments()">

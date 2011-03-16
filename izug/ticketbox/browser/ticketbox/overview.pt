@@ -35,7 +35,7 @@
 			<tr>
 				<td class="long-text">
 					<div id="tickets-by-responsible" class="ticketbox-quick-search-box">
-			          <h3 i18n:translate="ticketbox_heading_by_responsible">By responsible</h3>
+			          <h3 i18n:translate="label_heading_by_responsible">By responsible</h3>
 			          <ul>
 			              <tal:areas repeat="responsible responsibles">
 			                <li tal:define="responsibleId python:responsible[0];
@@ -52,7 +52,7 @@
 				</td>
 				<td>
 					<div tal:condition="states" id="tickets-by-state" class="ticketbox-quick-search-box">
-				          <h3 i18n:translate="ticketbox_heading_by_states">By states</h3>
+				          <h3 i18n:translate="label_heading_by_states">By states</h3>
 				          <ul>
 				              <tal:areas repeat="state states">
 				                <li tal:define="stateId state/id;
@@ -69,7 +69,7 @@
 				</td>
 				<td>
 						<div tal:condition="releases" id="tickets-by-release" class="ticketbox-quick-search-box">
-				          <h3 i18n:translate="ticketbox_heading_by_release">By release</h3>
+				          <h3 i18n:translate="label_heading_by_release">By release</h3>
 				          <ul>
 				              <tal:areas repeat="release releases">
 				                <li tal:define="releaseId release/id;
@@ -86,7 +86,7 @@
 				<td>
 
 				<div tal:condition="areas" id="tickets-by-area" class="ticketbox-quick-search-box">
-		          <h3 i18n:translate="ticketbox_heading_by_area">By area</h3>
+		          <h3 i18n:translate="label_heading_by_area">By area</h3>
 		          <ul>
 		              <tal:areas repeat="area areas">
 		                <li tal:define="areaId area/id;
@@ -103,7 +103,7 @@
 				<td>
 
 			      <div tal:condition="priorities" id="tickets-by-priority" class="ticketbox-quick-search-box">
-			          <h3 i18n:translate="ticketbox_heading_by_severities">By priority</h3>
+			          <h3 i18n:translate="label_heading_by_severities">By priority</h3>
 			          <ul>
 			              <tal:areas repeat="priority priorities">
 			                <li tal:define="priorityId priority/id;

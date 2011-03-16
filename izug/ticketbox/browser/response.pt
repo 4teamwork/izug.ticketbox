@@ -9,10 +9,10 @@
    		                     attachment nocall:response_info/attachment;
    		                     html response_info/html;">
 		     	 <div class="response-info discreet">
-						<span i18n:translate="response_added_by">Added by</span>
+						<span i18n:translate="label_response_added">Added by</span>
 				        <span class="contact-user"
 				              tal:content="response/creator_fullname" />
-				        <span i18n:translate="response_added_on">on</span>
+				        <span i18n:translate="label_added_on">on</span>
 				        <span class="contact-user"
 				              tal:content="python:here.toLocalizedTime(response.date, long_format=True)" />
 				        <div tal:repeat="delta response/changes">
