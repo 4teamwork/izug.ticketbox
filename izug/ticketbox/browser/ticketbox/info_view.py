@@ -1,13 +1,13 @@
 from Acquisition import aq_inner
-from izug.arbeitsraum.browser.views import InfoView
 from izug.ticketbox import ticketboxMessageFactory as _
 from plone.app.workflow.interfaces import ISharingPageRole
 from baseview import TabbedTicketBoxBaseView
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import getUtilitiesFor
+from plone.app.workflow.browser.sharing import SharingView
 
 
-class TicketBoxInfoView(TabbedTicketBoxBaseView):
+class TicketBoxInfoView(SharingView):
     """Info Tabbview
     """
     template = ViewPageTemplateFile('info_view.pt')
@@ -42,7 +42,8 @@ class TicketBoxInfoView(TabbedTicketBoxBaseView):
 
     def role_settings(self):
         context = self.context
-        results = super(InfoView, self).role_settings()
+        import pdb; pdb.set_trace( )
+        results = super(TicketBoxInfoView, self).role_settings()
 
         if not context.portal_membership.checkPermission(
             'ManagePortal', context):

@@ -47,7 +47,7 @@
 
 	 <browser:page
     for="izug.ticketbox.interfaces.ITicketBox"
-    name="tabbedview_view-info"
+    name="tabbedview_view-info_view"
     class=".info_view.TicketBoxInfoView"
     permission="zope2.View"
     template="info_view.pt"
