@@ -96,9 +96,9 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
         name='availableReleases',
         widget=DataGridWidget(
             visible={'view': 'invisible', 'edit': 'visible'},
-            label=_(u"Available Releases"),
-            description=_(
-                u"Enter the Available Releases for this tracker."),
+            label=_(u'label_availableReleases',default=u"Available Releases"),
+            description=_(u'help_avialableReleases',
+                default=u"Enter the Available Releases for this tracker."),
             column_names=(_(u'Releases_id'), _(u'Releases_title')),
         ),
         allow_empty_rows=False,
@@ -110,9 +110,9 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
         name='availablePriorities',
         widget=DataGridWidget(
             visible={'view': 'invisible', 'edit': 'visible'},
-            label=_(u"Available priorities"),
-            description=(
-                _(u"Enter the different type of issue severities" +
+            label=_(u'label_availablePriorities', u"Available priorities"),
+            description=(_(u'help_availablePriorities',
+                default=u"Enter the different type of issue severities" +
                 " that should be available, one per line.")
             ),
             column_names=(
@@ -128,9 +128,9 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
         name='availableAreas',
         widget=DataGridWidget(
             visible={'view': 'invisible', 'edit': 'visible'},
-            label=_(u"Areas"),
+            label=_(u'label_Areas',default=u"Areas"),
             description=(
-                _(u"Enter the issue topics/areas for this tracker.")
+                _(u'help_areas',default=u"Enter the issue topics/areas for this tracker.")
             ),
             column_names=(
                 _(u'Areas_id'),

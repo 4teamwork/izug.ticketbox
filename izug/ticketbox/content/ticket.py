@@ -26,8 +26,8 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         name='dueDate',
         default_method='default_due_date',
         widget=CalendarWidget(
-            label=_(u"Due-date"),
-            description=_(u"Due-date of the ticket"),
+            label=_(u"label_duedate", default=u"Due Date"),
+            description=_(u"help_duedate",default=u"Due-date of the ticket"),
         )
     ),
 
@@ -37,8 +37,8 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         vocabulary_factory='ticketbox_values_states',
         widget=SelectionWidget(
             format="select",
-            label=_(u"Select State"),
-            description=_(u"Define Which State the Ticket has"),
+            label=_(u"label_state", default=u"State"),
+            description=_(u"help_state",default=u"Define Which State the Ticket has"),
         ),
     ),
 
@@ -48,8 +48,8 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         vocabulary_factory='ticketbox_values_priorities',
         widget=SelectionWidget(
             format="select",
-            label=_(u"Select Priority"),
-            description=_(u"Select the Priority"),
+            label=_(u"label_select_priority",default=u"Select Priority"),
+            description=_(u"help_priority", default=u"Select the Priority"),
         ),
     ),
 
@@ -59,8 +59,8 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         vocabulary_factory='ticketbox_values_areas',
         widget=SelectionWidget(
             format="select",
-            label=_(u'Select Area'),
-            description=_(u'Select Area'),
+            label=_(u"label_select_area",default=u'Select Area'),
+            description=_(u'help_area',default=u'Select the Area of the ticket'),
         ),
     ),
 
@@ -71,8 +71,8 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         vocabulary_factory='ticketbox_values_releases',
         widget=SelectionWidget(
             format="select",
-            label=_(u'Select Release'),
-            description=_(u'Select the Release of the ticket'),
+            label=_(u'label_select_release', default=u'Select Release'),
+            description=_(u'help_release', default=u'Select the Release of the ticket'),
         ),
     ),
 
@@ -82,9 +82,9 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         index="FieldIndex:schema",
         widget=SelectionWidget(
             format="select",
-            label="Responsible",
-            description="Select which manager, if any," +
-                " is responsible for this issue.",
+            label=_(u'label_Responsible',default=u"Responsible"),
+            description=_(u'help_responsible',default=u"Select which manager, if any," +
+                " is responsible for this issue."),
         ),
         vocabulary='assignable_users',
     ),
@@ -94,8 +94,8 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         name='answerDate',
         default_method='default_answer_date',
         widget=CalendarWidget(
-            label=_(u"Answer-date"),
-            description=_(u"Answer-date of the ticket"),
+            label=_(u'label_answerdate',default=u"Answer-date"),
+            description=_(u'help_answerdated',default=u"Answer-date of the ticket"),
         )
     ),
 
@@ -103,8 +103,8 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
     FileField(
         name='attachment',
         widget=FileWidget(
-            label=_(u"Attachment"),
-            description=_(u"You may optionally upload a file attachment." +
+            label=_(u'label_attachment',default=u"Attachment"),
+            description=_(u'help_attachment',default=u"You may optionally upload a file attachment." +
                 " Please do not upload unnecessarily large files."),
         ),
         storage=AttributeStorage(),
@@ -114,7 +114,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
     ReferenceField(
         name='attachments',
         widget=ReferenceBrowserWidget(
-            label=_(u"Attachments"),
+            label=_(u'label_attachments', default=u"Attachments"),
             allow_browse=True,
             show_results_without_query=True,
             restrict_browsing_to_startup_directory=True,
@@ -133,7 +133,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
     ReferenceField(
         name='ticketReferences',
         widget=ReferenceBrowserWidget(
-            label=_(u"References"),
+            label=_(u'label_references',default=u"References"),
             allow_browse=True,
             show_results_without_query=True,
             restrict_browsing_to_startup_directory=True,
@@ -175,13 +175,13 @@ class Ticket(base.ATCTFolder):
         return str(maxId + 1)
 
     def default_due_date(self):
-        """ Return a standard due-date (9.00 Clock in 14 days) """
+        """ Return a default due-date (9.00 Clock in 14 days) """
 
         a = DateTime() + 14
         return DateTime(a.year(), a.month(), a.day(), 9, 00)
 
     def default_answer_date(self):
-        """ Return a standard answer-date (9.00 Clock in 14 days) """
+        """ Return a default answer-date (9.00 Clock in 14 days) """
 
         return self.default_due_date()
 
