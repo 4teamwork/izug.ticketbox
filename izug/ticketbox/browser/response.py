@@ -6,17 +6,17 @@ from izug.ticketbox.browser.helper import map_attribute
 from izug.ticketbox.interfaces import IResponseAdder
 from izug.ticketbox.config import DEFAULT_ISSUE_MIME_TYPE
 from OFS.Image import File
-from plone.i18n.normalizer import IDNormalizer
+from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.memoize.view import memoize
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.cachedescriptors.property import Lazy
 from zope.component import getUtility
+from zope.component import queryUtility
 from zope.interface import implements
 from zope.lifecycleevent import modified
 from zope.schema.interfaces import IVocabularyFactory
-
 
 class Base(BrowserView):
     """Base view for Ticketbox Response.
@@ -31,6 +31,8 @@ class Base(BrowserView):
         self.use_wysiwyg = (self.mimetype == 'text/html')
 
     def responses(self):
+        """Returns all Responses in the ticket
+        """
         context = aq_inner(self.context)
         trans = context.portal_transforms
         items = []
@@ -418,8 +420,7 @@ class Create(Base):
                 setattr(data, 'filename', attachment.filename)
             # Create TicketAttachment and save the uid in attachment attr of
             # new_response
-            new_id = IDNormalizer.normalize(
-                IDNormalizer(),
+            new_id = queryUtility(IIDNormalizer).normalize(
                 attachment.filename)
             new_file_id = context.invokeFactory(
                 type_name="TicketAttachment",
