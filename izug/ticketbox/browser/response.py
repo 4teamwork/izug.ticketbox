@@ -88,7 +88,7 @@ class Base(BrowserView):
     def can_edit_response(self):
         context = aq_inner(self.context)
         return self.memship.checkPermission(
-            'izug.ticketbox: Add Ticket Box',
+            'Modify portal content',
             context)
 
     @property
@@ -426,7 +426,7 @@ class Create(Base):
             # Create TicketAttachment and save the uid in attachment attr of
             # new_response
             new_id = queryUtility(IIDNormalizer).normalize(
-                attachment.filename)
+                attachment.filename.decode('utf-8'))
             new_file_id = context.invokeFactory(
                 type_name="TicketAttachment",
                 id=new_id,

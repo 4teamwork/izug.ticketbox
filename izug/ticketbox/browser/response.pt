@@ -36,8 +36,7 @@
 				        <metal:attachment use-macro="python:attachment.widget('file')"/>
 			      </div>
 
-   				 <div class="response-actions"
-   				     	    tal:condition="view/can_edit_response">
+   				 <div class="response-actions">
 
    				       <form method="post"
    				             tal:attributes="action string:${context/absolute_url}/@@edit_response"

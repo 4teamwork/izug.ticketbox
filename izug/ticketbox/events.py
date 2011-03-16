@@ -29,7 +29,7 @@ def move_document_to_reference(obj, event):
 
     file_ = obj.getAttachment()
     if file_.data != '':
-        new_id = queryUtility(IIDNormalizer).normalize(file_.filename)
+        new_id = queryUtility(IIDNormalizer).normalize(file_.filename.decode('utf-8'))
         if obj.get(new_id, None):
             IStatusMessage(obj.REQUEST).addStatusMessage(
                 _(u"A File with this id already exists,\
