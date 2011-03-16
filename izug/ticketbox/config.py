@@ -8,12 +8,12 @@ ADD_PERMISSIONS = {
     'Ticket': 'izug.ticketbox: Add Ticket',
     'TicketBox': 'izug.ticketbox: Add Ticket Box',
 }
-INDEXES = (('state', 'FieldIndex'),
-            ('releases', 'FieldIndex'),
-            ('area', 'FieldIndex'),
-            ('priority', 'FieldIndex'),
-            ('responsibleManager', 'FieldIndex'),
-            ('dueDate', 'FieldIndex'),
+INDEXES = (('getState', 'FieldIndex'),
+            ('getReleases', 'FieldIndex'),
+            ('getArea', 'FieldIndex'),
+            ('getPriority', 'FieldIndex'),
+            ('getResponsibleManager', 'FieldIndex'),
+            ('getDueDate', 'FieldIndex'),
             ('sortable_id', 'FieldIndex'),
             ('sortable_responsibleManager', 'FieldIndex'),
             ('sortable_ticket_references', 'FieldIndex')

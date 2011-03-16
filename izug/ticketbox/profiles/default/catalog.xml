@@ -3,10 +3,10 @@
  Add indexes here on penalty of death or worse.
          See INDEXES in config.py instead.
 -->
-<column value="state"/>
-<column value="releases"/>
-<column value="area"/>
-<column value="priority"/>
-<column value="responsibleManager"/>
-<column value="dueDate"/>
+<column value="getState"/>
+<column value="getReleases"/>
+<column value="getArea"/>
+<column value="getPriority"/>
+<column value="getResponsibleManager"/>
+<column value="getDueDate"/>
 </object>

@@ -28,12 +28,12 @@ class TicketBoxView(TabbedTicketBoxBaseView):
         else:
             criteria = dict(criteria)
 
-        allowedCriteria = {'release': 'releases',
-                           'area': 'area',
+        allowedCriteria = {'release': 'getReleases',
+                           'area': 'getArea',
                            'issueType': 'getIssueType',
-                           'priority': 'priority',
-                           'state': 'state',
-                           'responsible': 'responsibleManager',
+                           'priority': 'getPriority',
+                           'state': 'getState',
+                           'responsible': 'getResponsibleManager',
                            'creator': 'Creator',
                            'text': 'SearchableText',
                            'id': 'getId',
