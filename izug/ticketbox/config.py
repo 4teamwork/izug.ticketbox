@@ -13,7 +13,7 @@ INDEXES = (('getState', 'FieldIndex'),
             ('getArea', 'FieldIndex'),
             ('getPriority', 'FieldIndex'),
             ('getResponsibleManager', 'FieldIndex'),
-            ('getDueDate', 'FieldIndex'),
+            ('getDueDate', 'DateIndex'),
             ('sortable_id', 'FieldIndex'),
             ('sortable_responsibleManager', 'FieldIndex'),
             ('sortable_ticket_references', 'FieldIndex')

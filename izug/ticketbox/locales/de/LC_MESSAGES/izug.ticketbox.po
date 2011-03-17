@@ -12,8 +12,8 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: izug.ticketbox/izug/ticketbox/events.py:35
-msgid "A File with this id already exists,                the File wasn't uploaded"
+#: izug.ticketbox/izug/ticketbox/handlers.py:35
+msgid "A File with this id already exists,              the File wasn't uploaded"
 msgstr "Eine Datei mit dieser ID existiert bereits, die Datei wurde nicht hochgeladen"
 
 #: izug.ticketbox/izug/ticketbox/profiles/default/types/Ticket.xml
@@ -217,7 +217,7 @@ msgstr "Wählen Sie den Bereich des Tickets"
 #. Default: "Enter the issue topics/areas for this tracker."
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:133
 msgid "help_areas"
-msgstr "Geben sie die Auftragsbereiche der Aufträge dieser Auftragsbox"
+msgstr "Geben Sie die Auftragsbereiche der Aufträge dieser Auftragsbox"
 
 #. Default: "You may optionally upload a file attachment. Please do not upload unnecessarily large files."
 #: izug.ticketbox/izug/ticketbox/content/ticket.py:107
@@ -232,7 +232,7 @@ msgstr "Geben Sie verschiedene Prioritäten an, welche verfügbar sein sollten. 
 #. Default: "Enter the Available Releases for this tracker."
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:100
 msgid "help_avialableReleases"
-msgstr "Geben sie die verfügbaren Lieferpakete für diese Auftragsbox aus"
+msgstr "Geben Sie die verfügbaren Lieferpakete für diese Auftragsbox aus"
 
 #. Default: "Due-date of the ticket"
 #: izug.ticketbox/izug/ticketbox/content/ticket.py:30
@@ -242,7 +242,7 @@ msgstr "Erledigungsdatum von diesem Auftrag"
 #. Default: "Enter a individual identifier (max 7 positions)"
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:29
 msgid "help_individualIdentifier"
-msgstr "Geben Sie eine Eindeutige Identifikationsnummer ein (max. 7 Zeichen)"
+msgstr "Geben Sie eine eindeutige Identifikationsnummer ein (max. 7 Zeichen)"
 
 #. Default: "Select the Priority"
 #: izug.ticketbox/izug/ticketbox/content/ticket.py:52
@@ -304,7 +304,7 @@ msgstr "Priorität"
 #. Default: "References"
 #: izug.ticketbox/izug/ticketbox/browser/ticket_view.pt:55
 msgid "label_References"
-msgstr "Referenzen"
+msgstr "Verweise"
 
 #. Default: "Release"
 #: izug.ticketbox/izug/ticketbox/browser/ticket_view.pt:34
@@ -314,12 +314,12 @@ msgstr "Lieferpaket"
 #. Default: "Responsible"
 #: izug.ticketbox/izug/ticketbox/content/ticket.py:85
 msgid "label_Responsible"
-msgstr "Verantwortlich"
+msgstr "Zuständig"
 
 #. Default: "responsible Manager"
 #: izug.ticketbox/izug/ticketbox/browser/ticket_view.pt:38
 msgid "label_ResponsibleManager"
-msgstr "Verantwortlich:"
+msgstr "Zuständig"
 
 #. Default: "State:"
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:15
@@ -359,7 +359,7 @@ msgstr "Anhänge"
 #. Default: "This is an automated email, please do not reply"
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:25
 msgid "label_automated"
-msgstr "Diese E-Mail wurde Automatisch generiert, bitte antworten Sie nicht auf diese E-Mail"
+msgstr "Diese E-Mail wurde automatisch generiert, bitte antworten Sie nicht auf diese E-Mail"
 
 #. Default: "Available priorities"
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:113
@@ -420,7 +420,7 @@ msgstr "Nach Status"
 #. Default: "Individual identifier"
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:26
 msgid "label_individualIdentifier"
-msgstr "Idividuelle Identifikationsnummer"
+msgstr "Individuelle Identifikationsnummer"
 
 #. Default: "Priority:"
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:19
@@ -435,7 +435,7 @@ msgstr "Priorität"
 #. Default: "References"
 #: izug.ticketbox/izug/ticketbox/content/ticket.py:136
 msgid "label_references"
-msgstr ""
+msgstr "Verweise"
 
 #. Default: "Target Release:"
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:23

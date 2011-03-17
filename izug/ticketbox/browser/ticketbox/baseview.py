@@ -23,12 +23,13 @@ class TabbedTicketBoxBaseView(BaseListingView):
     table = ViewPageTemplateFile('table.pt')
 
     request_filters = [
-        ('getResponsibleManager', 'responsible', None),
-        ('getState', 'state', None),
-        ('getReleases', 'release', None),
-        ('getArea', 'area', None),
-        ('getPriority', 'priority', None),
-        ]
+            ('getResponsibleManager', 'responsible', None),
+            ('getState', 'state', None),
+            ('getReleases', 'release', None),
+            ('getDueDate', 'duedate', None),
+            ('getPriority', 'priority', None),
+            ('getArea', 'area', None),
+            ]
 
     def __init__(self, context, request):
         super(TabbedTicketBoxBaseView, self).__init__(context, request)

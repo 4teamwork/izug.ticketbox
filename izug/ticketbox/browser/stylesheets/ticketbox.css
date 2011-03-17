@@ -40,3 +40,6 @@ body.template-atct_edit #datagridwidget-table-availableAreas tr td:first-child{
     display:none;
     width:0px;
 }
+li.TicketAttachment{
+    display:none;
+}

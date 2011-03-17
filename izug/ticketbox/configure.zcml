@@ -70,20 +70,20 @@
   <!-- Events for TicketBox -->
   <subscriber for=".interfaces.ITicketBox
                  Products.Archetypes.interfaces.IObjectInitializedEvent"
-            handler=".events.generate_datagrid_column_id" />
+            handler=".handlers.generate_datagrid_column_id" />
 
   <subscriber for=".interfaces.ITicketBox
                  Products.Archetypes.interfaces.IObjectEditedEvent"
-           	  handler=".events.generate_datagrid_column_id" />
+           	  handler=".handlers.generate_datagrid_column_id" />
 
   <!-- Events for Ticket -->
   <subscriber for=".interfaces.ITicket
                  Products.Archetypes.interfaces.IObjectInitializedEvent"
-            handler=".events.move_document_to_reference" />
+            handler=".handlers.move_document_to_reference" />
 
   <subscriber for=".interfaces.ITicket
                  Products.Archetypes.interfaces.IObjectEditedEvent"
-           	  handler=".events.move_document_to_reference" />
+           	  handler=".handlers.move_document_to_reference" />
 
 
 </configure>

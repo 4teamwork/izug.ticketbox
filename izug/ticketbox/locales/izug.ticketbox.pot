@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ftw.tabbedview\n"
 
-#: izug.ticketbox/izug/ticketbox/events.py:35
+#: izug.ticketbox/izug/ticketbox/handlers.py:35
 msgid "A File with this id already exists,                the File wasn't uploaded"
 msgstr ""
 

@@ -30,7 +30,7 @@
           </h1>
           <div tal:replace="structure provider:plone.belowcontenttitle" />
           <div class="tabbedview_search">
-            <input type="text" name="searchable_text" id="tabbedview-searchbox" class="inputLabel" title="Suchen" autocomplete="false"/>
+            <input type="text" name="searchable_text" id="tabbedview-searchbox" class="inputLabel" title="Filtern nach ..." autocomplete="false"/>
           </div>
           <br />
           <div class="tabbedview-tabs">

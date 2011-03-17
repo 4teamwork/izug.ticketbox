@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+
+# # -*- coding: utf-8 -*-
 from izug.ticketbox import ticketboxMessageFactory as _
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from Products.statusmessages.interfaces import IStatusMessage
