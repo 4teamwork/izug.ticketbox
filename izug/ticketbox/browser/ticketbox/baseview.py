@@ -44,7 +44,7 @@ class TabbedTicketBoxBaseView(BaseListingView):
                         },
                         {'column': 'getResponsibleManager',
                         'column_title': _(u"responsibleManager"),
-                        'sort_index': 'assignable_users',
+                        'sort_index': 'sortable_responsibleManager',
                         'transform': self.readable_author,
                         },
                         {'column': 'getState',
@@ -131,7 +131,7 @@ class TabbedTicketBoxBaseView(BaseListingView):
                 state_mapping[item['id']] = item[self.filter_state]
             result = []
             for item in tmpresults:
-                if state_mapping[item.state] == '1':
+                if state_mapping[item.getState] == '1':
                     result.append(item)
 
             self.contents = result
@@ -199,8 +199,13 @@ class TabbedTicketBoxBaseView(BaseListingView):
         elif hasattr(item, 'absolute_url'):
             url_method = item.absolute_url
         value = len(value) >= 47 and value[:47] + '...' or value
-        link = u'<a href="%s/view">%s</a>' \
-            % (url_method(), value.decode('utf8'))
+
+        extend_url = '/view'
+        if item.portal_type == 'TicketAttachment':
+            extend_url = '/at_download/file'
+
+        link = u'<a href="%s%s">%s</a>' \
+            % (url_method(), extend_url, value.decode('utf8'))
         return link
 
     def readable_author(self, item, author):

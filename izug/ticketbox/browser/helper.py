@@ -76,7 +76,8 @@ def readable_author(context):
     """
     get the full name of a user-id
     """
-    author = context.getResponsibleManager
+    author = context.getResponsibleManager()
+
     if not author:
         return '-'
     name = author
