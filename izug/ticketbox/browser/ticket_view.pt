@@ -16,7 +16,7 @@
         </tr>
         <tr tal:condition="python: context.getDueDate()">
             <td i18n:translate='label_duedate'>Due Date</td>
-            <td tal:content="python: context.getDueDate().strftime('%d.%m.%Y')" />
+            <td tal:content="python: context.getDueDate().strftime('%d.%m.%Y %H:%M')" />
         </tr>
         <tr>
             <td i18n:translate='label_state'>State</td>
@@ -40,7 +40,7 @@
         </tr>
         <tr>
             <td i18n:translate='label_AnswerDate'>Answer Date</td>
-            <td tal:content="python:context.getAnswerDate().strftime('%d.%m.%Y')" />
+            <td tal:content="python:context.getAnswerDate().strftime('%d.%m.%Y %H:%M')" />
         </tr>
         <tr tal:condition="python: context.getAttachments()">
             <td i18n:translate='label_Attachment'>Attachments</td>
