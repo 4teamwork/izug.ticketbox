@@ -12,7 +12,7 @@
     <table>
         <tr>
             <td i18n:translate='label_description'>Description</td>
-            <td tal:content="here/Description" />
+            <td tal:content="structure here/Description" />
         </tr>
         <tr tal:condition="python: context.getDueDate()">
             <td i18n:translate='label_duedate'>Due Date</td>
