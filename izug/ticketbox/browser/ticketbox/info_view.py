@@ -1,5 +1,4 @@
 from Acquisition import aq_inner
-from izug.ticketbox import ticketboxMessageFactory as _
 from plone.app.workflow.interfaces import ISharingPageRole
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import getUtilitiesFor
@@ -49,11 +48,3 @@ class TicketBoxInfoView(SharingView):
             results = [r for r in results if r['type']!='group']
 
         return results
-
-    def description(self):
-        """docstring"""
-        translated = self.context.translate(_(u'tooltip_info'))
-        if translated == u'tooltip_info':
-            return ''
-        else:
-            return translated
