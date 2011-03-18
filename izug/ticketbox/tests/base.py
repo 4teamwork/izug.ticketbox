@@ -37,7 +37,6 @@ def setup_product():
 
     # Load the ZCML configuration for the example.tests package.
     # This can of course use <include /> to include other packages.
-    import pdb; pdb.set_trace( )
     fiveconfigure.debug_mode = True
     import izug.ticketbox
     zcml.load_config('configure.zcml', izug.ticketbox)
@@ -66,13 +65,14 @@ def setup_product():
 setup_product()
 ptc.setupPloneSite(products=['izug.ticketbox'])
 
-class ExampleTestCase(ptc.PloneTestCase):
+class TicketBoxTestCase(ptc.PloneTestCase):
     """We use this base class for all the tests in this package. If necessary,
     we can put common utility or setup code in here. This applies to unit
     test cases.
     """
 
-class ExampleFunctionalTestCase(ptc.FunctionalTestCase):
+
+class FunctionalTestCase(ptc.FunctionalTestCase):
     """We use this class for functional integration tests that use doctest
     syntax. Again, we can put basic common utility or setup code in here.
     """
