@@ -1,7 +1,3 @@
-.response-clarification {
-    padding: 0 0 1em 0;
-    margin: 2em 0 0 0;
-}
 .response-adder dl.collapsible dd.collapsibleContent {
     padding: 1em 0 1em 1em;
 }
@@ -21,10 +17,7 @@
 .issue-attachment{
     margin-top: 2em;
 }
-div.collapsible dl.collapsedBlockCollapsible dt.collapsibleHeader{
-    /*IE 7*/
-    margin-bottom:10px;
-}
+
 table.ticketbox-overview td{
     width:20%;
 }
@@ -37,9 +30,7 @@ body.template-atct_edit #datagridwidget-table-availablePriorities tr th:first-ch
 body.template-atct_edit #datagridwidget-table-availablePriorities tr td:first-child,
 body.template-atct_edit #datagridwidget-table-availableAreas tr th:first-child,
 body.template-atct_edit #datagridwidget-table-availableAreas tr td:first-child{
+    /* do not display the ids from the datagrid-widget */
     display:none;
     width:0px;
-}
-li.TicketAttachment{
-    display:none;
 }
