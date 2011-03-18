@@ -6,13 +6,76 @@ level, which makes it faster to run each test, but slows down test runner
 startup.
 """
 
-from Products.Five import zcml
+from Products.CMFCore.utils import getToolByName
 from Products.Five import fiveconfigure
-
-from Testing import ZopeTestCase as ztc
-
+from Products.Five import zcml
 from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
+from Testing import ZopeTestCase as ztc
+from izug.ticketbox.handlers import generate_datagrid_column_id
+
+# Mock data to be used in various tests in izug.ticketbox
+MOCK_STATE = [{'id': 'test_id_1',
+             'title': "Show All Tickets",
+             'show_in_all_tickets': '1',
+             'show_in_my_tickets': '0',
+            },
+            {'id': 'test_id_2',
+             'title': "Show My Tickets",
+             'show_in_all_tickets': '0',
+             'show_in_my_tickets': '1',
+            },
+            {'id': '',
+             'title': "Test Id State",
+             'show_in_all_tickets': '1',
+             'show_in_my_tickets': '1',
+            },
+            ]
+
+MOCK_AREA = [{'id': u'test_id_1',
+             'title': u'Internet',
+             },
+             {'id': u'test_id_2',
+              'title': u'Intranet',
+             },
+             {'id': u'',
+             'title': u'Test Id Area',
+             },
+            ]
+
+
+MOCK_RELEASE = [{'id': u'version-1',
+             'title': u'Version 1',
+             },
+             {'id': u'version-2',
+              'title': u'Version 2',
+             },
+             {'id': u'',
+             'title': u'Test Id Release',
+             },
+             ]
+
+
+MOCK_PRIORITY = [{'id': u'test_id_1',
+             'title': u'High',
+             },
+             {'id': u'test_id_2',
+              'title': u'Low',
+             },
+             {'id': u'',
+             'title': u'Test Id Priority',
+             },
+             ]
+
+
+MOCK_RESPONSIBLE = [{'id': u'testuser',
+             'title': u'Testuser',
+             },
+             {'id': u'admin',
+              'title': u'Admin',
+             },
+             ]
+
 
 #
 # When ZopeTestCase configures Zope, it will *not* auto-load products in
@@ -66,10 +129,41 @@ setup_product()
 ptc.setupPloneSite(products=['izug.ticketbox'])
 
 class TicketBoxTestCase(ptc.PloneTestCase):
-    """We use this base class for all the tests in this package. If necessary,
-    we can put common utility or setup code in here. This applies to unit
-    test cases.
-    """
+
+    def afterSetUp(self):
+        # Set up sessioning objects
+        ztc.utils.setupCoreSessions(self.app)
+
+        self.workflow = getToolByName(self.portal, 'portal_workflow')
+        self.acl_users = getToolByName(self.portal, 'acl_users')
+        self.types = getToolByName(self.portal, 'portal_types')
+
+        self.setRoles(('Manager',))
+
+        #Create a Ticketbox on ploneroot
+        self.portal.invokeFactory('Ticket Box', 'ticketbox')
+
+        self.ticketbox = self.portal['ticketbox']
+        self.ticketbox.getField('title').set(self.ticketbox, "Ticket Box Title")
+        self.ticketbox.getField('description').set(self.ticketbox, "A TicketBox description")
+        self.ticketbox.setIndividualIdentifier("ABC123")
+        self.ticketbox.setAvailableStates(MOCK_STATE)
+        self.ticketbox.setAvailableReleases(MOCK_RELEASE)
+        self.ticketbox.setAvailableAreas(MOCK_AREA)
+        self.ticketbox.setAvailablePriorities(MOCK_PRIORITY)
+
+        #Generate Ids
+        generate_datagrid_column_id(self.ticketbox, self)
+
+        #Create a ticket on the ticketbox
+        self.portal.ticketbox.invokeFactory('Ticket', 'ticket1')
+        self.ticket = self.portal.ticketbox['ticket1']
+        self.ticket.getField('title').set(self.ticketbox, "Ticket Title")
+        self.ticket.getField('description').set(self.ticketbox, "A Ticket description")
+        self.ticket.getField('state').set(self.ticket, MOCK_STATE[0]['id'])
+        self.ticket.getField('area').set(self.ticket, MOCK_AREA[0]['id'])
+        self.ticket.getField('priority').set(self.ticket, MOCK_PRIORITY[0]['id'])
+        self.ticket.getField('releases').set(self.ticket, MOCK_RELEASE[0]['id'])
 
 
 class FunctionalTestCase(ptc.FunctionalTestCase):
