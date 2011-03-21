@@ -1,5 +1,6 @@
 import unittest
 from izug.ticketbox.tests.base import TicketBoxTestCase
+from zope.component import getMultiAdapter
 
 
 class TestTicketBox(TicketBoxTestCase):
@@ -28,6 +29,32 @@ class TestTicketBox(TicketBoxTestCase):
         self.assertEquals(release, "test-id-release")
         self.assertEquals(priority, "test-id-priority")
 
+    def test_overview_view(self):
+
+        ticketbox_view = getMultiAdapter((self.ticketbox, self.portal.REQUEST), name='tabbedview_view-Overview')
+        ticket_state = ticketbox_view.getFilteredTickets(state='test_id_1')
+        ticket_area = ticketbox_view.getFilteredTickets(area='test_id_1')
+        ticket_priority = ticketbox_view.getFilteredTickets(priority='test_id_1')
+        ticket_responsible = ticketbox_view.getFilteredTickets(responsible='testuser1')
+
+        self.assertEquals(ticket_state[0].getObject().getState(), "test_id_1")
+        self.assertEquals(ticket_area[0].getObject().getArea(), "test_id_1")
+        self.assertEquals(ticket_priority[0].getObject().getPriority(), "test_id_1")
+        self.assertEquals(ticket_responsible[0].getObject().getResponsibleManager(), "testuser1")
+
+    def test_all_tickets_view(self):
+
+        ticketbox_view = getMultiAdapter((self.ticketbox, self.portal.REQUEST), name='tabbedview_view-all_tickets')
+        ticketbox_view.search(kwargs={'portal_type':'Ticket'})
+
+        self.assertEquals(ticketbox_view.len_results, 1)
+
+    def test_my_tickets_view(self):
+
+        ticketbox_view = getMultiAdapter((self.ticketbox, self.portal.REQUEST), name='tabbedview_view-my_tickets')
+        ticketbox_view.search(kwargs={'portal_type':'Ticket'})
+
+        self.assertEquals(ticketbox_view.len_results, 1)
 
 
 

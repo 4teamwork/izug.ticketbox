@@ -12,15 +12,15 @@ class TestTicket(TicketBoxTestCase):
         pass
 
     def test_required_fields(self):
-        title = self.ticket.getField('title')
-        description = self.ticket.getField('description')
+        title = self.ticket1.getField('title')
+        description = self.ticket1.getField('description')
 
         self.assertEquals(title.required, True)
         self.assertEquals(description.required, True)
 
     def test_dates(self):
-        due_date = self.ticket.getField('dueDate').get(self.ticket)
-        answer_date = self.ticket.getField('answerDate').get(self.ticket)
+        due_date = self.ticket1.getField('dueDate').get(self.ticket1)
+        answer_date = self.ticket1.getField('answerDate').get(self.ticket1)
         date = DateTime()+14
 
         self.assertEquals(due_date.Date(), date.Date())

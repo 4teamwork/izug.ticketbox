@@ -13,6 +13,7 @@ from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
 from Testing import ZopeTestCase as ztc
 from izug.ticketbox.handlers import generate_datagrid_column_id
+from izug.ticketbox.adapters import Response, ResponseContainer
 
 # Mock data to be used in various tests in izug.ticketbox
 MOCK_STATE = [{'id': 'test_id_1',
@@ -157,14 +158,36 @@ class TicketBoxTestCase(ptc.PloneTestCase):
 
         #Create a ticket on the ticketbox
         self.portal.ticketbox.invokeFactory('Ticket', 'ticket1')
-        self.ticket = self.portal.ticketbox['ticket1']
-        self.ticket.getField('title').set(self.ticketbox, "Ticket Title")
-        self.ticket.getField('description').set(self.ticketbox, "A Ticket description")
-        self.ticket.getField('state').set(self.ticket, MOCK_STATE[0]['id'])
-        self.ticket.getField('area').set(self.ticket, MOCK_AREA[0]['id'])
-        self.ticket.getField('priority').set(self.ticket, MOCK_PRIORITY[0]['id'])
-        self.ticket.getField('releases').set(self.ticket, MOCK_RELEASE[0]['id'])
+        self.ticket1 = self.portal.ticketbox['ticket1']
+        self.ticket1.getField('title').set(self.ticketbox, "Ticket Title")
+        self.ticket1.getField('description').set(self.ticketbox, "A Ticket description")
+        self.ticket1.getField('state').set(self.ticket1, MOCK_STATE[0]['id'])
+        self.ticket1.getField('area').set(self.ticket1, MOCK_AREA[0]['id'])
+        self.ticket1.getField('priority').set(self.ticket1, MOCK_PRIORITY[0]['id'])
+        self.ticket1.getField('releases').set(self.ticket1, MOCK_RELEASE[0]['id'])
+        self.ticket1.getField('responsibleManager').set(self.ticket1, "testuser1")
+        self.ticket1.reindexObject()
 
+        #Create a ticket on the ticketbox
+        self.portal.ticketbox.invokeFactory('Ticket', 'ticket2')
+        self.ticket2 = self.portal.ticketbox['ticket2']
+        self.ticket2.getField('title').set(self.ticketbox, "Ticket Title")
+        self.ticket2.getField('description').set(self.ticketbox, "A Ticket description")
+        self.ticket2.getField('state').set(self.ticket2, MOCK_STATE[1]['id'])
+        self.ticket2.getField('area').set(self.ticket2, MOCK_AREA[1]['id'])
+        self.ticket2.getField('priority').set(self.ticket2, MOCK_PRIORITY[1]['id'])
+        self.ticket2.getField('releases').set(self.ticket2, MOCK_RELEASE[1]['id'])
+        self.ticket2.getField('responsibleManager').set(self.ticket2, "testuser1")
+        self.ticket2.reindexObject()
+
+        #Create responsecontainers
+        self.container1 = ResponseContainer(self.ticket1)
+        self.container2 = ResponseContainer(self.ticket2)
+
+        #Create responses
+        self.response1 = Response("response1")
+        self.response2 = Response("response3")
+        self.response3 = Response("response3")
 
 class FunctionalTestCase(ptc.FunctionalTestCase):
     """We use this class for functional integration tests that use doctest

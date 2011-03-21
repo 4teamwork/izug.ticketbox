@@ -8,7 +8,6 @@ class TicketBoxView(TabbedTicketBoxBaseView):
 
     template = ViewPageTemplateFile('overview.pt')
     types = 'Ticket'
-    #this is a attribute in the DataGrid States from TicketBox ContentType
     columns = None
 
     def getFilteredTickets(self, criteria=None, **kwargs):
@@ -30,7 +29,6 @@ class TicketBoxView(TabbedTicketBoxBaseView):
 
         allowedCriteria = {'release': 'getReleases',
                            'area': 'getArea',
-                           'issueType': 'getIssueType',
                            'priority': 'getPriority',
                            'state': 'getState',
                            'responsible': 'getResponsibleManager',
@@ -48,7 +46,6 @@ class TicketBoxView(TabbedTicketBoxBaseView):
                 query[v] = criteria[k]
             elif v in criteria:
                 query[v] = criteria[v]
-
 
         query['sort_on'] = criteria.get('sort_on', 'created')
         query['sort_order'] = criteria.get('sort_order', 'reverse')

@@ -73,6 +73,7 @@ class TabbedTicketBoxBaseView(BaseListingView):
         self.pagenumber = int(self.request.get('b_start', 0))/self.pagesize+1
 
     def render_listing(self):
+
         generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
         return generator.generate(self.batch,
                                   self.columns,
@@ -136,7 +137,6 @@ class TabbedTicketBoxBaseView(BaseListingView):
                     result.append(item)
 
             self.contents = result
-
 
         self.len_results = len(self.contents)
 
