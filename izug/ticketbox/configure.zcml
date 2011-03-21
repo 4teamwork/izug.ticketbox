@@ -38,6 +38,18 @@
       />
 
   <adapter
+	  provides="ftw.notification.email.interfaces.ISubjectCreator"
+	  factory=".adapters.TicketBoxSubjectCreator"
+	  for=".interfaces.ITicketBox"
+	  />
+
+  <adapter
+	  provides="ftw.notification.email.interfaces.ISubjectCreator"
+	  factory=".adapters.TicketSubjectCreator"
+	  for=".interfaces.ITicket"
+	  />
+
+  <adapter
 	 name="sortable_id"
 	 factory=".indexer.sortable_id"
 	 />

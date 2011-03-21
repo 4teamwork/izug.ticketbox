@@ -511,15 +511,15 @@ msgstr "Unbestimmt"
 msgid "login_suggestion_response"
 msgstr "Bitte loggen sie sich ein bevor sie das Formular abschicken"
 
-#. Default: "A new Ticket has been created by ${creator} in the Ticketbox ${tracker_name}(${tracker_identifier}) at ${tracker_url}"
+#. Default: "A new Ticket has been created by ${creator} in the Ticketbox ${tracker_name}(${tracker_url})"
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:3
 msgid "message_text"
-msgstr "Ein neuer Auftrag wurde von ${creator} in der Auftragsbox ${tracker_name} (${tracker_identifier}) in ${tracker_url} erstellt."
+msgstr "Ein neuer Auftrag wurde von ${creator} in der Auftragsbox ${tracker_name} (${tracker_url}) erstellt."
 
 #. Default: "A new Answer has been Added by ${creator} in the Ticketbox ${tracker_name} (${tracker_identifier}) at ${tracker_url}"
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:6
 msgid "message_text_response"
-msgstr "Eine neue Antwort wurde von ${creator} in der Auftragsbox ${tracker_name} (${tracker_identifier}) in ${tracker_url} erstellt."
+msgstr "Eine neue Antwort wurde von ${creator} in der Auftragsbox ${tracker_name} (${tracker_url}) erstellt."
 
 #. Default: "Displays all Ticket"
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:11

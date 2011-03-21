@@ -9,6 +9,13 @@
   <head>
       <metal:block fill-slot="top_slot"
                    tal:define="dummy python:request.set('layoutClass', 'two-column-left')" />
+	  <metal:block fill-slot="javascript_head_slot">
+		<script type="text/javascript">
+		jq(function(){
+			jq('.tabbedview-tabs ul li').tooltip({});
+				});
+		</script>
+	  </metal:block>
   </head>
 
   <body>

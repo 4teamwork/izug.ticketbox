@@ -10,7 +10,9 @@ from zope.app.container.interfaces import UnaddableError
 from zope.component import adapts
 from zope.event import notify
 from zope.interface import implements
-
+from Products.CMFCore.utils import getToolByName
+from zope.app.component import hooks
+from Acquisition import aq_inner, aq_parent
 
 class ResponseContainer(Persistent):
 
@@ -138,3 +140,45 @@ class EmptyExporter(object):
 
     def export(self, export_context, subdir, root=False):
         return
+
+
+class TicketBoxSubjectCreator(object):
+
+    def __init__(self, context):
+         self.context = aq_inner(context)
+         self.request = self.context.REQUEST
+
+    def __call__(self, object_):
+        site = hooks.getSite()
+        portal_properties = getToolByName(object_, 'portal_properties')
+        default_subject = '[%s] Notification: %s' % (site.Title(), object_.Title())
+        subject = None
+        try:
+            sheet = portal_properties.ftw_notification_properties
+        except AttributeError:
+            subject = default_subject
+        else:
+            subject = sheet.getProperty('notification_email_subject', default_subject)+\
+            ': ['+object_.getIndividualIdentifier()+'] '+object_.Title()
+        return subject
+
+class TicketSubjectCreator(object):
+
+
+    def __init__(self, context):
+         self.context = aq_inner(context)
+         self.request = self.context.REQUEST
+
+    def __call__(self, object_):
+        site = hooks.getSite()
+        portal_properties = getToolByName(object_, 'portal_properties')
+        default_subject = '[%s] Notification: %s' % (site.Title(), object_.Title())
+        subject = None
+        try:
+            sheet = portal_properties.ftw_notification_properties
+        except AttributeError:
+            subject = default_subject
+        else:
+            subject = sheet.getProperty('notification_email_subject', default_subject)+\
+            ': ['+aq_parent(self.context).getIndividualIdentifier()+'] '+object_.Title()
+        return subject
