@@ -199,14 +199,15 @@ class TabbedTicketBoxBaseView(BaseListingView):
             url_method = item.getURL
         elif hasattr(item, 'absolute_url'):
             url_method = item.absolute_url
+        value= value.decode('utf8')
         value = len(value) >= 47 and value[:47] + '...' or value
 
         extend_url = '/view'
         if item.portal_type == 'TicketAttachment':
             extend_url = '/at_download/file'
 
-        link = u'<a class="testclass" href="%s%s" title=%s>%s</a>' \
-            % (url_method(), extend_url, item.Description, value.decode('utf8'))
+        link = u'<a href="%s%s">%s</a>' \
+            % (url_method(), extend_url, value)
         return link
 
     def readable_author(self, item, author):

@@ -18,9 +18,14 @@ class TicketBoxVocabulary(object):
     def __call__(self, context):
         tracker = aq_parent(context)
         myField = tracker.getField(self.field)
+        result=[]
         for item in myField.get(tracker):
-            yield SimpleVocabulary.createTerm(
-            item['id'],item['id'],item['title'])
+            result.append(SimpleVocabulary.createTerm(
+            item['id'],item['id'],item['title']))
+        if result == []:
+            result.append(SimpleVocabulary.createTerm(
+            '','','-'))
+        return result
 
 
 StatesVocabularyFactory=TicketBoxVocabulary('availableStates')
