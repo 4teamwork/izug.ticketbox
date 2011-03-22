@@ -452,7 +452,24 @@ class Create(Base):
             status.addStatusMessage(msg, type='error')
         else:
             # Apply changes to issue
-            context.update(**changes)
+            # XXX: CHANGE WORKFLOW - OR CHANGE SECURITYMANAGER
+            # We cannot use AT's update method, because of a security check
+            # we don't want. Let's set the new values manually.
+            # OLD:
+            # context.update(**changes)
+
+            # NEW:
+            if 'releases' in changes:
+                context.setReleases(changes['releases'])
+            if 'priority' in changes:
+                context.setPriority(changes['priority'])
+            if 'area' in changes:
+                context.setArea(changes['area'])
+            if 'state' in changes:
+                context.setState(changes['state'])
+
+
+
             # Add response
             catalog_tool = self.context.portal_catalog
             # re-set the modification date -
@@ -497,42 +514,45 @@ class Save(Base):
         form = self.request.form
         context = aq_inner(self.context)
         status = IStatusMessage(self.request)
-        if not self.can_edit_response:
+
+        response_id = form.get('response_id', None)
+        if response_id is None:
+            msg = _(u"msg_no_response_selected",
+                    default=u"No response selected for saving.")
+            msg = self.context.translate(msg)
+            status.addStatusMessage(msg, type='error')
+        elif self.folder[response_id] is None:
+            msg = _(u"msg_doesnt_exists",
+                    default=u"Response does not exist anymore; \
+                    perhaps it was removed by another user.")
+            msg = self.context.translate(msg)
+            status.addStatusMessage(msg, type='error')
+
+        response = self.folder[response_id]
+
+        member = context.portal_membership.getAuthenticatedMember()
+        if not (self.can_edit_response or response.creator == member.getId()):
             msg = _(u"msg_not_restricted",
                     default=u"You are not allowed to edit responses.")
             msg = self.context.translate(msg)
             status.addStatusMessage(msg, type='error')
         else:
-            response_id = form.get('response_id', None)
-            if response_id is None:
-                msg = _(u"msg_no_response_selected",
-                        default=u"No response selected for saving.")
-                msg = self.context.translate(msg)
-                status.addStatusMessage(msg, type='error')
-            elif self.folder[response_id] is None:
-                msg = _(u"msg_doesnt_exists",
-                        default=u"Response does not exist anymore; \
-                        perhaps it was removed by another user.")
-                msg = self.context.translate(msg)
-                status.addStatusMessage(msg, type='error')
-            else:
-                response = self.folder[response_id]
-                response_text = form.get('response', u'')
-                response.text = response_text
-                # Remove cached rendered response.
-                response.rendered_text = None
-                msg = _(u"msg_changes_saved", default="Changes Saved",
-                      mapping=dict(response_id=response_id))
-                msg = self.context.translate(msg)
-                status.addStatusMessage(msg, type='info')
-                # Fire event.  We put the context in the descriptions
-                # so event handlers can use this fully acquisition
-                # wrapped object to do their thing.  Feels like
-                # cheating, but it gets the job done.  Arguably we
-                # could turn the two arguments around and signal that
-                # the issue has changed, with the response in the
-                # event descriptions.
-                modified(response, context)
+            response_text = form.get('response', u'')
+            response.text = response_text
+            # Remove cached rendered response.
+            response.rendered_text = None
+            msg = _(u"msg_changes_saved", default="Changes Saved",
+                  mapping=dict(response_id=response_id))
+            msg = self.context.translate(msg)
+            status.addStatusMessage(msg, type='info')
+            # Fire event.  We put the context in the descriptions
+            # so event handlers can use this fully acquisition
+            # wrapped object to do their thing.  Feels like
+            # cheating, but it gets the job done.  Arguably we
+            # could turn the two arguments around and signal that
+            # the issue has changed, with the response in the
+            # event descriptions.
+            modified(response, context)
         self.request.response.redirect(context.absolute_url())
 
 

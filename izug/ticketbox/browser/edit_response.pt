@@ -25,11 +25,13 @@
 
         </tal:no_response>
 
-        <tal:response condition="view/response_found">
+        <tal:response condition="view/response_found" 
+					  define="member python:context.portal_membership.getAuthenticatedMember();
+							  can_edit python:view.can_edit_response or view.response.creator == member.getId();">
 
           <h3 i18n:translate="title_edit_response">Edit response</h3>
 
-          <p tal:condition="not:view/can_edit_response">
+          <p tal:condition="not:can_edit">
             <tal:foo i18n:translate="label_edit_response_not_allowed">
               You are not allowed to edit this response.
             </tal:foo>
@@ -39,7 +41,7 @@
           </p>
 
           <form method="post" tal:attributes="action string:${context/absolute_url}/@@save_response"
-                tal:condition="view/can_edit_response">
+                tal:condition="can_edit">
 
             <div class="field">
               <label for="response"

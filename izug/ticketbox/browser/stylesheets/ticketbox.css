@@ -22,6 +22,30 @@ table.ticketbox-overview td{
     width:20%;
 }
 
+table.ticketbox-overview td h3{
+    font-size:11px;
+    font-weight:bold;
+    font-style:normal;
+    color:#222222;
+    line-height:15px;
+    text-align:left;
+    vertical-align:baseline;
+    
+}
+
+dl.collapsible dt.collapsibleHeader div.add_response {
+    background-color: #00538C;
+    border: 1px solid #666666;
+    color: #FFFFFF;
+    font-size: 1.1em;
+    font-style: inherit;
+    font-weight:bold;
+    height: 100%;
+    line-height: 1em;
+    padding: 0.4em 0.5em;
+    width: 115px;
+}
+
 body.template-atct_edit #datagridwidget-table-availableStates tr th:first-child,
 body.template-atct_edit #datagridwidget-table-availableStates tr td:first-child,
 body.template-atct_edit #datagridwidget-table-availableReleases tr th:first-child,

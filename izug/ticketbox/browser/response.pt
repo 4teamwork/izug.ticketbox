@@ -1,4 +1,5 @@
 <div class="response-adder"
+     tal:define="member python:context.portal_membership.getAuthenticatedMember();"
      i18n:domain="izug.ticketbox">
 
 	<!-- show saved responses -->
@@ -40,7 +41,7 @@
 
    				       <form method="post"
    				             tal:attributes="action string:${context/absolute_url}/@@edit_response"
-   				             tal:condition="view/can_edit_response">
+   				             tal:condition="python:view.can_edit_response or response.creator == member.getId()">
    				         <input type="hidden" name="response_id" tal:attributes="value id" />
    				         <input class="submit secondary"
    				                type="submit"
@@ -69,7 +70,7 @@
 <!-- Add Response - with collabsible function -->
 	  <tal:add condition="python:user.has_permission('izug.ticketbox: Add Ticket', here)">
 	<dl id='addResponse' class='collapsible collapsedOnLoad'>
-		<dt i18n:translate="title_add_response" class='collapsibleHeader'>Add response</dt>
+		<dt class='collapsibleHeader'><div i18n:translate="title_add_response" class='add_response'>Add response</div></dt>
 	  <!-- <h3 i18n:translate="title_add_response">Add response</h3> -->
 		<dd class="collapsibleContent">
 			<div>
@@ -97,7 +98,6 @@
 			          <tal:block
 			              define="inputname string:response;
 			                      inputvalue string:;
-			                      member python:context.portal_membership.getAuthenticatedMember();
 			                      editor python:member.getProperty('wysiwyg_editor', 'plone_wysiwyg').lower();
 			                      portal_url context/portal_url;
 			                      portal context/portal_url/getPortalObject;

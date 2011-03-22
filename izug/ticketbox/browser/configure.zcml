@@ -5,6 +5,7 @@
 
   <include package="plone.app.contentmenu" />
   <include package=".ticketbox" />
+
   <!-- -*- extra stuff goes here -*- -->
   <browser:resourceDirectory
       name="izug.ticketbox.css"
@@ -69,6 +70,14 @@
         name="custom_header"
 		permission="zope2.View"
         template="ticket_custom_header.pt"
+        />
+
+    <browser:page
+        for="izug.ticketbox.interfaces.ITicket"
+        name="notification_form_content"
+		class=".notification.notificationform.NotificationForm"
+        permission="zope.Public"
+        allowed_attributes="send_notification"
         />
 
   <adapter

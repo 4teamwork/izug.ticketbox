@@ -7,14 +7,12 @@
                     responsibles context/assignable_users
                     ">
 
-      <div class="documentDescription" tal:content="here/Description" />
-
- 
-		<table class="ticketbox-overview">
+      <table class="ticketbox-overview">
 			<tr>
-				<td class="long-text">
+				<td>
+			
 					<div id="tickets-by-responsible" class="ticketbox-quick-search-box">
-			          <h3 i18n:translate="label_heading_by_responsible">By responsible</h3>
+			          <h3 i18n:translate="label_heading_by_responsible">By responsible </h3>
 			          <ul>
 			              <tal:areas repeat="responsible responsibles">
 			                <li tal:define="responsibleId python:responsible[0];

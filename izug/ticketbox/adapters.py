@@ -13,6 +13,8 @@ from zope.interface import implements
 from Products.CMFCore.utils import getToolByName
 from zope.app.component import hooks
 from Acquisition import aq_inner, aq_parent
+from zope.app.component.hooks import getSite
+
 
 class ResponseContainer(Persistent):
 
@@ -128,9 +130,12 @@ class Response(Persistent):
         self.changes.append(delta)
 
     def creator_fullname(self):
-        sm = getSecurityManager()
-        user = sm.getUser()
-        return user.getProperty('fullname', user.getId())
+        site = getSite()
+        member = site.portal_membership.getMemberById(self.creator)
+        fullname = member.getProperty('fullname', member.getId())
+        if fullname:
+            return fullname
+        return member.getId()
 
 
 class EmptyExporter(object):

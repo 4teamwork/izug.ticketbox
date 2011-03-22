@@ -166,7 +166,7 @@ class TicketBox(folder.ATBTreeFolder):
         with a key of '(UNASSIGNED)'.
         """
 
-        users = getAssignableUsers(self, 'Contributor')
+        users = getAssignableUsers(self, 'Contributor', show_contacts=False)
         users.insert(0, ['(UNASSIGNED)', _(u'None')])
         return users
 
