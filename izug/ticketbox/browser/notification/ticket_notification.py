@@ -1,6 +1,7 @@
 from ftw.notification.email.templates.base import BaseEmailRepresentation
 from zope.app.pagetemplate import ViewPageTemplateFile
 from izug.ticketbox.browser.helper import map_attribute, readable_author
+from izug.ticketbox import ticketboxMessageFactory as _
 
 
 class TicketEmailRepresentation(BaseEmailRepresentation):
@@ -21,6 +22,7 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
         """Returns Infos for email-template"""
         base_response = self.context.restrictedTraverse('base_response')
         responses = base_response.responses()
+        author = self.context.translate(readable_author(self.context))
 
         ticket_infos = {'tracker_title': self.context.aq_parent.title,
                     'tracker_url': self.context.aq_parent.absolute_url(),
@@ -30,7 +32,7 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                     'url': self.context.absolute_url(),
                     'text': self.context.Description(),
                     'state': map_attribute(self.context, "state"),
-                    'responsibleManager': readable_author(self.context),
+                    'responsibleManager': author,
                     'priority': map_attribute(self.context, "priority"),
                     'area': map_attribute(self.context, "area"),
                     'releases': map_attribute(self.context, "releases"),
@@ -58,6 +60,15 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                     'releases': '',
                     'response': True}
                 for item in response['response'].changes:
+                    # XXX: Hack to solve the label_unassigned translations problem
+                    # If we retrieve a responsibleManager named label_unassigned,
+                    # try to translate it
+                    if item['id'] == 'responsibleManager':
+                        if item['before'] == 'label_unassigned':
+                            item['before'] = self.context.translate(_(item['before']))
+                        if item['after'] == 'label_unassigned':
+                            item['after'] = self.context.translate(_(item['after']))
+
                     changes[item['id']] = (
                         item['before'] + 	' &rarr; ' + item['after'])
                 changes['text'] = response['response'].text
