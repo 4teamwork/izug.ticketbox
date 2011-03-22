@@ -47,5 +47,7 @@ def zero_fill(matchobj):
 @indexer(ITicket)
 def sortable_responsibleManager(obj):
     """get the fullname of the author to sort correctly"""
-
-    return readable_author(obj)
+    author = readable_author(obj)
+    if isinstance(author, unicode):
+        author = author.encode('utf-8')
+    return author
