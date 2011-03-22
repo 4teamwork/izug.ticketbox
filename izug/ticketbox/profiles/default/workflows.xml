@@ -2,7 +2,7 @@
 <object name="portal_workflow" meta_type="Plone Workflow Tool">
 <!-- Add this, to enable the two state workflow for Ticketbox -->
 
-<!--  <object name="izug_ticket_workflow" meta_type="Workflow"/>
+ <object name="izug_ticket_workflow" meta_type="Workflow"/>
  <object name="izug_ticketbox_workflow" meta_type="Workflow"/>
 
  <bindings>
@@ -12,5 +12,5 @@
   <type type_id="Ticket Box">
    <bound-workflow workflow_id="izug_ticketbox_workflow"/>
   </type>
- </bindings> -->
+ </bindings>
 </object>
