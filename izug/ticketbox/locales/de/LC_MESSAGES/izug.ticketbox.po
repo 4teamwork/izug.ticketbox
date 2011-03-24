@@ -207,7 +207,7 @@ msgstr "Anhänge"
 #. Default: "Answer-date of the ticket"
 #: izug.ticketbox/izug/ticketbox/content/ticket.py:98
 msgid "help_answerdated"
-msgstr "Geben Sie an bis wann eine Antwort erbeten ist"
+msgstr "Geben Sie an bis wann eine Antwort erbeten ist<br><br>Aktuelles Datum plus 14 Tage"
 
 #. Default: "Select the Area of the ticket"
 #: izug.ticketbox/izug/ticketbox/content/ticket.py:63
@@ -217,7 +217,7 @@ msgstr "Wählen Sie den Bereich des Tickets"
 #. Default: "Enter the issue topics/areas for this tracker."
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:133
 msgid "help_areas"
-msgstr "Geben Sie die Auftragsbereiche der Aufträge dieser Auftragsbox"
+msgstr "Geben Sie die Auftragsbereiche der Aufträge dieser Auftragsbox<br>(Beispiel: Hardware, Internet, Grafik/Layout usw.)"
 
 #. Default: "You may optionally upload a file attachment. Please do not upload unnecessarily large files."
 #: izug.ticketbox/izug/ticketbox/content/ticket.py:107
@@ -227,22 +227,22 @@ msgstr "Sie können optional eine Datei als Anhang hochladen. Bitte laden Sie ke
 #. Default: "Enter the different type of issue severities that should be available, one per line."
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:114
 msgid "help_availablePriorities"
-msgstr "Geben Sie verschiedene Prioritäten an, welche verfügbar sein sollten. Eine pro Zeile"
+msgstr "Geben Sie verschiedene Prioritäten an, welche verfügbar sein sollten. Eine pro Zeile<br>(Beispiel: hohe Priorität, Normal, Express usw.)"
 
 #. Default: "Enter the Available Releases for this tracker."
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:100
 msgid "help_avialableReleases"
-msgstr "Geben Sie die verfügbaren Lieferpakete für diese Auftragsbox aus"
+msgstr "Geben Sie die verfügbaren Lieferpakete für diese Auftragsbox ein<br>(Beispiel: nächster Release, übernächster Release usw.)"
 
 #. Default: "Due-date of the ticket"
 #: izug.ticketbox/izug/ticketbox/content/ticket.py:30
 msgid "help_duedate"
-msgstr "Erledigungsdatum von diesem Auftrag"
+msgstr "Erledigungsdatum von diesem Auftrag<br>Aktuelles Datum plus 14 Tage"
 
 #. Default: "Enter a individual identifier (max 7 positions)"
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:29
 msgid "help_individualIdentifier"
-msgstr "Geben Sie eine eindeutige Identifikationsnummer ein (max. 7 Zeichen)"
+msgstr "Geben Sie eine eindeutige Identifikationsnummer ein (max. 7 Zeichen)<br>(Beispiel: Kurzname des Projektes, Abkürzung der beteiligten Ämter usw.)"
 
 #. Default: "Select the Priority"
 #: izug.ticketbox/izug/ticketbox/content/ticket.py:52

@@ -1,10 +1,11 @@
 from Acquisition import aq_inner
+from DateTime import DateTime
 from izug.ticketbox import ticketboxMessageFactory as _
-from izug.ticketbox.interfaces import IResponseContainer
 from izug.ticketbox.adapters import Response
 from izug.ticketbox.browser.helper import map_attribute
-from izug.ticketbox.interfaces import IResponseAdder
 from izug.ticketbox.config import DEFAULT_ISSUE_MIME_TYPE
+from izug.ticketbox.interfaces import IResponseAdder
+from izug.ticketbox.interfaces import IResponseContainer
 from OFS.Image import File
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.memoize.view import memoize
@@ -17,6 +18,7 @@ from zope.component import queryUtility
 from zope.interface import implements
 from zope.lifecycleevent import modified
 from zope.schema.interfaces import IVocabularyFactory
+
 
 class Base(BrowserView):
     """Base view for Ticketbox Response.
@@ -57,6 +59,17 @@ class Base(BrowserView):
                         html=html)
             items.append(info)
         return items
+
+    def get_years(self):
+        """return a list of years in past and future"""
+
+        years = []
+        year = DateTime().year()-3
+        for i in range(1,10):
+            years.append(year)
+            year += 1
+
+        return years
 
     @property
     @memoize
@@ -419,14 +432,21 @@ class Create(Base):
 
         attachment = form.get('attachment')
         if attachment:
+            # Create filename like AT - some Browser delivers the local full path
+            filename = attachment.filename
+            filename = filename[max(
+                filename.rfind('/'),
+                filename.rfind('\\'),
+                filename.rfind(':'))+1:]
+
             # File(id, title, file)
-            data = File(attachment.filename, attachment.filename, attachment)
+            data = File(filename, filename, attachment)
             if not hasattr(data, 'filename'):
-                setattr(data, 'filename', attachment.filename)
+                setattr(data, 'filename', filename)
             # Create TicketAttachment and save the uid in attachment attr of
             # new_response
             new_id = queryUtility(IIDNormalizer).normalize(
-                attachment.filename.decode('utf-8'))
+                filename.decode('utf-8'))
             if context.get(new_id, None):
                 IStatusMessage(context.REQUEST).addStatusMessage(
                     _(u"A File with this id already exists,\
@@ -436,10 +456,9 @@ class Create(Base):
             new_file_id = context.invokeFactory(
                 type_name="TicketAttachment",
                 id=new_id,
-                title=attachment.filename,
+                title=filename,
                 file=data)
             new_file = context.get(new_file_id, None)
-
             new_response.attachment = new_file.UID()
             issue_has_changed = True
 

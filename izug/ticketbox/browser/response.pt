@@ -140,7 +140,7 @@
 			      </div>
 
 			    </div>
-
+				<!-- dropdown for states -->
 			    <div class="field"
 			         tal:condition="view/multiple_states">
 			      <label for="state"
@@ -154,7 +154,7 @@
 			        Select a change of state in the issue this response is for, if applicable
 			      </div>
 
-				<!-- dropdown for states -->
+
 					  <select name="state">
 					  	<tal:options
 					          repeat="option view/states_for_display">
@@ -170,7 +170,7 @@
 
 			    </div>
 
-
+			<!-- dropdown for priority -->
 			    <div class="field"
 			         tal:condition="view/multiple_priorities">
 			      <label for="priority"
@@ -182,7 +182,7 @@
 			           i18n:translate="Response_help_newSeverity">
 			        Select the severity for this issue
 			      </div>
-			<!-- dropdown for priority -->
+
 				  <select name="priority">
 				  	<tal:options
 				          repeat="option view/priorities_for_display">
@@ -197,7 +197,7 @@
 				  </select>
 			    </div>
 
-
+				<!-- dropdown for area -->
 			    <div class="field"
 			         tal:condition="view/multiple_areas">
 			      <label for="area"
@@ -210,7 +210,7 @@
 			        Select the area for this issue
 			      </div>
 
-				<!-- dropdown for area -->
+
 					  <select name="area">
 					  	<tal:options
 					          repeat="option view/areas_for_display">
@@ -225,7 +225,7 @@
 					  </select>
 			    </div>
 
-
+				<!-- dropdown for releases -->
 			    <div class="field"
 			         tal:condition="view/show_target_releases">
 			      <label for="releases"
@@ -238,7 +238,7 @@
 			        Set the target release for this issue
 			      </div>
 
-				<!-- dropdown for releases -->
+
 					  <select name="releases">
 					  	<tal:options
 					          repeat="option view/releases_for_display">
@@ -253,7 +253,38 @@
 					  </select>
 
 			    </div>
+			
+				<!-- Answerdate -->
+			    <div class="field">
+				  <script type="text/javascript" src="jscalendar/calendar_stripped.js">
+				  	jscalendar/calendar_stripped.js
+				  </script>
+				  <script type="text/javascript" src="jscalendar/calendar-en.js">
+				  	jscalendar/calendar-en.js
+				  </script>
 
+				<link rel="stylesheet" type="text/css" href="jscalendar/calendar-system.css" />
+
+			      <label for="answerdate"
+			           i18n:translate="Response_label_newAnswerDate">
+			        Change answer date
+			      </label>
+
+			      <div class="formHelp" id="newAnswerDate_help"
+			           i18n:translate="Response_help_newAnswerDate">
+			        Set the new answer date for this issue
+			      </div>
+				
+				  <tal:vars define="uniqueItemIndex python: dict(next=0);
+                                    formname string:response-add-form;
+                                    inputname string:date;
+                                    inputvalue python: context.getAnswerDate()">
+					<metal:box use-macro="here/calendar_macros/macros/calendarDatePickerBox">
+					   a calendar, hopefully
+			            </metal:box>
+           	      </tal:vars>
+			    </div>
+				<!-- dropdown for responsibleManager -->
 			    <div class="field"
 			         tal:condition="view/managers_for_display">
 			      <label for="responsibleManager"
@@ -265,7 +296,9 @@
 			           i18n:translate="Response_help_newResponsibleManager">
 			        Select the responsible manager for this issue
 			      </div>
-				<!-- dropdown for responsibleManager -->
+			
+				
+
 					  <select name="responsibleManager">
 					  	<tal:options
 					          repeat="option view/managers_for_display">
