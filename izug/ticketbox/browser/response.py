@@ -407,6 +407,18 @@ class Create(Base):
                                     before, after)
             issue_has_changed = True
 
+        #Answerdate
+        answerdate_after = DateTime(form.get('answerdate')).strftime('%d.%m.%Y %H:%M')
+        answerdate_before = context.getAnswerDate().strftime('%d.%m.%Y %H:%M')
+
+        if answerdate_before != answerdate_after:
+            context.setAnswerDate(answerdate_after)
+            new_response.add_change('answerDate',
+                                    _(u'label_answerdate', default=u'Answerdate'),
+                                    answerdate_before,
+                                    answerdate_after)
+            issue_has_changed = True
+
         options = [
             ('priority', _(u'label_priority_',default=u"Priority"),
              'available_priorities'),
@@ -486,8 +498,6 @@ class Create(Base):
                 context.setArea(changes['area'])
             if 'state' in changes:
                 context.setState(changes['state'])
-
-
 
             # Add response
             catalog_tool = self.context.portal_catalog

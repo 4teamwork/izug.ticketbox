@@ -36,6 +36,7 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                     'priority': map_attribute(self.context, "priority"),
                     'area': map_attribute(self.context, "area"),
                     'releases': map_attribute(self.context, "releases"),
+                    'answerDate':self.context.getAnswerDate(),
                     'response': False}
         if responses == []:
             return ticket_infos
@@ -58,6 +59,7 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                     'priority': '',
                     'area': '',
                     'releases': '',
+                    'answerDate':'',
                     'response': True}
                 for item in response['response'].changes:
                     # XXX: Hack to solve the label_unassigned translations problem

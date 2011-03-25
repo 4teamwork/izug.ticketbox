@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-03-18 09:36+0000\n"
+"POT-Creation-Date: 2011-03-25 07:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ftw.tabbedview\n"
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:432
+#: izug.ticketbox/izug/ticketbox/browser/response.py:464
 msgid "A File with this id already exists,                    the File wasn't uploaded"
 msgstr ""
 
@@ -49,7 +49,7 @@ msgstr ""
 msgid "Define states"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:56
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:59
 msgid "Delete"
 msgstr ""
 
@@ -61,7 +61,7 @@ msgstr ""
 msgid "DueDate"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:45
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:48
 msgid "Edit"
 msgstr ""
 
@@ -105,73 +105,83 @@ msgid "Response Information"
 msgstr ""
 
 #. Default: "You may optionally upload a file attachment. Please do not upload unnecessarily large files."
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:126
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:128
 msgid "Response_help_attachment"
 msgstr ""
 
 #. Default: "Select a change of state in the issue this response is for, if applicable"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:151
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:153
 msgid "Response_help_issueTransition"
 msgstr ""
 
+#. Default: "Set the new answer date for this issue"
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:275
+msgid "Response_help_newAnswerDate"
+msgstr ""
+
 #. Default: "Select the responsible manager for this issue"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:264
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:297
 msgid "Response_help_newResponsibleManager"
 msgstr ""
 
 #. Default: "Select the severity for this issue"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:181
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:183
 msgid "Response_help_newSeverity"
 msgstr ""
 
 #. Default: "Set the target release for this issue"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:236
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:238
 msgid "Response_help_newTargetRelease"
 msgstr ""
 
 #. Default: "Select the area for this issue"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:208
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:210
 msgid "Response_help_new_area"
 msgstr ""
 
 #. Default: "Please enter your response below"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:85
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:88
 msgid "Response_help_response"
 msgstr ""
 
 #. Default: "Attachment"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:123
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:125
 msgid "Response_label_attachment"
 msgstr ""
 
 #. Default: "Change issue state"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:146
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:148
 msgid "Response_label_issueTransition"
 msgstr ""
 
+#. Default: "Change answer date"
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:270
+msgid "Response_label_newAnswerDate"
+msgstr ""
+
 #. Default: "Change responsible manager"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:259
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:292
 msgid "Response_label_newResponsibleManager"
 msgstr ""
 
 #. Default: "Change issue severity"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:176
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:178
 msgid "Response_label_newSeverity"
 msgstr ""
 
 #. Default: "Change target release"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:231
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:233
 msgid "Response_label_newTargetRelease"
 msgstr ""
 
 #. Default: "Change issue areas"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:203
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:205
 msgid "Response_label_new_areas"
 msgstr ""
 
 #. Default: "Response"
-#: izug.ticketbox/izug/ticketbox/browser/edit_response.pt:45
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:82
+#: izug.ticketbox/izug/ticketbox/browser/edit_response.pt:47
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:85
 msgid "Response_label_response"
 msgstr ""
 
@@ -203,10 +213,18 @@ msgstr ""
 msgid "add or delete possible state-information"
 msgstr ""
 
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket_notification.py:72
+msgid "after"
+msgstr ""
+
 msgid "all_tickets"
 msgstr ""
 
 msgid "attachments"
+msgstr ""
+
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket_notification.py:70
+msgid "before"
 msgstr ""
 
 #. Default: "Answer-date of the ticket"
@@ -327,27 +345,29 @@ msgid "label_ResponsibleManager"
 msgstr ""
 
 #. Default: "State:"
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:15
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:17
 msgid "label_State"
 msgstr ""
 
 #. Default: "on"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:15
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:16
 msgid "label_added_on"
 msgstr ""
 
-#. Default: "Answer-date"
+#. Default: "Answerdate:"
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:15
+#: izug.ticketbox/izug/ticketbox/browser/response.py:417
 #: izug.ticketbox/izug/ticketbox/content/ticket.py:97
 msgid "label_answerdate"
 msgstr ""
 
 #. Default: "Area:"
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:21
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:23
 msgid "label_area"
 msgstr ""
 
 #. Default: "Area"
-#: izug.ticketbox/izug/ticketbox/browser/response.py:403
+#: izug.ticketbox/izug/ticketbox/browser/response.py:428
 msgid "label_areas"
 msgstr ""
 
@@ -362,7 +382,7 @@ msgid "label_attachments"
 msgstr ""
 
 #. Default: "This is an automated email, please do not reply"
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:25
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:27
 msgid "label_automated"
 msgstr ""
 
@@ -389,37 +409,37 @@ msgid "label_duedate"
 msgstr ""
 
 #. Default: "You are not allowed to edit this response."
-#: izug.ticketbox/izug/ticketbox/browser/edit_response.pt:33
+#: izug.ticketbox/izug/ticketbox/browser/edit_response.pt:35
 msgid "label_edit_response_not_allowed"
 msgstr ""
 
 #. Default: "Please enter your response below"
-#: izug.ticketbox/izug/ticketbox/browser/edit_response.pt:48
+#: izug.ticketbox/izug/ticketbox/browser/edit_response.pt:50
 msgid "label_enter_response"
 msgstr ""
 
 #. Default: "By area"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/overview.pt:85
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/overview.pt:83
 msgid "label_heading_by_area"
 msgstr ""
 
 #. Default: "By release"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/overview.pt:51
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/overview.pt:49
 msgid "label_heading_by_release"
 msgstr ""
 
 #. Default: "By responsible"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/overview.pt:17
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/overview.pt:15
 msgid "label_heading_by_responsible"
 msgstr ""
 
 #. Default: "By priority"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/overview.pt:67
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/overview.pt:65
 msgid "label_heading_by_severities"
 msgstr ""
 
 #. Default: "By states"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/overview.pt:34
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/overview.pt:32
 msgid "label_heading_by_states"
 msgstr ""
 
@@ -429,12 +449,12 @@ msgid "label_individualIdentifier"
 msgstr ""
 
 #. Default: "Priority:"
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:19
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:21
 msgid "label_priority"
 msgstr ""
 
 #. Default: "Priority"
-#: izug.ticketbox/izug/ticketbox/browser/response.py:398
+#: izug.ticketbox/izug/ticketbox/browser/response.py:423
 msgid "label_priority_"
 msgstr ""
 
@@ -444,27 +464,27 @@ msgid "label_references"
 msgstr ""
 
 #. Default: "Target Release:"
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:23
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:25
 msgid "label_release"
 msgstr ""
 
 #. Default: "Target Release"
-#: izug.ticketbox/izug/ticketbox/browser/response.py:400
+#: izug.ticketbox/izug/ticketbox/browser/response.py:425
 msgid "label_releases"
 msgstr ""
 
 #. Default: "Added by"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:12
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:13
 msgid "label_response_added"
 msgstr ""
 
 #. Default: "Responsible:"
-#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:17
+#: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:19
 msgid "label_responsible"
 msgstr ""
 
 #. Default: "Responsible"
-#: izug.ticketbox/izug/ticketbox/browser/response.py:393
+#: izug.ticketbox/izug/ticketbox/browser/response.py:406
 msgid "label_responsibleManager"
 msgstr ""
 
@@ -474,8 +494,8 @@ msgid "label_return_to_issue"
 msgstr ""
 
 #. Default: "Submit"
-#: izug.ticketbox/izug/ticketbox/browser/edit_response.pt:86
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:289
+#: izug.ticketbox/izug/ticketbox/browser/edit_response.pt:88
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:324
 msgid "label_save_response"
 msgstr ""
 
@@ -495,7 +515,7 @@ msgid "label_select_release"
 msgstr ""
 
 #. Default: "State"
-#: izug.ticketbox/izug/ticketbox/browser/response.py:402
+#: izug.ticketbox/izug/ticketbox/browser/response.py:427
 #: izug.ticketbox/izug/ticketbox/browser/ticket_view.pt:22
 #: izug.ticketbox/izug/ticketbox/content/ticket.py:40
 msgid "label_state"
@@ -507,107 +527,107 @@ msgid "label_title"
 msgstr ""
 
 #. Default: "unassigned"
-#: izug.ticketbox/izug/ticketbox/browser/response.py:363
+#: izug.ticketbox/izug/ticketbox/browser/response.py:376
 msgid "label_unassigned"
 msgstr ""
 
 #. Default: "If you can, please log in before submitting a reaction."
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:305
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:340
 msgid "login_suggestion_response"
 msgstr ""
 
-#. Default: "A new Ticket has been created by ${creator} in the Ticketbox ${tracker_name}(${tracker_identifier}) at ${tracker_url}"
+#. Default: "A new Ticket has been created by ${creator} in the Ticketbox ${tracker_name}(${tracker_url})"
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:3
 msgid "message_text"
 msgstr ""
 
-#. Default: "A new Answer has been Added by ${creator} in the Ticketbox ${tracker_name} (${tracker_identifier}) at ${tracker_url}"
+#. Default: "A new Answer has been Added by ${creator} in the Ticketbox ${tracker_name} (${tracker_url})"
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:6
 msgid "message_text_response"
 msgstr ""
 
 #. Default: "Displays all Ticket"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:11
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:14
 msgid "msg_allTicketsDescription"
 msgstr ""
 
 #. Default: "Displays all Attachments"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:13
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:18
 msgid "msg_attachmentDescription"
 msgstr ""
 
 #. Default: "Changes Saved"
-#: izug.ticketbox/izug/ticketbox/browser/response.py:524
+#: izug.ticketbox/izug/ticketbox/browser/response.py:573
 msgid "msg_changes_saved"
 msgstr ""
 
-#. Default: "Response does not exist anymore;                         perhaps it was removed by another user."
-#: izug.ticketbox/izug/ticketbox/browser/response.py:513
+#. Default: "Response does not exist anymore;                     perhaps it was removed by another user."
+#: izug.ticketbox/izug/ticketbox/browser/response.py:554
 msgid "msg_doesnt_exists"
 msgstr ""
 
 #. Default: "Displays Access information"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:14
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:20
 msgid "msg_infoDescription"
 msgstr ""
 
 #. Default: "The Response ID ${response_id} doesn't exist."
-#: izug.ticketbox/izug/ticketbox/browser/response.py:126
+#: izug.ticketbox/izug/ticketbox/browser/response.py:139
 msgid "msg_invalid"
 msgstr ""
 
 #. Default: "Displays your Tickets"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:12
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:16
 msgid "msg_myTicketsDescription"
 msgstr ""
 
 #. Default: "No response text added and no issue changes made."
-#: izug.ticketbox/izug/ticketbox/browser/response.py:448
+#: izug.ticketbox/izug/ticketbox/browser/response.py:479
 msgid "msg_no_changes"
 msgstr ""
 
 #. Default: "No Response was selected"
-#: izug.ticketbox/izug/ticketbox/browser/response.py:111
+#: izug.ticketbox/izug/ticketbox/browser/response.py:124
 msgid "msg_no_response"
 msgstr ""
 
 #. Default: "No response selected for removal."
-#: izug.ticketbox/izug/ticketbox/browser/response.py:553
+#: izug.ticketbox/izug/ticketbox/browser/response.py:602
 msgid "msg_no_response_delete"
 msgstr ""
 
 #. Default: "No response selected for saving."
-#: izug.ticketbox/izug/ticketbox/browser/response.py:508
+#: izug.ticketbox/izug/ticketbox/browser/response.py:549
 msgid "msg_no_response_selected"
 msgstr ""
 
 #. Default: "No responses can be added."
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:297
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:332
 msgid "msg_no_responses_can_be_added"
 msgstr ""
 
 #. Default: "Response id ${response_id} is no integer."
-#: izug.ticketbox/izug/ticketbox/browser/response.py:119
+#: izug.ticketbox/izug/ticketbox/browser/response.py:132
 msgid "msg_nointeger"
 msgstr ""
 
 #. Default: "You are not allowed to edit responses."
-#: izug.ticketbox/izug/ticketbox/browser/response.py:501
+#: izug.ticketbox/izug/ticketbox/browser/response.py:564
 msgid "msg_not_restricted"
 msgstr ""
 
 #. Default: "Displays the Overview"
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:10
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:12
 msgid "msg_overviewDescription"
 msgstr ""
 
 #. Default: "Removed response."
-#: izug.ticketbox/izug/ticketbox/browser/response.py:576
+#: izug.ticketbox/izug/ticketbox/browser/response.py:625
 msgid "msg_removed"
 msgstr ""
 
 #. Default: "You are not allowed to delete Responses"
-#: izug.ticketbox/izug/ticketbox/browser/response.py:546
+#: izug.ticketbox/izug/ticketbox/browser/response.py:595
 msgid "msg_restricted_delete"
 msgstr ""
 
@@ -619,7 +639,7 @@ msgid "no"
 msgstr ""
 
 #. Default: "Attached:"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:35
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:38
 msgid "response_label_attachment"
 msgstr ""
 
@@ -640,12 +660,12 @@ msgid "title"
 msgstr ""
 
 #. Default: "Add response"
-#: izug.ticketbox/izug/ticketbox/browser/response.pt:72
+#: izug.ticketbox/izug/ticketbox/browser/response.pt:75
 msgid "title_add_response"
 msgstr ""
 
 #. Default: "Edit response"
-#: izug.ticketbox/izug/ticketbox/browser/edit_response.pt:30
+#: izug.ticketbox/izug/ticketbox/browser/edit_response.pt:32
 msgid "title_edit_response"
 msgstr ""
 
@@ -654,12 +674,8 @@ msgstr ""
 msgid "title_error_no_response"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/info_view.py:55
-msgid "tooltip_info"
-msgstr ""
-
 #: izug.ticketbox/izug/ticketbox/browser/helper.py:86
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:221
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:222
 msgid "unassigned"
 msgstr ""
 

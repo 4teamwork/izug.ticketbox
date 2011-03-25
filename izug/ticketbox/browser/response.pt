@@ -18,15 +18,17 @@
 				              tal:content="python:here.toLocalizedTime(response.date, long_format=True)" />
 				        <div tal:repeat="delta response/changes">
 				        	  <span i18n:translate="" tal:content="string:${delta/name}" />:
-					          <span class="issueChange"
-					                i18n:translate=""
-					                i18n:domain="plone"
-					                tal:content="delta/before" />
-					          &rarr;
-					          <span class="issueChange"
-					                i18n:translate=""
-					                i18n:domain="plone"
-					                tal:content="delta/after" />
+								<tal:nodate condition="python:True">
+						          <span class="issueChange"
+						                i18n:translate=""
+						                i18n:domain="plone"
+						                tal:content="delta/before" />
+						          &rarr;
+						          <span class="issueChange"
+						                i18n:translate=""
+						                i18n:domain="plone"
+						                tal:content="delta/after" />
+								</tal:nodate>
 				        </div>
 
 			      </div>
@@ -277,7 +279,7 @@
 				
 				  <tal:vars define="uniqueItemIndex python: dict(next=0);
                                     formname string:response-add-form;
-                                    inputname string:date;
+                                    inputname string:answerdate;
                                     inputvalue python: context.getAnswerDate()">
 					<metal:box use-macro="here/calendar_macros/macros/calendarDatePickerBox">
 					   a calendar, hopefully

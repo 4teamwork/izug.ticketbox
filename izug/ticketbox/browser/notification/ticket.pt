@@ -12,6 +12,8 @@
 <span tal:content="structure infos/title" /> (<span tal:content="infos/url" />)<br /><br />
 <span tal:condition="infos/text" i18n:translate="label_Description">Description:</span><br />
 <span tal:content="structure infos/text" />
+<span tal:condition="infos/answerDate|nothing"><br /><br /><span i18n:translate="label_answerdate">Answerdate:</span><br /></span>
+<span tal:content="structure infos/answerDate" />
 <span tal:condition="infos/state|nothing"><br /><br /><span i18n:translate="label_State">State:</span><br /></span>
 <span tal:content="structure infos/state" />
 <span tal:condition="infos/responsibleManager|nothing"><br /><br /><span i18n:translate="label_responsible">Responsible:</span><br /></span>
