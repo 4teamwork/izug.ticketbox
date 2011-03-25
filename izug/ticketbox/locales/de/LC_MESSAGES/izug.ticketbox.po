@@ -544,12 +544,12 @@ msgstr "Eine neue Antwort wurde von ${creator} in der Auftragsbox ${tracker_name
 #. Default: "Displays all Ticket"
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:14
 msgid "msg_allTicketsDescription"
-msgstr "Zeigt alle Tickets an"
+msgstr "Auflistung aller bisher erstellten Aufträge"
 
 #. Default: "Displays all Attachments"
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:18
 msgid "msg_attachmentDescription"
-msgstr "Zeigt alle Anhänge an"
+msgstr "Übersicht über alle angehängten Dateien"
 
 #. Default: "Changes Saved"
 #: izug.ticketbox/izug/ticketbox/browser/response.py:573
@@ -565,7 +565,7 @@ msgstr "Die Antwort existiert nicht mehr; Vielleicht wurde sie von einem anderen
 #. Default: "Displays Access information"
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:20
 msgid "msg_infoDescription"
-msgstr "Zeigt Zugriffsinformationen an"
+msgstr "Übersicht über die zugriffsberechtigten Personen"
 
 #. Default: "The Response ID ${response_id} doesn't exist."
 #: izug.ticketbox/izug/ticketbox/browser/response.py:139
@@ -575,7 +575,7 @@ msgstr "Die Antwort IF ${response_id} existiert nicht"
 #. Default: "Displays your Tickets"
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:16
 msgid "msg_myTicketsDescription"
-msgstr "Zeigt von Ihnen erstellte Tickets an"
+msgstr "Nur diejenigen Aufträge, für die ich zuständig bin"
 
 #. Default: "No response text added and no issue changes made."
 #: izug.ticketbox/izug/ticketbox/browser/response.py:479
@@ -615,7 +615,7 @@ msgstr "Sie sind nicht berechtigt Antworten zu bearbeiten"
 #. Default: "Displays the Overview"
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:12
 msgid "msg_overviewDescription"
-msgstr "Zeigt die Übersicht an"
+msgstr "Projektverwaltung und verschiedene Ansichten auf die Aufträge"
 
 #. Default: "Removed response."
 #: izug.ticketbox/izug/ticketbox/browser/response.py:625
