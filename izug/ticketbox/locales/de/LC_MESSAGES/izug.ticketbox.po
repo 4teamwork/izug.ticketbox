@@ -70,7 +70,7 @@ msgstr "Auftrags Informationen"
 
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:170
 msgid "None"
-msgstr "Unbestimmt"
+msgstr "Nicht zugewiesen"
 
 msgid "Overview"
 msgstr "Übersicht"
@@ -524,7 +524,7 @@ msgstr "Titel:"
 #. Default: "unassigned"
 #: izug.ticketbox/izug/ticketbox/browser/response.py:376
 msgid "label_unassigned"
-msgstr "Unbestimmt"
+msgstr "Nicht zugewiesen"
 
 #. Default: "If you can, please log in before submitting a reaction."
 #: izug.ticketbox/izug/ticketbox/browser/response.pt:340
@@ -673,7 +673,7 @@ msgstr "Fehler: Keine Antwort zum bearbeiten gefunden."
 #: izug.ticketbox/izug/ticketbox/browser/helper.py:86
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:222
 msgid "unassigned"
-msgstr "Unbestimmt"
+msgstr "Nicht zugewiesen"
 
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:178
 msgid "yes"
