@@ -212,7 +212,7 @@ class TabbedTicketBoxBaseView(BaseListingView):
 
     def readable_author(self, item, author):
         """
-        get the full name of a user-id
+        get the full name by user-id
         """
         if not author:
             return '-'

@@ -16,8 +16,9 @@
 			          <ul>
 			              <tal:areas repeat="responsible responsibles">
 			                <li tal:define="responsibleId python:responsible[0];
-											responsibleTitle python:responsible[1];
-											tickets python:view.getFilteredTickets(responsible=responsibleId)
+							user python:context.portal_membership.getMemberById(responsibleId);
+                                                        responsibleTitle python: user and user.getProperty('fullname', responsibleId) or responsible[1];
+							tickets python:view.getFilteredTickets(responsible=responsibleId)
 											">
 			                <a tal:attributes="href string:${context/absolute_url}?searchkey=responsible&searchvalue=${responsibleId}"
 			                   tal:content="responsibleTitle" /> (<span tal:replace="python:len(tickets)" />)
@@ -61,13 +62,14 @@
 				      </div>
 				</td>
 				<td>
-					 <div tal:condition="priorities" id="tickets-by-priority" class="ticketbox-quick-search-box">
+				       
+                                         <div tal:condition="priorities" id="tickets-by-priority" class="ticketbox-quick-search-box">
 				          <h3 i18n:translate="label_heading_by_severities">By priority</h3>
 				          <ul>
 				              <tal:areas repeat="priority priorities">
 				                <li tal:define="priorityId priority/id;
-												priorityTitle priority/title;
-												tickets python:view.getFilteredTickets(priority=priorityId)
+						                priorityTitle priority/title;
+								tickets python:view.getFilteredTickets(priority=priorityId)
 
 												">
 				                <a tal:attributes="href string:${context/absolute_url}?searchkey=priority&searchvalue=${priorityId}"
@@ -75,25 +77,22 @@
 				               </li>
 				              </tal:areas>
 				          </ul>
-				      </div>
+                                      </div>
 
-			</td>
-				<td>
-					<div tal:condition="areas" id="tickets-by-area" class="ticketbox-quick-search-box">
-			          <h3 i18n:translate="label_heading_by_area">By area</h3>
-			          <ul>
-			              <tal:areas repeat="area areas">
-			                <li tal:define="areaId area/id;
-											areaTitle area/title;
-											tickets python:view.getFilteredTickets(area=areaId)
-											">
-			                <a tal:attributes="href string:${context/absolute_url}?searchkey=area&searchvalue=${areaId}"
-			                   tal:content="areaTitle" /> (<span tal:replace="python:len(tickets)" />)
-			               </li>
-			              </tal:areas>
-			          </ul>
-			      </div>
-			     
+                                      <div tal:condition="areas" id="tickets-by-area" class="ticketbox-quick-search-box">
+                                        <br/>
+                                        <h3 i18n:translate="label_heading_by_area">By area</h3>
+                                          <ul>
+                                            <tal:areas repeat="area areas">
+                                              <li tal:define="areaId area/id;
+                                                              areaTitle area/title;
+                                                              tickets python:view.getFilteredTickets(area=areaId) ">
+                                                <a tal:attributes="href string:${context/absolute_url}?searchkey=area&searchvalue=${areaId}"
+                                                   tal:content="areaTitle" /> (<span tal:replace="python:len(tickets)" />)
+                                              </li>
+                                            </tal:areas>
+                                          </ul>
+                                       </div>
 				</td>
 			</tr>
 		</table>

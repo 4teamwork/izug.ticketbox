@@ -9,7 +9,7 @@
 <span tal:condition="python: infos['response']==True" i18n:translate="">Response Information</span>
 <br /><br />
 <span i18n:translate="label_title">Title:</span><br />
-<span tal:content="structure infos/title" /> (<span tal:content="infos/url" />)<br /><br />
+<span tal:content="string:#${infos/ticket_id} -" /> <span tal:content="structure infos/title" /> (<span tal:content="infos/url" />)<br /><br />
 <span tal:condition="infos/text" i18n:translate="label_Description">Description:</span><br />
 <span tal:content="structure infos/text" />
 <span tal:condition="infos/answerDate|nothing"><br /><br /><span i18n:translate="label_answerdate">Answerdate:</span><br /></span>

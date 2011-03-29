@@ -18,6 +18,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget \
     import ReferenceBrowserWidget
 from zope.interface import implements
 from Products.Archetypes import atapi
+from Products.CMFCore.permissions import ManagePortal
 
 TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 
@@ -148,9 +149,16 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 ))
 
 TicketSchema['description'].required = True
-TicketSchema['description'].widget = atapi.RichWidget(label=_(u"label_description",default=u"Description"))
+TicketSchema['description'].widget = atapi.RichWidget(
+    label=_(u"label_description",
+    default=u"Description"),
+    rows=30)
 schemata.finalizeATCTSchema(TicketSchema, moveDiscussion=False)
 
+# Hide all unimportant fields except default-schamata-fields
+for field in TicketSchema.keys():
+    if TicketSchema[field].schemata != 'default':
+        TicketSchema[field].write_permission = ManagePortal
 
 class Ticket(base.ATCTFolder):
     """A ticket for a tracker-like task management system"""

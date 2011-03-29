@@ -185,5 +185,5 @@ class TicketSubjectCreator(object):
             subject = default_subject
         else:
             subject = sheet.getProperty('notification_email_subject', default_subject)+\
-            ': ['+aq_parent(self.context).getIndividualIdentifier()+'] '+object_.Title()
+            ': ['+aq_parent(self.context).getIndividualIdentifier()+'] #' + object_.getId() + ' - ' + object_.Title()
         return subject
