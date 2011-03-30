@@ -8,7 +8,7 @@
 
     <metal:block metal:use-macro="here/@@custom_header/macros/header | here/base/macros/header" />
 
-    <div>
+    <div id="ticket-content">
     <table>
         <tr>
             <td i18n:translate='label_description'>Description</td>
