@@ -13,11 +13,11 @@ msgstr ""
 "Domain: DOMAIN\n"
 
 #: izug.ticketbox/izug/ticketbox/browser/response.py:464
-msgid "A File with this id already exists,                    the File wasn't uploaded"
+msgid "A File with this id already exists, the File wasn't uploaded"
 msgstr "Eine Datei mit dieser ID existiert bereits, Die Datei wurde nicht hochgeladen"
 
 #: izug.ticketbox/izug/ticketbox/handlers.py:36
-msgid "A File with this id already exists,                the File wasn't uploaded"
+msgid "A File with this id already exists, the File wasn't uploaded"
 msgstr "Eine Datei mit dieser ID existiert bereits, Die Datei wurde nicht hochgeladen"
 
 #: izug.ticketbox/izug/ticketbox/profiles/default/types/Ticket.xml
@@ -556,9 +556,8 @@ msgstr "Übersicht über alle angehängten Dateien"
 msgid "msg_changes_saved"
 msgstr "Änderungen gespeichert"
 
-#. Default: "Response does not exist anymore;                     perhaps it was removed by another user."
+#. Default: "Response does not exist anymore, perhaps it was removed by another user."
 #: izug.ticketbox/izug/ticketbox/browser/response.py:554
-#, fuzzy
 msgid "msg_doesnt_exists"
 msgstr "Die Antwort existiert nicht mehr; Vielleicht wurde sie von einem anderen Benutzer gelöscht"
 
