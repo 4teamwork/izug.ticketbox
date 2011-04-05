@@ -2,14 +2,15 @@
 """
 This module contains the tool of izug.ticketbox
 """
-import os
 from setuptools import setup, find_packages
 
 
 def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+    return open('/'.join(rnames)).read()
 
-version = '1.0'
+version = open('izug/ticketbox/version.txt').read().strip()
+maintainer = 'Elio Schmutz'
+
 
 long_description = (
     read('README.txt')
@@ -24,11 +25,6 @@ long_description = (
     + '\n' +
     read('izug', 'ticketbox', 'README.txt')
     + '\n' +
-    'Contributors\n'
-    '************\n'
-    + '\n' +
-    read('CONTRIBUTORS.txt')
-    + '\n' +
     'Download\n'
     '********\n')
 
@@ -36,7 +32,8 @@ tests_require = ['zope.testing']
 
 setup(name='izug.ticketbox',
       version=version,
-      description="A tracker-like task management system",
+      description="A tracker-like task management system (Maintainer: %s)" 
+        % maintainer,
       long_description=long_description,
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
@@ -56,6 +53,8 @@ setup(name='izug.ticketbox',
       zip_safe=False,
       install_requires=['setuptools',
                         'Products.DataGridField',
+                        'ftw.tabbedview', 
+                        'ftw.table',
                         # -*- Extra requirements: -*-
                         ],
       tests_require=tests_require,

@@ -49,7 +49,7 @@ Finally, let's return to the front page of our site before continuing
 
 -*- extra stuff goes here -*-
 The Ticket content type
-===============================
+=======================
 
 In this section we are tesing the Ticket content type by performing
 basic operations like adding, updadating and deleting Ticket content
@@ -80,7 +80,7 @@ Now we fill the form and submit it.
 And we are done! We added a new 'Ticket' content item to the portal.
 
 Updating an existing Ticket content item
----------------------------------------
+----------------------------------------
 
 Let's click on the 'edit' tab and update the object attribute values.
 
@@ -96,7 +96,7 @@ We check that the changes were applied.
     True
 
 Removing a/an Ticket content item
---------------------------------
+---------------------------------
 
 If we go to the home page, we can see a tab with the 'New Ticket
 Sample' title in the global navigation tabs.
@@ -126,7 +126,7 @@ Sample' tab.
     False
 
 Adding a new Ticket content item as contributor
-------------------------------------------------
+-----------------------------------------------
 
 Not only site managers are allowed to add Ticket content items, but
 also site contributors.
@@ -172,14 +172,14 @@ Finally, let's login back as manager.
 
 
 The Ticket Box content type
-===============================
+===========================
 
 In this section we are tesing the Ticket Box content type by performing
 basic operations like adding, updadating and deleting Ticket Box content
 items.
 
 Adding a new Ticket Box content item
---------------------------------
+------------------------------------
 
 We use the 'Add new' menu to add a new content item.
 
@@ -203,7 +203,7 @@ Now we fill the form and submit it.
 And we are done! We added a new 'Ticket Box' content item to the portal.
 
 Updating an existing Ticket Box content item
----------------------------------------
+--------------------------------------------
 
 Let's click on the 'edit' tab and update the object attribute values.
 
@@ -219,7 +219,7 @@ We check that the changes were applied.
     True
 
 Removing a/an Ticket Box content item
---------------------------------
+-------------------------------------
 
 If we go to the home page, we can see a tab with the 'New Ticket Box
 Sample' title in the global navigation tabs.
@@ -249,7 +249,7 @@ Sample' tab.
     False
 
 Adding a new Ticket Box content item as contributor
-------------------------------------------------
+---------------------------------------------------
 
 Not only site managers are allowed to add Ticket Box content items, but
 also site contributors.
