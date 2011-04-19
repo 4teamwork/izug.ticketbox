@@ -11,6 +11,11 @@
       name="izug.ticketbox.css"
       directory="stylesheets"
       />
+   <browser:resourceDirectory
+       name="izug.ticketbox.icons"
+       directory="icons"
+       />
+
 	<browser:page
 	   name="ticket_view"
 	   for="izug.ticketbox.interfaces.ITicket"
