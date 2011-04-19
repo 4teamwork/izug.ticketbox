@@ -32,7 +32,7 @@ tests_require = ['zope.testing']
 
 setup(name='izug.ticketbox',
       version=version,
-      description="A tracker-like task management system (Maintainer: %s)" 
+      description="A tracker-like task management system (Maintainer: %s)"
         % maintainer,
       long_description=long_description,
       # Get more strings from
@@ -53,8 +53,12 @@ setup(name='izug.ticketbox',
       zip_safe=False,
       install_requires=['setuptools',
                         'Products.DataGridField',
-                        'ftw.tabbedview', 
+                        'ftw.tabbedview',
                         'ftw.table',
+                        'ftw.notification.base',
+                        'ftw.notification.email',
+                        'izug.utils',
+                        'ftw.sendmail',
                         # -*- Extra requirements: -*-
                         ],
       tests_require=tests_require,
