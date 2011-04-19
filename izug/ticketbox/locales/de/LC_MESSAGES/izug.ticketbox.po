@@ -16,10 +16,6 @@ msgstr ""
 msgid "A File with this id already exists, the File wasn't uploaded"
 msgstr "Eine Datei mit dieser ID existiert bereits, Die Datei wurde nicht hochgeladen"
 
-#: izug.ticketbox/izug/ticketbox/handlers.py:36
-msgid "A File with this id already exists, the File wasn't uploaded"
-msgstr "Eine Datei mit dieser ID existiert bereits, Die Datei wurde nicht hochgeladen"
-
 #: izug.ticketbox/izug/ticketbox/profiles/default/types/Ticket.xml
 msgid "A ticket for a tracker-like task management system"
 msgstr "Ein Auftrag für eine Auftragsbox"
