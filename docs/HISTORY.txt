@@ -5,6 +5,8 @@ Changelog
 1.2
 ---
 
+* integration jenkins
+  [19.04.2011, elio.schmutz]
 
 1.1
 ---
