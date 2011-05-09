@@ -38,7 +38,7 @@
             <td i18n:translate='label_ResponsibleManager'>responsible Manager</td>
             <td tal:content="view/map_author" />
         </tr>
-        <tr>
+        <tr tal:condition="python: context.getAnswerDate()">		
             <td i18n:translate='label_AnswerDate'>Answer Date</td>
             <td tal:content="python:context.getAnswerDate().strftime('%d.%m.%Y %H:%M')" />
         </tr>

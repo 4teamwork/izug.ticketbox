@@ -5,6 +5,9 @@ Changelog
 1.2
 ---
 
+* #1468 Auftragsbox - Kein Datum in Falligkeit und Antwort erbeten bis
+  [09.05.2011, elio.schmutz]
+
 * integration jenkins
   [19.04.2011, elio.schmutz]
 

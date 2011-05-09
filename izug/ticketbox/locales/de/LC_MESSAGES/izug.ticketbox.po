@@ -678,4 +678,3 @@ msgstr "Nicht zugewiesen"
 msgid "yes"
 msgstr "Ja"
 
-
