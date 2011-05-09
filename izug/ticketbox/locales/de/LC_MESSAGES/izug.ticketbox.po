@@ -12,11 +12,8 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: izug.ticketbox/izug/ticketbox/browser/response.py:464
-msgid "A File with this id already exists, the File wasn't uploaded"
-msgstr "Eine Datei mit dieser ID existiert bereits, Die Datei wurde nicht hochgeladen"
-
 #: izug.ticketbox/izug/ticketbox/handlers.py:36
+#: izug.ticketbox/izug/ticketbox/browser/response.py:464
 msgid "A File with this id already exists, the File wasn't uploaded"
 msgstr "Eine Datei mit dieser ID existiert bereits, Die Datei wurde nicht hochgeladen"
 
