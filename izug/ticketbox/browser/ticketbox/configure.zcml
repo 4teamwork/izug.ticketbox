@@ -53,6 +53,6 @@
     template="info_view.pt"
     />
 
-
+	<adapter factory=".baseview.TabbedTicketboxtableSource" />
 
 </configure>

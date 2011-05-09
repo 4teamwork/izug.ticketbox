@@ -1,4 +1,4 @@
-from ftw.tabbedview.browser.views.views import BaseListingView
+from ftw.tabbedview.browser.listing import ListingView
 from ftw.table import helper
 from ftw.table.interfaces import ITableGenerator
 from izug.ticketbox import ticketboxMessageFactory as _
@@ -6,16 +6,26 @@ from izug.ticketbox.browser.helper import map_attribute
 from Products.CMFCore.utils import getToolByName
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import queryUtility
+from ftw.table.basesource import BaseTableSource
+from ftw.table.interfaces import ITableSourceConfig, ITableSource
+from zope.interface import implements, Interface
+from zope.component import adapts
 
 
-class TabbedTicketBoxBaseView(BaseListingView):
+class ITicketboxSourceConfig(ITableSourceConfig):
+    """Marker interface for contact table source config.
+    """
+
+
+class TabbedTicketBoxBaseView(ListingView):
+    implements(ITicketboxSourceConfig)
 
     filter_my_created_tickets = False
     filter_responsibleManager = False
 
     #str: show_in_my_tickets or show_in_all_tickets
     filter_state = None
-
+    contents = []
     show_searchform = True
     sort_on = 'sortable_id'
 
@@ -33,114 +43,37 @@ class TabbedTicketBoxBaseView(BaseListingView):
 
     def __init__(self, context, request):
         super(TabbedTicketBoxBaseView, self).__init__(context, request)
-
         self.columns = ({'column': 'getId',
-                        'column_title': _(u"Id"),
-                        'sort_index': 'sortable_id',
-                        },
-                        {'column': 'Title',
-                        'column_title': _(u"Description"),
-                        'sort_index': 'sortable_title',
-                        'transform': self.izug_files_linked,
-                        },
-                        {'column': 'getResponsibleManager',
-                        'column_title': _(u"responsibleManager"),
-                        'sort_index': 'sortable_responsibleManager',
-                        'transform': self.readable_author,
-                        },
-                        {'column': 'getState',
-                        'column_title': _(u"State"),
-                        'transform': self.map_state,
-                        },
-                        {'column': 'getDueDate',
-                        'column_title': _(u"DueDate"),
-                        'transform': helper.readable_date_time_text,
-                        },
-                        {'column': 'getPriority',
-                        'column_title': _(u"Priority"),
-                        'transform': self.map_priority,
-                        },
-                        {'column': 'getArea',
-                        'column_title': _(u"Area"),
-                        'transform': self.map_area,
-                        },
-                        )
-
-    def update(self):
-        super(TabbedTicketBoxBaseView, self).update()
-        self.pagesize = 50
-        #old izug batching still uses b_start instead of self.pagenumber
-        self.pagenumber = int(self.request.get('b_start', 0))/self.pagesize+1
-
-    def render_listing(self):
-
-        generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
-        return generator.generate(self.batch,
-                                  self.columns,
-                                  sortable=True,
-                                  selected=(self.sort_on, self.sort_order),
-                                  template=self.table,
-                                  auto_count=self.auto_count,
-                                  css_mapping=dict(table='sortable-table'),
-                                  )
-
-    def search(self, kwargs):
-
-        """Custom search method for ticketbox"""
-        membership = self.context.aq_inner.portal_membership
-        member_id = membership.getAuthenticatedMember().getId()
-
-        # Huck for overview tab.
-        # Should return nothing if no filter criteria is present.
-        view_name = self.request.get('view_name')
-        if view_name == "Overview":
-
-            is_set_responsible = self.request.get('responsible')
-            is_set_state = self.request.get('state')
-            is_set_release = self.request.get('release')
-            is_set_area = self.request.get('area')
-            is_set_priority = self.request.get('priority')
-
-            if not (is_set_responsible or
-                    is_set_state or
-                    is_set_release or
-                    is_set_area or
-                    is_set_priority):
-
-                self.contents = []
-                self.len_results = 0
-                return
-
-        # show only tickets, where creater is me
-        if self.filter_my_created_tickets:
-            kwargs['Creator'] = member_id
-
-        # show only tickets, where ResponsibleManager is me
-        if self.filter_responsibleManager:
-            kwargs['responsibleManager'] = member_id
-
-        self.catalog = catalog = getToolByName(self.context, 'portal_catalog')
-        query = self.build_query(**kwargs)
-        tmpresults = catalog(**query)
-
-        # Filter by state (ATField State not review_state)
-        if not self.filter_state:
-            self.contents = tmpresults
-        else:
-            states = self.context.getAvailableStates()
-            state_mapping = {}
-            for item in states:
-                state_mapping[item['id']] = item[self.filter_state]
-            result = []
-            for item in tmpresults:
-                if state_mapping[item.getState] == '1':
-                    result.append(item)
-
-            self.contents = result
-
-        self.len_results = len(self.contents)
-
-
+                    'column_title': _(u"Id"),
+                    'sort_index': 'sortable_id',
+                    },
+                    {'column': 'Title',
+                    'column_title': _(u"Description"),
+                    'sort_index': 'sortable_title',
+                    'transform': self.izug_files_linked,
+                    },
+                    {'column': 'getResponsibleManager',
+                    'column_title': _(u"responsibleManager"),
+                    'sort_index': 'sortable_responsibleManager',
+                    'transform': self.readable_author,
+                    },
+                    {'column': 'getState',
+                    'column_title': _(u"State"),
+                    'transform': self.map_state,
+                    },
+                    {'column': 'getDueDate',
+                    'column_title': _(u"DueDate"),
+                    'transform': helper.readable_date_time_text,
+                    },
+                    {'column': 'getPriority',
+                    'column_title': _(u"Priority"),
+                    'transform': self.map_priority,
+                    },
+                    {'column': 'getArea',
+                    'column_title': _(u"Area"),
+                    'transform': self.map_area,
+                    },
+                    )
 
     # HELPER Methods for ftw.table generator
     def map_state(self, item, id):
@@ -225,3 +158,90 @@ class TabbedTicketBoxBaseView(BaseListingView):
             if not len(name):
                 name = author
             return name
+
+
+    def get_base_query(self):
+        return dict()
+
+    def update(self):
+        super(TabbedTicketBoxBaseView, self).update()
+        self.pagesize = 50
+        #old izug batching still uses b_start instead of self.pagenumber
+        self.pagenumber = int(self.request.get('b_start', 0))/self.pagesize+1
+
+    def render_listing(self):
+
+        generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
+        return generator.generate(self.batch,
+                                  self.columns,
+                                  sortable=True,
+                                  selected=(self.sort_on, self.sort_order),
+                                  template=self.table,
+                                  auto_count=self.auto_count,
+                                  css_mapping=dict(table='sortable-table'),
+                                  )
+
+
+
+class TabbedTicketboxtableSource(BaseTableSource):
+    implements(ITableSource)
+    adapts(ITicketboxSourceConfig, Interface)
+
+
+    def search_results(self, query):
+
+        """Custom search method for ticketbox"""
+        membership = self.config.context.aq_inner.portal_membership
+        member_id = membership.getAuthenticatedMember().getId()
+
+        # Huck for overview tab.
+        # Should return nothing if no filter criteria is present.
+        view_name = self.request.get('view_name')
+        if view_name == "Overview":
+
+            is_set_responsible = self.config.request.get('responsible')
+            is_set_state = self.config.request.get('state')
+            is_set_release = self.config.request.get('release')
+            is_set_area = self.config.request.get('area')
+            is_set_priority = self.config.request.get('priority')
+
+            if not (is_set_responsible or
+                    is_set_state or
+                    is_set_release or
+                    is_set_area or
+                    is_set_priority):
+
+                return []
+
+        # show only tickets, where creater is me
+        if self.filter_my_created_tickets:
+            query['Creator'] = member_id
+
+        # show only tickets, where ResponsibleManager is me
+        if self.filter_responsibleManager:
+            query['responsibleManager'] = member_id
+
+        self.catalog = catalog = getToolByName(self.context, 'portal_catalog')
+        tmpresults = catalog(**query)
+
+        # Filter by state (ATField State not review_state)
+        if not self.filter_state:
+            return tmpresults
+        else:
+            states = self.config.context.getAvailableStates()
+            state_mapping = {}
+            for item in states:
+                state_mapping[item['id']] = item[self.filter_state]
+            result = []
+            for item in tmpresults:
+                if state_mapping[item.getState] == '1':
+                    result.append(item)
+
+            return result
+
+    def extend_query_with_textfilter(self, results, text):
+        return results
+
+    def extend_query_with_ordering(self, results):
+        return results
+

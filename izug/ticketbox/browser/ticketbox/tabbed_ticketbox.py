@@ -1,7 +1,7 @@
-from ftw.tabbedview.browser.views import views
+from ftw.tabbedview.browser.tabbed import TabbedView
 from izug.ticketbox import ticketboxMessageFactory as _
 
-class TabbedTicketBoxView(views.TabbedView):
+class TabbedTicketBoxView(TabbedView):
 
     filter_state = True
     show_searchform = True
