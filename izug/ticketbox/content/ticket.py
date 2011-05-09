@@ -26,6 +26,8 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
     DateTimeField(
         name='dueDate',
         default_method='default_due_date',
+        required=True,
+        validators=('isValidDate'),
         widget=CalendarWidget(
             label=_(u"label_duedate", default=u"Due Date"),
             description=_(u"help_duedate",default=u"Due-date of the ticket"),
