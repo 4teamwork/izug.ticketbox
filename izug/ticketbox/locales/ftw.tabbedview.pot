@@ -29,3 +29,6 @@ msgstr ""
 
 msgid "info_view"
 msgstr ""
+
+msgid "Overview"
+msgstr ""
