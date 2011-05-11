@@ -237,7 +237,6 @@ class TabbedTicketboxtableSource(BaseTableSource):
         # show only tickets, where ResponsibleManager is me
         if self.config.filter_responsibleManager:
             query['getResponsibleManager'] = member_id
-        import pdb; pdb.set_trace( )
         self.config.catalog = catalog = getToolByName(self.config.context, 'portal_catalog')
         tmpresults = catalog(**query)
         # Filter by state (ATField State not review_state)
