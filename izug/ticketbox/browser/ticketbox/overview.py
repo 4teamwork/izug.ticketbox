@@ -15,8 +15,8 @@ class TicketBoxView(TabbedTicketBoxBaseView):
         """
         context = aq_inner(self.context)
         query = self.buildIssueSearchQuery(criteria, **kwargs)
-        if 'getArea' in query.keys():
-            import pdb; pdb.set_trace( )
+        # if 'getArea' in query.keys():
+        #     import pdb; pdb.set_trace( )
         catalog = getToolByName(context, 'portal_catalog')
         return catalog.searchResults(query)
 

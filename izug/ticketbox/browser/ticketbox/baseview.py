@@ -161,13 +161,21 @@ class TabbedTicketBoxBaseView(ListingView):
 
 
     def get_base_query(self):
-        return dict()
+        """Returns the base query for a specific table source type
+        (e.g. portal_catalog, sqlalchemy, dict, ...).
+        """
+        query = {}
 
-    def update(self):
-        super(TabbedTicketBoxBaseView, self).update()
-        self.pagesize = 50
-        #old izug batching still uses b_start instead of self.pagenumber
-        self.pagenumber = int(self.request.get('b_start', 0))/self.pagesize+1
+        # extend with path filter, if configured
+        if 'path' not in query and getattr(self, 'filter_path', None):
+            query['path'] = {'query': self.filter_path,
+                             'depth': self.depth}
+
+        # extend with types
+        if 'types' not in query and self.types:
+            query['portal_type'] = self.types
+
+        return query
 
     def render_listing(self):
 
@@ -177,7 +185,6 @@ class TabbedTicketBoxBaseView(ListingView):
                                   sortable=True,
                                   selected=(self.sort_on, self.sort_order),
                                   template=self.table,
-                                  auto_count=self.auto_count,
                                   css_mapping=dict(table='sortable-table'),
                                   )
 
@@ -212,26 +219,26 @@ class TabbedTicketboxtableSource(BaseTableSource):
                     is_set_priority):
 
                 return []
-
+        import pdb; pdb.set_trace( )
         # show only tickets, where creater is me
-        if self.filter_my_created_tickets:
+        if self.config.filter_my_created_tickets:
             query['Creator'] = member_id
 
         # show only tickets, where ResponsibleManager is me
-        if self.filter_responsibleManager:
+        if self.config.filter_responsibleManager:
             query['responsibleManager'] = member_id
 
-        self.catalog = catalog = getToolByName(self.context, 'portal_catalog')
+        self.config.catalog = catalog = getToolByName(self.config.context, 'portal_catalog')
         tmpresults = catalog(**query)
 
         # Filter by state (ATField State not review_state)
-        if not self.filter_state:
+        if not self.config.filter_state:
             return tmpresults
         else:
             states = self.config.context.getAvailableStates()
             state_mapping = {}
             for item in states:
-                state_mapping[item['id']] = item[self.filter_state]
+                state_mapping[item['id']] = item[self.config.filter_state]
             result = []
             for item in tmpresults:
                 if state_mapping[item.getState] == '1':
