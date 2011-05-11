@@ -25,7 +25,6 @@ class TabbedTicketBoxBaseView(ListingView):
 
     #str: show_in_my_tickets or show_in_all_tickets
     filter_state = None
-    contents = []
     show_searchform = True
     sort_on = 'sortable_id'
 
@@ -180,6 +179,7 @@ class TabbedTicketBoxBaseView(ListingView):
     def render_listing(self):
 
         generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
+        print 'render'
         return generator.generate(self.batch,
                                   self.columns,
                                   sortable=True,
@@ -212,6 +212,17 @@ class TabbedTicketboxtableSource(BaseTableSource):
             is_set_area = self.config.request.get('area')
             is_set_priority = self.config.request.get('priority')
 
+            if is_set_responsible:
+                query['getResponsibleManager'] = is_set_responsible
+            elif is_set_state:
+                query['getState'] = is_set_state
+            elif is_set_release:
+                query['getReleases'] = is_set_release
+            elif is_set_priority:
+                query['getPriority'] = is_set_priority
+            elif is_set_area:
+                query['getArea'] = is_set_area
+
             if not (is_set_responsible or
                     is_set_state or
                     is_set_release or
@@ -219,18 +230,16 @@ class TabbedTicketboxtableSource(BaseTableSource):
                     is_set_priority):
 
                 return []
-        import pdb; pdb.set_trace( )
         # show only tickets, where creater is me
         if self.config.filter_my_created_tickets:
             query['Creator'] = member_id
 
         # show only tickets, where ResponsibleManager is me
         if self.config.filter_responsibleManager:
-            query['responsibleManager'] = member_id
-
+            query['getResponsibleManager'] = member_id
+        import pdb; pdb.set_trace( )
         self.config.catalog = catalog = getToolByName(self.config.context, 'portal_catalog')
         tmpresults = catalog(**query)
-
         # Filter by state (ATField State not review_state)
         if not self.config.filter_state:
             return tmpresults
