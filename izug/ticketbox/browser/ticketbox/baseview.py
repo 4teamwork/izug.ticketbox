@@ -179,7 +179,6 @@ class TabbedTicketBoxBaseView(ListingView):
     def render_listing(self):
 
         generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
-        print 'render'
         return generator.generate(self.batch,
                                   self.columns,
                                   sortable=True,

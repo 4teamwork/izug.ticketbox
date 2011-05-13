@@ -13,7 +13,7 @@ msgstr ""
 "Domain: DOMAIN\n"
 
 msgid "Overview"
-msgstr "Übersicht"
+msgstr "Übersicht	"
 
 msgid "all_tickets"
 msgstr "Alle Aufträge"
