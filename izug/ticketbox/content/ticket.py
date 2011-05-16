@@ -171,6 +171,7 @@ class Ticket(base.ATCTFolder):
     schema = TicketSchema
 
     def generateNewId(self):
+
         """generate a new ticket id.
         get all tickets from parent (ticketbox)
         and looks for the higherst id and add one to be unique

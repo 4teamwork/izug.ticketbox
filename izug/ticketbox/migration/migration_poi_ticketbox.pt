@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="izug.ticketbox">
+
+<body>
+		
+		<form method="post" tal:attributes="action string:${context/absolute_url}/@@migration_ticketbox">
+			Sourcepath
+			<input type='text' name="src_path"/>
+			Destpath
+			<input type='text' name="dest_path"/>
+			Sourcetype
+			<input type='text' name="src_type"/>
+			Sourceparenttype
+			<input type='text' name="src_parent_type"/>
+			Desttype
+			<input type='text' name="dest_type"/>
+			Destparenttype
+			<input type='text' name="dest_parent_type"/>
+			Convert			
+			<input type='submit' value='convert' name='convert'>
+		</form>
+
+
+
+</body>
+</html>

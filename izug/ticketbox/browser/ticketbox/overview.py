@@ -13,9 +13,11 @@ class TicketBoxView(TabbedTicketBoxBaseView):
     def getFilteredTickets(self, criteria=None, **kwargs):
         """Get the contained issues in the given criteria.
         """
+
         context = aq_inner(self.context)
         query = self.buildIssueSearchQuery(criteria, **kwargs)
         catalog = getToolByName(context, 'portal_catalog')
+
         return catalog.searchResults(query)
 
     def buildIssueSearchQuery(self, criteria=None, **kwargs):

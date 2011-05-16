@@ -1,0 +1,20 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="collective.contentmigrationui">
+
+<!-- 
+	<utility
+	 component=".poiIssueToTicketboxTicket.PoiIssueToTicketboxTicket"
+	 provides="collective.contentmigrationui.interfaces.IContentMigrator"
+	 name="izug.ticketbox.PoiIssueToTicketboxTicket"
+	/> -->
+	
+  <browser:page
+    for="*"
+    name="migration_ticketbox"
+    permission="cmf.ManagePortal"
+	class='.migration_poi_ticketbox.MigrationPoiTicketbox'
+    />
+
+</configure>
