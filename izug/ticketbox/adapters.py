@@ -156,15 +156,15 @@ class TicketBoxSubjectCreator(object):
     def __call__(self, object_):
         site = hooks.getSite()
         portal_properties = getToolByName(object_, 'portal_properties')
-        default_subject = '[%s] Notification: %s' % (site.Title(), object_.Title())
+        default_subject = '[%s] Notification:' % (site.Title())
         subject = None
         try:
-            sheet = portal_properties.ftw_notification_properties
+            sheet = portal_properties['ftw.notification-properties']
         except AttributeError:
             subject = default_subject
         else:
             subject = sheet.getProperty('notification_email_subject', default_subject)+\
-            ': ['+object_.getIndividualIdentifier()+'] '+object_.Title()
+            ' ['+object_.getIndividualIdentifier()+'] '+object_.Title()
         return subject
 
 class TicketSubjectCreator(object):
@@ -177,13 +177,13 @@ class TicketSubjectCreator(object):
     def __call__(self, object_):
         site = hooks.getSite()
         portal_properties = getToolByName(object_, 'portal_properties')
-        default_subject = '[%s] Notification: %s' % (site.Title(), object_.Title())
+        default_subject = '[%s] Notification:' % (site.Title())
         subject = None
         try:
-            sheet = portal_properties.ftw_notification_properties
+            sheet = portal_properties['ftw.notification-properties']
         except AttributeError:
             subject = default_subject
         else:
             subject = sheet.getProperty('notification_email_subject', default_subject)+\
-            ': ['+aq_parent(self.context).getIndividualIdentifier()+'] #' + object_.getId() + ' - ' + object_.Title()
+            ' ['+aq_parent(self.context).getIndividualIdentifier()+'] #' + object_.getId() + ' - ' + object_.Title()
         return subject
