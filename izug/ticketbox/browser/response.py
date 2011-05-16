@@ -362,6 +362,7 @@ class Create(Base):
         return 'additional'
 
     def __call__(self):
+
         form = self.request.form
         context = aq_inner(self.context)
         modifiedDate = context.modified()
@@ -369,7 +370,7 @@ class Create(Base):
         new_response = Response(response_text)
         new_response.mimetype = self.mimetype
         new_response.type = self.determine_response_type(new_response)
-
+        import pdb; pdb.set_trace( )
         issue_has_changed = False
         #Unassigned is no member in portal_membership.
         #So we have to set it manually
