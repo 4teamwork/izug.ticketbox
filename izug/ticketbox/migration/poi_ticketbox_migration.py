@@ -1,7 +1,12 @@
-from Products.contentmigration.walker import CustomQueryWalker
-from izug.ticketbox.handlers import generate_datagrid_column_id, move_document_to_reference
-from Products.contentmigration.basemigrator.migrator import CMFFolderMigrator, CMFItemMigrator
 from DateTime import DateTime
+from izug.ticketbox.handlers import \
+    generate_datagrid_column_id, \
+    move_document_to_reference
+from Products.contentmigration.walker import CustomQueryWalker
+from Products.contentmigration.basemigrator.migrator import \
+    CMFFolderMigrator, \
+    CMFItemMigrator
+
 
 class PoiTrackerToTicketbox(CMFFolderMigrator):
     """Migrate poi tracker to ticketbox"""
@@ -22,8 +27,8 @@ class PoiTrackerToTicketbox(CMFFolderMigrator):
 
             new_states.append(
                 {
-                'id':state[0],
-                'title':state[1],
+                'id': state[0],
+                'title': state[1],
                 'show_in_all_tickets': '1',
                 'show_in_my_tickets': '1',
                 })
@@ -45,7 +50,7 @@ class PoiTrackerToTicketbox(CMFFolderMigrator):
 
             new_priorities.append(
                 {
-                'title':prioritie,
+                'title': prioritie,
                 })
 
         self.new.setAvailablePriorities(new_priorities)
@@ -60,13 +65,13 @@ class PoiTrackerToTicketbox(CMFFolderMigrator):
 
             new_releases.append(
                 {
-                'title':release,
+                'title': release,
                 })
 
         self.new.setAvailableReleases(new_releases)
 
-    def migrate_z_create_ids(self):
-        generate_datagrid_column_id(self.new,'new')
+    def last_migrate_create_ids(self):
+        generate_datagrid_column_id(self.new, 'new')
 
 
 class PoiIssueToTicketboxTicket(CMFItemMigrator):
@@ -80,9 +85,9 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
     dst_portal_type = "Ticket"
     safeMigration = False
     user_mapping = {}
-    map = {'issue_title':'title',
-           'endDate':'dueDate',
-           'Creator':'setCreators',
+    map = {'issue_title': 'title',
+           'endDate': 'dueDate',
+           'getAttachment':'setAttachment'
            }
 
     def migrate_map_state(self):
@@ -93,42 +98,14 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
     def migrate_map_area(self):
         self.map_area(self.old.getArea())
 
-    def map_area(self, old_area):
-
-        areas = self.new.aq_parent.getAvailableAreas()
-
-        for area in areas:
-            if old_area == area['title']:
-                self.new.setArea(area['id'])
-                continue
-
     def migrate_map_priority(self):
 
         self.map_priority(self.old.getSeverity())
-
-    def map_priority(self, old_priority):
-
-        priorities = self.new.aq_parent.getAvailablePriorities()
-
-
-        for priority in priorities:
-            if old_priority == priority['title']:
-                self.new.setPriority(priority['id'])
-                continue
 
     def migrate_map_release(self):
         """Migrate the poi releases to ticket releases"""
 
         self.map_release(self.old.getRelease())
-
-    def map_release(self, old_release):
-
-        releases = self.new.aq_parent.getAvailableReleases()
-
-        for release in releases:
-            if old_release == release['title']:
-                self.new.setReleases(release['id'])
-                continue
 
     def migrate_map_description(self):
         """Migrate the poi Details and Steps to ticket description"""
@@ -136,22 +113,12 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
         desc = self.old.getDetails() + "<br /> <br />" + self.old.getSteps()
         self.new.setDescription(desc)
 
-    def migrate_attachments(self):
-        """Migrate the poi attachments to ticket attachments"""
-        # move_document_to_reference(self.new, 'move')
-
-    def migrate_map_username(self):
+    def migrate_map_responsible(self):
+        """Migrate the poi responsibleManager to
+        ticketbox responbsible Manager"""
 
         self.new.setResponsibleManager(
             self.map_username(self.old.getResponsibleManager()))
-
-    def map_username(self, uid):
-
-        responsibleManager = self.user_mapping.get(uid)
-        if responsibleManager:
-            return responsibleManager
-        else:
-            return uid
 
     def migrate_response(self):
         """Migrate all poi responses from this ticket to ticketbox responses"""
@@ -162,50 +129,114 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
         # In the old responses there are just translatet workflowstates or
         # transistion ids. But we need the state-id. So we have to find the
         # transition and get the destination state id.
-        wftool = self.old.portal_workflow.poi_issue_workflow.transitions
+        wftool = self.old.portal_workflow.stv_issue_workflow.transitions
 
-        # The ticketbox make a default AnswerDate and if we create a new answer,
-        # the the first response change the answerdate.
+        # The ticketbox make a default AnswerDate and if we create a new
+        # answer, the the first response change the answerdate.
         # So we have to set the answerdate from the ticket to a empty string.
         self.new.setAnswerDate('')
 
-        for response in responses:
+        for i, response in enumerate(responses):
 
             text = response.response()
-            responsibleManager = self.map_username(response.newResponsibleManager)
+            responsibleManager = self.map_username(
+                response.newResponsibleManager)
             # Here we get the transition id from the old response and search in
             # the workflow-tool for the destination-state-id of this transition
-            transition_id = response.getIssueTransition()
+            transition = wftool.get(response.getIssueTransition())
             state = ''
-            if transition_id:
-                state = wftool.get(transition_id).new_state_id
+            if transition:
+                    state = transition.new_state_id
             priority = self.map_priority(response.newSeverity)
             release = self.map_release(response.newTargetRelease)
 
-            # attachment = response.getAttachment()
-            # if attachment:
-            #     import pdb; pdb.set_trace( )
+            file_ = response.getAttachment()
+
+            # Its possible that we become 2 ore more files with the same filename.
+            # We have to change the attachments filename that we don't get a
+            # file-already-exist error.
+            if file_.data != '':
+                attachment = file_.data
+                filename_ = attachment.filename.split('.')
+                if len(filename_) > 1:
+                    name = '.'.join(filename_[:len(filename_)-1]) + '_%s' % i
+                    name = name + '.%s' % filename_[len(filename_)-1]
+                else:
+                    filename_.append(str(i))
+                    name = '.'.join(filename_)
+
+                attachment.filename = name
+            else:
+                attachment = ''
 
             setattr(self.new.REQUEST, 'form',
-                {'response':text,
-                'responsibleManager':responsibleManager,
-                'state':state,
-                'priority':priority,
-                'releases':release,
-                # 'attachment':attachment
+                {'response': text,
+                'responsibleManager': responsibleManager,
+                'state': state,
+                'priority': priority,
+                'releases': release,
+                'attachment': attachment,
                 })
 
-            # We call the create_response-view. This view is getting the form and
-            # reads the params of this form and create the response
-            self.new.restrictedTraverse('@@create_response')()
+            # We call the create_response-view. This view is getting the form
+            # and reads the params of this form and create the response
+            self.new.restrictedTraverse('@@create_response')(redirect=False)
 
-            # Because the response of the ticketbox set the creater and the creationdate
-            # with the logged in user and the actual date, we need to set this attributes
-            # manually after creation the response
-            new_response = self.new.restrictedTraverse('@@base_response').responses()
+            # Because the response of the ticketbox set the creater and the
+            # creationdate with the logged in user and the actual date,
+            # we need to set this attributes manually after
+            # creation the response
+            new_response = self.new.restrictedTraverse(
+                '@@base_response').responses()
+
             new_response = new_response[len(new_response)-1].get('response')
+
             new_response.creator = self.map_username(response.Creator())
             new_response.date = DateTime(response.Date())
 
     def last_migrate_creator(self):
+        """set the creator of the ticket"""
+
         self.new.setCreators(self.map_username(self.old.Creator()))
+
+    def last_migrate_attachments(self):
+        """Migrate the poi attachments to ticket attachments"""
+        # move_document_to_reference(self.new, 'move')
+
+    def map_area(self, old_area):
+
+        areas = self.new.aq_parent.getAvailableAreas()
+
+        for area in areas:
+            if old_area == area['title']:
+                self.new.setArea(area['id'])
+                continue
+
+    def map_username(self, uid):
+        """maps old userids with new userids"""
+
+        # We need to map old user ids (user.name) with new ids (USNA)
+        # If there is nothing to map, we return the old id
+        responsibleManager = self.user_mapping.get(uid)
+        if responsibleManager:
+            return responsibleManager
+        else:
+            return uid
+
+    def map_release(self, old_release):
+
+        releases = self.new.aq_parent.getAvailableReleases()
+
+        for release in releases:
+            if old_release == release['title']:
+                self.new.setReleases(release['id'])
+                continue
+
+    def map_priority(self, old_priority):
+
+        priorities = self.new.aq_parent.getAvailablePriorities()
+
+        for priority in priorities:
+            if old_priority == priority['title']:
+                self.new.setPriority(priority['id'])
+                continue

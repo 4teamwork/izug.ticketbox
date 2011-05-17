@@ -1,8 +1,12 @@
+from poi_ticketbox_migration import \
+    PoiIssueToTicketboxTicket, \
+    PoiTrackerToTicketbox
+from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from StringIO import StringIO
-from poi_ticketbox_migration import PoiIssueToTicketboxTicket, PoiTrackerToTicketbox
 from zope.app.pagetemplate import ViewPageTemplateFile
-from Products.CMFCore.utils import getToolByName
+import logging
+
 
 class MigrationPoiTicketbox(BrowserView):
 
@@ -12,15 +16,37 @@ class MigrationPoiTicketbox(BrowserView):
         """"""
 
         if self.request.get('convert'):
-            self.portal_site = getToolByName(self.context, 'portal_url').getPortalObject()
+
+            self.logger = logging.getLogger('izug.ticketbox')
+            self.logger.info("\n\nStarting migration " \
+                "\n----------------------" \
+                "\n * Convert Ticketbox" \
+                "\n * Update Catalog" \
+                "\n * Convert Tickets and Responses" \
+                "\n * Update Catalog" \
+                "\n----------------------")
+
+            self.portal_site = getToolByName(
+                self.context, 'portal_url').getPortalObject()
+
+            # Path to the Poi-Tracker you want to migrate
             self.src_path = self.request.get('src_path')
-            self.mapping = self.map_users(self.request.get('user_mapping'))
+
+            # Create a map for old and new user-ids
+            self.mapping = self.map_users(
+                self.request.get('user_mapping'))
+
+            # Start migrate Ticketbox
             self.migrate_ticketbox()
+
+            # Start migrate Tickets and Responses
             self.migrate_ticket()
+
         return self.template()
 
     def map_users(self, mapping):
         """return a usermapping for the poi-ticketbox-migration"""
+
         user_mapping = {}
         rows = mapping.split('\r\n')
         for row in rows:
@@ -41,37 +67,47 @@ class MigrationPoiTicketbox(BrowserView):
         return paths
 
     def migrate_ticketbox(self):
+        """Ticketbox migration"""
+
         migr_obj = PoiTrackerToTicketbox
-        src_query = {'portal_type' : migr_obj.src_meta_type, 'path' : self.src_path, 'sort_on' : 'id'}
+        src_query = {
+            'portal_type': migr_obj.src_meta_type,
+            'path': self.src_path,
+            'sort_on': 'id'}
 
-        print "start convert Tracker"
-        out = StringIO()
+        self.logger.info("Start convert tracker at %s" % self.src_path)
 
-        walker = migr_obj.walker(self.portal_site.context, migr_obj, query=src_query)
-
-        walker.go(out=out)
-        print >> out, walker.getOutput()
-        print "finished convert"
-        self.context.portal_catalog.refreshCatalog()
-        print "catalog updated"
+        self.start_convert(migr_obj, src_query)
 
     def migrate_ticket(self):
+        """Ticket and response migration"""
 
         migr_obj = PoiIssueToTicketboxTicket
         migr_obj.user_mapping = self.mapping
 
         path = self.get_paths(self.src_path, migr_obj.src_meta_type)
 
-        src_query = {'portal_type' : migr_obj.src_meta_type, 'path' : path, 'sort_on' : 'id'}
-        dest_query = src_query.copy()
-        dest_query['portal_type'] = migr_obj.dst_meta_type
+        src_query = {
+            'portal_type': migr_obj.src_meta_type,
+            'path': path,
+            'sort_on': 'id'}
 
-        print "start convert Issues"
+        self.logger.info("Start convert Issues for Tracker at %s" % self.src_path)
+
+        self.start_convert(migr_obj, src_query)
+
+    def start_convert(self, migr_obj, src_query):
+        # Start to convert the tickets and answers
+        walker = migr_obj.walker(
+            self.portal_site.context,
+            migr_obj,
+            query=src_query)
+
         out = StringIO()
 
-        walker = migr_obj.walker(self.portal_site.context, migr_obj, query=src_query)
         walker.go(out=out)
         print >> out, walker.getOutput()
-        print "finished convert"
+        self.logger.info("Converting complete")
+        self.logger.info('Start update catalog')
         self.context.portal_catalog.refreshCatalog()
-        print "catalog updated"
+        self.logger.info("Catalog update complete")

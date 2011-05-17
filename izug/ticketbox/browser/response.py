@@ -361,7 +361,7 @@ class Create(Base):
         # default:
         return 'additional'
 
-    def __call__(self):
+    def __call__(self, redirect=True):
 
         form = self.request.form
         context = aq_inner(self.context)
@@ -461,6 +461,7 @@ class Create(Base):
 
             # File(id, title, file)
             data = File(filename, filename, attachment)
+
             if not hasattr(data, 'filename'):
                 setattr(data, 'filename', filename)
             # Create TicketAttachment and save the uid in attachment attr of
@@ -520,7 +521,8 @@ class Create(Base):
             self.request.response.redirect(
                 context.absolute_url()+'/notification_form')
         else:
-            self.request.response.redirect(context.absolute_url())
+            if redirect:
+                self.request.response.redirect(context.absolute_url())
 
 
 class Edit(Base):
