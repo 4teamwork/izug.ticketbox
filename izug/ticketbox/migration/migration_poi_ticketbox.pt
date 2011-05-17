@@ -1,25 +1,27 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      lang="en"
+<!-- <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
       i18n:domain="izug.ticketbox">
 
-<body>
-		
+<div metal:fill-slot="main">
+  <div metal:define-macro="body">
+
+    <metal:block metal:use-macro="here/@@custom_header/macros/header | here/base/macros/header" /> -->
+<html>
+<body>		
 		<form method="post" tal:attributes="action string:${context/absolute_url}/@@migration_ticketbox">
 			Sourcepath
 			<input type='text' name="src_path"/>
 			<br />
 			Sourcepath
-			<textarea rows='10' name="user_mapping">
-			</textarea>
+			<textarea rows='15' cols='30' name="user_mapping"></textarea>
 			<br />
 			Convert			
 			<input type='submit' value='convert' name='convert'>
 		</form>
 
-
-
 </body>
 </html>
+	    <!-- </div>
+	</div>
+</html> -->

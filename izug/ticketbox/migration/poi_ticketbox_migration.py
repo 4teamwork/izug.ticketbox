@@ -79,8 +79,8 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
     dst_meta_type = "Ticket"
     dst_portal_type = "Ticket"
     safeMigration = False
+    user_mapping = {}
     map = {'issue_title':'title',
-           'responsibleManager':'responsibleManager',
            'endDate':'dueDate',
            'Creator':'setCreators',
            }
@@ -140,6 +140,19 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
         """Migrate the poi attachments to ticket attachments"""
         # move_document_to_reference(self.new, 'move')
 
+    def migrate_map_username(self):
+
+        self.new.setResponsibleManager(
+            self.map_username(self.old.getResponsibleManager()))
+
+    def map_username(self, uid):
+
+        responsibleManager = self.user_mapping.get(uid)
+        if responsibleManager:
+            return responsibleManager
+        else:
+            return uid
+
     def migrate_response(self):
         """Migrate all poi responses from this ticket to ticketbox responses"""
 
@@ -159,8 +172,7 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
         for response in responses:
 
             text = response.response()
-            responsibleManager = response.newResponsibleManager
-
+            responsibleManager = self.map_username(response.newResponsibleManager)
             # Here we get the transition id from the old response and search in
             # the workflow-tool for the destination-state-id of this transition
             transition_id = response.getIssueTransition()
@@ -169,6 +181,7 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
                 state = wftool.get(transition_id).new_state_id
             priority = self.map_priority(response.newSeverity)
             release = self.map_release(response.newTargetRelease)
+
             # attachment = response.getAttachment()
             # if attachment:
             #     import pdb; pdb.set_trace( )
@@ -191,5 +204,8 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
             # manually after creation the response
             new_response = self.new.restrictedTraverse('@@base_response').responses()
             new_response = new_response[len(new_response)-1].get('response')
-            new_response.creator = response.Creator()
+            new_response.creator = self.map_username(response.Creator())
             new_response.date = DateTime(response.Date())
+
+    def last_migrate_creator(self):
+        self.new.setCreators(self.map_username(self.old.Creator()))

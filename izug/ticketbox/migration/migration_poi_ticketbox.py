@@ -4,7 +4,6 @@ from poi_ticketbox_migration import PoiIssueToTicketboxTicket, PoiTrackerToTicke
 from zope.app.pagetemplate import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 
-
 class MigrationPoiTicketbox(BrowserView):
 
     template = ViewPageTemplateFile('migration_poi_ticketbox.pt')
@@ -15,10 +14,19 @@ class MigrationPoiTicketbox(BrowserView):
         if self.request.get('convert'):
             self.portal_site = getToolByName(self.context, 'portal_url').getPortalObject()
             self.src_path = self.request.get('src_path')
+            self.mapping = self.map_users(self.request.get('user_mapping'))
             self.migrate_ticketbox()
             self.migrate_ticket()
         return self.template()
 
+    def map_users(self, mapping):
+        """return a usermapping for the poi-ticketbox-migration"""
+        user_mapping = {}
+        rows = mapping.split('\r\n')
+        for row in rows:
+            cols = row.split(',')
+            user_mapping[cols[0]] = cols[1]
+        return user_mapping
 
     def get_paths(self, src_path, src_type):
         """get all paths to childrenobjects"""
@@ -50,6 +58,7 @@ class MigrationPoiTicketbox(BrowserView):
     def migrate_ticket(self):
 
         migr_obj = PoiIssueToTicketboxTicket
+        migr_obj.user_mapping = self.mapping
 
         path = self.get_paths(self.src_path, migr_obj.src_meta_type)
 
