@@ -10,6 +10,11 @@
 		<form method="post" tal:attributes="action string:${context/absolute_url}/@@migration_ticketbox">
 			Sourcepath
 			<input type='text' name="src_path"/>
+			<br />
+			Sourcepath
+			<textarea rows='10' name="user_mapping">
+			</textarea>
+			<br />
 			Convert			
 			<input type='submit' value='convert' name='convert'>
 		</form>

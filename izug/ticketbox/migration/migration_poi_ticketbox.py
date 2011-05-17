@@ -21,7 +21,7 @@ class MigrationPoiTicketbox(BrowserView):
 
 
     def get_paths(self, src_path, src_type):
-        """get all paths to childreenobjects"""
+        """get all paths to childrenobjects"""
 
         catalog = self.context.portal_catalog
         brains = catalog({'portal_type': src_type, 'path': src_path})

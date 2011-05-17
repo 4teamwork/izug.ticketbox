@@ -132,10 +132,12 @@ class Response(Persistent):
     def creator_fullname(self):
         site = getSite()
         member = site.portal_membership.getMemberById(self.creator)
-        fullname = member.getProperty('fullname', member.getId())
-        if fullname:
-            return fullname
-        return member.getId()
+        if member:
+            fullname = member.getProperty('fullname', member.getId())
+            if fullname:
+                return fullname
+            return member.getId()
+        return self.creator
 
 
 class EmptyExporter(object):

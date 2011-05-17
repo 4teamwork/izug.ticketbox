@@ -1,7 +1,7 @@
 from Products.contentmigration.walker import CustomQueryWalker
-from izug.ticketbox.handlers import generate_datagrid_column_id
+from izug.ticketbox.handlers import generate_datagrid_column_id, move_document_to_reference
 from Products.contentmigration.basemigrator.migrator import CMFFolderMigrator, CMFItemMigrator
-
+from DateTime import DateTime
 
 class PoiTrackerToTicketbox(CMFFolderMigrator):
     """Migrate poi tracker to ticketbox"""
@@ -138,32 +138,58 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
 
     def migrate_attachments(self):
         """Migrate the poi attachments to ticket attachments"""
-        responses = self.old.folderlistingFolderContents()
-
-        for response in responses:
-            pass
+        # move_document_to_reference(self.new, 'move')
 
     def migrate_response(self):
+        """Migrate all poi responses from this ticket to ticketbox responses"""
 
+        # Get old responses
         responses = self.old.folderlistingFolderContents()
+
+        # In the old responses there are just translatet workflowstates or
+        # transistion ids. But we need the state-id. So we have to find the
+        # transition and get the destination state id.
+        wftool = self.old.portal_workflow.poi_issue_workflow.transitions
+
+        # The ticketbox make a default AnswerDate and if we create a new answer,
+        # the the first response change the answerdate.
+        # So we have to set the answerdate from the ticket to a empty string.
+        self.new.setAnswerDate('')
 
         for response in responses:
 
             text = response.response()
             responsibleManager = response.newResponsibleManager
 
-            for change in response.getIssueChanges()
-                if change.get('id') == 'review_state'
-            state = response.issueTransition
+            # Here we get the transition id from the old response and search in
+            # the workflow-tool for the destination-state-id of this transition
+            transition_id = response.getIssueTransition()
+            state = ''
+            if transition_id:
+                state = wftool.get(transition_id).new_state_id
             priority = self.map_priority(response.newSeverity)
             release = self.map_release(response.newTargetRelease)
-            import pdb; pdb.set_trace( )
+            # attachment = response.getAttachment()
+            # if attachment:
+            #     import pdb; pdb.set_trace( )
+
             setattr(self.new.REQUEST, 'form',
                 {'response':text,
                 'responsibleManager':responsibleManager,
                 'state':state,
                 'priority':priority,
-                'releases':release
+                'releases':release,
+                # 'attachment':attachment
                 })
 
+            # We call the create_response-view. This view is getting the form and
+            # reads the params of this form and create the response
             self.new.restrictedTraverse('@@create_response')()
+
+            # Because the response of the ticketbox set the creater and the creationdate
+            # with the logged in user and the actual date, we need to set this attributes
+            # manually after creation the response
+            new_response = self.new.restrictedTraverse('@@base_response').responses()
+            new_response = new_response[len(new_response)-1].get('response')
+            new_response.creator = response.Creator()
+            new_response.date = DateTime(response.Date())

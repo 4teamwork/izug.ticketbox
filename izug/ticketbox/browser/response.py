@@ -370,7 +370,6 @@ class Create(Base):
         new_response = Response(response_text)
         new_response.mimetype = self.mimetype
         new_response.type = self.determine_response_type(new_response)
-        import pdb; pdb.set_trace( )
         issue_has_changed = False
         #Unassigned is no member in portal_membership.
         #So we have to set it manually
@@ -412,6 +411,8 @@ class Create(Base):
         answerdate_after = form.get('answerdate')
         if answerdate_after:
             answerdate_after = DateTime(answerdate_after).strftime('%d.%m.%Y %H:%M')
+        else:
+            answerdate_after = ''
         answerdate_before = context.getAnswerDate()
         if answerdate_before:
             answerdate_before = answerdate_before.strftime('%d.%m.%Y %H:%M')
