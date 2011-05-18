@@ -5,6 +5,9 @@ Changelog
 1.3
 ---
 
+* #1475 Auftragsbox - Kommentar bei Benachrichtigung erscheint nicht im Mail
+  https://extranet.4teamwork.ch/support/zug/maintlog/1475
+  [18.5.2011, ttschanz]
 
 1.2
 ---

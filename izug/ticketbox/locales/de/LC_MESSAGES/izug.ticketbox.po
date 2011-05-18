@@ -352,7 +352,6 @@ msgstr "um"
 #. Default: "Answerdate"
 #: izug.ticketbox/izug/ticketbox/browser/response.py:425
 #: izug.ticketbox/izug/ticketbox/content/ticket.py:100
-#, fuzzy
 msgid "label_answerdate"
 msgstr "Antwort erbeten bis"
 
@@ -547,7 +546,6 @@ msgstr "Ein neuer Auftrag wurde von ${creator} in der Auftragsbox ${tracker_name
 
 #. Default: "A new Answer has been Added by ${creator} in the Ticketbox ${tracker_name} (${tracker_url})"
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:6
-#, fuzzy
 msgid "message_text_response"
 msgstr "Eine neue Antwort wurde von ${creator} in der Auftragsbox ${tracker_name} (${tracker_url}) erstellt. Sein Kommentar war ${comment}"
 
@@ -568,7 +566,6 @@ msgstr "Änderungen gespeichert"
 
 #. Default: "Response does not exist anymore;                     perhaps it was removed by another user."
 #: izug.ticketbox/izug/ticketbox/browser/response.py:564
-#, fuzzy
 msgid "msg_doesnt_exists"
 msgstr "Die Antwort existiert nicht mehr; Vielleicht wurde sie von einem anderen Benutzer gelöscht"
 
