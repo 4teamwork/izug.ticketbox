@@ -5,7 +5,7 @@ from izug.ticketbox.handlers import move_document_to_reference
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from StringIO import StringIO
-from zope.app.pagetemplate import ViewPageTemplateFile
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 import logging
 
 
