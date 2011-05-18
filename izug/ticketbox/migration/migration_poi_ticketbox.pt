@@ -9,13 +9,22 @@
 
 	
 		<form method="post" tal:attributes="action string:${context/absolute_url}/@@migration_ticketbox">
-			Sourcepath
+			<h1>Sourcepath</h1>
+			<br>Bsp:
+			<br>/plone/maintlog/
+			<br><br>
 			<input type='text' name="src_path"/>
-			<br />
-			Usermapping
+			<br>
+			<br>
+			<h1>Usermapping </h1>
+			<br>Bsp:
+			<br>monika.albrecht,ALBM
+			<br>urs.andermatt,ANDR
+			<br><br>
 			<textarea rows='15' cols='30' name="user_mapping"></textarea>
-			<br />
-			Convert			
+			<br>
+			<h1>Convert</h1>
+			<br>			
 			<input type='submit' value='convert' name='convert'>
 		</form>
 
