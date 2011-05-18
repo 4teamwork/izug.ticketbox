@@ -52,10 +52,11 @@ class MigrationPoiTicketbox(BrowserView):
         """return a usermapping for the poi-ticketbox-migration"""
 
         user_mapping = {}
-        rows = mapping.split('\r\n')
-        for row in rows:
-            cols = row.split(',')
-            user_mapping[cols[0]] = cols[1]
+        if mapping:
+            rows = mapping.split('\r\n')
+            for row in rows:
+                cols = row.split(',')
+                user_mapping[cols[0]] = cols[1]
         return user_mapping
 
     def get_paths(self, src_path, src_type):
