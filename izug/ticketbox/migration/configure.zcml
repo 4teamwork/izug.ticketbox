@@ -3,12 +3,6 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="collective.contentmigrationui">
 
-<!-- 
-	<utility
-	 component=".poiIssueToTicketboxTicket.PoiIssueToTicketboxTicket"
-	 provides="collective.contentmigrationui.interfaces.IContentMigrator"
-	 name="izug.ticketbox.PoiIssueToTicketboxTicket"
-	/> -->
 	
   <browser:page
     for="*"

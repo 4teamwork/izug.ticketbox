@@ -59,6 +59,7 @@ setup(name='izug.ticketbox',
                         'ftw.notification.email',
                         'izug.utils',
                         'ftw.sendmail',
+                        'Products.contentmigration'
                         # -*- Extra requirements: -*-
                         ],
       tests_require=tests_require,

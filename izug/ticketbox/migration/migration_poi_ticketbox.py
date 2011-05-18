@@ -1,6 +1,7 @@
 from poi_ticketbox_migration import \
     PoiIssueToTicketboxTicket, \
     PoiTrackerToTicketbox
+from update_references import UpdateReferences
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from StringIO import StringIO
@@ -24,6 +25,7 @@ class MigrationPoiTicketbox(BrowserView):
                 "\n * Update Catalog" \
                 "\n * Convert Tickets and Responses" \
                 "\n * Update Catalog" \
+                "\n * Update References" \
                 "\n----------------------")
 
             self.portal_site = getToolByName(
@@ -41,6 +43,7 @@ class MigrationPoiTicketbox(BrowserView):
 
             # Start migrate Tickets and Responses
             self.migrate_ticket()
+
 
         return self.template()
 
@@ -111,3 +114,10 @@ class MigrationPoiTicketbox(BrowserView):
         self.logger.info('Start update catalog')
         self.context.portal_catalog.refreshCatalog()
         self.logger.info("Catalog update complete")
+
+    def update_references(self, paths):
+        """update references for tikets"""
+
+        for path in paths:
+            pass
+            # ticket = self.restrictedTraverse(path)

@@ -156,16 +156,23 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
             # We have to change the attachments filename that we don't get a
             # file-already-exist error.
             if file_.data != '':
-                attachment = file_.data
-                filename_ = attachment.filename.split('.')
-                if len(filename_) > 1:
-                    name = '.'.join(filename_[:len(filename_)-1]) + '_%s' % i
-                    name = name + '.%s' % filename_[len(filename_)-1]
-                else:
-                    filename_.append(str(i))
-                    name = '.'.join(filename_)
 
-                attachment.filename = name
+                attachment = file_.data
+
+                try:
+                    filename_ = attachment.filename.split('.')
+                    if len(filename_) > 1:
+                        name = '.'.join(filename_[:len(filename_)-1]) + '_%s' % i
+                        name = name + '.%s' % filename_[len(filename_)-1]
+                    else:
+                        filename_.append(str(i))
+                        name = '.'.join(filename_)
+
+                    attachment.filename = name
+                except:
+                    print "*****File from ticket %s failed" % self.new.absolute_url()
+                    attachment = ''
+
             else:
                 attachment = ''
 
@@ -186,13 +193,17 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
             # creationdate with the logged in user and the actual date,
             # we need to set this attributes manually after
             # creation the response
-            new_response = self.new.restrictedTraverse(
-                '@@base_response').responses()
 
-            new_response = new_response[len(new_response)-1].get('response')
+            try:
+                new_response = self.new.restrictedTraverse(
+                    '@@base_response').responses()
 
-            new_response.creator = self.map_username(response.Creator())
-            new_response.date = DateTime(response.Date())
+                new_response = new_response[len(new_response)-1].get('response')
+
+                new_response.creator = self.map_username(response.Creator())
+                new_response.date = DateTime(response.Date())
+            except:
+                print "--------Response at %s failed" % self.new.absolute_url()
 
     def last_migrate_creator(self):
         """set the creator of the ticket"""
