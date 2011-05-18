@@ -24,7 +24,9 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
         responses = base_response.responses()
         author = self.context.translate(readable_author(self.context))
 
-        ticket_infos = {'tracker_title': self.context.aq_parent.title,
+        ticket_infos = {
+                    'comment': self.request.form['comment'],
+                    'tracker_title': self.context.aq_parent.title,
                     'tracker_url': self.context.aq_parent.absolute_url(),
                     'title': self.context.Title(),
                     'ticket_id': self.context.getId(),
@@ -48,6 +50,7 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
             else:
                 response = responses[len(responses)-1]
                 changes = {
+                    'comment': self.request.form['comment'],
                     'tracker_title': self.context.aq_parent.title,
                     'tracker_url': self.context.aq_parent.absolute_url(),
                     'title': self.context.Title(),

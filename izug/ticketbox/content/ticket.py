@@ -97,7 +97,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         name='answerDate',
         default_method='default_answer_date',
         widget=CalendarWidget(
-            label=_(u'label_answerdate',default=u"Answer-date"),
+            label=_(u'label_answerdate',default=u"Answerdate"),
             description=_(u'help_answerdated',default=u"Answer-date of the ticket"),
         )
     ),
@@ -151,10 +151,10 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 ))
 
 TicketSchema['description'].required = True
-TicketSchema['description'].widget = atapi.RichWidget(
-    label=_(u"label_description",
-    default=u"Description"),
-    rows=30)
+# TicketSchema['description'].widget = atapi.RichWidget(
+#     label=_(u"label_description",
+#     default=u"Description"),
+#     rows=30)
 schemata.finalizeATCTSchema(TicketSchema, moveDiscussion=False)
 
 # Hide all unimportant fields except default-schamata-fields
