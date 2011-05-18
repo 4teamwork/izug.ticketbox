@@ -1,7 +1,6 @@
 from poi_ticketbox_migration import \
     PoiIssueToTicketboxTicket, \
     PoiTrackerToTicketbox
-from update_references import UpdateReferences
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from StringIO import StringIO
