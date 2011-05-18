@@ -547,7 +547,7 @@ msgstr "Ein neuer Auftrag wurde von ${creator} in der Auftragsbox ${tracker_name
 #. Default: "A new Answer has been Added by ${creator} in the Ticketbox ${tracker_name} (${tracker_url})"
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:6
 msgid "message_text_response"
-msgstr "Eine neue Antwort wurde von ${creator} in der Auftragsbox ${tracker_name} (${tracker_url}) erstellt. Sein Kommentar war ${comment}"
+msgstr "Eine neue Antwort wurde von ${creator} in der Auftragsbox ${tracker_name} (${tracker_url}) erstellt."
 
 #. Default: "Displays all Ticket"
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:14
