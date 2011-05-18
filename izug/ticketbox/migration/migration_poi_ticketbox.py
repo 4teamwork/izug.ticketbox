@@ -1,6 +1,7 @@
 from poi_ticketbox_migration import \
     PoiIssueToTicketboxTicket, \
     PoiTrackerToTicketbox
+from izug.ticketbox.handlers import move_document_to_reference
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from StringIO import StringIO
@@ -43,6 +44,7 @@ class MigrationPoiTicketbox(BrowserView):
             # Start migrate Tickets and Responses
             self.migrate_ticket()
 
+            self.logger.info("==Migration complete==")
 
         return self.template()
 
@@ -98,6 +100,10 @@ class MigrationPoiTicketbox(BrowserView):
 
         self.start_convert(migr_obj, src_query)
 
+        self.logger.info("Start updating references")
+        self.update_references(path)
+        self.logger.info("References updateing complete")
+
     def start_convert(self, migr_obj, src_query):
         # Start to convert the tickets and answers
         walker = migr_obj.walker(
@@ -118,5 +124,8 @@ class MigrationPoiTicketbox(BrowserView):
         """update references for tikets"""
 
         for path in paths:
-            pass
-            # ticket = self.restrictedTraverse(path)
+            try:
+                ticket = self.context.restrictedTraverse(path)
+                move_document_to_reference(ticket, 'move')
+            except:
+                print "**** References of ticket at %s not updated" % path

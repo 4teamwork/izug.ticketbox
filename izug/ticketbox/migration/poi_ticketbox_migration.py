@@ -1,7 +1,6 @@
 from DateTime import DateTime
-from izug.ticketbox.handlers import \
-    generate_datagrid_column_id, \
-    move_document_to_reference
+from izug.ticketbox.handlers import generate_datagrid_column_id
+from OFS.Image import Pdata
 from Products.contentmigration.walker import CustomQueryWalker
 from Products.contentmigration.basemigrator.migrator import \
     CMFFolderMigrator, \
@@ -152,15 +151,23 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
 
             file_ = response.getAttachment()
 
-            # Its possible that we become 2 ore more files with the same filename.
-            # We have to change the attachments filename that we don't get a
-            # file-already-exist error.
             if file_.data != '':
 
                 attachment = file_.data
 
+                # The attachment comes in two different ways. One way ist a
+                # OFS.Image.Pdata, the other way is a str-object.
+                # If we get a str-object we have to convert it into a Pdata
+                # Object and set the filename of this object manualy
+                if isinstance(attachment,str):
+                    attachment = Pdata(attachment)
+                    attachment.filename = file_.filename
+
+                # Its possible that we become 2 ore more files with the same filename.
+                # We have to change the attachments filename that we don't get a
+                # file-already-exist error.
+                filename_ = attachment.filename.split('.')
                 try:
-                    filename_ = attachment.filename.split('.')
                     if len(filename_) > 1:
                         name = '.'.join(filename_[:len(filename_)-1]) + '_%s' % i
                         name = name + '.%s' % filename_[len(filename_)-1]
@@ -176,6 +183,7 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
             else:
                 attachment = ''
 
+            # Set the request to create a new response.
             setattr(self.new.REQUEST, 'form',
                 {'response': text,
                 'responsibleManager': responsibleManager,
@@ -209,10 +217,6 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
         """set the creator of the ticket"""
 
         self.new.setCreators(self.map_username(self.old.Creator()))
-
-    def last_migrate_attachments(self):
-        """Migrate the poi attachments to ticket attachments"""
-        # move_document_to_reference(self.new, 'move')
 
     def map_area(self, old_area):
 

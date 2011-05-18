@@ -438,6 +438,7 @@ class Create(Base):
         # Changes that need to be applied to the issue (apart from
         # workflow changes that need to be handled separately).
         changes = {}
+
         for option, title, vocab in options:
             new = form.get(option, u'')
             if new and new in self.__getattribute__(vocab):
