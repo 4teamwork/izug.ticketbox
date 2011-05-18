@@ -151,10 +151,10 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 ))
 
 TicketSchema['description'].required = True
-# TicketSchema['description'].widget = atapi.RichWidget(
-#     label=_(u"label_description",
-#     default=u"Description"),
-#     rows=30)
+TicketSchema['description'].widget = atapi.RichWidget(
+    label=_(u"label_description",
+    default=u"Description"),
+    rows=30)
 schemata.finalizeATCTSchema(TicketSchema, moveDiscussion=False)
 
 # Hide all unimportant fields except default-schamata-fields
