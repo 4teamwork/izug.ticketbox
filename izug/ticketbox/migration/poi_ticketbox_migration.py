@@ -3,8 +3,7 @@ from izug.ticketbox.handlers import generate_datagrid_column_id
 from OFS.Image import Pdata
 from Products.contentmigration.walker import CustomQueryWalker
 from Products.contentmigration.basemigrator.migrator import \
-    CMFFolderMigrator, \
-    CMFItemMigrator
+    CMFFolderMigrator, CMFItemMigrator
 
 
 class PoiTrackerToTicketbox(CMFFolderMigrator):
@@ -77,6 +76,7 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
     """Migrate the old item type to the new item type
     """
 
+    refs = []
     walker = CustomQueryWalker
     src_meta_type = "PoiIssue"
     src_portal_type = "PoiIssue"
@@ -86,8 +86,16 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
     user_mapping = {}
     map = {'issue_title': 'title',
            'endDate': 'dueDate',
-           'getAttachment':'setAttachment'
+           'getAttachment':'setAttachment',
            }
+
+    def migrate_prepare_refs(self):
+
+        old_refs = [o.UID() for o in self.old.getRelatedItems()]
+        if old_refs:
+            self.refs.append({
+                self.old.UID(): old_refs
+            })
 
     def migrate_map_state(self):
 
@@ -95,6 +103,7 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
         self.new.setState(wftool.getInfoFor(self.old, 'review_state'))
 
     def migrate_map_area(self):
+
         self.map_area(self.old.getArea())
 
     def migrate_map_priority(self):
@@ -223,7 +232,7 @@ class PoiIssueToTicketboxTicket(CMFItemMigrator):
         areas = self.new.aq_parent.getAvailableAreas()
 
         for area in areas:
-            if old_area == area['title']:
+            if old_area == area['title'] or old_area == area['id']:
                 self.new.setArea(area['id'])
                 continue
 

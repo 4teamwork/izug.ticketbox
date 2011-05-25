@@ -101,9 +101,15 @@ class MigrationPoiTicketbox(BrowserView):
 
         self.start_convert(migr_obj, src_query)
 
+        self.logger.info("Start updating attachmentreferences")
+        self.update_attachments(path)
+        self.logger.info("Attachment References updateing complete")
+
         self.logger.info("Start updating references")
-        self.update_references(path)
+        self.update_refs(migr_obj.refs)
+        migr_obj.refs = []
         self.logger.info("References updateing complete")
+
 
     def start_convert(self, migr_obj, src_query):
         # Start to convert the tickets and answers
@@ -121,12 +127,23 @@ class MigrationPoiTicketbox(BrowserView):
         self.context.portal_catalog.refreshCatalog()
         self.logger.info("Catalog update complete")
 
-    def update_references(self, paths):
-        """update references for tikets"""
+    def update_attachments(self, paths):
+        """update attachmentreferences for tickets"""
 
         for path in paths:
             try:
                 ticket = self.context.restrictedTraverse(path)
                 move_document_to_reference(ticket, 'move')
             except:
-                print "**** References of ticket at %s not updated" % path
+                print "**** AttachmentReferences of ticket at %s not updated" % path
+
+    def update_refs(self, refs):
+        """update references for tickets"""
+
+        for ref in refs:
+            for key, val in ref.items():
+                obj = self.context.reference_catalog.lookupObject(key)
+                try:
+                    obj.setTicketReferences(val)
+                except:
+                    print "==== Reference of ticket at %s failed" % obj.absolute_url()
