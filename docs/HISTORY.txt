@@ -5,6 +5,12 @@ Changelog
 1.3
 ---
 
+* #1493 Auftragsbox: Beschreibung eines Auftrages unter 
+  aktionen-inhalte ausblenden
+  https://extranet.4teamwork.ch/support/zug/maintlog/1493
+  Done by CSS
+  [01.06.2011, mathias.leimgruber]
+
 * 462 Auftragsbox - Testmigration Maintlog STV in Auftragsbox
   migration siehe Ticket für Doku
   [18.05.2011, elio.schmutz]

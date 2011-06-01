@@ -1,3 +1,9 @@
+
+/* Hide descirption in folder_contents */
+body.section-arbeitsplatz.template-folder_contents #region-content .documentDescription {
+    display:none;
+}
+
 .response-adder dl.collapsible dd.collapsibleContent {
     padding: 1em 0 1em 1em;
 }
