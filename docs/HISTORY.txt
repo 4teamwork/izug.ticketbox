@@ -5,6 +5,16 @@ Changelog
 1.2
 ---
 
+* Fixed Bug in get_base_query tickets of other boxes aren't displayed anymore
+  [6.6.2011, ttschanz]
+
+* Made ticketbox work with TinyMCE.
+  [6.6.2011, ttschanz]
+
+
+* Fixed Bug in get_base_query tickets of other boxes aren't displayed anymore
+  [6.6.2011, ttschanz]
+
 * #1468 Auftragsbox - Kein Datum in Falligkeit und Antwort erbeten bis
   [09.05.2011, elio.schmutz]
 

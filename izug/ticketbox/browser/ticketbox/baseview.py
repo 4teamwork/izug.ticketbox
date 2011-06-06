@@ -163,12 +163,10 @@ class TabbedTicketBoxBaseView(ListingView):
         """Returns the base query for a specific table source type
         (e.g. portal_catalog, sqlalchemy, dict, ...).
         """
-        query = {}
 
+        query = {'path': {'query':'/'.join(self.context.getPhysicalPath()),'depth':-1}}
         # extend with path filter, if configured
-        if 'path' not in query and getattr(self, 'filter_path', None):
-            query['path'] = {'query': self.filter_path,
-                             'depth': self.depth}
+
 
         # extend with types
         if 'types' not in query and self.types:
@@ -184,7 +182,7 @@ class TabbedTicketBoxBaseView(ListingView):
                                   sortable=True,
                                   selected=(self.sort_on, self.sort_order),
                                   template=self.table,
-                                  css_mapping=dict(table='sortable-table'),
+                                  css_mapping=dict(table='listing'),
                                   )
 
 

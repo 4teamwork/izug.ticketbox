@@ -71,8 +71,10 @@
  <!-- *************************************************** -->
 <!-- Add Response - with collabsible function -->
 	  <tal:add condition="python:user.has_permission('izug.ticketbox: Add Ticket', here)">
-	<dl id='addResponse' class='collapsible collapsedOnLoad'>
-		<dt class='collapsibleHeader'><div i18n:translate="title_add_response" class='add_response'>Add response</div></dt>
+	<dl id='addResponse' class='collapsible collapsedOnLoad' style='margin-bottom:10px;'>
+		<dt class='collapsibleHeader'><div i18n:translate="title_add_response" class='add_response'>Add response</div>
+		</dt>
+
 	  <!-- <h3 i18n:translate="title_add_response">Add response</h3> -->
 		<dd class="collapsibleContent">
 			<div>
@@ -100,8 +102,9 @@
 			          <tal:block
 			              define="inputname string:response;
 			                      inputvalue string:;
-			                      editor python:member.getProperty('wysiwyg_editor', 'plone_wysiwyg').lower();
-			                      portal_url context/portal_url;
+			                      default_editor python: context.portal_properties.site_properties.getProperty('default_editor');
+                         		  editor python: (default_editor or 'None').lower();
+                                  portal_url context/portal_url;
 			                      portal context/portal_url/getPortalObject;
 			                      here_url context/portal_url;
 			                      support python: path('nocall:here/%s_wysiwyg_support|here/%s/wysiwyg_support|here/portal_skins/plone_wysiwyg/wysiwyg_support' % (editor, editor));"
@@ -255,7 +258,7 @@
 					  </select>
 
 			    </div>
-			
+
 				<!-- Answerdate -->
 			    <div class="field">
 				  <script type="text/javascript" src="jscalendar/calendar_stripped.js">
@@ -276,7 +279,7 @@
 			           i18n:translate="Response_help_newAnswerDate">
 			        Set the new answer date for this issue
 			      </div>
-				
+
 				  <tal:vars define="uniqueItemIndex python: dict(next=0);
                                     formname string:response-add-form;
                                     inputname string:answerdate;
@@ -298,8 +301,8 @@
 			           i18n:translate="Response_help_newResponsibleManager">
 			        Select the responsible manager for this issue
 			      </div>
-			
-				
+
+
 
 					  <select name="responsibleManager">
 					  	<tal:options
@@ -328,7 +331,8 @@
 			</dd>
 		</tal:add>
 <!-- ******************************************** -->
-  <tal:noadd condition="python:not user.has_permission('izug.ticketbox: Add Ticket', here)">
+
+<tal:noadd condition="python:not user.has_permission('izug.ticketbox: Add Ticket', here)">
     <p class="discreet"
        i18n:translate="msg_no_responses_can_be_added">
       No responses can be added.
@@ -351,5 +355,6 @@
              />
     </form>
 </div>
+
 
 </div>
