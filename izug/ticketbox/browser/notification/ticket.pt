@@ -5,7 +5,7 @@
 <p i18n:translate="message_text_response" tal:condition="python:infos['response']==True">
 	A new Answer has been Added by <span i18n:name="creator" tal:content="view/creator" /> in the Ticketbox <span i18n:name="tracker_name" tal:content="infos/tracker_title" /> (<span i18n:name="tracker_url" tal:content="infos/tracker_url" />)
 </p>
-<tal:if condition="infos/comment" i18n:translate="label_comment">His Comment was <span i18n:name="comment" tal:content="infos/comment" /></tal:if>
+<tal:if condition="infos/comment" i18n:translate="label_comment">Comment <br i18n:name="umbruch" /><span i18n:name="comment" tal:content="infos/comment" /></tal:if>
 <br /><br />
 <span tal:condition="python: infos['response']==False" i18n:translate="">Issue Information</span>
 <span tal:condition="python: infos['response']==True" i18n:translate="">Response Information</span>

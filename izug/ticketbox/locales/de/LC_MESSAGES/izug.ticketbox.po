@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-05-18 08:32+0000\n"
+"POT-Creation-Date: 2011-06-15 08:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -395,13 +395,14 @@ msgstr "Verfügbare Prioritäten"
 msgid "label_availableReleases"
 msgstr "Verfügbare Lieferpakete"
 
-#. Default: "His Comment was ${comment}"
+#. Default: "Comment ${umbruch}${comment}"
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:8
 msgid "label_comment"
-msgstr "Sein Kommentar war ${comment}"
+msgstr "Kommentar ${umbruch}${comment}"
 
 #. Default: "Description"
 #: izug.ticketbox/izug/ticketbox/browser/ticket_view.pt:14
+#: izug.ticketbox/izug/ticketbox/content/ticket.py:155
 msgid "label_description"
 msgstr "Beschreibung"
 
