@@ -324,7 +324,7 @@
 					<label class="formQuestion" for="sendNotification">Benachrichtigung versenden</label><br />
 				</div>
 			    <div class="formControls">
-			      <input class="context" value="Submit" type="submit" i18n:attributes="value label_save_response"/>
+			      <input class="submit" value="Submit" type="submit" i18n:attributes="value label_save_response"/>
 			    </div>
 			  </form>
 			</div>
