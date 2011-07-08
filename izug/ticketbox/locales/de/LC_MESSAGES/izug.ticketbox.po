@@ -558,7 +558,6 @@ msgstr "Änderungen gespeichert"
 
 #. Default: "Response does not exist anymore;                     perhaps it was removed by another user."
 #: izug.ticketbox/izug/ticketbox/browser/response.py:554
-#, fuzzy
 msgid "msg_doesnt_exists"
 msgstr "Die Antwort existiert nicht mehr; Vielleicht wurde sie von einem anderen Benutzer gelöscht"
 
