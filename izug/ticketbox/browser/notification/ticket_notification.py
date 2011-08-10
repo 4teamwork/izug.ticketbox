@@ -2,6 +2,7 @@ from ftw.notification.email.templates.base import BaseEmailRepresentation
 from zope.app.pagetemplate import ViewPageTemplateFile
 from izug.ticketbox.browser.helper import map_attribute, readable_author
 from izug.ticketbox import ticketboxMessageFactory as _
+from Products.CMFCore.utils import getToolByName
 
 
 class TicketEmailRepresentation(BaseEmailRepresentation):
@@ -79,4 +80,10 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                     changes[item['id']] = (
                         item['before'] + 	' &rarr; ' + item['after'])
                 changes['text'] = response['response'].text
+                response_creator = response['response'].creator
+                mt = getToolByName(self.context, 'portal_membership')
+                member = mt.getMemberById(response_creator)
+                if member:
+                    response_creator = member.getProperty('fullname', response_creator)
+                changes['response_creator'] = response_creator
                 return changes

@@ -5,6 +5,10 @@ Changelog
 1.4
 ---
 
+* Issue #1560 Auftragsbox - Benachrichtigung mit falschem Absender
+  https://extranet.4teamwork.ch/support/zug/maintlog/1560/
+  Show response_creator instead of tickets creator if there is a response.
+  [10.08.2011, jinfanger]
 
 1.3
 ---
