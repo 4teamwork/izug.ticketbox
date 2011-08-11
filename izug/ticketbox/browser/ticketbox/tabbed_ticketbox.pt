@@ -10,10 +10,24 @@
       <metal:block fill-slot="top_slot"
                    tal:define="dummy python:request.set('layoutClass', 'two-column-left')" />
 	  <metal:block fill-slot="javascript_head_slot">
-		<script type="text/javascript">
+      <script type="text/javascript">
+
 		jq(function(){
-			jq('.tabbedview-tabs ul li').tooltip({});
-				});
+
+                jq('.tabbedview-tabs ul li').tooltip({
+                    onBeforeShow:function(e){
+                        var $tip = e.target.getTip();
+                        if (!$tip.hasClass('tooltip-wrapper')){
+                            $tip.removeClass('tooltip');
+                            $tip.addClass('tooltip-wrapper');
+                            $tip.wrapInner('<div class="tooltip" style="position:relative">');
+                        }
+                    }
+                });
+
+
+            });
+
 		</script>
 	  </metal:block>
   </head>
@@ -41,7 +55,7 @@
           </div>
           <br />
           <div class="tabbedview-tabs">
-            <ul>
+            <ul class="formTabs">
               <li tal:repeat="tab view/get_tabs" tal:attributes="title string:${tab/description}">
                 <a  tal:define="tab_id tab/id;
                                 class python: tab['id'] == view.selected_tab and 'selected' or None;"
@@ -51,7 +65,7 @@
                                     title string:${tab_id} overview;"
                     i18n:attributes="title"
                     >
-                  <span tal:content="tab_id" i18n:translate="" />
+                  <span tal:content="tab_id" i18n:translate=""></span>
                 </a>
               </li>
             </ul>
