@@ -5,6 +5,9 @@ Changelog
 1.4
 ---
 
+* css modifications for new layout
+  [12.08.2011, elio.schmutz]
+
 * Theme migration stuff
   [11.08.2011, mathias.leimgruber]
 
