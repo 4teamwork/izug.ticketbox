@@ -9,7 +9,7 @@
     <metal:block metal:use-macro="here/@@custom_header/macros/header | here/base/macros/header" />
 
     <div id="ticket-content">
-    <table>
+    <table class="invisible">
         <tr>
             <td i18n:translate='label_description'>Description</td>
             <td tal:content="structure here/Description" />

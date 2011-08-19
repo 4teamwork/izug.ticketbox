@@ -81,7 +81,8 @@ class TabbedTicketBoxBaseView(BaseListingView):
                                   selected=(self.sort_on, self.sort_order),
                                   template=self.table,
                                   auto_count=self.auto_count,
-                                  css_mapping=dict(table='sortable-table'),
+                                  css_mapping=dict(
+                                    table='sortable-table invisible'),
                                   )
 
     def search(self, kwargs):

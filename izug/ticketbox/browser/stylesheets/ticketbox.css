@@ -7,6 +7,9 @@ body.section-arbeitsplatz.template-folder_contents #region-content .documentDesc
 .response-adder dl.collapsible dd.collapsibleContent {
     padding: 1em 0 1em 1em;
 }
+.response-adder dl.collapsible dd.collapsibleContent div.formControls {
+    margin-top: 1.27em;
+}
 .response-actions {
     display:block;
     padding-top:2em;
@@ -20,6 +23,9 @@ body.section-arbeitsplatz.template-folder_contents #region-content .documentDesc
     float: left;
     margin-right: 1em;
 }
+.response-reply .response-info {
+    margin-bottom: 0.818em;
+}
 .issue-attachment{
     margin-top: 2em;
 }
@@ -27,7 +33,9 @@ body.section-arbeitsplatz.template-folder_contents #region-content .documentDesc
 table.ticketbox-overview td{
     width:20%;
 }
-
+div.ticket-content {
+    margin-top: 0.818em;    
+}
 table.ticketbox-overview td h3{
     font-size:11px;
     font-weight:bold;
@@ -38,20 +46,29 @@ table.ticketbox-overview td h3{
     vertical-align:baseline;
     
 }
-
+/* We let show a normal div like a input:button*/
 dl.collapsible dt.collapsibleHeader div.add_response {
-    background-color: #00538C;
-    border: 1px solid #666666;
-    color: #FFFFFF;
+    border-color: #111111;
+    border-width: 0.1em 0.2em 0.2em 0.1em;
+    color: #111111;
+    cursor: pointer;
+    line-height: 1.454em !important;
+    padding: 0.091em 1.363em !important;
+    background: -moz-linear-gradient(center top , #FFFFFF, #DEDEDE) repeat scroll 0 0 transparent;
     font-size: 1.1em;
-    font-style: inherit;
-    font-weight:bold;
-    height: 100%;
-    line-height: 1em;
-    padding: 0.4em 0.5em;
-    width: 115px;
+    margin-bottom: 0;
+    border: 1px solid #111111;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    vertical-align: middle;
+    visibility: visible;
+    width: 10em;
+    font-weight: 400;
 }
-
+dl.collapsible dt.collapsibleHeader div.add_response:hover {
+    color: #AE1E00;;
+    border-color: #AE1E00;;
+    border-width: 0.2em 0.1em 0.1em 0.2em
+}
 body.template-atct_edit #datagridwidget-table-availableStates tr th:first-child,
 body.template-atct_edit #datagridwidget-table-availableStates tr td:first-child,
 body.template-atct_edit #datagridwidget-table-availableReleases tr th:first-child,

@@ -5,9 +5,18 @@ Changelog
 1.5
 ---
 
+* merge with thememigratino
+  [19.08.2011, elio.schmutz]
+
 
 1.4
 ---
+
+* css modifications for new layout
+  [12.08.2011, elio.schmutz]
+
+* Theme migration stuff
+  [11.08.2011, mathias.leimgruber]
 
 * Issue #1560 Auftragsbox - Benachrichtigung mit falschem Absender
   https://extranet.4teamwork.ch/support/zug/maintlog/1560/
