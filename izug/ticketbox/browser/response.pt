@@ -280,10 +280,11 @@
 				  <tal:vars define="uniqueItemIndex python: dict(next=0);
                                     formname string:response-add-form;
                                     inputname string:answerdate;
-                                    inputvalue python: context.getAnswerDate()">
-					<metal:box use-macro="here/calendar_macros/macros/calendarDatePickerBox">
-					   a calendar, hopefully
-			            </metal:box>
+                                    inputvalue python: context.getAnswerDate();
+                                    portal_url python: context.absolute_url()">
+                    <metal:box use-macro="here/calendar_macros/macros/calendarDatePickerBox">
+                       a calendar, hopefully
+                        </metal:box>
            	      </tal:vars>
 			    </div>
 				<!-- dropdown for responsibleManager -->

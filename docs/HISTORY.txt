@@ -5,6 +5,10 @@ Changelog
 1.6
 ---
 
+* Issue #1606 Arbeitsraum - Fehlendes Kalenderwidget beim Termin
+  https://extranet.4teamwork.ch/support/zug/maintlog/1606
+  added var portal_url to response.pt
+  [15.09.2011, elio.schmutz]
 
 1.5
 ---
