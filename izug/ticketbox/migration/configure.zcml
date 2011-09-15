@@ -2,7 +2,6 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="collective.contentmigrationui">
-<!--
 	
   <browser:page
     for="*"
@@ -10,5 +9,5 @@
     permission="cmf.ManagePortal"
 	class='.migration_poi_ticketbox.MigrationPoiTicketbox'
     />
--->
+
 </configure>
