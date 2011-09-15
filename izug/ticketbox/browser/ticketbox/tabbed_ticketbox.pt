@@ -24,7 +24,9 @@
                         }
                     }
                 });
-
+                jq(".tooltip-wrapper").live("mouseover", function() {
+                    jq(".tooltip-wrapper").hide();
+                });
 
             });
 
