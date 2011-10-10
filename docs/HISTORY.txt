@@ -5,6 +5,9 @@ Changelog
 1.7
 ---
 
+* Issue #1486 Auftragsbox - neue Attribute: "Eingereicht durch" und "Eingereicht am" in Auftrag
+  https://extranet.4teamwork.ch/support/zug/maintlog/1486
+  added new attributes in ticket_view
 
 1.6
 ---

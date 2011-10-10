@@ -14,6 +14,14 @@
             <td i18n:translate='label_description'>Description</td>
             <td tal:content="structure here/Description" />
         </tr>
+        <tr>
+            <td i18n:translate='label_created_by'>Created By</td>
+            <td tal:content="view/map_creator" />
+        </tr>
+        <tr>
+            <td i18n:translate='label_creation_date'>Creation Date</td>
+            <td tal:content="python:view.get_creation_date().strftime('%d.%m.%Y %H:%M')" />
+        </tr>
         <tr tal:condition="python: context.getDueDate()">
             <td i18n:translate='label_duedate'>Due Date</td>
             <td tal:content="python: context.getDueDate().strftime('%d.%m.%Y %H:%M')" />
