@@ -72,20 +72,33 @@ def map_release(context, id=None):
     return "-"
 
 
-def readable_author(context):
-    """
-    get the full name of a user-id
+def readable_responsibleManager(context):
+    """Get the full name of the responsible manager
     """
     author = context.getResponsibleManager()
 
     if not author:
         return '-'
-    name = author
-    user = context.acl_users.getUserById(author)
-    if user is None:
+
+    name = readable_username(context, author)
+
+    if name == 'no user':
         return _(u"unassigned")
     else:
-        name = user.getProperty('fullname', author)
+        return name
+
+def readable_username(context, userid):
+    """Get the full name of a user-id
+    """
+    if not userid:
+        return None
+
+    user = context.acl_users.getUserById(userid)
+
+    if user is None:
+        return 'no user'
+    else:
+        name = user.getProperty('fullname', userid)
         if not len(name):
-            name = author
+            name = userid
         return name

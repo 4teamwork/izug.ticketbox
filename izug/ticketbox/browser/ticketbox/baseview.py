@@ -46,7 +46,7 @@ class TabbedTicketBoxBaseView(BaseListingView):
                         {'column': 'getResponsibleManager',
                         'column_title': _(u"responsibleManager"),
                         'sort_index': 'sortable_responsibleManager',
-                        'transform': self.readable_author,
+                        'transform': self.readable_responsibleManager,
                         },
                         {'column': 'getState',
                         'column_title': _(u"State"),
@@ -211,7 +211,7 @@ class TabbedTicketBoxBaseView(BaseListingView):
             % (url_method(), extend_url, value)
         return link
 
-    def readable_author(self, item, author):
+    def readable_responsibleManager(self, item, author):
         """
         get the full name by user-id
         """

@@ -2,7 +2,7 @@ from izug.ticketbox.interfaces import ITicket
 from plone.indexer.decorator import indexer
 from Products.CMFPlone.utils import safe_callable
 from Products.CMFPlone.utils import safe_unicode
-from izug.ticketbox.browser.helper import readable_author
+from izug.ticketbox.browser.helper import readable_responsibleManager
 from Products.ATContentTypes.interface.file import IATFile
 import re
 
@@ -47,7 +47,7 @@ def zero_fill(matchobj):
 @indexer(ITicket)
 def sortable_responsibleManager(obj):
     """get the fullname of the author to sort correctly"""
-    author = readable_author(obj)
+    author = readable_responsibleManager(obj)
     if isinstance(author, unicode):
         author = author.encode('utf-8')
     return author
