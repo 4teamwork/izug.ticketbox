@@ -12,5 +12,8 @@
   <type type_id="Ticket Box">
    <bound-workflow workflow_id="izug_ticketbox_workflow"/>
   </type>
+  <type type_id="TicketAttachment">
+   <bound-workflow workflow_id="izug_ticket_workflow"/>
+  </type>
  </bindings>
 </object>
