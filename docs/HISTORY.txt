@@ -5,6 +5,12 @@ Changelog
 1.7
 ---
 
+- Fixed workflow: all roles with "View" permission should also have
+  "Access contents information" permission.
+  Issue #1644 Auftragsbox - Verweis fehlerhaft und ohne Auftragsnr.
+  https://extranet.4teamwork.ch/support/zug/maintlog/1644
+  [jone]
+
 * Issue #1486 Auftragsbox - neue Attribute: "Eingereicht durch" und "Eingereicht am" in Auftrag
   https://extranet.4teamwork.ch/support/zug/maintlog/1486
   added new attributes in ticket_view
