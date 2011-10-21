@@ -1,5 +1,12 @@
 # created by: svn propset svn:ignore -F ./IGNORE.TXT .
 
-izug.ticketbox.egg-info
+.installed.cfg
+bin
 build
+develop-eggs
 dist
+fake-eggs
+izug.ticketbox.egg-info
+parts
+pylint.txt
+var
