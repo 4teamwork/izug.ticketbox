@@ -3,6 +3,7 @@
 .installed.cfg
 bin
 build
+buildout.cfg
 develop-eggs
 dist
 fake-eggs
