@@ -1,7 +1,21 @@
 from izug.ticketbox.browser.ticketbox.baseview import TabbedTicketBoxBaseView
 from Products.CMFCore.utils import getToolByName
 from izug.ticketbox import ticketboxMessageFactory as _
-from ftw.table import helper
+from plone.memoize import ram
+
+
+@ram.cache(lambda m, i, author: ("readable_author", author))
+def readable_author(item, author):
+    #TODO: terribly inefficient. Make some HelperCommons or something
+    if not author:
+        return '-'
+    name = author
+    user = item.acl_users.getUserById(author)
+    if user is not None:
+        name = user.getProperty('fullname', author) or author
+        if not len(name):
+            name = author
+    return '<a href="%s/author/%s">%s</a>' % (item.portal_url(), author, name)
 
 
 class TabbedTicketBoxOverviewBaseView(TabbedTicketBoxBaseView):
@@ -39,7 +53,7 @@ class TabbedTicketBoxOverviewBaseView(TabbedTicketBoxBaseView):
                         },
                         {'column': 'Creator',
                          'column_title': _(u"Creator"),
-                         'transform': helper.readable_author,
+                         'transform': readable_author,
                         },
                         )
 
@@ -83,5 +97,6 @@ class TabbedTicketBoxOverviewBaseView(TabbedTicketBoxBaseView):
             if index_type in self.custom_sort_indexes:
                 del query['sort_on']
                 del query['sort_order']
-                self._custom_sort_method = self.custom_sort_indexes.get(index_type)
+                self._custom_sort_method = \
+                    self.custom_sort_indexes.get(index_type)
         return query

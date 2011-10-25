@@ -1,7 +1,7 @@
 from baseview import TabbedTicketBoxOverviewBaseView
 from izug.ticketbox import ticketboxMessageFactory as _
 from ftw.table import helper
-
+from izug.ticketbox.browser.overview.baseview import readable_author
 
 class TicketBoxOverview(TabbedTicketBoxOverviewBaseView):
     """ Overview-view for Ticketboxes.
@@ -25,6 +25,6 @@ class TicketBoxOverview(TabbedTicketBoxOverviewBaseView):
                         },
                         {'column': 'Creator',
                          'column_title': _(u"Responsible"),
-                         'transform': helper.readable_author,
+                         'transform': readable_author,
                         },
                         )

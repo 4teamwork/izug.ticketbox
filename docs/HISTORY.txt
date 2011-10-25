@@ -5,6 +5,10 @@ Changelog
 1.7
 ---
 
+* Fix readable_author error when we get the zopemaster. Problem is in old
+  ftw.table version, but fixed in version 1.8
+  [eschmutz]
+
 * Issue #1485 Auftragsbox - Einrichten von zwei weiteren Kategorien
   https://extranet.4teamwork.ch/support/zug/maintlog/1485
   added two new categories, type and watched in Release
