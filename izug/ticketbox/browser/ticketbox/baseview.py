@@ -6,7 +6,7 @@ from izug.ticketbox.browser.helper import map_attribute
 from Products.CMFCore.utils import getToolByName
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import queryUtility
-
+from os.path import dirname
 
 class TabbedTicketBoxBaseView(BaseListingView):
 
@@ -33,6 +33,8 @@ class TabbedTicketBoxBaseView(BaseListingView):
 
     def __init__(self, context, request):
         super(TabbedTicketBoxBaseView, self).__init__(context, request)
+
+        self._ticketbox_cache = {}
 
         self.columns = ({'column': 'getId',
                         'column_title': _(u"Id"),
@@ -122,25 +124,33 @@ class TabbedTicketBoxBaseView(BaseListingView):
 
         self.catalog = catalog = getToolByName(self.context, 'portal_catalog')
         query = self.build_query(**kwargs)
-        tmpresults = catalog(**query)
+        self.contents = catalog(**query)
 
         # Filter by state (ATField State not review_state)
-        if not self.filter_state:
-            self.contents = tmpresults
-        else:
-            states = self.context.getAvailableStates()
-            state_mapping = {}
-            for item in states:
-                state_mapping[item['id']] = item[self.filter_state]
-            result = []
-            for item in tmpresults:
-                if state_mapping[item.getState] == '1':
-                    result.append(item)
+        if self.filter_state:
+            self.contents = filter(
+                self._should_ticket_be_listed, self.contents)
 
-            self.contents = result
 
         self.len_results = len(self.contents)
 
+    def _should_ticket_be_listed(self, brain):
+        ticketbox = self._get_ticketbox_for_ticket(brain)
+        state = ticketbox.get_state_by_id(brain.getState)
+
+        if state:
+            return int(state.get(self.filter_state, False))
+        return False
+
+    def _get_ticketbox_for_ticket(self, brain):
+        portal = self.context.portal_url.getPortalObject()
+        ticketbox_path = dirname(brain.getPath())
+
+        if ticketbox_path not in self._ticketbox_cache:
+            self._ticketbox_cache[ticketbox_path] = (
+                    portal.unrestrictedTraverse(ticketbox_path))
+
+        return self._ticketbox_cache[ticketbox_path]
 
 
     # HELPER Methods for ftw.table generator

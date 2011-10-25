@@ -1,0 +1,43 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="izug.ticketbox">
+
+  <!-- You can use this view for a overview of all ticketboxes and tickets
+       on your page. -->
+  <browser:page
+      for="*"
+      name="ticketbox_overview_view"
+      permission="zope.Public"
+      class=".tabbed_ticketboxoverview.TabbedTicketBoxOverviewView"
+      template="../ticketbox/tabbed_ticketbox.pt"
+      />
+
+  <!-- Tab - Overview of all ticketboxes -->
+  <browser:page
+      name="tabbedview_view-Overview"
+      for="*"
+      permission="zope2.View"
+      class=".overview_overview.TicketBoxOverview"
+      template="../ticketbox/tabbedview_generic.pt"
+      />
+
+  <!-- Tab - Overview of all tickets where i'm the responsible -->
+  <browser:page
+      name="tabbedview_view-my_tickets"
+      for="*"
+      permission="zope2.View"
+      class=".overview_my_tickets.TicketBoxMyTickets"
+      template="../ticketbox/tabbedview_generic.pt"
+      />
+
+  <!-- Tab - Overview of all tickets available on the site -->
+  <browser:page
+      name="tabbedview_view-all_tickets"
+      for="*"
+      permission="zope2.View"
+      class=".overview_all_tickets.TicketBoxAllTickets"
+      template="../ticketbox/tabbedview_generic.pt"
+      />
+
+</configure>

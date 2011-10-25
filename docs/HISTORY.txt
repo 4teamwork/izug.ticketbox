@@ -5,6 +5,11 @@ Changelog
 1.7
 ---
 
+- Added new view ticketboxoverview_view to show all ticketboxes and tickets on the site
+  Issue #1647 Arbeitsplatz - neue Uebersicht Auftragsbox
+  https://extranet.4teamwork.ch/support/zug/maintlog/1647
+  [eschmutz]
+
 - Fixed workflow: all roles with "View" permission should also have
   "Access contents information" permission.
   Issue #1644 Auftragsbox - Verweis fehlerhaft und ohne Auftragsnr.

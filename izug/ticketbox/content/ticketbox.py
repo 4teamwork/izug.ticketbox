@@ -179,4 +179,10 @@ class TicketBox(folder.ATBTreeFolder):
             ("0", _(u"no")),
             ))
 
+    def get_state_by_id(self, id, default=None):
+        for state in self.getAvailableStates():
+            if state.get('id', None) == id:
+                return state
+        return default
+
 registerType(TicketBox, PROJECTNAME)

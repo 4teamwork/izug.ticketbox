@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-10-10 08:21+0000\n"
+"POT-Creation-Date: 2011-10-20 12:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "A tracker-like task management system"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:64
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:66
 msgid "Area"
 msgstr ""
 
@@ -45,6 +45,10 @@ msgstr ""
 msgid "Areas_title"
 msgstr ""
 
+#: izug.ticketbox/izug/ticketbox/browser/overview/baseview.py:41
+msgid "Creator"
+msgstr ""
+
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:75
 msgid "Define states"
 msgstr ""
@@ -53,11 +57,11 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:42
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:44
 msgid "Description"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:56
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:58
 msgid "DueDate"
 msgstr ""
 
@@ -65,12 +69,16 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:38
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:40
 msgid "Id"
 msgstr ""
 
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:10
 msgid "Issue Information"
+msgstr ""
+
+#: izug.ticketbox/izug/ticketbox/browser/overview/overview_overview.py:23
+msgid "ModificationDate"
 msgstr ""
 
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:170
@@ -88,7 +96,7 @@ msgstr ""
 msgid "Priorities_title"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:60
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:62
 msgid "Priority"
 msgstr ""
 
@@ -185,7 +193,13 @@ msgstr ""
 msgid "Response_label_response"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:52
+#: izug.ticketbox/izug/ticketbox/browser/overview/baseview.py:32
+#: izug.ticketbox/izug/ticketbox/browser/overview/overview_overview.py:27
+msgid "Responsible"
+msgstr ""
+
+#: izug.ticketbox/izug/ticketbox/browser/overview/baseview.py:37
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:54
 msgid "State"
 msgstr ""
 
@@ -201,6 +215,8 @@ msgstr ""
 msgid "Ticketnr"
 msgstr ""
 
+#: izug.ticketbox/izug/ticketbox/browser/overview/baseview.py:27
+#: izug.ticketbox/izug/ticketbox/browser/overview/overview_overview.py:18
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/attachments.py:19
 msgid "Title"
 msgstr ""
@@ -566,6 +582,7 @@ msgid "message_text_response"
 msgstr ""
 
 #. Default: "Displays all Ticket"
+#: izug.ticketbox/izug/ticketbox/browser/overview/tabbed_ticketboxoverview.py:14
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:14
 msgid "msg_allTicketsDescription"
 msgstr ""
@@ -596,6 +613,7 @@ msgid "msg_invalid"
 msgstr ""
 
 #. Default: "Displays your Tickets"
+#: izug.ticketbox/izug/ticketbox/browser/overview/tabbed_ticketboxoverview.py:16
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:16
 msgid "msg_myTicketsDescription"
 msgstr ""
@@ -636,6 +654,7 @@ msgid "msg_not_restricted"
 msgstr ""
 
 #. Default: "Displays the Overview"
+#: izug.ticketbox/izug/ticketbox/browser/overview/tabbed_ticketboxoverview.py:12
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:12
 msgid "msg_overviewDescription"
 msgstr ""
@@ -662,7 +681,7 @@ msgstr ""
 msgid "response_label_attachment"
 msgstr ""
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:47
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:49
 msgid "responsibleManager"
 msgstr ""
 
@@ -694,7 +713,7 @@ msgid "title_error_no_response"
 msgstr ""
 
 #: izug.ticketbox/izug/ticketbox/browser/helper.py:86
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:223
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:233
 msgid "unassigned"
 msgstr ""
 

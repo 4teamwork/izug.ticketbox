@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-10-10 08:21+0000\n"
+"POT-Creation-Date: 2011-10-20 12:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "Ein Auftrag für eine Auftragsbox"
 msgid "A tracker-like task management system"
 msgstr "Eine Auftragsbox"
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:64
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:66
 msgid "Area"
 msgstr "Bereich"
 
@@ -40,6 +40,10 @@ msgstr "Bereiche"
 msgid "Areas_title"
 msgstr "Bereichname"
 
+#: izug.ticketbox/izug/ticketbox/browser/overview/baseview.py:41
+msgid "Creator"
+msgstr "Eingereicht durch"
+
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:75
 msgid "Define states"
 msgstr "Status"
@@ -48,11 +52,11 @@ msgstr "Status"
 msgid "Delete"
 msgstr "Löschen"
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:42
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:44
 msgid "Description"
 msgstr "Beschreibung"
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:56
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:58
 msgid "DueDate"
 msgstr "Fälligkeit des Auftrages"
 
@@ -60,13 +64,17 @@ msgstr "Fälligkeit des Auftrages"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:38
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:40
 msgid "Id"
 msgstr "Nr."
 
 #: izug.ticketbox/izug/ticketbox/browser/notification/ticket.pt:10
 msgid "Issue Information"
 msgstr "Auftrags Informationen"
+
+#: izug.ticketbox/izug/ticketbox/browser/overview/overview_overview.py:23
+msgid "ModificationDate"
+msgstr "Änderungsdatum"
 
 #: izug.ticketbox/izug/ticketbox/content/ticketbox.py:170
 msgid "None"
@@ -83,7 +91,7 @@ msgstr "Prioritäten"
 msgid "Priorities_title"
 msgstr "Prioritätname"
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:60
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:62
 msgid "Priority"
 msgstr "Priorität"
 
@@ -180,7 +188,13 @@ msgstr "Bereich ändern"
 msgid "Response_label_response"
 msgstr "Antwort"
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:52
+#: izug.ticketbox/izug/ticketbox/browser/overview/baseview.py:32
+#: izug.ticketbox/izug/ticketbox/browser/overview/overview_overview.py:27
+msgid "Responsible"
+msgstr "Verantwortlich"
+
+#: izug.ticketbox/izug/ticketbox/browser/overview/baseview.py:37
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:54
 msgid "State"
 msgstr "Status"
 
@@ -196,6 +210,8 @@ msgstr "Auftragsbox"
 msgid "Ticketnr"
 msgstr "Auftragsnr"
 
+#: izug.ticketbox/izug/ticketbox/browser/overview/baseview.py:27
+#: izug.ticketbox/izug/ticketbox/browser/overview/overview_overview.py:18
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/attachments.py:19
 msgid "Title"
 msgstr "Titel"
@@ -561,6 +577,7 @@ msgid "message_text_response"
 msgstr "Eine neue Antwort wurde von ${creator} in der Auftragsbox ${tracker_name} (${tracker_url}) erstellt."
 
 #. Default: "Displays all Ticket"
+#: izug.ticketbox/izug/ticketbox/browser/overview/tabbed_ticketboxoverview.py:14
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:14
 msgid "msg_allTicketsDescription"
 msgstr "Auflistung aller bisher erstellten Aufträge"
@@ -591,6 +608,7 @@ msgid "msg_invalid"
 msgstr "Die Antwort IF ${response_id} existiert nicht"
 
 #. Default: "Displays your Tickets"
+#: izug.ticketbox/izug/ticketbox/browser/overview/tabbed_ticketboxoverview.py:16
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:16
 msgid "msg_myTicketsDescription"
 msgstr "Nur diejenigen Aufträge, für die ich zuständig bin"
@@ -631,6 +649,7 @@ msgid "msg_not_restricted"
 msgstr "Sie sind nicht berechtigt Antworten zu bearbeiten"
 
 #. Default: "Displays the Overview"
+#: izug.ticketbox/izug/ticketbox/browser/overview/tabbed_ticketboxoverview.py:12
 #: izug.ticketbox/izug/ticketbox/browser/ticketbox/tabbed_ticketbox.py:12
 msgid "msg_overviewDescription"
 msgstr "Projektverwaltung und verschiedene Ansichten auf die Aufträge"
@@ -657,7 +676,7 @@ msgstr "Nein"
 msgid "response_label_attachment"
 msgstr "Anhang:"
 
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:47
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:49
 msgid "responsibleManager"
 msgstr "Zuständig"
 
@@ -689,7 +708,7 @@ msgid "title_error_no_response"
 msgstr "Fehler: Keine Antwort zum bearbeiten gefunden."
 
 #: izug.ticketbox/izug/ticketbox/browser/helper.py:86
-#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:223
+#: izug.ticketbox/izug/ticketbox/browser/ticketbox/baseview.py:233
 msgid "unassigned"
 msgstr "Nicht zugewiesen"
 
