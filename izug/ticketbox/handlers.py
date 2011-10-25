@@ -16,6 +16,7 @@ def generate_datagrid_column_id(obj, event):
     datagrid.append(obj.getAvailableReleases())
     datagrid.append(obj.getAvailablePriorities())
     datagrid.append(obj.getAvailableAreas())
+    datagrid.append(obj.getAvailableVarieties())
 
     #change id from datagrids
     for dg in datagrid:

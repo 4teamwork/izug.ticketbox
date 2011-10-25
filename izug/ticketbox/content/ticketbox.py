@@ -96,7 +96,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
         name='availableReleases',
         widget=DataGridWidget(
             visible={'view': 'invisible', 'edit': 'visible'},
-            label=_(u'label_availableReleases',default=u"Available Releases"),
+            label=_(u'label_availableReleases', default=u"Available Releases"),
             description=_(u'help_avialableReleases',
                 default=u"Enter the Available Releases for this tracker."),
             column_names=(_(u'Releases_id'), _(u'Releases_title')),
@@ -128,13 +128,32 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
         name='availableAreas',
         widget=DataGridWidget(
             visible={'view': 'invisible', 'edit': 'visible'},
-            label=_(u'label_Areas',default=u"Areas"),
+            label=_(u'label_Areas', default=u"Areas"),
             description=(
-                _(u'help_areas',default=u"Enter the issue topics/areas for this tracker.")
+                _(u'help_areas',
+                  default=u"Enter the issue topics/areas for this tracker.")
             ),
             column_names=(
                 _(u'Areas_id'),
                 _(u'Areas_title')),
+            ),
+        allow_empty_rows=False,
+        columns=('id', 'title'),
+    ),
+
+    # Available Varieties (Type)
+    DataGridField(
+        name='availableVarieties',
+        widget=DataGridWidget(
+            visible={'view': 'invisible', 'edit': 'visible'},
+            label=_(u'label_Varieties', default=u"Varieties"),
+            description=(
+                _(u'help_varieties',
+                  default=u"Enter the issue varieties for this tracker.")
+            ),
+            column_names=(
+                _(u'Varieties_id'),
+                _(u'Varieties_title')),
             ),
         allow_empty_rows=False,
         columns=('id', 'title'),

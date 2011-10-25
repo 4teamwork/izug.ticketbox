@@ -219,6 +219,28 @@ class Base(BrowserView):
         return [t['value'] for t in self.areas_for_display]
 
     @property
+    def varieties_for_display(self):
+        context = self.context.aq_inner
+        result = []
+        for term in context.getAvailableVarieties():
+            current_state = self.context.getVariety()
+            checked = term['id'] == current_state
+            result.append(
+                dict(
+                    value=term['id'],
+                    label=term['title'],
+                    checked=checked))
+
+        return result
+
+    @property
+    @memoize
+    def available_varieties(self):
+        """Get the available varieties for this issue.
+        """
+        return [t['value'] for t in self.varieties_for_display]
+
+    @property
     def responsibleManager(self):
         context = aq_inner(self.context)
         return context.getResponsibleManager()
@@ -259,6 +281,35 @@ class Base(BrowserView):
         return [t['value'] for t in self.releases_for_display]
 
     @property
+    def watched_releases_for_display(self):
+        """Get the releases from the project.
+
+        Usually nothing, unless you use Ticketbox in combination with
+        PloneSoftwareCenter.
+        """
+        result = []
+        factory=getUtility(
+            IVocabularyFactory,
+            name='ticketbox_values_releases')
+        for term in factory(self.context.aq_inner):
+            current_state = self.context.getWatchedRelease()
+            checked = term.token == current_state
+            result.append(
+                dict(
+                    value=term.token,
+                    label=term.title,
+                    checked=checked))
+        return result
+
+    @property
+    @memoize
+    def available_watched_releases(self):
+        """Get the available watched releases for this issue.
+        """
+        return [t['value'] for t in self.watched_releases_for_display]
+
+
+    @property
     def show_target_releases(self):
         """Should the option for selecting a target release be shown?
 
@@ -266,6 +317,15 @@ class Base(BrowserView):
         there is more than one option.
         """
         return len(self.available_releases) > 1
+
+    @property
+    def show_watched_releases(self):
+        """Should the option for selecting a target release be shown?
+
+        There is always at least one option: None.  So only show when
+        there is more than one option.
+        """
+        return len(self.available_watched_releases) > 1
 
     @property
     def multiple_priorities(self):
@@ -293,6 +353,15 @@ class Base(BrowserView):
         there is more than one option.
         """
         return len(self.areas_for_display) > 1
+
+    @property
+    def multiple_varieties(self):
+        """Should the option for selecting a target area be shown?
+
+        There is always at least one option: None.  So only show when
+        there is more than one option.
+        """
+        return len(self.varieties_for_display) > 1
 
     @property
     def managers_for_display(self):
@@ -434,6 +503,8 @@ class Create(Base):
              'available_releases'),
             ('state', _(u'label_state', default=u"State"), 'available_states'),
             ('area', _(u'label_areas', default=u"Area"), 'available_areas'),
+            ('variety', _(u'label_varieties', default=u"Variety"), 'available_varieties'),
+            ('watchedRelease', _(u'label_watched_release', default=u"Watched Release"), 'available_watched_releases'),
             ]
         # Changes that need to be applied to the issue (apart from
         # workflow changes that need to be handled separately).
@@ -443,6 +514,7 @@ class Create(Base):
             new = form.get(option, u'')
             if new and new in self.__getattribute__(vocab):
                 current = context.__getattribute__(option)
+
                 if current != new:
                     changes[option] = new
                     new_response.add_change(
@@ -506,8 +578,12 @@ class Create(Base):
                 context.setPriority(changes['priority'])
             if 'area' in changes:
                 context.setArea(changes['area'])
+            if 'variety' in changes:
+                context.setVariety(changes['variety'])
             if 'state' in changes:
                 context.setState(changes['state'])
+            if 'watchedRelease' in changes:
+                context.setWatchedRelease(changes['watchedRelease'])
 
             # Add response
             catalog_tool = self.context.portal_catalog

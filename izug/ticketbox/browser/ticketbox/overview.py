@@ -17,7 +17,6 @@ class TicketBoxView(TabbedTicketBoxBaseView):
         context = aq_inner(self.context)
         query = self.buildIssueSearchQuery(criteria, **kwargs)
         catalog = getToolByName(context, 'portal_catalog')
-
         return catalog.searchResults(query)
 
     def buildIssueSearchQuery(self, criteria=None, **kwargs):
@@ -30,7 +29,9 @@ class TicketBoxView(TabbedTicketBoxBaseView):
             criteria = dict(criteria)
 
         allowedCriteria = {'release': 'getReleases',
+                           'watchedRelease': 'getWatchedRelease',
                            'area': 'getArea',
+                           'variety': 'getVariety',
                            'priority': 'getPriority',
                            'state': 'getState',
                            'responsible': 'getResponsibleManager',

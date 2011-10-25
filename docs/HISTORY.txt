@@ -5,6 +5,11 @@ Changelog
 1.7
 ---
 
+* Issue #1485 Auftragsbox - Einrichten von zwei weiteren Kategorien
+  https://extranet.4teamwork.ch/support/zug/maintlog/1485
+  added two new categories, type and watched in Release
+  [eschmutz]
+
 - Added new view ticketboxoverview_view to show all ticketboxes and tickets on the site
   Issue #1647 Arbeitsplatz - neue Uebersicht Auftragsbox
   https://extranet.4teamwork.ch/support/zug/maintlog/1647
@@ -19,6 +24,7 @@ Changelog
 * Issue #1486 Auftragsbox - neue Attribute: "Eingereicht durch" und "Eingereicht am" in Auftrag
   https://extranet.4teamwork.ch/support/zug/maintlog/1486
   added new attributes in ticket_view
+  [eschmutz]
 
 1.6
 ---

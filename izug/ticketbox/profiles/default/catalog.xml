@@ -5,8 +5,10 @@
 -->
 <column value="getState"/>
 <column value="getReleases"/>
+<column value="getWatchedRelease"/>
 <column value="getArea"/>
 <column value="getPriority"/>
 <column value="getResponsibleManager"/>
 <column value="getDueDate"/>
+<column value="getVariety"/>
 </object>

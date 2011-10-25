@@ -40,6 +40,8 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                     'priority': map_attribute(self.context, "priority"),
                     'area': map_attribute(self.context, "area"),
                     'releases': map_attribute(self.context, "releases"),
+                    'watchedRelease': map_attribute(self.context, "watchedRelease"),
+                    'variety': map_attribute(self.context, "variety"),
                     'answerDate':self.context.getAnswerDate(),
                     'response': False}
         if responses == []:
@@ -64,7 +66,9 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                     'responsibleManager': '',
                     'priority': '',
                     'area': '',
+                    'verity': '',
                     'releases': '',
+                    'watchedRelease': '',
                     'answerDate':'',
                     'response': True}
                 for item in response['response'].changes:

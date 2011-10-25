@@ -10,40 +10,34 @@ def map_attribute(context, listname, id=None):
         mapped_title = map_state(context, id)
     elif listname == "area":
         mapped_title = map_area(context, id)
+    elif listname == "variety":
+        mapped_title = map_variety(context, id)
     elif listname == "releases":
         mapped_title = map_release(context, id)
+    elif listname == "watchedRelease":
+        mapped_title = map_watch_release(context, id)
     else:
         mapped_title = ""
 
     return mapped_title
 
-
+# # HELPER Methods for ftw.table generator
 def map_priority(context, id=None):
     """search the title-name of a list with the id
     """
     if not id and getattr(context, 'getPriority', None):
         id = context.getPriority()
 
-    priorities = context.getAvailablePriorities()
-    for priority in priorities:
-        if id == priority['id']:
-            return priority['title']
-    return "-"
+    return map_base(context.getAvailablePriorities(), id)
 
-
-# # HELPER Methods for ftw.table generator
 def map_state(context, id=None):
     """search the title-name of a list with the id
     """
 
     if not id and getattr(context, 'getState', None):
         id = context.getState()
-    states = context.getAvailableStates()
-    for state in states:
-        if id == state['id']:
-            return state['title']
-    return "-"
 
+    return map_base(context.getAvailableStates(), id)
 
 def map_area(context, id=None):
     """search the title-name of a list with the id
@@ -52,12 +46,24 @@ def map_area(context, id=None):
     if not id and getattr(context, 'getArea', None):
         id = context.getArea()
 
-    areas = context.getAvailableAreas()
-    for area in areas:
-        if id == area['id']:
-            return area['title']
-    return "-"
+    return map_base(context.getAvailableAreas(), id)
 
+def map_variety(context, id=None):
+    """search the title-name of a list with the id
+    """
+
+    if not id and getattr(context, 'getVariety', None):
+        id = context.getVariety()
+
+    return map_base(context.getAvailableVarieties(), id)
+
+def map_watch_release(context, id=None):
+    """search the title-name of a list with the id
+    """
+    if not id and getattr(context, 'getWatchedRelease', None):
+        id = context.getWatchedRelease()
+
+    return map_base(context.getAvailableReleases(), id)
 
 def map_release(context, id=None):
     """search the title-name of a list with the id
@@ -65,12 +71,16 @@ def map_release(context, id=None):
     if not id and getattr(context, 'getReleases', None):
         id = context.getReleases()
 
-    releases = context.getAvailableReleases()
-    for release in releases:
-        if id == release['id']:
-            return release['title']
-    return "-"
+    return map_base(context.getAvailableReleases(), id)
 
+def map_base(available_items, id):
+    """Basemapping for attributes in ticketbox
+    """
+
+    for available_item in available_items:
+        if id == available_item.get('id'):
+            return available_item.get('title')
+    return "-"
 
 def readable_responsibleManager(context):
     """Get the full name of the responsible manager

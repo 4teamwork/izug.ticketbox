@@ -75,6 +75,8 @@ body.template-atct_edit #datagridwidget-table-availableReleases tr th:first-chil
 body.template-atct_edit #datagridwidget-table-availableReleases tr td:first-child,
 body.template-atct_edit #datagridwidget-table-availablePriorities tr th:first-child,
 body.template-atct_edit #datagridwidget-table-availablePriorities tr td:first-child,
+body.template-atct_edit #datagridwidget-table-availableVarieties tr th:first-child,
+body.template-atct_edit #datagridwidget-table-availableVarieties tr td:first-child,
 body.template-atct_edit #datagridwidget-table-availableAreas tr th:first-child,
 body.template-atct_edit #datagridwidget-table-availableAreas tr td:first-child{
     /* do not display the ids from the datagrid-widget */

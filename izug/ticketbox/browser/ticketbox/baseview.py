@@ -29,6 +29,8 @@ class TabbedTicketBoxBaseView(BaseListingView):
             ('getDueDate', 'duedate', None),
             ('getPriority', 'priority', None),
             ('getArea', 'area', None),
+            ('getVariety', 'variety', None),
+            ('getWatchedRelease', 'watchedRelease', None),
             ]
 
     def __init__(self, context, request):
@@ -102,12 +104,16 @@ class TabbedTicketBoxBaseView(BaseListingView):
             is_set_state = self.request.get('state')
             is_set_release = self.request.get('release')
             is_set_area = self.request.get('area')
+            is_set_variety = self.request.get('variety')
+            is_set_watched_release = self.request.get('watchedRelease')
             is_set_priority = self.request.get('priority')
 
             if not (is_set_responsible or
                     is_set_state or
                     is_set_release or
                     is_set_area or
+                    is_set_variety or
+                    is_set_watched_release or
                     is_set_priority):
 
                 self.contents = []

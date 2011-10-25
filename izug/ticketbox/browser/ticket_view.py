@@ -27,11 +27,23 @@ class TicketView(BrowserView):
         """
         return map_attribute(self.context, "area")
 
+    def map_variety(self):
+        """
+        search the title-name of a list with the id
+        """
+        return map_attribute(self.context, "variety")
+
     def map_release(self):
         """
         search the title-name of a list with the id
         """
         return map_attribute(self.context, "releases")
+
+    def map_watched_release(self):
+        """
+        search the title-name of a list with the id
+        """
+        return map_attribute(self.context, "watchedRelease")
 
     def map_author(self):
         """
