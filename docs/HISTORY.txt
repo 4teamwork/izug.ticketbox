@@ -2,14 +2,14 @@ Changelog
 =========
 
 
-1.7
----
+1.7 (unreleased)
+----------------
 
-* Fix readable_author error when we get the zopemaster. Problem is in old
+- Fix readable_author error when we get the zopemaster. Problem is in old
   ftw.table version, but fixed in version 1.8
   [eschmutz]
 
-* Issue #1485 Auftragsbox - Einrichten von zwei weiteren Kategorien
+- Issue #1485 Auftragsbox - Einrichten von zwei weiteren Kategorien
   https://extranet.4teamwork.ch/support/zug/maintlog/1485
   added two new categories, type and watched in Release
   [eschmutz]
@@ -25,15 +25,15 @@ Changelog
   https://extranet.4teamwork.ch/support/zug/maintlog/1644
   [jone]
 
-* Issue #1486 Auftragsbox - neue Attribute: "Eingereicht durch" und "Eingereicht am" in Auftrag
+- Issue #1486 Auftragsbox - neue Attribute: "Eingereicht durch" und "Eingereicht am" in Auftrag
   https://extranet.4teamwork.ch/support/zug/maintlog/1486
   added new attributes in ticket_view
   [eschmutz]
 
-1.6
----
+1.6 (2011-09-16)
+----------------
 
-* Issue #1606 Arbeitsraum - Fehlendes Kalenderwidget beim Termin
+- Issue #1606 Arbeitsraum - Fehlendes Kalenderwidget beim Termin
   https://extranet.4teamwork.ch/support/zug/maintlog/1606
   added var portal_url to response.pt
   [15.09.2011, elio.schmutz]
@@ -41,20 +41,20 @@ Changelog
 1.5
 ---
 
-* merge with thememigratino
+- merge with thememigratino
   [19.08.2011, elio.schmutz]
 
 
 1.4
 ---
 
-* css modifications for new layout
+- css modifications for new layout
   [12.08.2011, elio.schmutz]
 
-* Theme migration stuff
+- Theme migration stuff
   [11.08.2011, mathias.leimgruber]
 
-* Issue #1560 Auftragsbox - Benachrichtigung mit falschem Absender
+- Issue #1560 Auftragsbox - Benachrichtigung mit falschem Absender
   https://extranet.4teamwork.ch/support/zug/maintlog/1560/
   Show response_creator instead of tickets creator if there is a response.
   [10.08.2011, jinfanger]
@@ -62,27 +62,27 @@ Changelog
 1.3
 ---
 
-* #1493 Auftragsbox: Beschreibung eines Auftrages unter
+- #1493 Auftragsbox: Beschreibung eines Auftrages unter
   aktionen-inhalte ausblenden
   https://extranet.4teamwork.ch/support/zug/maintlog/1493
   Done by CSS
   [01.06.2011, mathias.leimgruber]
 
-* 462 Auftragsbox - Testmigration Maintlog STV in Auftragsbox
+- 462 Auftragsbox - Testmigration Maintlog STV in Auftragsbox
   migration siehe Ticket fuer Doku
   [18.05.2011, elio.schmutz]
 
-* #1475 Auftragsbox - Kommentar bei Benachrichtigung erscheint nicht im Mail
+- #1475 Auftragsbox - Kommentar bei Benachrichtigung erscheint nicht im Mail
   https://extranet.4teamwork.ch/support/zug/maintlog/1475
   [18.5.2011, ttschanz]
 
 1.2
 ---
 
-* #1468 Auftragsbox - Kein Datum in Falligkeit und Antwort erbeten bis
+- #1468 Auftragsbox - Kein Datum in Falligkeit und Antwort erbeten bis
   [09.05.2011, elio.schmutz]
 
-* integration jenkins
+- integration jenkins
   [19.04.2011, elio.schmutz]
 
 1.1
