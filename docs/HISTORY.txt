@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.7 (unreleased)
+1.7 (2011-11-07)
 ----------------
 
 - Fix readable_author error when we get the zopemaster. Problem is in old
