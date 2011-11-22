@@ -66,7 +66,7 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                     'responsibleManager': '',
                     'priority': '',
                     'area': '',
-                    'verity': '',
+                    'variety': '',
                     'releases': '',
                     'watchedRelease': '',
                     'answerDate':'',

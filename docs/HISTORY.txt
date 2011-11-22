@@ -5,7 +5,8 @@ Changelog
 1.8 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Bad key for list in ticket_notification. Change verity to variety
+  [eschmutz]
 
 
 1.7 (2011-11-07)
