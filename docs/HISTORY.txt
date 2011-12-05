@@ -2,12 +2,14 @@ Changelog
 =========
 
 
-4.1
----
+4.1 (Unreleased)
+----------------
+
+- Nothing Changed yet.
 
 
-1.2
----
+4.0 (2011-07-08)
+----------------
 
 * Moved Ticketbox icons, Changed button styling in response.pt
   [29.6.2011, ttschanz]

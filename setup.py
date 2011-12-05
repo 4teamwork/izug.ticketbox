@@ -8,45 +8,39 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open('/'.join(rnames)).read()
 
-version = open('izug/ticketbox/version.txt').read().strip()
+version = '4.1dev'
 maintainer = 'Elio Schmutz'
 
 
-long_description = (
-    read('README.txt')
-    + '\n' +
-    'Change history\n'
-    '**************\n'
-    + '\n' +
-    read('docs/HISTORY.txt')
-    + '\n' +
-    'Detailed Documentation\n'
-    '**********************\n'
-    + '\n' +
-    read('izug', 'ticketbox', 'README.txt')
-    + '\n' +
-    'Download\n'
-    '********\n')
+
 
 tests_require = ['zope.testing']
 
 setup(name='izug.ticketbox',
       version=version,
       maintainer=maintainer,
-      description="A tracker-like task management system (Maintainer: %s)"
-        % maintainer,
-      long_description=long_description,
+      description="A tracker-like task management system",
+        long_description = (open('README.rst').read() + '\n' + \
+                  open(os.path.join('docs', 'HISTORY.txt')).read(),
+
+
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
         'Framework :: Plone',
+        'Framework :: Plone :: 4.0',
+        'Framework :: Plone :: 4.1',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU General Public License (GPL)',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2.6',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+        
         ],
-      keywords='',
-      author='Elio Schmutz, 4teamwork GmbH',
+      keywords='ticketbox tracker ftw ',
+      author='4teamwork GmbH',
       author_email='mailto:info@4teamwork.ch',
-      url='http://www.4teamwork.ch',
+      url='https://github.com/4teamwork/izug.ticketbox',
       license='GPL2',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['izug', ],
