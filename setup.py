@@ -3,17 +3,10 @@
 This module contains the tool of izug.ticketbox
 """
 from setuptools import setup, find_packages
-
-
-def read(*rnames):
-    return open('/'.join(rnames)).read()
+import os
 
 version = '4.1dev'
 maintainer = 'Elio Schmutz'
-
-
-
-
 tests_require = ['zope.testing']
 
 setup(name='izug.ticketbox',
@@ -21,9 +14,7 @@ setup(name='izug.ticketbox',
       maintainer=maintainer,
       description="A tracker-like task management system",
         long_description = (open('README.rst').read() + '\n' + \
-                  open(os.path.join('docs', 'HISTORY.txt')).read(),
-
-
+                  open(os.path.join('docs', 'HISTORY.txt')).read()),
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
@@ -34,9 +25,7 @@ setup(name='izug.ticketbox',
         'License :: OSI Approved :: GNU General Public License (GPL)',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.6',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-        
-        ],
+        'Topic :: Software Development :: Libraries :: Python Modules', ],
       keywords='ticketbox tracker ftw ',
       author='4teamwork GmbH',
       author_email='mailto:info@4teamwork.ch',
