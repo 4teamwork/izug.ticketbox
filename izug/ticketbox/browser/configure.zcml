@@ -4,7 +4,8 @@
     i18n_domain="izug.ticketbox">
 
     <include package="plone.app.contentmenu" />
-    <include package=".ticketbox" />
+    <!-- <include package=".ticketbox" /> -->
+    <include package=".tabbed" />
 
 
     <browser:resourceDirectory
@@ -24,6 +25,7 @@
         class=".ticket_view.TicketView"
         template="ticket_view.pt"
         />
+
     <browser:page
         name="base_response"
         for="izug.ticketbox.interfaces.ITicket"
