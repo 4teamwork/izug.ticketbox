@@ -11,30 +11,21 @@ Changelog
 4.0 (2011-07-08)
 ----------------
 
-* Moved Ticketbox icons, Changed button styling in response.pt
+- Moved Ticketbox icons, Changed button styling in response.pt
   [29.6.2011, ttschanz]
 
-* Fixed Bug in get_base_query tickets of other boxes aren't displayed anymore
+- Fixed Bug in get_base_query tickets of other boxes aren't displayed anymore
   [6.6.2011, ttschanz]
 
-* Made ticketbox work with TinyMCE.
+- Made ticketbox work with TinyMCE.
   [6.6.2011, ttschanz]
 
 
-* Fixed Bug in get_base_query tickets of other boxes aren't displayed anymore
+- Fixed Bug in get_base_query tickets of other boxes aren't displayed anymore
   [6.6.2011, ttschanz]
 
-* #1468 Auftragsbox - Kein Datum in Falligkeit und Antwort erbeten bis
+- #1468 Auftragsbox - Kein Datum in Falligkeit und Antwort erbeten bis
   [09.05.2011, elio.schmutz]
 
-* integration jenkins
+- integration jenkins
   [19.04.2011, elio.schmutz]
-
-1.1
----
-
-
-1.0dev (unreleased)
--------------------
-
-- Initial release
