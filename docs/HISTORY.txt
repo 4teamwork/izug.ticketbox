@@ -5,7 +5,7 @@ Changelog
 4.1 (Unreleased)
 ----------------
 
-- Make description in ticket box optional.
+- Make description in ticket box and ticket optional.
   [jone]
 
 

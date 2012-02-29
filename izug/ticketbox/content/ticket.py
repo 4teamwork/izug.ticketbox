@@ -150,7 +150,6 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
     ),
 ))
 
-TicketSchema['description'].required = True
 TicketSchema['description'].widget = atapi.RichWidget(
     label=_(u"label_description",
     default=u"Description"),
