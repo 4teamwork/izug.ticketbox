@@ -1,4 +1,32 @@
+from ftw.tabbedview.browser.listing import CatalogListingView
+from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.browser.tabbed.base import BaseTicketListingTab
+
+
+def icon(item, value):
+    img = u'<img src="%s/%s"/>' % (item.portal_url(), item.getIcon)
+    link = u'<a href="%s/at_download">%s</a>' % (item.getURL(), img)
+    return link
+
+
+def linked_attachment(item, title):
+    title = len(title) >= 47 and title[:47] + '...' or title
+
+    return '<a href="%s/at_download/file">%s</a>' % (
+        item.absolute_url(), title)
+
+
+def attachment_ticketnr(item, nothing):
+    url = item.getURL()
+    split_url = url.split("/")
+
+    if len(split_url) >= 2:
+        ticket_url = '/'.join(split_url[:-1])
+        return '<a href="%s"># %s</a>' % (ticket_url, split_url[-2])
+
+    else:
+        return id
+
 
 
 class AllTicketsTab(BaseTicketListingTab):
@@ -29,3 +57,34 @@ class MyTicketsTab(BaseTicketListingTab):
                              if state['show_in_my_tickets'] == '1']
 
         return query
+
+
+class AttachmentsTab(CatalogListingView):
+
+    types = ['TicketAttachment']
+
+    show_selects = False
+
+    sort_on = 'sortable_title'
+
+    enabled_actions = major_actions = ['reset_tableconfiguration']
+
+    columns = (
+        {'column': 'Type',
+         'column_title': _(u"Type"),
+         'sort_index': 'getContentType',
+         'transform': icon,
+         },
+
+        {'column': 'Title',
+         'column_title': _(u"Title"),
+         'sort_index': 'sortable_title',
+         'transform': linked_attachment,
+         },
+
+        # There is no index ticket-number. Use the helper for getting it.
+        {'column': 'ticket-number',
+         'column_title': _(u"Ticketnr"),
+         'sort_index': 'sortable_ticket_references',
+         'transform': attachment_ticketnr,
+         })

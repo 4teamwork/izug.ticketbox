@@ -32,4 +32,11 @@
         class=".tabs.MyTicketsTab"
         />
 
+    <browser:page
+        for="izug.ticketbox.interfaces.ITicketBox"
+        name="tabbedview_view-attachments"
+        permission="zope2.View"
+        class=".tabs.AttachmentsTab"
+        />
+
 </configure>
