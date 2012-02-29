@@ -7,3 +7,6 @@ bin/
 develop-eggs/
 parts/
 var/
+coverage/
+buildout.cfg
+.mr.developer.cfg
