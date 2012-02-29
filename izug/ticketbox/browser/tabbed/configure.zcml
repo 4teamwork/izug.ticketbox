@@ -4,14 +4,6 @@
     i18n_domain="izug.ticketbox">
 
     <browser:page
-        for="izug.ticketbox.interfaces.ITicketBox"
-        name="tabbed_view"
-        class=".tabbedview.TicketboxTabbedView"
-        permission="zope2.View"
-        allowed_attributes="listing select_all reorder setgridstate"
-        />
-
-    <browser:page
         name="tabbedview_view-overview"
         for="izug.ticketbox.interfaces.ITicketBox"
         permission="zope2.View"

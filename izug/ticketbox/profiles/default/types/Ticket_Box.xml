@@ -19,9 +19,9 @@
         <element value="Ticket Response"/>
     </property>
 
-    <property name="default_view">tabbed_ticketbox_view</property>
+    <property name="default_view">tabbed_view</property>
     <property name="view_methods">
-        <element value="tabbed_ticketbox_view"/>
+        <element value="tabbed_view"/>
     </property>
 
     <alias from="(Default)" to="(dynamic view)" />
@@ -52,6 +52,43 @@
             url_expr="string:${object_url}/createObject?type_name=Ticket"
             title="add Ticket"
             category="arbeitsraum-types"
+            condition_expr="">
+        <permission value="View"/>
+    </action>
+
+    <!-- overview tabs -->
+    <action action_id="overview"
+            visible="True"
+            url_expr="string:${object_url}#overview"
+            title="Overview"
+            category="tabbedview-tabs"
+            condition_expr="">
+        <permission value="View"/>
+    </action>
+
+    <action action_id="all_tickets"
+            visible="True"
+            url_expr="string:${object_url}#all_tickets"
+            title="All tickets"
+            category="tabbedview-tabs"
+            condition_expr="">
+        <permission value="View"/>
+    </action>
+
+    <action action_id="my_tickets"
+            visible="True"
+            url_expr="string:${object_url}#my_tickets"
+            title="My tickets"
+            category="tabbedview-tabs"
+            condition_expr="">
+        <permission value="View"/>
+    </action>
+
+    <action action_id="attachments"
+            visible="True"
+            url_expr="string:${object_url}#attachments"
+            title="Attachments"
+            category="tabbedview-tabs"
             condition_expr="">
         <permission value="View"/>
     </action>
