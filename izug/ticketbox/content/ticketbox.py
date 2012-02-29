@@ -141,8 +141,6 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
     ),
 ))
 
-TicketBoxSchema['description'].required = True
-
 
 schemata.finalizeATCTSchema(
     TicketBoxSchema,

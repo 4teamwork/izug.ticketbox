@@ -5,7 +5,8 @@ Changelog
 4.1 (Unreleased)
 ----------------
 
-- Nothing Changed yet.
+- Make description in ticket box optional.
+  [jone]
 
 
 4.0 (2011-07-08)
