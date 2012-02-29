@@ -126,8 +126,9 @@ def setup_product():
 # installs the products we need for this product. Then, we let PloneTestCase
 # set up this product on installation.
 
-setup_product()
-ptc.setupPloneSite(products=['izug.ticketbox'])
+if __name__ == '__main__':
+    setup_product()
+    ptc.setupPloneSite(products=['izug.ticketbox'])
 
 class TicketBoxTestCase(ptc.PloneTestCase):
 

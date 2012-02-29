@@ -18,6 +18,11 @@
         directory="icons"
         />
 
+    <browser:resourceDirectory
+        name="izug.ticketbox.javascripts"
+        directory="javascripts"
+        />
+
     <browser:page
         name="ticket_view"
         for="izug.ticketbox.interfaces.ITicket"
