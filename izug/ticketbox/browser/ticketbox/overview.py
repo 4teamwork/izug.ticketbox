@@ -1,7 +1,7 @@
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from baseview import TabbedTicketBoxBaseView
+from izug.ticketbox.browser.ticketbox.baseview import TabbedTicketBoxBaseView
 
 
 class TicketBoxView(TabbedTicketBoxBaseView):
