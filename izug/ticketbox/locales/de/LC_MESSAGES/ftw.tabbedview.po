@@ -27,4 +27,5 @@ msgstr "Info"
 msgid "my_tickets"
 msgstr "Meine Aufträge"
 
-
+msgid "issued_tickets"
+msgstr "Erteilte Aufträge"

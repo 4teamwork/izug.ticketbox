@@ -1,0 +1,41 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="izug.ticketbox">
+
+    <browser:page
+        name="tabbedview_view-overview"
+        for="izug.ticketbox.interfaces.ITicketBox"
+        permission="zope2.View"
+        class=".overview.OverviewTab"
+        />
+
+    <browser:page
+        name="tabbedview_view-all_tickets"
+        for="izug.ticketbox.interfaces.ITicketBox"
+        permission="zope2.View"
+        class=".tabs.AllTicketsTab"
+        />
+
+    <browser:page
+        name="tabbedview_view-my_tickets"
+        for="izug.ticketbox.interfaces.ITicketBox"
+        permission="zope2.View"
+        class=".tabs.MyTicketsTab"
+        />
+
+    <browser:page
+        name="tabbedview_view-issued_tickets"
+        for="izug.ticketbox.interfaces.ITicketBox"
+        permission="zope2.View"
+        class=".tabs.MyIssuedTicketsTab"
+        />
+
+    <browser:page
+        for="izug.ticketbox.interfaces.ITicketBox"
+        name="tabbedview_view-attachments"
+        permission="zope2.View"
+        class=".tabs.AttachmentsTab"
+        />
+
+</configure>

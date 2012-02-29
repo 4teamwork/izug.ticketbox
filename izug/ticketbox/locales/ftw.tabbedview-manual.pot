@@ -32,3 +32,6 @@ msgstr ""
 
 msgid "Overview"
 msgstr ""
+
+mgsid "issued_tickets"
+msgstr ""

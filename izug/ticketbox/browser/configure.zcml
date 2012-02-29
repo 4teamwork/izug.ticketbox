@@ -3,91 +3,99 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="izug.ticketbox">
 
-  <include package="plone.app.contentmenu" />
-  <include package=".ticketbox" />
-  <!-- -*- extra stuff goes here -*- -->
-  <browser:resourceDirectory
-      name="izug.ticketbox.css"
-      directory="stylesheets"
-      />
-   <browser:resourceDirectory
-       name="izug.ticketbox.icons"
-       directory="icons"
-       />
+    <include package="plone.app.contentmenu" />
+    <include package=".tabbed" />
 
-	<browser:page
-	   name="ticket_view"
-	   for="izug.ticketbox.interfaces.ITicket"
-	   permission="zope2.View"
-	   class=".ticket_view.TicketView"
-		 template="ticket_view.pt"
-	   />
-  <browser:page
-	name="base_response"
-	for="izug.ticketbox.interfaces.ITicket"
-	permission="zope2.View"
-	class=".response.Base"
-	/>
 
-  <browser:page
-     name="create_response"
-     for="izug.ticketbox.interfaces.ITicket"
-     permission="zope2.View"
-     class=".response.Create"
-     allowed_interface="izug.ticketbox.interfaces.ICreateResponse"
-     />
+    <browser:resourceDirectory
+        name="izug.ticketbox.css"
+        directory="stylesheets"
+        />
 
-  <browser:page
-     name="delete_response"
-     for="izug.ticketbox.interfaces.ITicket"
-     permission="zope2.View"
-     class=".response.Delete"
-     />
+    <browser:resourceDirectory
+        name="izug.ticketbox.icons"
+        directory="icons"
+        />
 
-  <browser:page
-     name="edit_response"
-     for="izug.ticketbox.interfaces.ITicket"
-     permission="zope2.View"
-     class=".response.Edit"
-     template="edit_response.pt"
-     />
+    <browser:resourceDirectory
+        name="izug.ticketbox.javascripts"
+        directory="javascripts"
+        />
 
-  <browser:page
-     name="save_response"
-     for="izug.ticketbox.interfaces.ITicket"
-     permission="zope2.View"
-     class=".response.Save"
-     />
+    <browser:page
+        name="ticket_view"
+        for="izug.ticketbox.interfaces.ITicket"
+        permission="zope2.View"
+        class=".ticket_view.TicketView"
+        template="ticket_view.pt"
+        />
 
-   <browser:viewletManager
-      name="ticketbox.response.add"
-      provides="izug.ticketbox.interfaces.IResponseAdder"
-      permission="zope2.View"
-      class=".response.AddForm"
-      template="response.pt"
-      for="izug.ticketbox.interfaces.ITicket"
-      />
+    <browser:page
+        name="base_response"
+        for="izug.ticketbox.interfaces.ITicket"
+        permission="zope2.View"
+        class=".response.Base"
+        />
 
-	<!-- Override izug's custom header -->
+    <browser:page
+        name="create_response"
+        for="izug.ticketbox.interfaces.ITicket"
+        permission="zope2.View"
+        class=".response.Create"
+        allowed_interface="izug.ticketbox.interfaces.ICreateResponse"
+        />
+
+    <browser:page
+        name="delete_response"
+        for="izug.ticketbox.interfaces.ITicket"
+        permission="zope2.View"
+        class=".response.Delete"
+        />
+
+    <browser:page
+        name="edit_response"
+        for="izug.ticketbox.interfaces.ITicket"
+        permission="zope2.View"
+        class=".response.Edit"
+        template="edit_response.pt"
+        />
+
+    <browser:page
+        name="save_response"
+        for="izug.ticketbox.interfaces.ITicket"
+        permission="zope2.View"
+        class=".response.Save"
+        />
+
+    <browser:viewletManager
+        name="ticketbox.response.add"
+        provides="izug.ticketbox.interfaces.IResponseAdder"
+        permission="zope2.View"
+        class=".response.AddForm"
+        template="response.pt"
+        for="izug.ticketbox.interfaces.ITicket"
+        />
+
+    <!-- Override izug's custom header -->
     <browser:page
         for="izug.ticketbox.interfaces.ITicket"
         name="custom_header"
-		permission="zope2.View"
+        permission="zope2.View"
         template="ticket_custom_header.pt"
         />
 
     <!-- <browser:page
-        for="izug.ticketbox.interfaces.ITicket"
-        name="notification_form_content"
-		class=".notification.notificationform.NotificationForm"
-        permission="zope.Public"
-        allowed_attributes="send_notification"
-        /> -->
+         for="izug.ticketbox.interfaces.ITicket"
+         name="notification_form_content"
+         class=".notification.notificationform.NotificationForm"
+         permission="zope.Public"
+         allowed_attributes="send_notification"
+         /> -->
 
-  <adapter
-      factory=".notification.ticket_notification.TicketEmailRepresentation"
-      for="izug.ticketbox.interfaces.ITicket"
-      provides="ftw.notification.email.interfaces.IEMailRepresentation"
-      />
+    <adapter
+        factory=".notification.ticket_notification.TicketEmailRepresentation"
+        for="izug.ticketbox.interfaces.ITicket"
+        provides="ftw.notification.email.interfaces.IEMailRepresentation"
+        />
 
 </configure>

@@ -5,6 +5,10 @@ Changelog
 4.1 (Unreleased)
 ----------------
 
+- Reimplement tabbed views.
+  There is no longer a "info" tab, but a new "my issued tickets" tab.
+  [jone]
+
 - Make description in ticket box and ticket optional.
   [jone]
 

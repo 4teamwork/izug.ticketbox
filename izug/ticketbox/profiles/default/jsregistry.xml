@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<object name="portal_javascripts" meta_type="JavaScripts Registry">
+
+    <javascript
+        id="++resource++izug.ticketbox.javascripts/overview.js"
+        enabled="1"
+        cacheable="True"
+        compression="safe"
+        cookable="True"
+        expression="python: object.restrictedTraverse('@@plone_interface_info').provides('izug.ticketbox.interfaces.ITicketBox')"
+        />
+
+</object>
