@@ -78,6 +78,10 @@
 	           name="ticketbox_values_areas"
 	           provides="zope.schema.interfaces.IVocabularyFactory"
 	           />
+  <utility component=".vocabularies.VarietiesVocabularyFactory"
+           name="ticketbox_values_varieties"
+           provides="zope.schema.interfaces.IVocabularyFactory"
+           />
 
   <!-- Events for TicketBox -->
   <subscriber for=".interfaces.ITicketBox

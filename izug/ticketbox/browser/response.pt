@@ -230,6 +230,35 @@
 					  </select>
 			    </div>
 
+          <!-- dropdown for variety -->
+          <div class="field"
+               tal:condition="view/multiple_varieties">
+              <label for="variety"
+                     i18n:translate="Response_label_new_varieties">
+                  Change issue variety
+              </label>
+
+              <div class="formHelp" id="variety_help"
+                   i18n:translate="Response_help_new_variety">
+                  Select the variety for this issue
+              </div>
+
+
+              <select name="variety">
+                  <tal:options
+                      repeat="option view/varieties_for_display">
+                      <option value="" id=""
+                              tal:attributes="value option/value;
+                                              id option/value;
+                                              selected option/checked;" />
+                      <label
+                          tal:attributes="for option/value"
+                          tal:content="option/label" />
+                  </tal:options>
+              </select>
+          </div>
+
+
 				<!-- dropdown for releases -->
 			    <div class="field"
 			         tal:condition="view/show_target_releases">

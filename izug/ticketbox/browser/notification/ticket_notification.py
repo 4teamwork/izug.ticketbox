@@ -36,6 +36,7 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                     'responsibleManager': author,
                     'priority': map_attribute(self.context, "priority"),
                     'area': map_attribute(self.context, "area"),
+                    'variety': map_attribute(self.context, "variety"),
                     'releases': map_attribute(self.context, "releases"),
                     'answerDate':self.context.getAnswerDate(),
                     'response': False}
@@ -60,6 +61,7 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                     'responsibleManager': '',
                     'priority': '',
                     'area': '',
+                    'variety': '',
                     'releases': '',
                     'answerDate':'',
                     'response': True}

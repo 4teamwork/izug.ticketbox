@@ -5,6 +5,9 @@ Changelog
 4.1 (Unreleased)
 ----------------
 
+- Add variety field.
+  [jone]
+
 - Reimplement tabbed views.
   There is no longer a "info" tab, but a new "my issued tickets" tab.
   [jone]

@@ -219,6 +219,30 @@ class Base(BrowserView):
         return [t['value'] for t in self.areas_for_display]
 
     @property
+    @memoize
+    def varieties_for_display(self):
+        context = aq_inner(self.context)
+        result = []
+        for term in context.getAvailableVarieties():
+            current_state = self.context.getVariety()
+            checked = term['id'] == current_state
+            result.append(
+                dict(
+                    value=term['id'],
+                    label=term['title'],
+                    checked=checked))
+
+        return result
+
+    @property
+    @memoize
+    def available_varieties(self):
+        """Get the available varieties for this issue.
+        """
+        return [t['value'] for t in self.varieties_for_display]
+
+
+    @property
     def responsibleManager(self):
         context = aq_inner(self.context)
         return context.getResponsibleManager()
@@ -293,6 +317,15 @@ class Base(BrowserView):
         there is more than one option.
         """
         return len(self.areas_for_display) > 1
+
+    @property
+    def multiple_varieties(self):
+        """Should the option for selecting a target variety be shown?
+
+        There is always at least one option: None.  So only show when
+        there is more than one option.
+        """
+        return len(self.varieties_for_display) > 1
 
     @property
     def managers_for_display(self):
@@ -432,6 +465,7 @@ class Create(Base):
              'available_releases'),
             ('state', _(u'label_state', default=u"State"), 'available_states'),
             ('area', _(u'label_areas', default=u"Area"), 'available_areas'),
+             ('variety', _(u'label_varieties', default=u"Variety"), 'available_varieties'),
             ]
         # Changes that need to be applied to the issue (apart from
         # workflow changes that need to be handled separately).
@@ -502,6 +536,8 @@ class Create(Base):
                 context.setPriority(changes['priority'])
             if 'area' in changes:
                 context.setArea(changes['area'])
+            if 'variety' in changes:
+                 context.setVariety(changes['variety'])
             if 'state' in changes:
                 context.setState(changes['state'])
 

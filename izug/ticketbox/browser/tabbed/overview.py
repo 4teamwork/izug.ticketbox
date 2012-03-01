@@ -46,7 +46,7 @@ def collect_filter_information(items, filters):
     for item in items:
         for key in filter_options.keys():
             value = getattr(item, key, None)
-            if value in filter_options[key]:
+            if value and value in filter_options[key]:
                 filter_options[key][value] += 1
 
     # update info with matches
@@ -96,7 +96,8 @@ class OverviewTab(BaseTicketListingTab):
             [filter_data['getResponsibleManager']],
 
             # column 2
-            [filter_data['getState']],
+            [filter_data['getState'],
+             filter_data['getVariety']],
 
             # column 3
             [filter_data['getReleases']],
@@ -129,5 +130,9 @@ class OverviewTab(BaseTicketListingTab):
         filters['getArea'] = {
             'label': _(u'label_heading_by_area'),
             'options': self.context.getAvailableAreas()}
+
+        filters['getVariety'] = {
+            'label': _(u'label_heading_by_varieties'),
+            'options': self.context.getAvailableVarieties()}
 
         return filters

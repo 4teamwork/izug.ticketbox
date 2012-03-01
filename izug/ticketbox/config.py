@@ -11,6 +11,7 @@ ADD_PERMISSIONS = {
 INDEXES = (('getState', 'FieldIndex'),
             ('getReleases', 'FieldIndex'),
             ('getArea', 'FieldIndex'),
+            ('getVariety', 'FieldIndex'),
             ('getPriority', 'FieldIndex'),
             ('getResponsibleManager', 'FieldIndex'),
             ('getDueDate', 'DateIndex'),

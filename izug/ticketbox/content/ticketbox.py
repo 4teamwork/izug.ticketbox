@@ -147,6 +147,21 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                     _(u'Areas_title')),
                 )),
 
+        #Available Varieties
+        DataGridField(
+            name='availableVarieties',
+            allow_empty_rows=False,
+            columns=('id', 'title'),
+
+            widget=DataGridWidget(
+                label=_(u'label_Varieties', default=u"Varieties"),
+                description=_(u'help_varieties',
+                              default=u"Enter the issue varieties for " + \
+                                  u"this tracker."),
+                column_names=(
+                    _(u'Varieties_id'),
+                    _(u'Varieties_title')))),
+
         ))
 
 

@@ -67,6 +67,17 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         ),
     ),
 
+    #Variety
+    StringField(name='variety',
+                vocabulary_factory='ticketbox_values_varieties',
+
+                widget=SelectionWidget(
+                        label=_(u"label_select_variety",
+                                default=u'Select Variety'),
+                        description=_(u'help_variety',
+                                      default=u'Select the Variety of the ticket'),
+                        format="select")),
+
     #Releases
     # XXX: RENAME TO RELEASE
     StringField(

@@ -22,6 +22,8 @@
 <span tal:content="structure infos/priority" />
 <span tal:condition="infos/area|nothing"><br /><br /><span i18n:translate="label_area">Area:</span><br /></span>
 <span tal:content="structure infos/area" />
+<span tal:condition="infos/variety|nothing"><br /><br /><span i18n:translate="label_variety">Variety</span>:<br /></span>
+<span tal:content="structure infos/variety" />
 <span tal:condition="infos/releases"><br /><br /><span i18n:translate="label_release">Target Release:</span><br /></span>
 <span tal:content="structure infos/releases" />
 <br /><br /><span i18n:translate="label_automated">This is an automated email, please do not reply</span>
