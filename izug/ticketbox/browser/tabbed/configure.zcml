@@ -3,6 +3,7 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="izug.ticketbox">
 
+    <!-- tabbed view on ticket box -->
     <browser:page
         name="tabbedview_view-overview"
         for="izug.ticketbox.interfaces.ITicketBox"
@@ -36,6 +37,42 @@
         name="tabbedview_view-attachments"
         permission="zope2.View"
         class=".tabs.AttachmentsTab"
+        />
+
+    <!-- global tabbed view -->
+    <browser:page
+        name="ticketboxes_view"
+        for="*"
+        permission="zope2.View"
+        class=".ticketboxes.TicketboxesTabbedView"
+        />
+
+    <browser:page
+        name="tabbedview_view-global-ticketboxes"
+        for="*"
+        permission="zope2.View"
+        class=".ticketboxes.GlobalTicketboxesTab"
+        />
+
+    <browser:page
+        name="tabbedview_view-global-all_tickets"
+        for="*"
+        permission="zope2.View"
+        class=".ticketboxes.GlobalAllTicketsTab"
+        />
+
+    <browser:page
+        name="tabbedview_view-global-my_tickets"
+        for="*"
+        permission="zope2.View"
+        class=".ticketboxes.GlobalMyTicketsTab"
+        />
+
+    <browser:page
+        name="tabbedview_view-global-my_issued_tickets"
+        for="*"
+        permission="zope2.View"
+        class=".ticketboxes.GlobalMyIssuedTicketsTab"
         />
 
 </configure>

@@ -1,4 +1,5 @@
 from ftw.tabbedview.browser.listing import CatalogListingView
+from ftw.table import helper
 from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.browser.tabbed.base import BaseTicketListingTab
 
@@ -104,3 +105,27 @@ class AttachmentsTab(CatalogListingView):
          'sort_index': 'sortable_ticket_references',
          'transform': attachment_ticketnr,
          })
+
+
+class TicketboxesTab(CatalogListingView):
+
+    types = ['Ticket Box']
+    show_selects = False
+    sort_on = 'sortable_title'
+
+    enabled_actions = major_actions = ['reset_tableconfiguration']
+
+    columns = (
+        {'column': 'Title',
+         'column_title': _(u"Title"),
+         'sort_index': 'sortable_title',
+         'transform': linked_attachment},
+
+        {'column': 'modified',
+         'column_title': _(u"ModificationDate"),
+         'transform': helper.readable_date},
+
+        {'column': 'ownerid',
+         'column_title': _(u"Responsible"),
+         'transform': helper.readable_author},
+        )

@@ -1,12 +1,21 @@
-from izug.ticketbox.interfaces import ITicket
-from plone.indexer.decorator import indexer
+from Products.ATContentTypes.interface.file import IATFile
 from Products.CMFPlone.utils import safe_callable
 from Products.CMFPlone.utils import safe_unicode
 from izug.ticketbox.browser.helper import readable_author
-from Products.ATContentTypes.interface.file import IATFile
+from izug.ticketbox.interfaces import ITicket
+from izug.ticketbox.interfaces import ITicketBox
+from plone.indexer.decorator import indexer
 import re
 
+
 num_sort_regex = re.compile('\d+')
+
+
+@indexer(ITicketBox)
+def ownerid(object_, **kw):
+    """indexes the userid of the object owner"""
+    userid = object_.getOwner(0).getId()
+    return userid and userid or ''
 
 
 @indexer(ITicket)

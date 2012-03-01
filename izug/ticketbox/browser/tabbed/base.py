@@ -21,6 +21,7 @@ class BaseTicketListingTab(CatalogListingView):
     def __init__(self, *args, **kwargs):
         super(BaseTicketListingTab, self).__init__(*args, **kwargs)
 
+        self._cached_ticketbox_options = None
         self._state_map = None
         self._priority_map = None
         self._area_map = None
@@ -71,29 +72,42 @@ class BaseTicketListingTab(CatalogListingView):
         else:
             return helper.readable_author(item, userid)
 
+    def _get_ticketbox_path_for(self, item):
+        """Returns the ticketbox path for an item.
+        """
+        return '/'.join(self.context.getPhysicalPath())
+
+    def _get_cached_options_for(self, item, getter_name):
+        """Returns all available options for the field with the
+        getter name `getter_name` of the ticket box of the
+        current item.
+        """
+
+        if self._cached_ticketbox_options is None:
+            self._cached_ticketbox_options = {}
+
+        box_path = self._get_ticketbox_path_for(item)
+        if box_path not in self._cached_ticketbox_options:
+            self._cached_ticketbox_options[box_path] = {}
+        box_cache = self._cached_ticketbox_options[box_path]
+
+        if getter_name not in box_cache:
+            box_cache[getter_name] = {}
+
+            box = self.context.restrictedTraverse(box_path)
+            for option in getattr(box, getter_name)():
+                box_cache[getter_name][option['id']] = option['title']
+
+        return box_cache[getter_name]
+
     def state_helper(self, item, stateid):
-        if self._state_map is None:
-            self._state_map = {}
-
-            for state in self.context.getAvailableStates():
-                self._state_map[state['id']] = state['title']
-
-        return self._state_map.get(stateid, stateid)
+        options = self._get_cached_options_for(item, 'getAvailableStates')
+        return options.get(stateid)
 
     def priority_helper(self, item, priorityid):
-        if self._priority_map is None:
-            self._priority_map = {}
-
-            for priority in self.context.getAvailablePriorities():
-                self._priority_map[priority['id']] = priority['title']
-
-        return self._priority_map.get(priorityid, priorityid)
+        options = self._get_cached_options_for(item, 'getAvailablePriorities')
+        return options.get(priorityid)
 
     def area_helper(self, item, areaid):
-        if self._area_map is None:
-            self._area_map = {}
-
-            for area in self.context.getAvailableAreas():
-                self._area_map[area['id']] = area['title']
-
-        return self._area_map.get(areaid, areaid)
+        options = self._get_cached_options_for(item, 'getAvailableAreas')
+        return options.get(areaid)

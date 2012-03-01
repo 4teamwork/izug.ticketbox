@@ -61,6 +61,9 @@
 	 name="sortable_ticket_references"
 	 factory=".indexer.sortable_ticket_references"
 	 />
+  <adapter
+      name="ownerid"
+      factory=".indexer.ownerid" />
 
 	<utility component=".vocabularies.StatesVocabularyFactory"
 	           name="ticketbox_values_states"

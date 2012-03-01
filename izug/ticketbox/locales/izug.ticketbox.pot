@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-03-01 13:58+0000\n"
+"POT-Creation-Date: 2012-03-01 16:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "A ticket for a tracker-like task management system"
 msgstr ""
 
-#: ./izug/ticketbox/browser/tabbed/base.py:63
+#: ./izug/ticketbox/browser/tabbed/base.py:64
 msgid "Area"
 msgstr ""
 
@@ -49,11 +49,11 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: ./izug/ticketbox/browser/tabbed/base.py:36
+#: ./izug/ticketbox/browser/tabbed/base.py:37
 msgid "Description"
 msgstr ""
 
-#: ./izug/ticketbox/browser/tabbed/base.py:53
+#: ./izug/ticketbox/browser/tabbed/base.py:54
 msgid "DueDate"
 msgstr ""
 
@@ -61,7 +61,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: ./izug/ticketbox/browser/tabbed/base.py:31
+#: ./izug/ticketbox/browser/tabbed/base.py:32
 msgid "Id"
 msgstr ""
 
@@ -69,7 +69,12 @@ msgstr ""
 msgid "Issue Information"
 msgstr ""
 
-#: ./izug/ticketbox/browser/tabbed/base.py:69
+#: ./izug/ticketbox/browser/tabbed/tabs.py:125
+#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:43
+msgid "ModificationDate"
+msgstr ""
+
+#: ./izug/ticketbox/browser/tabbed/base.py:70
 #: ./izug/ticketbox/content/ticketbox.py:199
 msgid "None"
 msgstr ""
@@ -85,7 +90,7 @@ msgstr ""
 msgid "Priorities_title"
 msgstr ""
 
-#: ./izug/ticketbox/browser/tabbed/base.py:58
+#: ./izug/ticketbox/browser/tabbed/base.py:59
 msgid "Priority"
 msgstr ""
 
@@ -202,7 +207,12 @@ msgstr ""
 msgid "Response_label_response"
 msgstr ""
 
-#: ./izug/ticketbox/browser/tabbed/base.py:48
+#: ./izug/ticketbox/browser/tabbed/tabs.py:129
+#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:47
+msgid "Responsible"
+msgstr ""
+
+#: ./izug/ticketbox/browser/tabbed/base.py:49
 msgid "State"
 msgstr ""
 
@@ -214,15 +224,16 @@ msgstr ""
 msgid "Ticket Box"
 msgstr ""
 
-#: ./izug/ticketbox/browser/tabbed/tabs.py:103
+#: ./izug/ticketbox/browser/tabbed/tabs.py:104
 msgid "Ticketnr"
 msgstr ""
 
-#: ./izug/ticketbox/browser/tabbed/tabs.py:96
+#: ./izug/ticketbox/browser/tabbed/tabs.py:97
+#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:38
 msgid "Title"
 msgstr ""
 
-#: ./izug/ticketbox/browser/tabbed/tabs.py:90
+#: ./izug/ticketbox/browser/tabbed/tabs.py:91
 msgid "Type"
 msgstr ""
 
@@ -250,6 +261,22 @@ msgstr ""
 
 #: ./izug/ticketbox/browser/notification/ticket_notification.py:76
 msgid "before"
+msgstr ""
+
+#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:17
+msgid "global-all_tickets"
+msgstr ""
+
+#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:23
+msgid "global-my_issued_tickets"
+msgstr ""
+
+#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:20
+msgid "global-my_tickets"
+msgstr ""
+
+#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:14
+msgid "global-ticketboxes"
 msgstr ""
 
 #. Default: "Answer-date of the ticket"
@@ -703,7 +730,7 @@ msgstr ""
 msgid "response_label_attachment"
 msgstr ""
 
-#: ./izug/ticketbox/browser/tabbed/base.py:42
+#: ./izug/ticketbox/browser/tabbed/base.py:43
 msgid "responsibleManager"
 msgstr ""
 

@@ -18,7 +18,8 @@ INDEXES = (('getState', 'FieldIndex'),
             ('getDueDate', 'DateIndex'),
             ('sortable_id', 'FieldIndex'),
             ('sortable_responsibleManager', 'FieldIndex'),
-            ('sortable_ticket_references', 'FieldIndex')
+            ('sortable_ticket_references', 'FieldIndex'),
+            ('ownerid', 'FieldIndex'),
            )
 
 # Add text/html to the list of mimetypes to allow HTML/kupu
