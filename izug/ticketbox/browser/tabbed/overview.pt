@@ -5,29 +5,29 @@
     tal:omit-tag="python: True"
     i18n:domain="ftw.tabbedview">
 
+    <tal:START_CUSTOM_______________________________________ />
+    <table class="ticketbox-overview"
+           tal:define="filter_info view/get_filter_info"><tr>
+        <td tal:repeat="column filter_info">
+
+            <div tal:repeat="filter column"
+                 tal:attributes="id string:ticketbox-filter-${filter/filterid}">
+                <h2 tal:content="filter/label" />
+                <ul>
+                    <li tal:repeat="option filter/options">
+                        <a tal:attributes="href string:#?filterid=${filter/filterid}&amp;filtervalue=${option/id}"
+                           tal:content="option/title" />
+                        (<span tal:replace="option/matches" />)
+                    </li>
+                </ul>
+            </div>
+
+        </td>
+    </tr></table>
+    <tal:END_CUSTOM_______________________________________ />
+
     <tal:has_contents tal:condition="view/contents">
         <div tal:omit-tag="python: view.extjs_enabled" class="tab_container">
-
-            <tal:START_CUSTOM_______________________________________ />
-            <table class="ticketbox-overview"
-                   tal:define="filter_info view/get_filter_info"><tr>
-                <td tal:repeat="column filter_info">
-
-                    <div tal:repeat="filter column"
-                         tal:attributes="id string:ticketbox-filter-${filter/filterid}">
-                        <h2 tal:content="filter/label" />
-                        <ul>
-                            <li tal:repeat="option filter/options">
-                                <a tal:attributes="href string:#?filterid=${filter/filterid}&amp;filtervalue=${option/id}"
-                                   tal:content="option/title" />
-                                (<span tal:replace="option/matches" />)
-                            </li>
-                        </ul>
-                    </div>
-
-                </td>
-            </tr></table>
-            <tal:END_CUSTOM_______________________________________ />
 
             <tal:extjs condition="view/extjs_enabled">
                 <div id="selection_container" class="ftwtable"><!--iefix--></div>
