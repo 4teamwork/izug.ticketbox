@@ -6,28 +6,30 @@
     i18n:domain="ftw.tabbedview">
 
     <tal:START_CUSTOM_______________________________________ />
-    <table class="ticketbox-overview"
-           tal:define="filter_info view/get_filter_info"><tr>
-        <td tal:repeat="column filter_info">
+    <div tal:omit-tag="python: view.extjs_enabled or not view.contents"
+         class="tab_container">
 
-            <div tal:repeat="filter column"
-                 tal:attributes="id string:ticketbox-filter-${filter/filterid}">
-                <h2 tal:content="filter/label" />
-                <ul>
-                    <li tal:repeat="option filter/options">
-                        <a tal:attributes="href string:#?filterid=${filter/filterid}&amp;filtervalue=${option/id}"
-                           tal:content="option/title" />
-                        (<span tal:replace="option/matches" />)
-                    </li>
-                </ul>
-            </div>
+        <table class="ticketbox-overview"
+               tal:define="filter_info view/get_filter_info"><tr>
+            <td tal:repeat="column filter_info">
 
-        </td>
-    </tr></table>
-    <tal:END_CUSTOM_______________________________________ />
+                <div tal:repeat="filter column"
+                     tal:attributes="id string:ticketbox-filter-${filter/filterid}">
+                    <h2 tal:content="filter/label" />
+                    <ul>
+                        <li tal:repeat="option filter/options">
+                            <a tal:attributes="href string:#?filterid=${filter/filterid}&amp;filtervalue=${option/id}"
+                               tal:content="option/title" />
+                            (<span tal:replace="option/matches" />)
+                        </li>
+                    </ul>
+                </div>
 
-    <tal:has_contents tal:condition="view/contents">
-        <div tal:omit-tag="python: view.extjs_enabled" class="tab_container">
+            </td>
+        </tr></table>
+        <tal:has_contents tal:condition="view/contents">
+
+            <tal:END_CUSTOM_______________________________________ />
 
             <tal:extjs condition="view/extjs_enabled">
                 <div id="selection_container" class="ftwtable"><!--iefix--></div>
@@ -60,8 +62,10 @@
 
             </form>
 
-        </div>
-    </tal:has_contents>
+            <tal:START_CUSTOM_______________________________________ />
+        </tal:has_contents>
+    </div>
+    <tal:END_CUSTOM_______________________________________ />
 
     <tal:extjs condition="view/extjs_enabled">
         <p style="display:none"
