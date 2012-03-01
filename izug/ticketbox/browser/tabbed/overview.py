@@ -27,7 +27,7 @@ def collect_filter_information(items, filters):
         for option in filters[filterid]['options']:
 
             if isinstance(option, dict):
-                options.append(option)
+                options.append(deepcopy(option))
 
             else:
                 options.append({'id': option[0],
@@ -100,7 +100,8 @@ class OverviewTab(BaseTicketListingTab):
              filter_data['getVariety']],
 
             # column 3
-            [filter_data['getReleases']],
+            [filter_data['getReleases'],
+             filter_data['getWatchedRelease']],
 
             # column 4
             [filter_data['getPriority'],
@@ -119,9 +120,14 @@ class OverviewTab(BaseTicketListingTab):
             'label': _(u'label_heading_by_states'),
             'options': self.context.getAvailableStates()}
 
+        available_releases = self.context.getAvailableReleases()
         filters['getReleases'] = {
             'label': _(u'label_heading_by_release'),
-            'options': self.context.getAvailableReleases()}
+            'options': available_releases}
+
+        filters['getWatchedRelease'] = {
+            'label': _(u'label_heading_by_watched_release'),
+            'options': available_releases}
 
         filters['getPriority'] = {
             'label': _(u'label_heading_by_severities'),

@@ -14,6 +14,8 @@ def map_attribute(context, listname, id=None):
         mapped_title = map_variety(context, id)
     elif listname == "releases":
         mapped_title = map_release(context, id)
+    elif listname == "watchedRelease":
+         mapped_title = map_watch_release(context, id)
     else:
         mapped_title = ""
 
@@ -63,6 +65,15 @@ def map_release(context, id=None):
     """
     if not id and getattr(context, 'getReleases', None):
         id = context.getReleases()
+
+    return map_base(context.getAvailableReleases(), id)
+
+
+def map_watch_release(context, id=None):
+    """search the title-name of a list with the id
+    """
+    if not id and getattr(context, 'getWatchedRelease', None):
+        id = context.getWatchedRelease()
 
     return map_base(context.getAvailableReleases(), id)
 

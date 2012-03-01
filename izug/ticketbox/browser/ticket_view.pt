@@ -39,6 +39,10 @@
             <td tal:content="view/map_release" />
         </tr>
         <tr>
+            <td i18n:translate='label_watched_in_release'>Watched in release</td>
+            <td tal:content="view/map_watched_release" />
+        </tr>
+        <tr>
             <td i18n:translate='label_ResponsibleManager'>responsible Manager</td>
             <td tal:content="view/map_author" />
         </tr>

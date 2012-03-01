@@ -10,6 +10,7 @@ ADD_PERMISSIONS = {
 }
 INDEXES = (('getState', 'FieldIndex'),
             ('getReleases', 'FieldIndex'),
+            ('getWatchedRelease', 'FieldIndex'),
             ('getArea', 'FieldIndex'),
             ('getVariety', 'FieldIndex'),
             ('getPriority', 'FieldIndex'),

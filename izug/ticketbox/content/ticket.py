@@ -90,6 +90,18 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         ),
     ),
 
+    #Watched in release
+    StringField(
+            name='watchedRelease',
+            vocabulary_factory='ticketbox_values_releases',
+            widget=SelectionWidget(
+                format="select",
+                label=_(u'label_select_watchedRelease',
+                        default=u'Select watched in release'),
+                description=_(u'help_watchedRelease',
+                              default=u'Select in which release you watched it'),
+                )),
+
     #Responsible
     StringField(
         name='responsibleManager',

@@ -38,6 +38,7 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                     'area': map_attribute(self.context, "area"),
                     'variety': map_attribute(self.context, "variety"),
                     'releases': map_attribute(self.context, "releases"),
+                    'watchedRelease': map_attribute(self.context, "watchedRelease"),
                     'answerDate':self.context.getAnswerDate(),
                     'response': False}
         if responses == []:
@@ -63,6 +64,7 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                     'area': '',
                     'variety': '',
                     'releases': '',
+                    'watchedRelease': '',
                     'answerDate':'',
                     'response': True}
                 for item in response['response'].changes:

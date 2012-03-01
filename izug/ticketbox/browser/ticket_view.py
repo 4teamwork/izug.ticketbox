@@ -38,6 +38,12 @@ class TicketView(BrowserView):
         """
         return map_attribute(self.context, "releases")
 
+    def map_watched_release(self):
+        """
+        search the title-name of a list with the id
+        """
+        return map_attribute(self.context, "watchedRelease")
+
     def map_author(self):
         """
         get the full name of a user-id

@@ -26,5 +26,7 @@
 <span tal:content="structure infos/variety" />
 <span tal:condition="infos/releases"><br /><br /><span i18n:translate="label_release">Target Release:</span><br /></span>
 <span tal:content="structure infos/releases" />
+<span tal:condition="infos/watchedRelease"><br /><br /><span i18n:translate="label_watched_release">Watched Release</span>:<br /></span>
+<span tal:content="structure infos/watchedRelease" />
 <br /><br /><span i18n:translate="label_automated">This is an automated email, please do not reply</span>
 </tal:translate>

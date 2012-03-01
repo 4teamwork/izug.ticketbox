@@ -5,6 +5,9 @@ Changelog
 4.1 (Unreleased)
 ----------------
 
+- Add watched release field.
+  [jone]
+
 - Add variety field.
   [jone]
 
