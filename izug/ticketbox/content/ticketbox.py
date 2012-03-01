@@ -1,19 +1,20 @@
-# -*- coding: utf-8 -*-
 from AccessControl import ClassSecurityInfo
+from Products.ATContentTypes.content import folder
+from Products.ATContentTypes.content import schemata
+from Products.Archetypes.atapi import DisplayList
+from Products.Archetypes.atapi import Schema, registerType
+from Products.Archetypes.atapi import StringField, StringWidget
+from Products.CMFCore.utils import getToolByName
+from Products.DataGridField import DataGridField, DataGridWidget
+from Products.DataGridField.Column import Column
+from Products.DataGridField.SelectColumn import SelectColumn
 from ftw.tabbedview.interfaces import ITabbedView
 from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.config import PROJECTNAME
 from izug.ticketbox.interfaces import ITicketBox
-from izug.utils.users import getAssignableUsers
-from Products.Archetypes.atapi import DisplayList
-from Products.Archetypes.atapi import Schema, registerType
-from Products.Archetypes.atapi import StringField, StringWidget
-from Products.ATContentTypes.content import folder
-from Products.ATContentTypes.content import schemata
-from Products.DataGridField import DataGridField, DataGridWidget
-from Products.DataGridField.Column import Column
-from Products.DataGridField.SelectColumn import SelectColumn
+from zope.component import queryUtility, getUtility
 from zope.interface import implements
+from zope.schema.interfaces import IVocabularyFactory
 
 
 TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
@@ -171,8 +172,24 @@ class TicketBox(folder.ATBTreeFolder):
         with a key of '(UNASSIGNED)'.
         """
 
-        users = getAssignableUsers(self, 'Contributor', show_contacts=False)
-        users.insert(0, ['(UNASSIGNED)', _(u'None')])
+        factory = queryUtility(IVocabularyFactory, name='assignable_users')
+        if factory is None:
+            factory = getUtility(IVocabularyFactory,
+                                 name='plone.principalsource.Users',
+                                 context=self)
+
+        vocabulary = factory(self)
+
+        # TODO: Use vocabulary instead of list of tuples.
+        users = [('(UNASSIGNED)', _(u'None'))]
+
+        mtool = getToolByName(self, 'portal_membership')
+
+        for term in vocabulary:
+            member = mtool.getMemberById(term.token)
+            if member and 'Contributor' in member.getRolesInContext(self):
+                users.append((term.token, term.value))
+
         return users
 
     def yes_no(self):

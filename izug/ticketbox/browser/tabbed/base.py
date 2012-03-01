@@ -1,6 +1,7 @@
 from ftw.tabbedview.browser.listing import CatalogListingView
 from ftw.table import helper
 from izug.ticketbox import ticketboxMessageFactory as _
+from zope.i18n import translate
 
 
 
@@ -40,7 +41,7 @@ class BaseTicketListingTab(CatalogListingView):
                 {'column': 'getResponsibleManager',
                  'column_title': _(u"responsibleManager"),
                  'sort_index': 'sortable_responsibleManager',
-                 'transform': helper.readable_author,
+                 'transform': self.readable_author_helper,
                  },
 
                 {'column': 'getState',
@@ -62,6 +63,13 @@ class BaseTicketListingTab(CatalogListingView):
                  'column_title': _(u"Area"),
                  'transform': self.area_helper,
                  })
+
+    def readable_author_helper(self, item, userid):
+        if userid == '(UNASSIGNED)':
+            return translate(_(u'None'), context=self.request)
+
+        else:
+            return helper.readable_author(item, userid)
 
     def state_helper(self, item, stateid):
         if self._state_map is None:
