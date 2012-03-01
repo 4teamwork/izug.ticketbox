@@ -18,6 +18,10 @@
     margin-top: 2em;
 }
 
+table.ticketbox-overview {
+    width: 100%;
+}
+
 table.ticketbox-overview td{
     vertical-align: top;
 }
