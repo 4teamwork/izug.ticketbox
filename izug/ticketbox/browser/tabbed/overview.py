@@ -85,7 +85,8 @@ class OverviewTab(BaseTicketListingTab):
         """
 
         catalog = getToolByName(self.context, 'portal_catalog')
-        brains = catalog({'portal_type': ['Ticket']})
+        brains = catalog({'portal_type': ['Ticket'],
+                          'path': '/'.join(self.context.getPhysicalPath())})
 
         filter_data = collect_filter_information(
             brains, self._get_filter_configuration())
