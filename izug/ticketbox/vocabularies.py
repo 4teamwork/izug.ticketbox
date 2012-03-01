@@ -6,8 +6,6 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 class TicketBoxVocabulary(object):
-    """Vocabulary of all users which participates in this workspace.
-    """
 
     implements(IVocabularyFactory)
 
