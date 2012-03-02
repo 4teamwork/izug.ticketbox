@@ -5,6 +5,9 @@ Changelog
 4.1 (Unreleased)
 ----------------
 
+- Fix attachment reference in response (path of link was wrong).
+  [jone]
+
 - Added ticketboxes_view, a global overview over all ticket boxes.
   [jone]
 
