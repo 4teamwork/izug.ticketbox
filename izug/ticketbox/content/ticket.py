@@ -161,12 +161,10 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         widget=ReferenceBrowserWidget(
             label=_(u'label_references',default=u"References"),
             allow_browse=True,
-            show_results_without_query=True,
-            restrict_browsing_to_startup_directory=True,
-            base_query={"portal_type": "Ticket Box",
-                        "sort_on": "sortable_title"},
+            show_results_without_query = False,
+            restrict_browsing_to_startup_directory=False,
+
         ),
-        allowed_types=('Ticket', 'Ticket Box', 'TicketAttachment'),
         multiValued=1,
         schemata='default',
         relationship='TicketBox'

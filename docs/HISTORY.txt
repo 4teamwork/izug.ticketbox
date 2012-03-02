@@ -5,6 +5,10 @@ Changelog
 4.1 (Unreleased)
 ----------------
 
+- Customized ticket references field.
+  It's now possible to reference to any other location or content
+  [mathias.leimgruber]
+
 - Fix attachment reference in response (path of link was wrong).
   [jone]
 
