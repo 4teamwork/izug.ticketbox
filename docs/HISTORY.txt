@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.1 (Unreleased)
+4.1 (2012-03-05)
 ----------------
 
 - Customized ticket references field.
