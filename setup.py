@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '4.1.1.dev'
+version = '4.1.1dev'
 maintainer = 'Elio Schmutz'
 
 tests_require = [
