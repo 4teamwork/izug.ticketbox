@@ -2,10 +2,11 @@ Changelog
 =========
 
 
-4.2 (unreleased)
+4.1.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fixes Manifest.in (include *.rst)
+  [mathias.leimgruber]
 
 
 4.1 (2012-03-05)
