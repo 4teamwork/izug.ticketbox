@@ -5,7 +5,8 @@ Changelog
 4.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Ticket-nr will be shown if Ticket reference is a Ticket too.
+  [mathias.leimgruber]
 
 
 4.1.1 (2012-03-07)
