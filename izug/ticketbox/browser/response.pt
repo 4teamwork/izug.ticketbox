@@ -2,40 +2,40 @@
      tal:define="member python:context.portal_membership.getAuthenticatedMember();"
      i18n:domain="izug.ticketbox">
 
-	<!-- show saved responses -->
-	  <tal:responses repeat="response_info view/responses">
-		    <div class="response-reply"
-   	    	     tal:define="id response_info/id;
-   		                     response nocall:response_info/response;
-   		                     attachment nocall:response_info/attachment;
-   		                     html response_info/html;">
-		     	 <div class="response-info discreet">
-						<span i18n:translate="label_response_added">Added by</span>
-				        <span class="contact-user"
-				              tal:content="response/creator_fullname" />
-				        <span i18n:translate="label_added_on">on</span>
-				        <span class="contact-user"
-				              tal:content="python:here.toLocalizedTime(response.date, long_format=True)" />
-				        <div tal:repeat="delta response/changes">
-				        	  <span i18n:translate="" tal:content="string:${delta/name}" />:
-								<tal:nodate condition="python:True">
-						          <span class="issueChange"
-						                i18n:translate=""
-						                i18n:domain="plone"
-						                tal:content="delta/before" />
-						          &rarr;
-						          <span class="issueChange"
-						                i18n:translate=""
-						                i18n:domain="plone"
-						                tal:content="delta/after" />
-								</tal:nodate>
-				        </div>
+    <!-- show saved responses -->
+      <tal:responses repeat="response_info view/responses">
+            <div class="response-reply"
+                    tal:define="id response_info/id;
+                                response nocall:response_info/response;
+                                attachment nocall:response_info/attachment;
+                                html response_info/html;">
+                  <div class="response-info discreet">
+                        <span i18n:translate="label_response_added">Added by</span>
+                        <span class="contact-user"
+                              tal:content="response/creator_fullname" />
+                        <span i18n:translate="label_added_on">on</span>
+                        <span class="contact-user"
+                              tal:content="python:here.toLocalizedTime(response.date, long_format=True)" />
+                        <div tal:repeat="delta response/changes">
+                              <span i18n:translate="" tal:content="string:${delta/name}" />:
+                                <tal:nodate condition="python:True">
+                                  <span class="issueChange"
+                                        i18n:translate=""
+                                        i18n:domain="plone"
+                                        tal:content="delta/before" />
+                                  &rarr;
+                                  <span class="issueChange"
+                                        i18n:translate=""
+                                        i18n:domain="plone"
+                                        tal:content="delta/after" />
+                                </tal:nodate>
+                        </div>
 
-			      </div>
-				  <span tal:replace="structure html" />
+                  </div>
+                  <span tal:replace="structure html" />
 
-			    <div class="issue-attachment" tal:condition="attachment">
-			     	  <div class="issue-attachment-label" i18n:translate="response_label_attachment">Attached:</div>
+                <div class="issue-attachment" tal:condition="attachment">
+                       <div class="issue-attachment-label" i18n:translate="response_label_attachment">Attached:</div>
               <tal:file define="file attachment/getFile">
                   <a tal:define="icon file/getBestIcon | nothing;
                                  filename file/filename | nothing"
@@ -48,206 +48,206 @@
                         tal:define="field python: attachment.getField('file');
                                     size file/get_size | python:file and len(file) or 0;
                                     size_kb python:size/1024;
-						                        display_size_kb python:'{0:n} kB'.format(size_kb) if size_kb > 0 else '';
-						                        display_size_bytes python:' ({0:n} bytes)'.format(size) if display_size_kb else '{0:n} bytes'.format(size);
-						                        display_size python:'{0}{1}'.format(display_size_kb, display_size_bytes)">
+                                                display_size_kb python:'{0:n} kB'.format(size_kb) if size_kb > 0 else '';
+                                                display_size_bytes python:' ({0:n} bytes)'.format(size) if display_size_kb else '{0:n} bytes'.format(size);
+                                                display_size python:'{0}{1}'.format(display_size_kb, display_size_bytes)">
                       &mdash;
                       <span tal:replace="python:attachment.lookupMime(field.getContentType(attachment))">ContentType</span>,
                       <tal:size content="display_size">?</tal:size>
                   </span>
               </tal:file>
-			    </div>
+                </div>
 
-   				 <div class="response-actions">
+                    <div class="response-actions">
 
-   				       <form method="post"
-   				             tal:attributes="action string:${context/absolute_url}/@@edit_response"
-   				             tal:condition="python:view.can_edit_response or response.creator == member.getId()">
-   				         <input type="hidden" name="response_id" tal:attributes="value id" />
-   				         <input class="submit secondary"
-   				                type="submit"
-   				                i18n:attributes="value"
-   				                value="Edit"
-   				                />
-   				       </form>
+                          <form method="post"
+                                tal:attributes="action string:${context/absolute_url}/@@edit_response"
+                                tal:condition="python:view.can_edit_response or response.creator == member.getId()">
+                            <input type="hidden" name="response_id" tal:attributes="value id" />
+                            <input class="submit secondary"
+                                   type="submit"
+                                   i18n:attributes="value"
+                                   value="Edit"
+                                   />
+                          </form>
 
-   				       <form method="post"
-   				             tal:attributes="action string:${context/absolute_url}/@@delete_response"
-   				             tal:condition="view/can_delete_response">
-   				         <input type="hidden" name="response_id" tal:attributes="value id" />
-   				         <input class="submit secondary"
-   				                type="submit"
-   				                i18n:attributes="value"
-   				                value="Delete"
-   				                />
-   				       </form>
-				</div>
+                          <form method="post"
+                                tal:attributes="action string:${context/absolute_url}/@@delete_response"
+                                tal:condition="view/can_delete_response">
+                            <input type="hidden" name="response_id" tal:attributes="value id" />
+                            <input class="submit secondary"
+                                   type="submit"
+                                   i18n:attributes="value"
+                                   value="Delete"
+                                   />
+                          </form>
+                </div>
 
-				<div class="visualClear"></div>
+                <div class="visualClear"></div>
 
-		   	</div>
-	  </tal:responses>
+               </div>
+      </tal:responses>
  <!-- *************************************************** -->
 <!-- Add Response - with collabsible function -->
-	  <tal:add condition="python:user.has_permission('izug.ticketbox: Add Ticket', here)">
-	<dl id='addResponse' class='collapsible collapsedOnLoad' style='margin-bottom:10px;'>
-		<dt class='collapsibleHeader'><div i18n:translate="title_add_response" class='add_response'>Add response</div>
-		</dt>
+      <tal:add condition="python:user.has_permission('izug.ticketbox: Add Ticket', here)">
+    <dl id='addResponse' class='collapsible collapsedOnLoad' style='margin-bottom:10px;'>
+        <dt class='collapsibleHeader'><div i18n:translate="title_add_response" class='add_response'>Add response</div>
+        </dt>
 
-	  <!-- <h3 i18n:translate="title_add_response">Add response</h3> -->
-		<dd class="collapsibleContent">
-			<div>
-			  <form method="post"
-			        tal:attributes="action string:${context/absolute_url}/@@create_response"
-			        action="@@create_response"
-			        enctype="multipart/form-data">
+      <!-- <h3 i18n:translate="title_add_response">Add response</h3> -->
+        <dd class="collapsibleContent">
+            <div>
+              <form method="post"
+                    tal:attributes="action string:${context/absolute_url}/@@create_response"
+                    action="@@create_response"
+                    enctype="multipart/form-data">
 
-			    <div class="field">
-			      <label for="response"
-			             i18n:translate="Response_label_response">Response</label>
+                <div class="field">
+                  <label for="response"
+                         i18n:translate="Response_label_response">Response</label>
 
-			      <div class="formHelp" id="response_help"
-			           i18n:translate="Response_help_response">
-			        Please enter your response below
-			      </div>
-			      <div>
+                  <div class="formHelp" id="response_help"
+                       i18n:translate="Response_help_response">
+                    Please enter your response below
+                  </div>
+                  <div>
 
-			        <tal:wysiwyg
-			            tal:condition="view/use_wysiwyg">
-			          <tal:comment replace="nothing">
-			            The tal:defines below are here so that both kupu and
-			            FCKeditor work.  Partly it is taken from FCKeditor.
-			          </tal:comment>
-			          <tal:block
-			              define="inputname string:response;
-			                      inputvalue string:;
-			                      default_editor python: context.portal_properties.site_properties.getProperty('default_editor');
-                         		  editor python: (default_editor or 'None').lower();
+                    <tal:wysiwyg
+                        tal:condition="view/use_wysiwyg">
+                      <tal:comment replace="nothing">
+                        The tal:defines below are here so that both kupu and
+                        FCKeditor work.  Partly it is taken from FCKeditor.
+                      </tal:comment>
+                      <tal:block
+                          define="inputname string:response;
+                                  inputvalue string:;
+                                  default_editor python: context.portal_properties.site_properties.getProperty('default_editor');
+                                   editor python: (default_editor or 'None').lower();
                                   portal_url context/portal_url;
-			                      portal context/portal_url/getPortalObject;
-			                      here_url context/portal_url;
-			                      support python: path('nocall:here/%s_wysiwyg_support|here/%s/wysiwyg_support|here/portal_skins/plone_wysiwyg/wysiwyg_support' % (editor, editor));"
-			              on-error="string:$editor not installed correctly: ${error/value}">
+                                  portal context/portal_url/getPortalObject;
+                                  here_url context/portal_url;
+                                  support python: path('nocall:here/%s_wysiwyg_support|here/%s/wysiwyg_support|here/portal_skins/plone_wysiwyg/wysiwyg_support' % (editor, editor));"
+                          on-error="string:$editor not installed correctly: ${error/value}">
 
 
-			            <metal:block metal:use-macro="support/macros/wysiwygEditorBox" />
-			          </tal:block>
-			        </tal:wysiwyg>
+                        <metal:block metal:use-macro="support/macros/wysiwygEditorBox" />
+                      </tal:block>
+                    </tal:wysiwyg>
 
-			        <textarea
-			            tal:condition="not:view/use_wysiwyg"
-			            cols="40" rows="15" name="response" id="response"></textarea>
+                    <textarea
+                        tal:condition="not:view/use_wysiwyg"
+                        cols="40" rows="15" name="response" id="response"></textarea>
 
-			      </div>
+                  </div>
 
-			    </div>
+                </div>
 
-			    <div class="field" id="response-fieldname-attachment"
-			         tal:condition="view/upload_allowed">
-			      <label for="attachment"
-			             i18n:translate="Response_label_attachment">Attachment</label>
+                <div class="field" id="response-fieldname-attachment"
+                     tal:condition="view/upload_allowed">
+                  <label for="attachment"
+                         i18n:translate="Response_label_attachment">Attachment</label>
 
-			      <div class="formHelp" id="attachment_help"
-			           i18n:translate="Response_help_attachment">
-			        You may optionally upload a file attachment. Please do not
-			        upload unnecessarily large files.
-			      </div>
+                  <div class="formHelp" id="attachment_help"
+                       i18n:translate="Response_help_attachment">
+                    You may optionally upload a file attachment. Please do not
+                    upload unnecessarily large files.
+                  </div>
 
-			      <div style="padding-top: 1em;">
+                  <div style="padding-top: 1em;">
 
-			        <div style="padding-left: 1.5em; padding-top: 0.5em;">
+                    <div style="padding-left: 1.5em; padding-top: 0.5em;">
 
-			          <input size="30" name="attachment" id="attachment" type="file" />
+                      <input size="30" name="attachment" id="attachment" type="file" />
 
-			        </div>
+                    </div>
 
-			      </div>
+                  </div>
 
-			    </div>
-				<!-- dropdown for states -->
-			    <div class="field"
-			         tal:condition="view/multiple_states">
-			      <label for="state"
-			             i18n:translate="Response_label_issueTransition">
-			        Change issue state
-			      </label>
+                </div>
+                <!-- dropdown for states -->
+                <div class="field"
+                     tal:condition="view/multiple_states">
+                  <label for="state"
+                         i18n:translate="Response_label_issueTransition">
+                    Change issue state
+                  </label>
 
-			      <div class="formHelp"
-			           id="issueTransition_help"
-			           i18n:translate="Response_help_issueTransition">
-			        Select a change of state in the issue this response is for, if applicable
-			      </div>
+                  <div class="formHelp"
+                       id="issueTransition_help"
+                       i18n:translate="Response_help_issueTransition">
+                    Select a change of state in the issue this response is for, if applicable
+                  </div>
 
 
-					  <select name="state">
-					  	<tal:options
-					          repeat="option view/states_for_display">
-							<option value="" id=""
-								tal:attributes="value option/value;
-	                       						id option/value;
-	                                            selected option/checked;" />
-							    <label
-						            tal:attributes="for option/value"
-						            tal:content="option/label" />
-								</tal:options>
-					  </select>
+                      <select name="state">
+                          <tal:options
+                              repeat="option view/states_for_display">
+                            <option value="" id=""
+                                tal:attributes="value option/value;
+                                                   id option/value;
+                                                selected option/checked;" />
+                                <label
+                                    tal:attributes="for option/value"
+                                    tal:content="option/label" />
+                                </tal:options>
+                      </select>
 
-			    </div>
+                </div>
 
-			<!-- dropdown for priority -->
-			    <div class="field"
-			         tal:condition="view/multiple_priorities">
-			      <label for="priority"
-			           i18n:translate="Response_label_newSeverity">
-			        Change issue severity
-			      </label>
+            <!-- dropdown for priority -->
+                <div class="field"
+                     tal:condition="view/multiple_priorities">
+                  <label for="priority"
+                       i18n:translate="Response_label_newSeverity">
+                    Change issue severity
+                  </label>
 
-			      <div class="formHelp" id="priority_help"
-			           i18n:translate="Response_help_newSeverity">
-			        Select the severity for this issue
-			      </div>
+                  <div class="formHelp" id="priority_help"
+                       i18n:translate="Response_help_newSeverity">
+                    Select the severity for this issue
+                  </div>
 
-				  <select name="priority">
-				  	<tal:options
-				          repeat="option view/priorities_for_display">
-						<option value="" id=""
-							tal:attributes="value option/value;
-                       						id option/value;
+                  <select name="priority">
+                      <tal:options
+                          repeat="option view/priorities_for_display">
+                        <option value="" id=""
+                            tal:attributes="value option/value;
+                                               id option/value;
                                             selected option/checked;" />
-						    <label
-					            tal:attributes="for option/value"
-					            tal:content="option/label" />
-							</tal:options>
-				  </select>
-			    </div>
+                            <label
+                                tal:attributes="for option/value"
+                                tal:content="option/label" />
+                            </tal:options>
+                  </select>
+                </div>
 
-				<!-- dropdown for area -->
-			    <div class="field"
-			         tal:condition="view/multiple_areas">
-			      <label for="area"
-			           i18n:translate="Response_label_new_areas">
-			        Change issue areas
-			      </label>
+                <!-- dropdown for area -->
+                <div class="field"
+                     tal:condition="view/multiple_areas">
+                  <label for="area"
+                       i18n:translate="Response_label_new_areas">
+                    Change issue areas
+                  </label>
 
-			      <div class="formHelp" id="area_help"
-			           i18n:translate="Response_help_new_area">
-			        Select the area for this issue
-			      </div>
+                  <div class="formHelp" id="area_help"
+                       i18n:translate="Response_help_new_area">
+                    Select the area for this issue
+                  </div>
 
 
-					  <select name="area">
-					  	<tal:options
-					          repeat="option view/areas_for_display">
-							<option value="" id=""
-								tal:attributes="value option/value;
-	                       						id option/value;
-	                                            selected option/checked;" />
-							    <label
-						            tal:attributes="for option/value"
-						            tal:content="option/label" />
-								</tal:options>
-					  </select>
-			    </div>
+                      <select name="area">
+                          <tal:options
+                              repeat="option view/areas_for_display">
+                            <option value="" id=""
+                                tal:attributes="value option/value;
+                                                   id option/value;
+                                                selected option/checked;" />
+                                <label
+                                    tal:attributes="for option/value"
+                                    tal:content="option/label" />
+                                </tal:options>
+                      </select>
+                </div>
 
           <!-- dropdown for variety -->
           <div class="field"
@@ -278,34 +278,34 @@
           </div>
 
 
-				<!-- dropdown for releases -->
-			    <div class="field"
-			         tal:condition="view/show_target_releases">
-			      <label for="releases"
-			           i18n:translate="Response_label_newTargetRelease">
-			        Change target release
-			      </label>
+                <!-- dropdown for releases -->
+                <div class="field"
+                     tal:condition="view/show_target_releases">
+                  <label for="releases"
+                       i18n:translate="Response_label_newTargetRelease">
+                    Change target release
+                  </label>
 
-			      <div class="formHelp" id="newTargetRelease_help"
-			           i18n:translate="Response_help_newTargetRelease">
-			        Set the target release for this issue
-			      </div>
+                  <div class="formHelp" id="newTargetRelease_help"
+                       i18n:translate="Response_help_newTargetRelease">
+                    Set the target release for this issue
+                  </div>
 
 
-					  <select name="releases">
-					  	<tal:options
-					          repeat="option view/releases_for_display">
-							<option value="" id=""
-								tal:attributes="value option/value;
-	                       						id option/value;
-	                                            selected option/checked;" />
-							    <label
-						            tal:attributes="for option/value"
-						            tal:content="option/label" />
-								</tal:options>
-					  </select>
+                      <select name="releases">
+                          <tal:options
+                              repeat="option view/releases_for_display">
+                            <option value="" id=""
+                                tal:attributes="value option/value;
+                                                   id option/value;
+                                                selected option/checked;" />
+                                <label
+                                    tal:attributes="for option/value"
+                                    tal:content="option/label" />
+                                </tal:options>
+                      </select>
 
-			    </div>
+                </div>
 
           <!-- dropdown for watched releases -->
           <div class="field"
@@ -336,77 +336,77 @@
 
           </div>
 
-				<!-- Answerdate -->
-			    <div class="field">
-				  <script type="text/javascript" src="jscalendar/calendar_stripped.js">
-				  	jscalendar/calendar_stripped.js
-				  </script>
-				  <script type="text/javascript" src="jscalendar/calendar-en.js">
-				  	jscalendar/calendar-en.js
-				  </script>
+                <!-- Answerdate -->
+                <div class="field">
+                  <script type="text/javascript" src="jscalendar/calendar_stripped.js">
+                      jscalendar/calendar_stripped.js
+                  </script>
+                  <script type="text/javascript" src="jscalendar/calendar-en.js">
+                      jscalendar/calendar-en.js
+                  </script>
 
-				<link rel="stylesheet" type="text/css" href="jscalendar/calendar-system.css" />
+                <link rel="stylesheet" type="text/css" href="jscalendar/calendar-system.css" />
 
-			      <label for="answerdate"
-			           i18n:translate="Response_label_newAnswerDate">
-			        Change answer date
-			      </label>
+                  <label for="answerdate"
+                       i18n:translate="Response_label_newAnswerDate">
+                    Change answer date
+                  </label>
 
-			      <div class="formHelp" id="newAnswerDate_help"
-			           i18n:translate="Response_help_newAnswerDate">
-			        Set the new answer date for this issue
-			      </div>
+                  <div class="formHelp" id="newAnswerDate_help"
+                       i18n:translate="Response_help_newAnswerDate">
+                    Set the new answer date for this issue
+                  </div>
 
-				  <tal:vars define="uniqueItemIndex python: dict(next=0);
+                  <tal:vars define="uniqueItemIndex python: dict(next=0);
                                     formname string:response-add-form;
                                     inputname string:answerdate;
                                     inputvalue python: context.getAnswerDate()">
-					<metal:box use-macro="here/calendar_macros/macros/calendarDatePickerBox">
-					   a calendar, hopefully
-			            </metal:box>
-           	      </tal:vars>
-			    </div>
-				<!-- dropdown for responsibleManager -->
-			    <div class="field"
-			         tal:condition="view/managers_for_display">
-			      <label for="responsibleManager"
-			             i18n:translate="Response_label_newResponsibleManager">
-			        Change responsible manager
-			      </label>
+                    <metal:box use-macro="here/calendar_macros/macros/calendarDatePickerBox">
+                       a calendar, hopefully
+                        </metal:box>
+                     </tal:vars>
+                </div>
+                <!-- dropdown for responsibleManager -->
+                <div class="field"
+                     tal:condition="view/managers_for_display">
+                  <label for="responsibleManager"
+                         i18n:translate="Response_label_newResponsibleManager">
+                    Change responsible manager
+                  </label>
 
-			      <div class="formHelp" id="manager_help"
-			           i18n:translate="Response_help_newResponsibleManager">
-			        Select the responsible manager for this issue
-			      </div>
+                  <div class="formHelp" id="manager_help"
+                       i18n:translate="Response_help_newResponsibleManager">
+                    Select the responsible manager for this issue
+                  </div>
 
 
 
-					  <select name="responsibleManager">
-					  	<tal:options
-					          repeat="option view/managers_for_display">
-							<option value="" id=""
-								tal:attributes="value option/value;
-	                       						id option/value;
-	                                            selected option/checked;" />
-							    <label
-						            tal:attributes="for option/value"
-						            tal:content="option/label" />
-								</tal:options>
-					  </select>
+                      <select name="responsibleManager">
+                          <tal:options
+                              repeat="option view/managers_for_display">
+                            <option value="" id=""
+                                tal:attributes="value option/value;
+                                                   id option/value;
+                                                selected option/checked;" />
+                                <label
+                                    tal:attributes="for option/value"
+                                    tal:content="option/label" />
+                                </tal:options>
+                      </select>
 
-			    </div>
-				<div>
-					<input id="sendNotification" class="noborder" type="checkbox" name="sendNotification:boolean" value="off" />
-					<input type="hidden" name="sendNotification:boolean:default" value="" originalvalue="" />
-					<label class="formQuestion" for="sendNotification">Benachrichtigung versenden</label><br />
-				</div>
-			    <div class="formControls">
-			      <input class="submit" value="Submit" type="submit" i18n:attributes="value label_save_response"/>
-			    </div>
-			  </form>
-			</div>
-			</dd>
-		</tal:add>
+                </div>
+                <div>
+                    <input id="sendNotification" class="noborder" type="checkbox" name="sendNotification:boolean" value="off" />
+                    <input type="hidden" name="sendNotification:boolean:default" value="" originalvalue="" />
+                    <label class="formQuestion" for="sendNotification">Benachrichtigung versenden</label><br />
+                </div>
+                <div class="formControls">
+                  <input class="submit" value="Submit" type="submit" i18n:attributes="value label_save_response"/>
+                </div>
+              </form>
+            </div>
+            </dd>
+        </tal:add>
 <!-- ******************************************** -->
 
 <tal:noadd condition="python:not user.has_permission('izug.ticketbox: Add Ticket', here)">
