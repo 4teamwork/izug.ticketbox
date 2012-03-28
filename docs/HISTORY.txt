@@ -5,6 +5,10 @@ Changelog
 4.1.2 (unreleased)
 ------------------
 
+- Added References to responses is now possible.
+  Responses will be saved also on the parent (Ticket).
+  [mathias.leimgruber]
+
 - Ticket-nr will be shown if Ticket reference is a Ticket too.
   [mathias.leimgruber]
 

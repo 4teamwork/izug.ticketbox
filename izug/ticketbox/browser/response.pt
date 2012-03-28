@@ -58,6 +58,22 @@
               </tal:file>
                 </div>
 
+
+                <div class="issue-eferences" tal:condition="response_info/references">
+                    <div class="issue-references-label" i18n:translate="response_label_references">References:</div>
+                    <ul>
+                        <tal:refs repeat="obj response_info/references">
+                            <li>
+                                <a tal:attributes="href obj/absolute_url">
+                                    <span tal:condition="python:obj.portal_type == 'Ticket'"
+                                          tal:replace="string:#${obj/getId}">id</span>
+                                    <span tal:replace="obj/Title">Title</span>
+                                    </a>
+                            </li>
+                        </tal:refs>
+                    </ul>
+                </div>
+
                     <div class="response-actions">
 
                           <form method="post"
@@ -395,6 +411,30 @@
                       </select>
 
                 </div>
+
+                <!-- at referencebrowserwidget -->
+                <div class="field" id="archetypes-fieldname-ticketReferences">
+                  <label for="reference"
+                         i18n:translate="Response_label_reference">Reference</label>
+
+                  <div class="formHelp" id="reference_help"
+                       i18n:translate="Response_help_reference">
+                    Choose Referenced contents
+                  </div>
+
+
+                  <script type="text/javascript" src="referencebrowser.js"></script>
+                  <tal:ref define="field view/mock_reference_field;
+                                   value python:False;
+                                   fieldName string:ticketReferences;
+                                   widget field/widget">
+                    <metal:block metal:use-macro="here/referencebrowser/macros/reference_edit" />
+                </tal:ref>
+
+                </div>
+
+
+
                 <div>
                     <input id="sendNotification" class="noborder" type="checkbox" name="sendNotification:boolean" value="off" />
                     <input type="hidden" name="sendNotification:boolean:default" value="" originalvalue="" />

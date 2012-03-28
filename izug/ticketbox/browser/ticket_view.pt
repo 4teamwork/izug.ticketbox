@@ -64,7 +64,7 @@
             <td>
                 <div tal:repeat="ref here/getTicketReferences">
                     <a tal:attributes="href ref/absolute_url">
-                        <tal:if condition="python:here.portal_type == 'Ticket'">
+                        <tal:if condition="python:ref.portal_type == 'Ticket'">
                             #<span tal:replace="ref/getId">ID</span>
                         </tal:if>
                        <span tal:replace="ref/title">Title</span>

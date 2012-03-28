@@ -38,7 +38,7 @@ class Base(BrowserView):
         context = aq_inner(self.context)
         trans = context.portal_transforms
         items = []
-        for id, response in enumerate(self.folder):
+        for id_, response in enumerate(self.folder):
             if response is None:
                 # Has been removed.
                 continue
@@ -53,9 +53,10 @@ class Base(BrowserView):
                     html = html.getData()
                 response.rendered_text = html
             html = response.rendered_text
-            info = dict(id=id,
+            info = dict(id=id_,
                         response=response,
-                        attachment=self.attachment_info(id),
+                        attachment=self.attachment_info(id_),
+                        references=self.references_info(id_),
                         html=html)
             items.append(info)
         return items
@@ -78,11 +79,11 @@ class Base(BrowserView):
         plone = context.restrictedTraverse('@@plone_portal_state')
         return plone.portal_url()
 
-    def attachment_info(self, id):
+    def attachment_info(self, id_):
         """Return TicketAttachment object
         """
         context = aq_inner(self.context)
-        response = self.folder[id]
+        response = self.folder[id_]
         # Get attachment uid
         # In future this could be a list of attachments
         attachment_uid = response.attachment
@@ -90,6 +91,46 @@ class Base(BrowserView):
             return None
 
         return context.reference_catalog.lookupObject(attachment_uid)
+
+    def references_info(self, id_):
+        """Return references of response"""
+        context = aq_inner(self.context)
+        response = self.folder[id_]
+
+        # Fallback for old responses
+        if not hasattr(response, 'references'):
+            return []
+
+        objs = []
+        for uid in response.references:
+            if uid:
+                obj = context.reference_catalog.lookupObject(uid)
+                if obj:
+                    objs.append(obj)
+        return objs
+
+    def mock_reference_field(self):
+        """Mocks reference field for response"""
+
+        startuppath = '/'.join(self.context.getPhysicalPath())
+
+
+        class Dummy(object):
+            # Disable zope security
+            __allow_access_to_unprotected_subobjects__ = True
+            multiValued = 1
+            # Use the same fieldname for our repsonse widet as we
+            # use for the ticket reference (load some settings)
+            getName = 'ticketReferences'
+
+
+            class Widget(object):
+                __allow_access_to_unprotected_subobjects__ = True
+                allow_sorting = 0
+                getStartupDirectory = lambda x, y, z: startuppath
+            widget = Widget()
+
+        return Dummy()
 
     @Lazy
     def memship(self):
@@ -551,6 +592,13 @@ class Create(Base):
             new_file = context.get(new_file_id, None)
             new_response.attachment = new_file.UID()
             issue_has_changed = True
+
+        references = form.get('ticketReferences')
+        if references:
+            new_response.references = references
+            # Store refs also on Ticket
+            self.context.setTicketReferences(
+                references + self.context.getRawTicketReferences())
 
         if len(response_text) == 0 and not issue_has_changed:
             status = IStatusMessage(self.request)
