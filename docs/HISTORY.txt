@@ -2,8 +2,14 @@ Changelog
 =========
 
 
-4.1.2 (unreleased)
+4.2 (unreleased)
 ------------------
+
+- Hide Answer menutitem.
+  [mathias.leimgruber]
+
+- Hide addable types menu on ticket view.
+  [mathias.leimgruber]
 
 - Added References to responses is now possible.
   Responses will be saved also on the parent (Ticket).

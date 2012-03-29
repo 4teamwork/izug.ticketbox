@@ -53,3 +53,8 @@ body.template-atct_edit #datagridwidget-table-availableVarieties tr td:first-chi
     display:none;
     width:0px;
 }
+
+/* Hide adable types menu on tickets */
+body.template-ticket_view.portaltype-ticket #plone-contentmenu-factories{
+    display:none;
+}

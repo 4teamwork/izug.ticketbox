@@ -34,7 +34,7 @@
     <permission value="Modify portal content" />
   </action>
   <action title="Answer" action_id="answer" category="object" condition_expr=""
-	url_expr="string:${object_url}/addResponse" visible="True">
+	url_expr="string:${object_url}/addResponse" visible="False">
 	<permission value="View" />
   </action>
 </object>
