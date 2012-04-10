@@ -5,8 +5,8 @@ Changelog
 4.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix workflow for reader-role if we use restrictedTraverse
+  [eschmutz]
 
 4.2 (2012-04-02)
 ----------------
