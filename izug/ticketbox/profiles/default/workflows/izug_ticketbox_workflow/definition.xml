@@ -19,6 +19,7 @@
    <permission-role>Administrator</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Reader</permission-role>
   </permission-map>
   <permission-map name="Change portal events"
                   acquired="False">
@@ -61,6 +62,7 @@
    <permission-role>Contributor</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Reader</permission-role>
   </permission-map>
   <permission-map name="Change portal events"
                   acquired="False">
