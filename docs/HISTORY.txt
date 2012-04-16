@@ -5,6 +5,9 @@ Changelog
 4.2.1 (unreleased)
 ------------------
 
+- Update workflow
+  [eschmutz]
+
 - Fix workflow for reader-role if we use restrictedTraverse
   [eschmutz]
 
