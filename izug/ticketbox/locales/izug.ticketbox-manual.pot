@@ -31,3 +31,6 @@ msgstr ""
 
 msgid "info_view"
 msgstr ""
+
+msgid "CSV export"
+msgstr ""

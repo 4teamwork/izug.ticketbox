@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-03-28 12:03+0000\n"
+"POT-Creation-Date: 2012-05-03 09:35+0000\n"
 "PO-Revision-Date: 2012-03-01 17:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,9 @@ msgstr "Bereiche"
 #: ./izug/ticketbox/content/ticketbox.py:147
 msgid "Areas_title"
 msgstr "Bereichname"
+
+msgid "CSV export"
+msgstr "CSV Export"
 
 #: ./izug/ticketbox/content/ticketbox.py:84
 msgid "Define states"
@@ -267,6 +270,66 @@ msgstr "Anhänge"
 #: ./izug/ticketbox/browser/notification/ticket_notification.py:76
 msgid "before"
 msgstr ""
+
+#. Default: "Area"
+#: ./izug/ticketbox/browser/ticket_export.py:60
+msgid "csv_heading_area"
+msgstr "Bereich"
+
+#. Default: "Created"
+#: ./izug/ticketbox/browser/ticket_export.py:54
+msgid "csv_heading_created"
+msgstr "Eingereich am"
+
+#. Default: "Creator"
+#: ./izug/ticketbox/browser/ticket_export.py:53
+msgid "csv_heading_creator"
+msgstr "Eingereicht von"
+
+#. Default: "Description"
+#: ./izug/ticketbox/browser/ticket_export.py:52
+msgid "csv_heading_description"
+msgstr "Beschreibung"
+
+#. Default: "Nr."
+#: ./izug/ticketbox/browser/ticket_export.py:49
+msgid "csv_heading_nr"
+msgstr "Nr."
+
+#. Default: "Priorities"
+#: ./izug/ticketbox/browser/ticket_export.py:59
+msgid "csv_heading_priorities"
+msgstr "Priorität"
+
+#. Default: "Releases"
+#: ./izug/ticketbox/browser/ticket_export.py:61
+msgid "csv_heading_releases"
+msgstr "Lieferpaket"
+
+#. Default: "Responsible"
+#: ./izug/ticketbox/browser/ticket_export.py:56
+msgid "csv_heading_responsible"
+msgstr "Zuständigkeit"
+
+#. Default: "State"
+#: ./izug/ticketbox/browser/ticket_export.py:57
+msgid "csv_heading_state"
+msgstr "Status"
+
+#. Default: "Title"
+#: ./izug/ticketbox/browser/ticket_export.py:50
+msgid "csv_heading_title"
+msgstr "Titel"
+
+#. Default: "Duedate"
+#: ./izug/ticketbox/browser/ticket_export.py:65
+msgid "csv_heading_watched_duedate"
+msgstr "Fälligkeit"
+
+#. Default: "Watched release"
+#: ./izug/ticketbox/browser/ticket_export.py:63
+msgid "csv_heading_watched_release"
+msgstr "Beobachtet in"
 
 #: ./izug/ticketbox/browser/tabbed/ticketboxes.py:17
 msgid "global-all_tickets"

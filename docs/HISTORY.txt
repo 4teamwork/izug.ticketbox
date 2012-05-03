@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-4.2.2 (unreleased)
+4.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Added wincp52 encoded csv export.
+  [mathias.leimgruber]
 
 4.2.1 (2012-04-23)
 ------------------

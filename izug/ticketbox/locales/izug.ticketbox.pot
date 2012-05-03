@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-03-28 12:03+0000\n"
+"POT-Creation-Date: 2012-05-03 09:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,6 +39,9 @@ msgstr ""
 
 #: ./izug/ticketbox/content/ticketbox.py:147
 msgid "Areas_title"
+msgstr ""
+
+msgid "CSV export"
 msgstr ""
 
 #: ./izug/ticketbox/content/ticketbox.py:84
@@ -271,6 +274,66 @@ msgstr ""
 
 #: ./izug/ticketbox/browser/notification/ticket_notification.py:76
 msgid "before"
+msgstr ""
+
+#. Default: "Area"
+#: ./izug/ticketbox/browser/ticket_export.py:60
+msgid "csv_heading_area"
+msgstr ""
+
+#. Default: "Created"
+#: ./izug/ticketbox/browser/ticket_export.py:54
+msgid "csv_heading_created"
+msgstr ""
+
+#. Default: "Creator"
+#: ./izug/ticketbox/browser/ticket_export.py:53
+msgid "csv_heading_creator"
+msgstr ""
+
+#. Default: "Description"
+#: ./izug/ticketbox/browser/ticket_export.py:52
+msgid "csv_heading_description"
+msgstr ""
+
+#. Default: "Nr."
+#: ./izug/ticketbox/browser/ticket_export.py:49
+msgid "csv_heading_nr"
+msgstr ""
+
+#. Default: "Priorities"
+#: ./izug/ticketbox/browser/ticket_export.py:59
+msgid "csv_heading_priorities"
+msgstr ""
+
+#. Default: "Releases"
+#: ./izug/ticketbox/browser/ticket_export.py:61
+msgid "csv_heading_releases"
+msgstr ""
+
+#. Default: "Responsible"
+#: ./izug/ticketbox/browser/ticket_export.py:56
+msgid "csv_heading_responsible"
+msgstr ""
+
+#. Default: "State"
+#: ./izug/ticketbox/browser/ticket_export.py:57
+msgid "csv_heading_state"
+msgstr ""
+
+#. Default: "Title"
+#: ./izug/ticketbox/browser/ticket_export.py:50
+msgid "csv_heading_title"
+msgstr ""
+
+#. Default: "Duedate"
+#: ./izug/ticketbox/browser/ticket_export.py:65
+msgid "csv_heading_watched_duedate"
+msgstr ""
+
+#. Default: "Watched release"
+#: ./izug/ticketbox/browser/ticket_export.py:63
+msgid "csv_heading_watched_release"
 msgstr ""
 
 #: ./izug/ticketbox/browser/tabbed/ticketboxes.py:17

@@ -31,6 +31,14 @@
         />
 
     <browser:page
+        name="tickets_export"
+        for="izug.ticketbox.interfaces.ITicketBox"
+        permission="zope2.View"
+        class=".ticket_export.TicketsExport"
+        template="ticket_view.pt"
+        />
+
+    <browser:page
         name="base_response"
         for="izug.ticketbox.interfaces.ITicket"
         permission="zope2.View"
