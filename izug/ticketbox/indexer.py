@@ -47,7 +47,7 @@ def sortable_ticket_references(obj):
         url = obj.absolute_url()
         split_url = url.split("/")
         if len(split_url) >= 2:
-            return split_url[-2]
+            return num_sort_regex.sub(zero_fill, split_url[-2])
 
 
 def zero_fill(matchobj):
