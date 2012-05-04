@@ -203,7 +203,10 @@ class TicketBox(folder.ATBTreeFolder):
         for term in vocabulary:
             member = mtool.getMemberById(term.token)
             if member and 'Contributor' in member.getRolesInContext(self):
-                users.append((term.token, term.value))
+                title = term.title
+                if not title:
+                    title = term.value
+                users.append((term.token, title))
 
         return users
 

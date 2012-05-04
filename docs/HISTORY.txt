@@ -5,6 +5,9 @@ Changelog
 4.3 (unreleased)
 ------------------
 
+- Fix assignable_user vocab, use token title if available.
+  [mathias.leimgruber]
+
 - Added wincp52 encoded csv export.
   [mathias.leimgruber]
 
