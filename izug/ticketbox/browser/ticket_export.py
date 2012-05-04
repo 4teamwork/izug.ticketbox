@@ -3,6 +3,8 @@ from izug.ticketbox import ticketboxMessageFactory as _
 
 
 def format_date(date):
+    if not date:
+        return ''
     if date.year() <= 1900:
         return ''
     else:
