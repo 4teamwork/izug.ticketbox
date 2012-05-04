@@ -98,8 +98,7 @@ class TicketsExport(BrowserView):
             # Put every value in double quote
             row = ['"%s"' % val for val in row]
             csv.append(','.join(row))
-
-        result = '\n'.join(csv).decode('utf-8').encode(encoding)
+        result = '\n'.join(csv).decode('utf-8').encode(encoding, 'replace')
         response.setHeader('Content-Type',
                            'text/csv; charset=%s' % encoding)
         response.setHeader(
