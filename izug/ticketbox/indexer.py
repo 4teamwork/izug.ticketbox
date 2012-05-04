@@ -40,13 +40,14 @@ def sortable_id(obj):
 
 @indexer(IATFile)
 def sortable_ticket_references(obj):
-    """put any zeros before the id
-    so its possible to sort the id correctly
+    """Get ticket nr based on parent
     """
-
     parent = obj.aq_inner.aq_parent
     if ITicket.providedBy(parent):
-        return sortable_id(obj)
+        url = obj.absolute_url()
+        split_url = url.split("/")
+        if len(split_url) >= 2:
+            return split_url[-2]
 
 
 def zero_fill(matchobj):

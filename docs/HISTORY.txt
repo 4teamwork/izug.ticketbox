@@ -5,6 +5,9 @@ Changelog
 4.3 (unreleased)
 ------------------
 
+- Fix sortable_ticket_references index and linked_attachment helper.
+  [mathias.leimgruber]
+
 - Fix assignable_user vocab, use token title if available.
   [mathias.leimgruber]
 

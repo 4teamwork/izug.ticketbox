@@ -14,7 +14,7 @@ def linked_attachment(item, title):
     title = len(title) >= 47 and title[:47] + '...' or title
 
     return '<a href="%s/at_download/file">%s</a>' % (
-        item.absolute_url(), title)
+        item.getURL(), title)
 
 
 def attachment_ticketnr(item, nothing):
