@@ -125,7 +125,7 @@ class TicketboxesTab(CatalogListingView):
          'column_title': _(u"ModificationDate"),
          'transform': helper.readable_date},
 
-        {'column': 'ownerid',
+        {'column': 'get_owner_index',
          'column_title': _(u"Responsible"),
          'transform': helper.readable_author},
         )
