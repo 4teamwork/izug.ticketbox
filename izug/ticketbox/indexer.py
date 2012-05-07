@@ -12,10 +12,13 @@ num_sort_regex = re.compile('\d+')
 
 
 @indexer(ITicketBox)
-def ownerid(object_, **kw):
-    """indexes the userid of the object owner"""
-    userid = object_.getOwner(0).getId()
-    return userid and userid or ''
+def get_owner_index(obj):
+    userid = obj.getOwner(0).getId()
+    if not userid:
+        userid = obj.Creator
+    if callable(userid):
+        userid = userid()
+    return userid or ''
 
 
 @indexer(ITicket)

@@ -5,6 +5,9 @@ Changelog
 4.3 (unreleased)
 ------------------
 
+- Fix and change ownerid index (ownerindex is now called get_owner_index).
+  [mathias.leimgruber]
+
 - Fix sortable_ticket_references index and linked_attachment helper.
   [mathias.leimgruber]
 

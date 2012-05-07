@@ -11,5 +11,5 @@
 <column value="getPriority"/>
 <column value="getResponsibleManager"/>
 <column value="getDueDate"/>
-<column value="ownerid"/>
+<column value="get_owner_index"/>
 </object>
