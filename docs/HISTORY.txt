@@ -5,6 +5,9 @@ Changelog
 4.3 (unreleased)
 ------------------
 
+- Use new test buildout config, fix dep.
+  [mathias.leimgruber]
+
 - Fix and change ownerid index (ownerindex is now called get_owner_index).
   [mathias.leimgruber]
 

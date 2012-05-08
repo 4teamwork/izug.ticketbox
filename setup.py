@@ -47,6 +47,7 @@ setup(name='izug.ticketbox',
         'ftw.notification.email',
         'ftw.sendmail',
         'plone.principalsource',
+        'BeautifulSoup'
         ],
 
       tests_require=tests_require,
