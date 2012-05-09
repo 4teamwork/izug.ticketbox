@@ -20,6 +20,7 @@ Changelog
 - Added wincp52 encoded csv export.
   [mathias.leimgruber]
 
+
 4.2.1 (2012-04-23)
 ------------------
 

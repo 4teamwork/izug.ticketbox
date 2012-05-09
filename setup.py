@@ -6,6 +6,7 @@ maintainer = 'Elio Schmutz'
 
 tests_require = [
     'zope.testing',
+    'Products.PloneTestCase',
     ]
 
 setup(name='izug.ticketbox',
@@ -45,7 +46,6 @@ setup(name='izug.ticketbox',
         'ftw.table',
         'ftw.notification.base',
         'ftw.notification.email',
-        'ftw.sendmail',
         'plone.principalsource',
         'BeautifulSoup'
         ],
