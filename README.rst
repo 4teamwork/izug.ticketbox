@@ -28,10 +28,14 @@ Links
 - Main github project repository: https://github.com/4teamwork/izug.ticketbox
 - Issue tracker: https://github.com/4teamwork/izug.ticketbox/issues
 - Package on pypi: http://pypi.python.org/pypi/izug.ticketbox
+- Continuous integration: https://jenkins.4teamwork.ch/search?q=izug.ticketbox
 
 
-Maintainer
-==========
+Copyright
+---------
 
-This package is produced and maintained by `4teamwork <http://www.4teamwork.ch/>`_ company.
+This package is copyright by `4teamwork <http://www.4teamwork.ch/>`_.
+
+``izug.ticketbox`` is licensed under GNU General Public License, version 2.
+
 
