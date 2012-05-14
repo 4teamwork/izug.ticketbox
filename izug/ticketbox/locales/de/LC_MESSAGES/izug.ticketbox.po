@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-05-03 09:35+0000\n"
+"POT-Creation-Date: 2012-05-14 12:42+0000\n"
 "PO-Revision-Date: 2012-03-01 17:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -272,62 +272,67 @@ msgid "before"
 msgstr ""
 
 #. Default: "Area"
-#: ./izug/ticketbox/browser/ticket_export.py:60
+#: ./izug/ticketbox/browser/ticket_export.py:62
 msgid "csv_heading_area"
 msgstr "Bereich"
 
 #. Default: "Created"
-#: ./izug/ticketbox/browser/ticket_export.py:54
+#: ./izug/ticketbox/browser/ticket_export.py:56
 msgid "csv_heading_created"
 msgstr "Eingereich am"
 
 #. Default: "Creator"
-#: ./izug/ticketbox/browser/ticket_export.py:53
+#: ./izug/ticketbox/browser/ticket_export.py:55
 msgid "csv_heading_creator"
 msgstr "Eingereicht von"
 
 #. Default: "Description"
-#: ./izug/ticketbox/browser/ticket_export.py:52
+#: ./izug/ticketbox/browser/ticket_export.py:54
 msgid "csv_heading_description"
 msgstr "Beschreibung"
 
 #. Default: "Nr."
-#: ./izug/ticketbox/browser/ticket_export.py:49
+#: ./izug/ticketbox/browser/ticket_export.py:51
 msgid "csv_heading_nr"
 msgstr "Nr."
 
 #. Default: "Priorities"
-#: ./izug/ticketbox/browser/ticket_export.py:59
+#: ./izug/ticketbox/browser/ticket_export.py:61
 msgid "csv_heading_priorities"
 msgstr "Priorität"
 
 #. Default: "Releases"
-#: ./izug/ticketbox/browser/ticket_export.py:61
+#: ./izug/ticketbox/browser/ticket_export.py:64
 msgid "csv_heading_releases"
 msgstr "Lieferpaket"
 
 #. Default: "Responsible"
-#: ./izug/ticketbox/browser/ticket_export.py:56
+#: ./izug/ticketbox/browser/ticket_export.py:58
 msgid "csv_heading_responsible"
 msgstr "Zuständigkeit"
 
 #. Default: "State"
-#: ./izug/ticketbox/browser/ticket_export.py:57
+#: ./izug/ticketbox/browser/ticket_export.py:59
 msgid "csv_heading_state"
 msgstr "Status"
 
 #. Default: "Title"
-#: ./izug/ticketbox/browser/ticket_export.py:50
+#: ./izug/ticketbox/browser/ticket_export.py:52
 msgid "csv_heading_title"
 msgstr "Titel"
 
+#. Default: "Variety"
+#: ./izug/ticketbox/browser/ticket_export.py:63
+msgid "csv_heading_variety"
+msgstr "Nach Typ"
+
 #. Default: "Duedate"
-#: ./izug/ticketbox/browser/ticket_export.py:65
+#: ./izug/ticketbox/browser/ticket_export.py:68
 msgid "csv_heading_watched_duedate"
 msgstr "Fälligkeit"
 
 #. Default: "Watched release"
-#: ./izug/ticketbox/browser/ticket_export.py:63
+#: ./izug/ticketbox/browser/ticket_export.py:66
 msgid "csv_heading_watched_release"
 msgstr "Beobachtet in"
 
@@ -794,7 +799,7 @@ msgstr "Sie sind nicht berechtigt Antworten zu löschen."
 msgid "my_tickets"
 msgstr "Meine Aufträge"
 
-#: ./izug/ticketbox/content/ticketbox.py:216
+#: ./izug/ticketbox/content/ticketbox.py:219
 msgid "no"
 msgstr "Nein"
 
@@ -843,7 +848,7 @@ msgstr "Fehler: Keine Antwort zum bearbeiten gefunden."
 msgid "unassigned"
 msgstr "Nicht zugewiesen"
 
-#: ./izug/ticketbox/content/ticketbox.py:215
+#: ./izug/ticketbox/content/ticketbox.py:218
 msgid "yes"
 msgstr "Ja"
 

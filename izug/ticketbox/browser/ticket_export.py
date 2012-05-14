@@ -60,6 +60,7 @@ class TicketsExport(BrowserView):
             context.translate(
                 _(u'csv_heading_priorities', default=u'Priorities')),
             context.translate(_(u'csv_heading_area', default=u'Area')),
+            context.translate(_(u'csv_heading_variety', default=u'Variety')),
             context.translate(_(u'csv_heading_releases', default=u'Releases')),
             context.translate(
                 _(u'csv_heading_watched_release', default=u'Watched release')),
@@ -86,6 +87,8 @@ class TicketsExport(BrowserView):
                 context.getAvailablePriorities(), brain.getPriority))
             row.append(map_base(
                 context.getAvailableAreas(), brain.getArea))
+            row.append(map_base(
+                context.getAvailableVarieties(), brain.getVariety))
             row.append(map_base(
                 context.getAvailableReleases(), brain.getReleases))
             row.append(map_base(
