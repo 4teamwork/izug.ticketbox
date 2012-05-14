@@ -34,8 +34,7 @@ def move_document_to_reference(obj, event):
         new_id = queryUtility(IIDNormalizer).normalize(file_.filename.decode('utf-8'))
         if obj.get(new_id, None):
             IStatusMessage(obj.REQUEST).addStatusMessage(
-                _(u"A File with this id already exists,\
-                the File wasn't uploaded"), type='error')
+                _(u"text_file_exists_error"), type='error')
             obj.setAttachment('DELETE_FILE')
             return
         new_file_id = obj.invokeFactory(

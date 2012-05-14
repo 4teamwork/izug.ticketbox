@@ -5,6 +5,9 @@ Changelog
 4.3.1 (unreleased)
 ------------------
 
+- Added missing translation.
+  [mathias.leimgruber]
+
 - Show icon in ticketboxes overview.
   [mathias.leimgruber]
 

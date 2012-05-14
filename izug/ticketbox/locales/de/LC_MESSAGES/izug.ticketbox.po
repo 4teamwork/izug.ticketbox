@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-05-14 12:42+0000\n"
+"POT-Creation-Date: 2012-05-14 13:04+0000\n"
 "PO-Revision-Date: 2012-03-01 17:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,14 +11,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
-
-#: ./izug/ticketbox/browser/response.py:583
-msgid "A File with this id already exists,                    the File wasn't uploaded"
-msgstr ""
-
-#: ./izug/ticketbox/handlers.py:37
-msgid "A File with this id already exists,                the File wasn't uploaded"
-msgstr ""
 
 #: ./izug/ticketbox/profiles/default/types/Ticket.xml
 msgid "A ticket for a tracker-like task management system"
@@ -737,12 +729,12 @@ msgid "message_text_response"
 msgstr "Eine neue Antwort wurde von ${creator} in der Auftragsbox ${tracker_name} (${tracker_url}) erstellt."
 
 #. Default: "Changes Saved"
-#: ./izug/ticketbox/browser/response.py:703
+#: ./izug/ticketbox/browser/response.py:702
 msgid "msg_changes_saved"
 msgstr "Änderungen gespeichert"
 
 #. Default: "Response does not exist anymore;                     perhaps it was removed by another user."
-#: ./izug/ticketbox/browser/response.py:684
+#: ./izug/ticketbox/browser/response.py:683
 msgid "msg_doesnt_exists"
 msgstr "Die Antwort existiert nicht mehr; Vielleicht wurde sie von einem anderen Benutzer gelöscht"
 
@@ -752,7 +744,7 @@ msgid "msg_invalid"
 msgstr "Die Antwort IF ${response_id} existiert nicht"
 
 #. Default: "No response text added and no issue changes made."
-#: ./izug/ticketbox/browser/response.py:605
+#: ./izug/ticketbox/browser/response.py:604
 msgid "msg_no_changes"
 msgstr "Es wurde kein Antworttext hinzugefügt und keine Änderungen am Auftrag gemacht"
 
@@ -762,12 +754,12 @@ msgid "msg_no_response"
 msgstr "Es wurde keine Antwort ausgewählt"
 
 #. Default: "No response selected for removal."
-#: ./izug/ticketbox/browser/response.py:732
+#: ./izug/ticketbox/browser/response.py:731
 msgid "msg_no_response_delete"
 msgstr "Es wurde keine Antwort zum löschen ausgewählt"
 
 #. Default: "No response selected for saving."
-#: ./izug/ticketbox/browser/response.py:679
+#: ./izug/ticketbox/browser/response.py:678
 msgid "msg_no_response_selected"
 msgstr "Es würde keine Antwort zum speichern ausgewählt"
 
@@ -782,17 +774,17 @@ msgid "msg_nointeger"
 msgstr "Antwort id ${response_id} is no integer."
 
 #. Default: "You are not allowed to edit responses."
-#: ./izug/ticketbox/browser/response.py:694
+#: ./izug/ticketbox/browser/response.py:693
 msgid "msg_not_restricted"
 msgstr "Sie sind nicht berechtigt Antworten zu bearbeiten"
 
 #. Default: "Removed response."
-#: ./izug/ticketbox/browser/response.py:755
+#: ./izug/ticketbox/browser/response.py:754
 msgid "msg_removed"
 msgstr "Antwort gelöscht."
 
 #. Default: "You are not allowed to delete Responses"
-#: ./izug/ticketbox/browser/response.py:725
+#: ./izug/ticketbox/browser/response.py:724
 msgid "msg_restricted_delete"
 msgstr "Sie sind nicht berechtigt Antworten zu löschen."
 
@@ -824,6 +816,11 @@ msgstr "Zeige in 'Alle Aufträge'"
 #: ./izug/ticketbox/content/ticketbox.py:96
 msgid "show in 'my tickets'"
 msgstr "Zeige in 'Meine Aufträge'"
+
+#: ./izug/ticketbox/browser/response.py:583
+#: ./izug/ticketbox/handlers.py:37
+msgid "text_file_exists_error"
+msgstr "Es existiert breits eine Datei mit dem gleichen Namen. Die Datei wurde daher nicht hochgeladen."
 
 #: ./izug/ticketbox/content/ticketbox.py:88
 msgid "title"
