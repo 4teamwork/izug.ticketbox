@@ -5,6 +5,9 @@ Changelog
 4.3.1 (unreleased)
 ------------------
 
+- Show icon in ticketboxes overview.
+  [mathias.leimgruber]
+
 - Extend csv export by variety.
   [mathias.leimgruber]
 

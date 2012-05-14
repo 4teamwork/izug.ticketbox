@@ -37,7 +37,7 @@ class GlobalTicketboxesTab(CatalogListingView):
         {'column': 'Title',
          'column_title': _(u"Title"),
          'sort_index': 'sortable_title',
-         'transform': helper.linked_without_icon},
+         'transform': helper.linked},
 
         {'column': 'modified',
          'column_title': _(u"ModificationDate"),
