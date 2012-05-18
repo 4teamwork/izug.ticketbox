@@ -120,7 +120,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         name='answerDate',
         default_method='default_answer_date',
         widget=CalendarWidget(
-            label=_(u'label_answerdate',default=u"Answerdate"),
+            label=_(u'label_AnswerDate',default=u"Answerdate"),
             description=_(u'help_answerdated',default=u"Answer-date of the ticket"),
         )
     ),
