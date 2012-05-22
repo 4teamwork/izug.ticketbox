@@ -16,7 +16,7 @@ class TestTicket(TicketBoxTestCase):
         description = self.ticket1.getField('description')
 
         self.assertEquals(title.required, True)
-        self.assertEquals(description.required, True)
+        self.assertEquals(description.required, False)
 
     def test_dates(self):
         due_date = self.ticket1.getField('dueDate').get(self.ticket1)

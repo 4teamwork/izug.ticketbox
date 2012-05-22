@@ -7,10 +7,8 @@ startup.
 """
 
 from Products.CMFCore.utils import getToolByName
-from Products.Five import fiveconfigure
 from Products.Five import zcml
 from Products.PloneTestCase import PloneTestCase as ptc
-from Products.PloneTestCase.layer import onsetup
 from Testing import ZopeTestCase as ztc
 from collective.testcaselayer.ptc import BasePTCLayer, ptc_layer
 from izug.ticketbox.adapters import Response, ResponseContainer
@@ -137,7 +135,7 @@ class TicketBoxTestCase(ptc.PloneTestCase):
         self.ticket1.getField('area').set(self.ticket1, MOCK_AREA[0]['id'])
         self.ticket1.getField('priority').set(self.ticket1, MOCK_PRIORITY[0]['id'])
         self.ticket1.getField('releases').set(self.ticket1, MOCK_RELEASE[0]['id'])
-        self.ticket1.getField('responsibleManager').set(self.ticket1, "testuser1")
+        self.ticket1.getField('responsibleManager').set(self.ticket1, "test_user_1_")
         self.ticket1.reindexObject()
 
         #Create a ticket on the ticketbox
@@ -149,7 +147,7 @@ class TicketBoxTestCase(ptc.PloneTestCase):
         self.ticket2.getField('area').set(self.ticket2, MOCK_AREA[1]['id'])
         self.ticket2.getField('priority').set(self.ticket2, MOCK_PRIORITY[1]['id'])
         self.ticket2.getField('releases').set(self.ticket2, MOCK_RELEASE[1]['id'])
-        self.ticket2.getField('responsibleManager').set(self.ticket2, "testuser1")
+        self.ticket2.getField('responsibleManager').set(self.ticket2, "test_user_1_")
         self.ticket2.reindexObject()
 
         #Create responsecontainers

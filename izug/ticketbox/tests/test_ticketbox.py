@@ -16,7 +16,7 @@ class TestTicketBox(TicketBoxTestCase):
         description = self.ticketbox.getField('description')
 
         self.assertEquals(title.required, True)
-        self.assertEquals(description.required, True)
+        self.assertEquals(description.required, False)
 
     def test_generated_id(self):
         state = self.ticketbox.getAvailableStates()[2]['id']
@@ -31,31 +31,47 @@ class TestTicketBox(TicketBoxTestCase):
 
     def test_overview_view(self):
 
-        ticketbox_view = getMultiAdapter((self.ticketbox, self.portal.REQUEST), name='tabbedview_view-Overview')
-        ticket_state = ticketbox_view.getFilteredTickets(state='test_id_1')
-        ticket_area = ticketbox_view.getFilteredTickets(area='test_id_1')
-        ticket_priority = ticketbox_view.getFilteredTickets(priority='test_id_1')
-        ticket_responsible = ticketbox_view.getFilteredTickets(responsible='testuser1')
+        def get_filtered_tickets(filterid, filtervalue):
+            self.portal.REQUEST.set('filterid', filterid)
+            self.portal.REQUEST.set('filtervalue', filtervalue)
+            view = getMultiAdapter(
+                (self.ticketbox, self.portal.REQUEST),
+                name='tabbedview_view-overview')
+            view.update()
+            contents = view.contents
+            self.portal.REQUEST.set('filterid', None)
+            self.portal.REQUEST.set('filtervalue', None)
+            return contents
+
+        ticket_state = get_filtered_tickets('getState', 'test_id_1')
+        ticket_area = get_filtered_tickets('getArea', 'test_id_1')
+        ticket_priority = get_filtered_tickets('getPriority', 'test_id_1')
+        ticket_responsible = get_filtered_tickets('getResponsibleManager',
+                                                  'test_user_1_')
 
         self.assertEquals(ticket_state[0].getObject().getState(), "test_id_1")
         self.assertEquals(ticket_area[0].getObject().getArea(), "test_id_1")
-        self.assertEquals(ticket_priority[0].getObject().getPriority(), "test_id_1")
-        self.assertEquals(ticket_responsible[0].getObject().getResponsibleManager(), "testuser1")
+        self.assertEquals(ticket_priority[0].getObject().getPriority(),
+                          "test_id_1")
+        self.assertEquals(
+            ticket_responsible[0].getObject().getResponsibleManager(),
+            "test_user_1_")
 
     def test_all_tickets_view(self):
+        ticketbox_view = getMultiAdapter(
+            (self.ticketbox, self.portal.REQUEST),
+            name='tabbedview_view-all_tickets')
+        ticketbox_view.update()
 
-        ticketbox_view = getMultiAdapter((self.ticketbox, self.portal.REQUEST), name='tabbedview_view-all_tickets')
-        ticketbox_view.search(kwargs={'portal_type':'Ticket'})
-
-        self.assertEquals(ticketbox_view.len_results, 1)
+        self.assertEquals(len(ticketbox_view.contents), 1)
 
     def test_my_tickets_view(self):
+        ticketbox_view = getMultiAdapter(
+            (self.ticketbox, self.portal.REQUEST),
+            name='tabbedview_view-my_tickets')
+        ticketbox_view.update()
 
-        ticketbox_view = getMultiAdapter((self.ticketbox, self.portal.REQUEST), name='tabbedview_view-my_tickets')
-        ticketbox_view.search(kwargs={'portal_type':'Ticket'})
-
-        self.assertEquals(ticketbox_view.len_results, 1)
-
+        self.assertEquals(len(ticketbox_view.contents), 1)
 
 
 def test_suite():
