@@ -12,8 +12,9 @@ from Products.Five import zcml
 from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
 from Testing import ZopeTestCase as ztc
-from izug.ticketbox.handlers import generate_datagrid_column_id
+from collective.testcaselayer.ptc import BasePTCLayer, ptc_layer
 from izug.ticketbox.adapters import Response, ResponseContainer
+from izug.ticketbox.handlers import generate_datagrid_column_id
 
 # Mock data to be used in various tests in izug.ticketbox
 MOCK_STATE = [{'id': 'test_id_1',
@@ -78,59 +79,29 @@ MOCK_RESPONSIBLE = [{'id': u'testuser',
              ]
 
 
-#
-# When ZopeTestCase configures Zope, it will *not* auto-load products in
-# Products/. Instead, we have to use a statement such as:
-#
-#   ztc.installProduct('SimpleAttachment')
-#
-# This does *not* apply to products in eggs and Python packages (i.e. not in
-# the Products.*) namespace. For that, see below.
-#
-# All of Plone's products are already set up by PloneTestCase.
-#
+class TicketBoxLayer(BasePTCLayer):
+    """Layer for integration tests."""
 
-@onsetup
-def setup_product():
-    """Set up the package and its dependencies.
+    def afterSetUp(self):
+        import Products.DataGridField
+        zcml.load_config('configure.zcml', Products.DataGridField)
+        ztc.installPackage('Products.DataGridField')
 
-    The @onsetup decorator causes the execution of this body to be deferred
-    until the setup of the Plone site testing layer. We could have created our
-    own layer, but this is the easiest way for Plone integration tests.
-    """
+        import ftw.tabbedview
+        zcml.load_config('configure.zcml', ftw.tabbedview)
+        self.addProfile('ftw.tabbedview:default')
 
-    # Load the ZCML configuration for the example.tests package.
-    # This can of course use <include /> to include other packages.
-    fiveconfigure.debug_mode = True
-    import izug.ticketbox
-    zcml.load_config('configure.zcml', izug.ticketbox)
-    fiveconfigure.debug_mode = False
+        import izug.ticketbox
+        zcml.load_config('configure.zcml', izug.ticketbox)
+        ztc.installPackage('izug.ticketbox')
+        self.addProfile('izug.ticketbox:default')
 
-    # We need to tell the testing framework that these products
-    # should be available. This can't happen until after we have loaded
-    # the ZCML. Thus, we do it here. Note the use of installPackage() instead
-    # of installProduct().
-    #
-    # This is *only* necessary for packages outside the Products.* namespace
-    # which are also declared as Zope 2 products, using
-    # <five:registerPackage /> in ZCML.
+ticketbox_integration_layer = TicketBoxLayer(bases=[ptc_layer])
 
-    # We may also need to load dependencies, e.g.:
-    #
-    #   ztc.installPackage('borg.localrole')
-    #
-
-    ztc.installPackage('izug.ticketbox')
-
-# The order here is important: We first call the (deferred) function which
-# installs the products we need for this product. Then, we let PloneTestCase
-# set up this product on installation.
-
-if __name__ == '__main__':
-    setup_product()
-    ptc.setupPloneSite(products=['izug.ticketbox'])
 
 class TicketBoxTestCase(ptc.PloneTestCase):
+
+    layer = ticketbox_integration_layer
 
     def afterSetUp(self):
         # Set up sessioning objects

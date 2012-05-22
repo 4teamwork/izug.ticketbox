@@ -6,6 +6,7 @@ maintainer = 'Elio Schmutz'
 
 tests_require = [
     'zope.testing',
+    'collective.testcaselayer',
     'Products.PloneTestCase',
     ]
 
