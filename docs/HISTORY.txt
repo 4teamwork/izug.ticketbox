@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.3.5 (unreleased)
+4.3.5 (2012-05-24)
 ------------------
 
 - Fix editor in edit response view.
