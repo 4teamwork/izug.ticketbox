@@ -11,8 +11,6 @@ def icon(item, value):
 
 
 def linked_attachment(item, title):
-    title = len(title) >= 47 and title[:47] + '...' or title
-
     return '<a href="%s/at_download/file">%s</a>' % (
         item.getURL(), title)
 
