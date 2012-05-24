@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.3.4 (unreleased)
+4.3.4 (2012-05-24)
 ------------------
 
 - Add comment to notification email.
