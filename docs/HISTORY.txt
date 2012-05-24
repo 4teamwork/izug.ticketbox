@@ -5,14 +5,12 @@ Changelog
 4.3.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Remove buggy truncation: use the tabbed-view cropping.
+  [jone]
 
 
 4.3.4 (2012-05-24)
 ------------------
-
-- Remove buggy truncation: use the tabbed-view cropping.
-  [jone]
 
 - Add comment to notification email.
   [jone]
