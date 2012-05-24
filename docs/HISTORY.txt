@@ -5,7 +5,9 @@ Changelog
 4.3.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix encoding bug when sending email notification of a context
+  where the responsible has a non ASCII-name.
+  [jone]
 
 
 4.3.2 (2012-05-18)

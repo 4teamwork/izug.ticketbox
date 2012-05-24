@@ -1,7 +1,8 @@
 from ftw.notification.email.templates.base import BaseEmailRepresentation
-from zope.app.pagetemplate import ViewPageTemplateFile
-from izug.ticketbox.browser.helper import map_attribute, readable_author
 from izug.ticketbox import ticketboxMessageFactory as _
+from izug.ticketbox.browser.helper import map_attribute, readable_author
+from zope.app.pagetemplate import ViewPageTemplateFile
+from zope.i18nmessageid import Message
 
 
 class TicketEmailRepresentation(BaseEmailRepresentation):
@@ -22,7 +23,10 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
         """Returns Infos for email-template"""
         base_response = self.context.restrictedTraverse('base_response')
         responses = base_response.responses()
-        author = self.context.translate(readable_author(self.context))
+        author = readable_author(self.context)
+
+        if isinstance(author, Message):
+            author = self.context.translate(author)
 
         ticket_infos = {'tracker_title': self.context.aq_parent.title,
                     'tracker_url': self.context.aq_parent.absolute_url(),
