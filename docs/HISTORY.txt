@@ -5,6 +5,9 @@ Changelog
 4.3.5 (unreleased)
 ------------------
 
+- Fix editor in edit response view.
+  [jone]
+
 - Remove buggy truncation: use the tabbed-view cropping.
   [jone]
 

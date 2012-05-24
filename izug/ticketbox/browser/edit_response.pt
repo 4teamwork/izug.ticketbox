@@ -25,7 +25,7 @@
 
         </tal:no_response>
 
-        <tal:response condition="view/response_found" 
+        <tal:response condition="view/response_found"
 					  define="member python:context.portal_membership.getAuthenticatedMember();
 							  can_edit python:view.can_edit_response or view.response.creator == member.getId();">
 
@@ -50,7 +50,6 @@
               <div class="formHelp" id="response_help"
                    i18n:translate="label_enter_response">Please enter your response below</div>
               <div>
-
                 <tal:wysiwyg
                     tal:condition="view/use_wysiwyg">
                   <tal:comment replace="nothing">
@@ -61,7 +60,8 @@
                       define="inputname string:response;
                               inputvalue view/response/text;
                               member python:context.portal_membership.getAuthenticatedMember();
-                              editor python:member.getProperty('wysiwyg_editor', 'plone_wysiwyg').lower();
+                              default_editor python: context.portal_properties.site_properties.getProperty('default_editor');
+                              editor python: (default_editor or 'None').lower();
                               portal_url context/portal_url;
                               portal context/portal_url/getPortalObject;
                               here_url context/portal_url;
@@ -69,7 +69,7 @@
                       on-error="string:$editor not installed correctly: ${error/value}">
 
 
-                    <metal:block metal:use-macro="support/macros/wysiwygEditorBox" />
+                        <metal:block metal:use-macro="support/macros/wysiwygEditorBox" />
                   </tal:block>
                 </tal:wysiwyg>
 
@@ -85,7 +85,7 @@
             <input type="hidden" name="response_id" tal:attributes="value request/response_id" />
 
             <div class="formControls">
-              <input class="standalone" value="Submit" type="submit" 
+              <input class="standalone" value="Submit" type="submit"
                      i18n:attributes="value label_save_response"/>
             </div>
           </form>
