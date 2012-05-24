@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.3.3 (unreleased)
+4.3.3 (2012-05-24)
 ------------------
 
 - Fix encoding bug when sending email notification of a context
