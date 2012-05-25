@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.3.6 (unreleased)
+4.3.6 (2012-05-25)
 ------------------
 
 - Show issue submitter in ticket view.
