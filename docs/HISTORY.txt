@@ -5,6 +5,9 @@ Changelog
 4.3.6 (unreleased)
 ------------------
 
+- Show issue submitter in ticket view.
+  [mathias.leimgruber]
+
 - Fix donwload link for attachments, since the AT file widget has changed.
   [mathias.leimgruber]
 
