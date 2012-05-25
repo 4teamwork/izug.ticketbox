@@ -53,8 +53,16 @@
         <tr tal:condition="python: context.getAttachments()">
             <td i18n:translate='label_Attachment'>Attachments</td>
             <td>
-                <div tal:repeat="att context/getAttachments">
-                    <metal:attachment use-macro="python:att.widget('file')"/>
+                <div class="ticketAttachments" tal:repeat="att context/getAttachments">
+                    <a tal:attributes="href att/absolute_url">
+                        <img tal:attributes="src att/getIcon" />
+                        <span class="title" tal:content="att/title_or_id"><!-- Title --></span>
+                    </a>
+                    <span class="discreet">
+                        &mdash;
+                        <span tal:content="python:att.lookupMime(att.Schema()['file'].getContentType(att))">ContentType</span>
+                        <span tal:content="att/getObjSize"><!-- Size --></span>
+                    </span>
                 </div>
 
             </td>

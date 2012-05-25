@@ -5,7 +5,8 @@ Changelog
 4.3.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix donwload link for attachments, since the AT file widget has changed.
+  [mathias.leimgruber]
 
 
 4.3.5 (2012-05-24)
