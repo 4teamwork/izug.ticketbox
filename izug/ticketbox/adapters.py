@@ -133,6 +133,9 @@ class Response(Persistent):
     def creator_fullname(self):
         site = getSite()
         member = site.portal_membership.getMemberById(self.creator)
+        # In case of Creator no longer exists
+        if member is None:
+            return self.creator
         fullname = member.getProperty('fullname', member.getId())
         if fullname:
             return fullname

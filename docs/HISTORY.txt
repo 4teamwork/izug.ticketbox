@@ -5,7 +5,8 @@ Changelog
 4.3.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix getProperty problem if a user no longer exists.
+  [mathias.leimgruber]
 
 
 4.3.6 (2012-05-25)
