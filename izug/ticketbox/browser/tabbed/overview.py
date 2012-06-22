@@ -114,7 +114,7 @@ class OverviewTab(BaseTicketListingTab):
         filters['getResponsibleManager'] = {
             'label': _(u'label_heading_by_responsible',
                        default=u'By responsible'),
-            'options': self.context.assignable_users()}
+            'options': sorted(self.context.assignable_users())}
 
         filters['getState'] = {
             'label': _(u'label_heading_by_states'),
