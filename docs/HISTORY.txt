@@ -5,6 +5,9 @@ Changelog
 4.3.7 (unreleased)
 ------------------
 
+- Sort responsible managers in overview alphabetically.
+  [Julian Infanger]
+
 - Fix getProperty problem if a user no longer exists.
   [mathias.leimgruber]
 
