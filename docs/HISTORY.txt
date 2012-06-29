@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.3.8 (unreleased)
+4.3.8 (2012-06-29)
 ------------------
 
 - Fix sorting of possible responsible users.
