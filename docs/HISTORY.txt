@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.3.7 (unreleased)
+4.3.7 (2012-06-29)
 ------------------
 
 - Sort responsible managers in overview alphabetically.
