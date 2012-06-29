@@ -49,3 +49,12 @@ class TicketView(BrowserView):
         get the full name of a user-id
         """
         return readable_author(self.context)
+
+    def get_crator(self):
+        creator = self.context.Creator()
+        user = self.context.acl_users.getUserById(creator)
+        if user is None:
+            return creator
+        else:
+            return user.getProperty('fullname', creator)
+

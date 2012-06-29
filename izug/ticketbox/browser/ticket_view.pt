@@ -16,7 +16,7 @@
         </tr>
         <tr>
             <td i18n:translate='label_submitter'>Submitter</td>
-            <td tal:content="structure view/map_author" />
+            <td tal:content="view/get_crator" />
         </tr>
         <tr tal:condition="python: context.getDueDate()">
             <td i18n:translate='label_duedate'>Due Date</td>
