@@ -109,13 +109,12 @@ class OverviewTab(BaseTicketListingTab):
 
     def _get_filter_configuration(self):
         filters = {}
-
         filters['getResponsibleManager'] = {
             'label': _(u'label_heading_by_responsible',
                        default=u'By responsible'),
             'options': sorted(
                 self.context.assignable_users(),
-                key=lambda item: item[1].lower())}
+                key=lambda item: item[1].lower().decode('utf-8'))}
 
         filters['getState'] = {
             'label': _(u'label_heading_by_states'),

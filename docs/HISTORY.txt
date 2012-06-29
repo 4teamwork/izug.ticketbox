@@ -5,7 +5,8 @@ Changelog
 4.3.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix sorting of possible responsible users.
+  [mathias.leimgruber]
 
 
 4.3.7 (2012-06-29)
