@@ -105,8 +105,7 @@ class OverviewTab(BaseTicketListingTab):
 
             # column 4
             [filter_data['getPriority'],
-             filter_data['getArea']]
-            )
+             filter_data['getArea']])
 
     def _get_filter_configuration(self):
         filters = {}
@@ -114,7 +113,9 @@ class OverviewTab(BaseTicketListingTab):
         filters['getResponsibleManager'] = {
             'label': _(u'label_heading_by_responsible',
                        default=u'By responsible'),
-            'options': sorted(self.context.assignable_users())}
+            'options': sorted(
+                self.context.assignable_users(),
+                key=lambda item: item[1].lower())}
 
         filters['getState'] = {
             'label': _(u'label_heading_by_states'),
