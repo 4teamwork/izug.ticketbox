@@ -10,7 +10,6 @@ class TicketBoxVocabulary(object):
 
     def __init__(self, field):
         self.field = field
-        super(TicketBoxVocabulary, self).__init__
 
     def __call__(self, context):
         tracker = aq_parent(context)

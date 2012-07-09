@@ -67,8 +67,8 @@ class ResponseContainer(Persistent):
     def append(self, item):
         self.__mapping.append(item)
 
-    def remove(self, id):
-        """Remove item 'id' from the list.
+    def remove(self, id_):
+        """Remove item 'id_' from the list.
 
         We don't actually remove the item, we just set it to None,
         so that when you edit item 3 out of 3 and someone deletes
@@ -76,29 +76,29 @@ class ResponseContainer(Persistent):
 
         Note that we used to get passed a complete item, not an id.
         """
-        id = int(id)
-        self[id] = None
+        id_ = int(id_)
+        self[id_] = None
 
     def add(self, item):
         if not IResponse.providedBy(item):
             raise UnaddableError(self, item,
                                  "IResponse interface not provided.")
         self.append(item)
-        id = str(len(self))
-        event = ObjectAddedEvent(item, newParent=self.context, newName=id)
+        id_ = str(len(self))
+        event = ObjectAddedEvent(item, newParent=self.context, newName=id_)
         notify(event)
 
-    def delete(self, id):
+    def delete(self, id_):
         # We need to fire an ObjectRemovedEvent ourselves here because
-        # self[id].__parent__ is not exactly the same as self, which
+        # self[id_].__parent__ is not exactly the same as self, which
         # in the end means that __delitem__ does not fire an
         # ObjectRemovedEvent for us.
         #
         # Also, now we can say the oldParent is the issue instead of
         # this adapter.
-        event = ObjectRemovedEvent(self[id], oldParent=self.context,
-                                   oldName=id)
-        self.remove(id)
+        event = ObjectRemovedEvent(self[id_], oldParent=self.context,
+                                   oldName=id_)
+        self.remove(id_)
         notify(event)
 
 
@@ -120,11 +120,11 @@ class Response(Persistent):
         self.attachment = None
         self.references = []
 
-    def add_change(self, id, name, before, after):
+    def add_change(self, id_, name, before, after):
         """Add a new issue change.
         """
         delta = dict(
-            id=id,
+            id=id_,
             name=name,
             before=before,
             after=after)
@@ -164,10 +164,12 @@ class TicketBoxSubjectCreator(object):
         subject = None
         try:
             sheet = portal_properties['ftw.notification-properties']
+
         except AttributeError:
             subject = default_subject
+
         else:
-            subject = '%s [%s] %' % (
+            subject = '%s [%s] %s' % (
                 sheet.getProperty('notification_email_subject',
                                   default_subject),
                 object_.getIndividualIdentifier(),

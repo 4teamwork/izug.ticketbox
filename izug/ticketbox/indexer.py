@@ -32,12 +32,12 @@ def sortable_id(obj):
         if safe_callable(_id):
             _id = _id()
         if isinstance(_id, basestring):
-            sortable_id = _id.lower().strip()
+            value = _id.lower().strip()
             # Replace numbers with zero filled numbers
-            sortable_id = num_sort_regex.sub(zero_fill, sortable_id)
+            value = num_sort_regex.sub(zero_fill, value)
             # Truncate to prevent bloat
-            sortable_id = safe_unicode(sortable_id)[:40].encode('utf-8')
-            return sortable_id
+            value = safe_unicode(value)[:40].encode('utf-8')
+            return value
     return ''
 
 

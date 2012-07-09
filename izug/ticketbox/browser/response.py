@@ -66,7 +66,7 @@ class Base(BrowserView):
 
         years = []
         year = DateTime().year() - 3
-        for i in range(1, 10):
+        for _i in range(1, 10):
             years.append(year)
             year += 1
 

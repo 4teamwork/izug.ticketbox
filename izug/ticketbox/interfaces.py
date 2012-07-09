@@ -1,3 +1,8 @@
+# pylint: disable=E0211, E0213
+# E0211: Method has no argument
+# E0213: Method should have "self" as first argument
+
+
 from zope.contentprovider.interfaces import ITALNamespaceData
 from zope.interface import Attribute
 from zope.interface import directlyProvides
@@ -30,7 +35,7 @@ class IResponse(Interface):
     mimetype = Attribute("Mime type of the response.")
     attachment = Attribute("File attachment.")
 
-    def add_change(id, name, before, after):
+    def add_change(id_, name, before, after):
         """Add change to the list of changes.
         """
 

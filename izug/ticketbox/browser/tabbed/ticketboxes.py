@@ -69,7 +69,7 @@ class GlobalTicketTabBase(BaseTicketListingTab):
 
     def _get_ticketbox_path_for(self, item):
         path = item.getPath()
-        path, ticketid_ = os.path.split(path)
+        path, _ticketid = os.path.split(path)
         return path
 
 

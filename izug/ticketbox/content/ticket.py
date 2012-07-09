@@ -195,9 +195,9 @@ class Ticket(base.ATCTFolder):
         """
         parent = self.aq_parent
         maxId = 0
-        for id in parent.objectIds():
+        for id_ in parent.objectIds():
             try:
-                intId = int(id)
+                intId = int(id_)
                 maxId = max(maxId, intId)
             except (TypeError, ValueError):
                 pass
