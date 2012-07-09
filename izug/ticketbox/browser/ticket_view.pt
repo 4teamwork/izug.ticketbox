@@ -64,7 +64,7 @@
                     </a>
                     <span class="discreet">
                         &mdash;
-                        <span tal:content="python:att.lookupMime(att.Schema()['file'].getContentType(att))">ContentType</span>
+                        <span tal:content="python:att.lookupMime(att.Schema()['file'].getContentType(att))" />
                         <span tal:content="att/getObjSize"><!-- Size --></span>
                     </span>
                 </div>
