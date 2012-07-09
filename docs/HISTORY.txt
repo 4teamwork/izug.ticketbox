@@ -5,6 +5,9 @@ Changelog
 4.3.9 (unreleased)
 ------------------
 
+- Update German translation for tabbedview.
+  [jone]
+
 - Add ftw.tabbedview to generic setup dependencies.
   [jone]
 

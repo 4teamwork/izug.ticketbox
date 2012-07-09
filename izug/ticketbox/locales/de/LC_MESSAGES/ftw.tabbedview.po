@@ -12,9 +12,6 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-msgid "Overview"
-msgstr "Übersicht	"
-
 msgid "all_tickets"
 msgstr "Alle Aufträge"
 
@@ -24,8 +21,11 @@ msgstr "Anhänge"
 msgid "info_view"
 msgstr "Info"
 
+msgid "issued_tickets"
+msgstr "Erteilte Aufträge"
+
 msgid "my_tickets"
 msgstr "Meine Aufträge"
 
-msgid "issued_tickets"
-msgstr "Erteilte Aufträge"
+msgid "overview"
+msgstr "Übersicht"

@@ -30,8 +30,8 @@ msgstr ""
 msgid "info_view"
 msgstr ""
 
-msgid "Overview"
+msgid "overview"
 msgstr ""
 
-mgsid "issued_tickets"
+msgid "issued_tickets"
 msgstr ""
