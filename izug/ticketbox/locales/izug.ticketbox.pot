@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-07-09 12:56+0000\n"
+"POT-Creation-Date: 2012-07-09 15:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,18 +25,18 @@ msgstr ""
 msgid "Area"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:149
+#: ./izug/ticketbox/content/ticketbox.py:151
 msgid "Areas_id"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:150
+#: ./izug/ticketbox/content/ticketbox.py:152
 msgid "Areas_title"
 msgstr ""
 
 msgid "CSV export"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:87
+#: ./izug/ticketbox/content/ticketbox.py:89
 msgid "Define states"
 msgstr ""
 
@@ -70,18 +70,18 @@ msgid "ModificationDate"
 msgstr ""
 
 #: ./izug/ticketbox/browser/tabbed/base.py:69
-#: ./izug/ticketbox/content/ticketbox.py:201
+#: ./izug/ticketbox/content/ticketbox.py:223
 msgid "None"
 msgstr ""
 
 msgid "Overview"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:133
+#: ./izug/ticketbox/content/ticketbox.py:135
 msgid "Priorities_id"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:134
+#: ./izug/ticketbox/content/ticketbox.py:136
 msgid "Priorities_title"
 msgstr ""
 
@@ -89,11 +89,11 @@ msgstr ""
 msgid "Priority"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:116
+#: ./izug/ticketbox/content/ticketbox.py:118
 msgid "Releases_id"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:116
+#: ./izug/ticketbox/content/ticketbox.py:118
 msgid "Releases_title"
 msgstr ""
 
@@ -246,15 +246,15 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:164
+#: ./izug/ticketbox/content/ticketbox.py:166
 msgid "Varieties_id"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:165
+#: ./izug/ticketbox/content/ticketbox.py:167
 msgid "Varieties_title"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:88
+#: ./izug/ticketbox/content/ticketbox.py:90
 msgid "add or delete possible state-information"
 msgstr ""
 
@@ -364,8 +364,13 @@ msgid "help_area"
 msgstr ""
 
 #. Default: "Enter the issue topics/areas for this tracker."
-#: ./izug/ticketbox/content/ticketbox.py:145
+#: ./izug/ticketbox/content/ticketbox.py:147
 msgid "help_areas"
+msgstr ""
+
+#. Default: "Select the users which should be assignable. New users are by default searchable."
+#: ./izug/ticketbox/content/ticketbox.py:179
+msgid "help_assignable_users"
 msgstr ""
 
 #. Default: "You may optionally upload a file attachment. Please do not upload unnecessarily large files."
@@ -374,12 +379,12 @@ msgid "help_attachment"
 msgstr ""
 
 #. Default: "Enter the different type of issue severities that should be available, one per line."
-#: ./izug/ticketbox/content/ticketbox.py:128
+#: ./izug/ticketbox/content/ticketbox.py:130
 msgid "help_availablePriorities"
 msgstr ""
 
 #. Default: "Enter the Available Releases for this tracker."
-#: ./izug/ticketbox/content/ticketbox.py:113
+#: ./izug/ticketbox/content/ticketbox.py:115
 msgid "help_avialableReleases"
 msgstr ""
 
@@ -389,7 +394,7 @@ msgid "help_duedate"
 msgstr ""
 
 #. Default: "Enter a individual identifier (max 7 positions)"
-#: ./izug/ticketbox/content/ticketbox.py:31
+#: ./izug/ticketbox/content/ticketbox.py:33
 msgid "help_individualIdentifier"
 msgstr ""
 
@@ -414,7 +419,7 @@ msgid "help_state"
 msgstr ""
 
 #. Default: "Enter the issue varieties for this tracker."
-#: ./izug/ticketbox/content/ticketbox.py:160
+#: ./izug/ticketbox/content/ticketbox.py:162
 msgid "help_varieties"
 msgstr ""
 
@@ -428,7 +433,7 @@ msgstr ""
 msgid "help_watchedRelease"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:91
+#: ./izug/ticketbox/content/ticketbox.py:93
 msgid "id"
 msgstr ""
 
@@ -447,7 +452,7 @@ msgid "label_Area"
 msgstr ""
 
 #. Default: "Areas"
-#: ./izug/ticketbox/content/ticketbox.py:144
+#: ./izug/ticketbox/content/ticketbox.py:146
 msgid "label_Areas"
 msgstr ""
 
@@ -492,7 +497,7 @@ msgid "label_State"
 msgstr ""
 
 #. Default: "Varieties"
-#: ./izug/ticketbox/content/ticketbox.py:159
+#: ./izug/ticketbox/content/ticketbox.py:161
 msgid "label_Varieties"
 msgstr ""
 
@@ -522,6 +527,11 @@ msgstr ""
 msgid "label_areas"
 msgstr ""
 
+#. Default: "Assignable users"
+#: ./izug/ticketbox/content/ticketbox.py:177
+msgid "label_assignable_users"
+msgstr ""
+
 #. Default: "Attachment"
 #: ./izug/ticketbox/content/ticket.py:130
 msgid "label_attachment"
@@ -538,12 +548,12 @@ msgid "label_automated"
 msgstr ""
 
 #. Default: "Available priorities"
-#: ./izug/ticketbox/content/ticketbox.py:126
+#: ./izug/ticketbox/content/ticketbox.py:128
 msgid "label_availablePriorities"
 msgstr ""
 
 #. Default: "Available Releases"
-#: ./izug/ticketbox/content/ticketbox.py:111
+#: ./izug/ticketbox/content/ticketbox.py:113
 msgid "label_availableReleases"
 msgstr ""
 
@@ -599,7 +609,7 @@ msgid "label_heading_by_watched_release"
 msgstr ""
 
 #. Default: "Individual identifier"
-#: ./izug/ticketbox/content/ticketbox.py:29
+#: ./izug/ticketbox/content/ticketbox.py:31
 msgid "label_individualIdentifier"
 msgstr ""
 
@@ -800,7 +810,7 @@ msgstr ""
 msgid "my_tickets"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:221
+#: ./izug/ticketbox/content/ticketbox.py:275
 msgid "no"
 msgstr ""
 
@@ -818,11 +828,11 @@ msgstr ""
 msgid "responsibleManager"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:94
+#: ./izug/ticketbox/content/ticketbox.py:96
 msgid "show in 'all tickets'"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:100
+#: ./izug/ticketbox/content/ticketbox.py:102
 msgid "show in 'my tickets'"
 msgstr ""
 
@@ -831,7 +841,7 @@ msgstr ""
 msgid "text_file_exists_error"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:92
+#: ./izug/ticketbox/content/ticketbox.py:94
 msgid "title"
 msgstr ""
 
@@ -854,7 +864,7 @@ msgstr ""
 msgid "unassigned"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:220
+#: ./izug/ticketbox/content/ticketbox.py:274
 msgid "yes"
 msgstr ""
 

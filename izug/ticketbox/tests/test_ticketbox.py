@@ -1,6 +1,6 @@
-import unittest
 from izug.ticketbox.tests.base import TicketBoxTestCase
 from zope.component import getMultiAdapter
+import unittest
 
 
 class TestTicketBox(TicketBoxTestCase):
@@ -72,6 +72,41 @@ class TestTicketBox(TicketBoxTestCase):
         ticketbox_view.update()
 
         self.assertEquals(len(ticketbox_view.contents), 1)
+
+    def test_unassigned_is_assignable(self):
+        self.assertIn(
+            ('(UNASSIGNED)', u'None'),
+            self.ticketbox.assignable_users())
+
+    def test_make_user_not_assignable(self):
+        self.ticketbox.manage_setLocalRoles(
+            'test_user_1_', ['Contributor', 'Reader'])
+
+        self.assertIn(
+            ('test_user_1_', 'test_user_1_'),
+            self.ticketbox.assignable_users())
+
+        self.ticketbox.setAssignableUserIds([])
+        self.assertNotIn(
+            ('test_user_1_', 'test_user_1_'),
+            self.ticketbox.assignable_users())
+
+        self.ticketbox.setAssignableUserIds(['test_user_1_'])
+        self.assertIn(
+            ('test_user_1_', 'test_user_1_'),
+            self.ticketbox.assignable_users())
+
+    def test_new_user_gets_assignable_automatically(self):
+        self.assertNotIn(
+            ('test_user_1_', 'test_user_1_'),
+            self.ticketbox.assignable_users())
+
+        self.ticketbox.manage_setLocalRoles(
+            'test_user_1_', ['Contributor', 'Reader'])
+
+        self.assertIn(
+            ('test_user_1_', 'test_user_1_'),
+            self.ticketbox.assignable_users())
 
 
 def test_suite():
