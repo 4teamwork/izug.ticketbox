@@ -1,21 +1,28 @@
 from izug.ticketbox import ticketboxMessageFactory as _
 
+
 def map_attribute(context, listname, id=None):
     """search the title-name from a list with the id
     """
 
     if listname == "priority":
         mapped_title = map_priority(context, id)
+
     elif listname == "state":
         mapped_title = map_state(context, id)
+
     elif listname == "area":
         mapped_title = map_area(context, id)
+
     elif listname == "variety":
         mapped_title = map_variety(context, id)
+
     elif listname == "releases":
         mapped_title = map_release(context, id)
+
     elif listname == "watchedRelease":
-         mapped_title = map_watch_release(context, id)
+        mapped_title = map_watch_release(context, id)
+
     else:
         mapped_title = ""
 
@@ -79,13 +86,13 @@ def map_watch_release(context, id=None):
 
 
 def map_base(available_items, id):
-     """Basemapping for attributes in ticketbox
-     """
+    """Basemapping for attributes in ticketbox
+    """
 
-     for available_item in available_items:
-         if id == available_item.get('id'):
-             return available_item.get('title')
-     return "-"
+    for available_item in available_items:
+        if id == available_item.get('id'):
+            return available_item.get('title')
+        return "-"
 
 
 def readable_author(context):

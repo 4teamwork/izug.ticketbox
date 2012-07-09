@@ -124,10 +124,10 @@ class Response(Persistent):
         """Add a new issue change.
         """
         delta = dict(
-            id = id,
-            name = name,
-            before = before,
-            after = after)
+            id=id,
+            name=name,
+            before=before,
+            after=after)
         self.changes.append(delta)
 
     def creator_fullname(self):
@@ -154,8 +154,8 @@ class EmptyExporter(object):
 class TicketBoxSubjectCreator(object):
 
     def __init__(self, context):
-         self.context = aq_inner(context)
-         self.request = self.context.REQUEST
+        self.context = aq_inner(context)
+        self.request = self.context.REQUEST
 
     def __call__(self, object_):
         site = hooks.getSite()
@@ -167,16 +167,20 @@ class TicketBoxSubjectCreator(object):
         except AttributeError:
             subject = default_subject
         else:
-            subject = sheet.getProperty('notification_email_subject', default_subject)+\
-            ' ['+object_.getIndividualIdentifier()+'] '+object_.Title()
+            subject = '%s [%s] %' % (
+                sheet.getProperty('notification_email_subject',
+                                  default_subject),
+                object_.getIndividualIdentifier(),
+                object_.Title())
+
         return subject
+
 
 class TicketSubjectCreator(object):
 
-
     def __init__(self, context):
-         self.context = aq_inner(context)
-         self.request = self.context.REQUEST
+        self.context = aq_inner(context)
+        self.request = self.context.REQUEST
 
     def __call__(self, object_):
         site = hooks.getSite()
@@ -187,7 +191,13 @@ class TicketSubjectCreator(object):
             sheet = portal_properties['ftw.notification-properties']
         except AttributeError:
             subject = default_subject
+
         else:
-            subject = sheet.getProperty('notification_email_subject', default_subject)+\
-            ' ['+aq_parent(self.context).getIndividualIdentifier()+'] #' + object_.getId() + ' - ' + object_.Title()
+            subject = '%s [%s] #%s - %s' % (
+                sheet.getProperty('notification_email_subject',
+                                  default_subject),
+                aq_parent(self.context).getIndividualIdentifier(),
+                object_.getId(),
+                object_.Title())
+
         return subject

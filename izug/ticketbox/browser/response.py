@@ -65,8 +65,8 @@ class Base(BrowserView):
         """return a list of years in past and future"""
 
         years = []
-        year = DateTime().year()-3
-        for i in range(1,10):
+        year = DateTime().year() - 3
+        for i in range(1, 10):
             years.append(year)
             year += 1
 
@@ -114,7 +114,6 @@ class Base(BrowserView):
 
         startuppath = '/'.join(self.context.getPhysicalPath())
 
-
         class Dummy(object):
             # Disable zope security
             __allow_access_to_unprotected_subobjects__ = True
@@ -122,7 +121,6 @@ class Base(BrowserView):
             # Use the same fieldname for our repsonse widet as we
             # use for the ticket reference (load some settings)
             getName = 'ticketReferences'
-
 
             class Widget(object):
                 __allow_access_to_unprotected_subobjects__ = True
@@ -177,9 +175,10 @@ class Base(BrowserView):
                 status.addStatusMessage(msg, type='error')
                 return -1
             if response_id >= len(self.folder):
-                msg = _(u"msg_invalid",
-                        default=u"The Response ID ${response_id} doesn't exist.",
-                        mapping=dict(response_id=response_id))
+                msg = _(
+                    u"msg_invalid",
+                    default=u"The Response ID ${response_id} doesn't exist.",
+                    mapping=dict(response_id=response_id))
                 msg = self.context.translate(msg)
                 status.addStatusMessage(msg, type='error')
                 return -1
@@ -206,7 +205,8 @@ class Base(BrowserView):
     @property
     @memoize
     def states_for_display(self):
-        factory=getUtility(IVocabularyFactory, name='ticketbox_values_states')
+        factory = getUtility(IVocabularyFactory,
+                             name='ticketbox_values_states')
         result = []
         for term in factory(self.context.aq_inner):
             current_state = self.context.getState()
@@ -282,7 +282,6 @@ class Base(BrowserView):
         """
         return [t['value'] for t in self.varieties_for_display]
 
-
     @property
     def responsibleManager(self):
         context = aq_inner(self.context)
@@ -303,7 +302,7 @@ class Base(BrowserView):
         PloneSoftwareCenter.
         """
         result = []
-        factory=getUtility(
+        factory = getUtility(
             IVocabularyFactory,
             name='ticketbox_values_releases')
         for term in factory(self.context.aq_inner):
@@ -331,7 +330,7 @@ class Base(BrowserView):
         PloneSoftwareCenter.
         """
         result = []
-        factory=getUtility(
+        factory = getUtility(
             IVocabularyFactory,
             name='ticketbox_values_releases')
         for term in factory(self.context.aq_inner):
@@ -410,13 +409,13 @@ class Base(BrowserView):
         """Get the tracker managers.
         """
         context = self.context.aq_inner
-        users=context.assignable_users()
+        users = context.assignable_users()
         result = []
         assignedUser = context.getResponsibleManager()
         for user in users:
             result.append(dict(value=user[0],
-                                label=user[1],
-                                checked=assignedUser==user[0]))
+                               label=user[1],
+                               checked=assignedUser == user[0]))
         return result
 
     @property
@@ -484,7 +483,7 @@ class Create(Base):
         issue_has_changed = False
         #Unassigned is no member in portal_membership.
         #So we have to set it manually
-        unassigned = _(u'label_unassigned',default=u'unassigned')
+        unassigned = _(u'label_unassigned', default=u'unassigned')
         responsible_after = form.get('responsibleManager', u'')
         if responsible_after != context.getResponsibleManager():
 
@@ -514,14 +513,16 @@ class Create(Base):
                 after = unassigned
 
             new_response.add_change('responsibleManager',
-                                    _(u'label_responsibleManager',default=u"Responsible"),
+                                    _(u'label_responsibleManager',
+                                      default=u"Responsible"),
                                     before, after)
             issue_has_changed = True
 
         #Answerdate
         answerdate_after = form.get('answerdate')
         if answerdate_after:
-            answerdate_after = DateTime(answerdate_after).strftime('%d.%m.%Y %H:%M')
+            answerdate_after = DateTime(answerdate_after).strftime(
+                '%d.%m.%Y %H:%M')
         answerdate_before = context.getAnswerDate()
         if answerdate_before:
             answerdate_before = answerdate_before.strftime('%d.%m.%Y %H:%M')
@@ -531,20 +532,36 @@ class Create(Base):
         if answerdate_before != answerdate_after:
             context.setAnswerDate(answerdate_after)
             new_response.add_change('answerDate',
-                                    _(u'label_answerdate', default=u'Answerdate'),
+                                    _(u'label_answerdate',
+                                      default=u'Answerdate'),
                                     answerdate_before,
                                     answerdate_after)
             issue_has_changed = True
 
         options = [
-            ('priority', _(u'label_priority_',default=u"Priority"),
+            ('priority',
+             _(u'label_priority_', default=u"Priority"),
              'available_priorities'),
-            ('releases', _(u'label_releases',default=u"Target Release"),
+
+            ('releases',
+             _(u'label_releases', default=u"Target Release"),
              'available_releases'),
-            ('state', _(u'label_state', default=u"State"), 'available_states'),
-            ('area', _(u'label_areas', default=u"Area"), 'available_areas'),
-            ('variety', _(u'label_varieties', default=u"Variety"), 'available_varieties'),
-            ('watchedRelease', _(u'label_watched_release', default=u"Watched Release"), 'available_watched_releases'),
+
+            ('state',
+             _(u'label_state', default=u"State"),
+             'available_states'),
+
+            ('area',
+             _(u'label_areas', default=u"Area"),
+             'available_areas'),
+
+            ('variety',
+             _(u'label_varieties', default=u"Variety"),
+             'available_varieties'),
+
+            ('watchedRelease',
+             _(u'label_watched_release', default=u"Watched Release"),
+             'available_watched_releases'),
             ]
         # Changes that need to be applied to the issue (apart from
         # workflow changes that need to be handled separately).
@@ -563,12 +580,13 @@ class Create(Base):
 
         attachment = form.get('attachment')
         if attachment:
-            # Create filename like AT - some Browser delivers the local full path
+            # Create filename like AT - some Browser delivers the
+            # local full path
             filename = attachment.filename
             filename = filename[max(
-                filename.rfind('/'),
-                filename.rfind('\\'),
-                filename.rfind(':'))+1:]
+                    filename.rfind('/'),
+                    filename.rfind('\\'),
+                    filename.rfind(':')) + 1:]
 
             # File(id, title, file)
             data = File(filename, filename, attachment)
@@ -601,8 +619,9 @@ class Create(Base):
 
         if len(response_text) == 0 and not issue_has_changed:
             status = IStatusMessage(self.request)
-            msg = _(u"msg_no_changes",
-                   default="No response text added and no issue changes made.")
+            msg = _(
+                u"msg_no_changes",
+                default="No response text added and no issue changes made.")
             #
             # msg = self.context.translate(msg)
             status.addStatusMessage(msg, type='error')
@@ -622,7 +641,7 @@ class Create(Base):
             if 'area' in changes:
                 context.setArea(changes['area'])
             if 'variety' in changes:
-                 context.setVariety(changes['variety'])
+                context.setVariety(changes['variety'])
             if 'state' in changes:
                 context.setState(changes['state'])
             if 'watchedRelease' in changes:
@@ -636,10 +655,10 @@ class Create(Base):
             self.folder.add(new_response)
             context.setModificationDate(modifiedDate)
             catalog_tool.catalog_object(context,
-                '/'.join(context.getPhysicalPath()))
+                                        '/'.join(context.getPhysicalPath()))
         if form.get('sendNotification', None):
             self.request.response.redirect(
-                context.absolute_url()+'/notification_form')
+                context.absolute_url() + '/notification_form')
         else:
             self.request.response.redirect(context.absolute_url())
 
@@ -700,7 +719,7 @@ class Save(Base):
             # Remove cached rendered response.
             response.rendered_text = None
             msg = _(u"msg_changes_saved", default="Changes Saved",
-                  mapping=dict(response_id=response_id))
+                    mapping=dict(response_id=response_id))
             msg = self.context.translate(msg)
             status.addStatusMessage(msg, type='info')
             # Fire event.  We put the context in the descriptions
@@ -722,30 +741,33 @@ class Delete(Base):
 
         if not self.can_delete_response:
             msg = _(u"msg_restricted_delete",
-            default=u"You are not allowed to delete Responses")
+                    default=u"You are not allowed to delete Responses")
             msg = self.context.translate(msg)
             status.addStatusMessage(msg, type='error')
         else:
             response_id = self.request.form.get('response_id', None)
             if response_id is None:
                 msg = _(u"msg_no_response_delete",
-                 default=u"No response selected for removal.")
+                        default=u"No response selected for removal.")
                 msg = self.context.translate(msg)
                 status.addStatusMessage(msg, type='error')
             else:
                 try:
                     response_id = int(response_id)
                 except ValueError:
-                    msg = _(u"msg_nointeger",
-                            default=u"Response id ${response_id} is no integer.",
-                            mapping=dict(response_id=response_id))
+                    msg = _(
+                        u"msg_nointeger",
+                        default=u"Response id ${response_id} is no integer.",
+                        mapping=dict(response_id=response_id))
                     msg = self.context.translate(msg)
                     status.addStatusMessage(msg, type='error')
                     self.request.response.redirect(context.absolute_url())
                     return
+
                 if response_id >= len(self.folder):
                     msg = _(u"msg_invalid",
-                            default=u"The Response ID ${response_id} doesn't exist.",
+                            default=u"The Response ID ${response_id} "
+                            "doesn't exist.",
                             mapping=dict(response_id=response_id))
                     msg = self.context.translate(msg)
                     status.addStatusMessage(msg, type='error')
