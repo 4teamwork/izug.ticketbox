@@ -5,6 +5,9 @@ Changelog
 4.3.9 (unreleased)
 ------------------
 
+- Load ZCML of plone.principalsource dependency.
+  [jone]
+
 - Remove unneded dependency BeautifulSoup.
   [jone]
 

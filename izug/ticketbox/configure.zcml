@@ -6,6 +6,10 @@
     i18n_domain="izug.ticketbox">
 
 
+    <!-- include dependencies -->
+    <include package="plone.principalsource" />
+
+
     <five:registerPackage package="." initialize=".initialize" />
     <i18n:registerTranslations directory="locales" />
 
