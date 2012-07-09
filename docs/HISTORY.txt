@@ -5,6 +5,9 @@ Changelog
 4.3.9 (unreleased)
 ------------------
 
+- Add ftw.tabbedview to generic setup dependencies.
+  [jone]
+
 - Declare dependencies to zope / plone.
   [jone]
 
