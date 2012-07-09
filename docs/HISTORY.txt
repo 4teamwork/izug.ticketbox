@@ -5,6 +5,9 @@ Changelog
 4.3.9 (unreleased)
 ------------------
 
+- Declare dependencies to zope / plone.
+  [jone]
+
 - Load ZCML of plone.principalsource dependency.
   [jone]
 
