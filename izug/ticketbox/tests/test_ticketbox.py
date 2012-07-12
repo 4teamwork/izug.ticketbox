@@ -79,6 +79,9 @@ class TestTicketBox(TicketBoxTestCase):
             self.ticketbox.assignable_users())
 
     def test_make_user_not_assignable(self):
+        field = self.ticketbox.getField('assignable_user_ids')
+        mutator = field.getMutator(self.ticketbox)
+
         self.ticketbox.manage_setLocalRoles(
             'test_user_1_', ['Contributor', 'Reader'])
 
@@ -86,12 +89,12 @@ class TestTicketBox(TicketBoxTestCase):
             ('test_user_1_', 'test_user_1_'),
             self.ticketbox.assignable_users())
 
-        self.ticketbox.setAssignableUserIds([])
+        mutator([])
         self.assertNotIn(
             ('test_user_1_', 'test_user_1_'),
             self.ticketbox.assignable_users())
 
-        self.ticketbox.setAssignableUserIds(['test_user_1_'])
+        mutator(['test_user_1_'])
         self.assertIn(
             ('test_user_1_', 'test_user_1_'),
             self.ticketbox.assignable_users())

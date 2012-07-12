@@ -167,11 +167,11 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                     _(u'Varieties_title')))),
 
         ComputedField(
-            name='assignable_users',
+            name='assignable_user_ids',
             mode='wr',
             accessor='getAssignableUserIds',
             edit_accessor='getAssignableUserIds',
-            mutator='setAssignableUsers',
+            mutator='setAssignableUserIds',
             vocabulary='unfilteredAssignableUsersVocabulary',
 
             widget=MultiSelectionWidget(
@@ -184,7 +184,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                     'New users are by default searchable.'))),
 
         LinesField(
-            name='not_assignable_users',
+            name='not_assignable_user_ids',
             widget=MultiSelectionWidget(
                 modes=())),
 
@@ -247,7 +247,7 @@ class TicketBox(folder.ATBTreeFolder):
         """
 
         not_assignable = self.Schema().getField(
-            'not_assignable_users').get(self)
+            'not_assignable_user_ids').get(self)
 
         userids = []
         for userid, title in self.unfilteredAssignableUsersVocabulary():
@@ -269,7 +269,7 @@ class TicketBox(folder.ATBTreeFolder):
             if userid not in assignable_userids:
                 not_assignable_userids.append(userid)
 
-        self.Schema().getField('not_assignable_users').set(
+        self.Schema().getField('not_assignable_user_ids').set(
             self, not_assignable_userids)
 
     def unfilteredAssignableUsersVocabulary(self):
