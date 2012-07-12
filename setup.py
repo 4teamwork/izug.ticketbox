@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import os
 
 version = '4.4.dev0'
-maintainer = 'Elio Schmutz'
+maintainer = 'Mathias Leimgruber'
 
 tests_require = [
     'collective.testcaselayer',
