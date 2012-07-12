@@ -7,6 +7,7 @@ maintainer = 'Elio Schmutz'
 tests_require = [
     'collective.testcaselayer',
     'Products.PloneTestCase',
+    'unittest2',
     ]
 
 setup(name='izug.ticketbox',
