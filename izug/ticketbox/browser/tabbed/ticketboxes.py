@@ -69,7 +69,7 @@ class GlobalTicketTabBase(BaseTicketListingTab):
 
     def _get_ticketbox_path_for(self, item):
         path = item.getPath()
-        path, ticketid_ = os.path.split(path)
+        path, _ticketid = os.path.split(path)
         return path
 
 
@@ -85,7 +85,8 @@ class GlobalMyTicketsTab(GlobalTicketTabBase):
     def get_base_query(self):
         query = super(GlobalMyTicketsTab, self).get_base_query()
 
-        member = self.context.restrictedTraverse('@@plone_portal_state').member()
+        member = self.context.restrictedTraverse(
+            '@@plone_portal_state').member()
         query['getResponsibleManager'] = member.getId()
 
         return query
@@ -98,7 +99,8 @@ class GlobalMyIssuedTicketsTab(GlobalTicketTabBase):
     def get_base_query(self):
         query = super(GlobalMyIssuedTicketsTab, self).get_base_query()
 
-        member = self.context.restrictedTraverse('@@plone_portal_state').member()
+        member = self.context.restrictedTraverse(
+            '@@plone_portal_state').member()
         query['Creator'] = member.getId()
 
         return query

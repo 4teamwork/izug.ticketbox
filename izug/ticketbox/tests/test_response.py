@@ -1,7 +1,6 @@
 import unittest
 from izug.ticketbox.tests.base import TicketBoxTestCase
 
-import Products.Archetypes.Schema
 
 class TestResponse(TicketBoxTestCase):
 

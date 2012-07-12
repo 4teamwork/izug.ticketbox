@@ -27,7 +27,6 @@ def attachment_ticketnr(item, nothing):
         return id
 
 
-
 class AllTicketsTab(BaseTicketListingTab):
     """Tab listing all tickets in this ticketbox.
     """
@@ -49,7 +48,8 @@ class MyTicketsTab(BaseTicketListingTab):
     def get_base_query(self):
         query = super(MyTicketsTab, self).get_base_query()
 
-        member = self.context.restrictedTraverse('@@plone_portal_state').member()
+        member = self.context.restrictedTraverse(
+            '@@plone_portal_state').member()
         query['getResponsibleManager'] = member.getId()
         query['getState'] = [state['id']
                              for state in self.context.getAvailableStates()
@@ -65,7 +65,8 @@ class MyIssuedTicketsTab(BaseTicketListingTab):
     def get_base_query(self):
         query = super(MyIssuedTicketsTab, self).get_base_query()
 
-        member = self.context.restrictedTraverse('@@plone_portal_state').member()
+        member = self.context.restrictedTraverse(
+            '@@plone_portal_state').member()
         query['Creator'] = member.getId()
         query['getState'] = [state['id']
                              for state in self.context.getAvailableStates()

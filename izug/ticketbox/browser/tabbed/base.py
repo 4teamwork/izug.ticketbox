@@ -4,7 +4,6 @@ from izug.ticketbox import ticketboxMessageFactory as _
 from zope.i18n import translate
 
 
-
 class BaseTicketListingTab(CatalogListingView):
     """base tabbedview tab for listing tickets.
     """

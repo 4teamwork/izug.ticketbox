@@ -23,7 +23,8 @@ def generate_datagrid_column_id(obj, event):
         for row in dg:
             if not row['id']:
                 name = row['title']
-                row['id'] = queryUtility(IIDNormalizer).normalize(name.decode('utf-8'))
+                row['id'] = queryUtility(IIDNormalizer).normalize(
+                    name.decode('utf-8'))
 
 
 def move_document_to_reference(obj, event):
@@ -31,7 +32,8 @@ def move_document_to_reference(obj, event):
 
     file_ = obj.getAttachment()
     if file_.data != '':
-        new_id = queryUtility(IIDNormalizer).normalize(file_.filename.decode('utf-8'))
+        new_id = queryUtility(IIDNormalizer).normalize(
+            file_.filename.decode('utf-8'))
         if obj.get(new_id, None):
             IStatusMessage(obj.REQUEST).addStatusMessage(
                 _(u"text_file_exists_error"), type='error')

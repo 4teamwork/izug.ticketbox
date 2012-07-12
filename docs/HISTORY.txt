@@ -5,7 +5,26 @@ Changelog
 4.3.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Update German translation for tabbedview.
+  [jone]
+
+- Add ftw.tabbedview to generic setup dependencies.
+  [jone]
+
+- Declare dependencies to zope / plone.
+  [jone]
+
+- Load ZCML of plone.principalsource dependency.
+  [jone]
+
+- Remove unneded dependency BeautifulSoup.
+  [jone]
+
+- Move Plone translations from i18n to locales.
+  [jone]
+
+- Update German translations.
+  [jone]
 
 
 4.3.8 (2012-06-29)

@@ -5,7 +5,6 @@ version = '4.3.9.dev0'
 maintainer = 'Elio Schmutz'
 
 tests_require = [
-    'zope.testing',
     'collective.testcaselayer',
     'Products.PloneTestCase',
     ]
@@ -42,13 +41,39 @@ setup(name='izug.ticketbox',
 
       install_requires=[
         'setuptools',
+
+        'AccessControl',
+        'Acquisition',
+        'Plone',
+        'Products.ATContentTypes',
+        'Products.ATReferenceBrowserWidget',
+        'Products.Archetypes',
+        'Products.CMFCore',
+        'Products.CMFPlone',
         'Products.DataGridField',
-        'ftw.tabbedview',
-        'ftw.table',
+        'Products.statusmessages',
+        'ZODB3',
+        'Zope2',
         'ftw.notification.base',
         'ftw.notification.email',
+        'ftw.tabbedview',
+        'ftw.table',
         'plone.principalsource',
-        'BeautifulSoup'
+        'zope.annotation',
+        'zope.app.component',
+        'zope.app.container',
+        'zope.app.pagetemplate',
+        'zope.cachedescriptors',
+        'zope.component',
+        'zope.contentprovider',
+        'zope.event',
+        'zope.i18n',
+        'zope.i18nmessageid',
+        'zope.interface',
+        'zope.lifecycleevent',
+        'zope.schema',
+        'zope.viewlet',
+
         ],
 
       tests_require=tests_require,

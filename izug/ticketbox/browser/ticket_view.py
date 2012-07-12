@@ -57,4 +57,3 @@ class TicketView(BrowserView):
             return creator
         else:
             return user.getProperty('fullname', creator)
-

@@ -1,15 +1,14 @@
 """Main product initializer
 """
-from izug.ticketbox import config
+
 from Products.Archetypes import atapi
 from Products.CMFCore import utils
+from izug.ticketbox import config
 from zope.i18nmessageid import MessageFactory
 
-# Define a message factory for when this product is internationalised.
-# This will be imported with the special name "_" in most modules. Strings
-# like _(u"message") will then be extracted by i18n tools for translation.
 
 ticketboxMessageFactory = MessageFactory('izug.ticketbox')
+
 
 def initialize(context):
     """Initializer called when used as a Zope 2 product.
@@ -28,7 +27,7 @@ def initialize(context):
     # course, even if we import the module several times, it is only run
     # once.
 
-    content_types, constructors, ftis = atapi.process_types(
+    content_types, constructors, _ftis = atapi.process_types(
         atapi.listTypes(config.PROJECTNAME),
         config.PROJECTNAME)
 
@@ -41,7 +40,7 @@ def initialize(context):
 
     for atype, constructor in zip(content_types, constructors):
         utils.ContentInit('%s: %s' % (config.PROJECTNAME, atype.portal_type),
-            content_types=(atype, ),
-            permission=config.ADD_PERMISSIONS[atype.portal_type],
-            extra_constructors=(constructor,),
-            ).initialize(context)
+                          content_types=(atype, ),
+                          permission=config.ADD_PERMISSIONS[atype.portal_type],
+                          extra_constructors=(constructor,),
+                          ).initialize(context)
