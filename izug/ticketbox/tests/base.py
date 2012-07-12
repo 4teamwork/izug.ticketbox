@@ -13,6 +13,7 @@ from Testing import ZopeTestCase as ztc
 from collective.testcaselayer.ptc import BasePTCLayer, ptc_layer
 from izug.ticketbox.adapters import Response, ResponseContainer
 from izug.ticketbox.handlers import generate_datagrid_column_id
+import unittest2
 
 # Mock data to be used in various tests in izug.ticketbox
 MOCK_STATE = [{'id': 'test_id_1',
@@ -97,7 +98,7 @@ class TicketBoxLayer(BasePTCLayer):
 ticketbox_integration_layer = TicketBoxLayer(bases=[ptc_layer])
 
 
-class TicketBoxTestCase(ptc.PloneTestCase):
+class TicketBoxTestCase(ptc.PloneTestCase, unittest2.TestCase):
 
     layer = ticketbox_integration_layer
 

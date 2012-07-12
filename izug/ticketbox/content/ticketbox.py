@@ -1,7 +1,9 @@
 from AccessControl import ClassSecurityInfo
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
+from Products.Archetypes.atapi import ComputedField, MultiSelectionWidget
 from Products.Archetypes.atapi import DisplayList
+from Products.Archetypes.atapi import LinesField
 from Products.Archetypes.atapi import Schema, registerType
 from Products.Archetypes.atapi import StringField, StringWidget
 from Products.CMFCore.utils import getToolByName
@@ -164,6 +166,28 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                     _(u'Varieties_id'),
                     _(u'Varieties_title')))),
 
+        ComputedField(
+            name='assignable_user_ids',
+            mode='wr',
+            accessor='getAssignableUserIds',
+            edit_accessor='getAssignableUserIds',
+            mutator='setAssignableUserIds',
+            vocabulary='unfilteredAssignableUsersVocabulary',
+
+            widget=MultiSelectionWidget(
+                format='checkbox',
+                label=_(u'label_assignable_users',
+                        default=u'Assignable users'),
+                description=_(
+                    u'help_assignable_users',
+                    default=u'Select the users which should be assignable. '
+                    'New users are by default searchable.'))),
+
+        LinesField(
+            name='not_assignable_user_ids',
+            widget=MultiSelectionWidget(
+                modes=())),
+
         ))
 
 
@@ -201,9 +225,13 @@ class TicketBox(folder.ATBTreeFolder):
         users = [('(UNASSIGNED)', _(u'None'))]
 
         mtool = getToolByName(self, 'portal_membership')
+        assignable_userids = self.getAssignableUserIds()
 
         for term in vocabulary:
             member = mtool.getMemberById(term.token)
+            if member.getId() not in assignable_userids:
+                continue
+
             if member and 'Contributor' in member.getRolesInContext(self):
                 title = term.title
                 if not title:
@@ -211,6 +239,55 @@ class TicketBox(folder.ATBTreeFolder):
                 users.append((term.token, title))
 
         return users
+
+    def getAssignableUserIds(self):
+        """Returns a list of userids which are currently assignable.
+        This respects the configuration whether the assigning of the user
+        is enabled.
+        """
+
+        not_assignable = self.Schema().getField(
+            'not_assignable_user_ids').get(self)
+
+        userids = []
+        for userid, title in self.unfilteredAssignableUsersVocabulary():
+            if userid not in not_assignable:
+                userids.append(userid)
+        return userids
+
+    def setAssignableUserIds(self, userids):
+        """Select users from the assignable_users vocabulary which should by
+        selectable.
+        This works by storing the ones which are not selectable for ensuring
+        that new ones automatically are selectable.
+        """
+
+        assignable_userids = userids or []
+
+        not_assignable_userids = []
+        for userid, title in self.unfilteredAssignableUsersVocabulary():
+            if userid not in assignable_userids:
+                not_assignable_userids.append(userid)
+
+        self.Schema().getField('not_assignable_user_ids').set(
+            self, not_assignable_userids)
+
+    def unfilteredAssignableUsersVocabulary(self):
+        """Returns a list of userid / title tuples with all users which
+        are possible assignable users. It is not filtered by the
+        configuration whether the users are currently enabled assignable
+        users.
+        """
+        factory = queryUtility(IVocabularyFactory, name='assignable_users')
+        if factory is None:
+            factory = getUtility(IVocabularyFactory,
+                                 name='plone.principalsource.Users',
+                                 context=self)
+
+        values = []
+        for term in factory(self):
+            values.append((term.value, term.title))
+        return values
 
     def yes_no(self):
         """return displaylist with two static rows
