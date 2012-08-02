@@ -5,6 +5,9 @@ Changelog
 4.4 (unreleased)
 ----------------
 
+- Handle not existing users in assignable_users (e.g. zope-level users).
+  [jone]
+
 - Disable setting default page for TicketBox and Ticket.
   Those types are not normal folders and setting the default page is therefore not common.
   [jone]
