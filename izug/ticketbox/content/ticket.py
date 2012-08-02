@@ -222,5 +222,9 @@ class Ticket(base.ATCTFolder):
 
         return aq_parent(self).assignable_users()
 
+    security.declarePublic('canSetDefaultPage')
+    def canSetDefaultPage(self):
+        return False
+
 
 registerType(Ticket, PROJECTNAME)

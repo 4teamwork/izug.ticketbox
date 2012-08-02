@@ -298,4 +298,9 @@ class TicketBox(folder.ATBTreeFolder):
                 ("0", _(u"no")),
                 ))
 
+    security.declarePublic('canSetDefaultPage')
+    def canSetDefaultPage(self):
+        return False
+
+
 registerType(TicketBox, PROJECTNAME)
