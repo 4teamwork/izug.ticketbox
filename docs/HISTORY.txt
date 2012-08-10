@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-4.3.9 (unreleased)
-------------------
+4.4 (2012-08-10)
+----------------
 
 - Make assignable users configurable on ticketbox level.
   [jone]
