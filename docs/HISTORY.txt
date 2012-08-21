@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.4 (unreleased)
+4.4 (2012-08-21)
 ----------------
 
 - Handle not existing users in assignable_users (e.g. zope-level users).
