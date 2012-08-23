@@ -251,7 +251,7 @@ msgstr "Typnamen"
 
 #: ./izug/ticketbox/content/ticketbox.py:90
 msgid "add or delete possible state-information"
-msgstr "Geben Sie die verfügbaren Status ein."
+msgstr "Geben Sie die verfügbaren Stati ein."
 
 #: ./izug/ticketbox/browser/notification/ticket_notification.py:86
 msgid "after"
