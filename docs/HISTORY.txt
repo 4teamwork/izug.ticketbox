@@ -5,8 +5,7 @@ Changelog
 4.4.1 (unreleased)
 ------------------
 
-- Fixed typo.
-  [MischuW]	
+- Nothing changed yet.
 
 
 4.4 (2012-08-21)
