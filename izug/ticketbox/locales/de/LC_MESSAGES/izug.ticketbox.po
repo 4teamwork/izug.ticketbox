@@ -509,7 +509,6 @@ msgstr "um"
 #. Default: "Answerdate"
 #: ./izug/ticketbox/browser/notification/ticket.pt:18
 #: ./izug/ticketbox/browser/response.py:535
-#, fuzzy
 msgid "label_answerdate"
 msgstr "Antwort erbeten bis"
 
@@ -867,3 +866,5 @@ msgstr "Nicht zugewiesen"
 #: ./izug/ticketbox/content/ticketbox.py:274
 msgid "yes"
 msgstr "Ja"
+
+
