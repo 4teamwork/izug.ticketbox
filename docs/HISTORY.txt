@@ -5,7 +5,8 @@ Changelog
 4.4.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix Response now the diff is saved correctly.
+  [tschanzt]
 
 
 4.4 (2012-08-21)
