@@ -5,7 +5,7 @@ Changelog
 4.4.1 (unreleased)
 ------------------
 
-- Fix Response now the diff is saved correctly.
+- Fix Response. Now the diff is saved correctly.
   [tschanzt]
 
 
