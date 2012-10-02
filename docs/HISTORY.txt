@@ -5,6 +5,9 @@ Changelog
 4.4.2 (unreleased)
 ------------------
 
+- Tabs: remove "reset_tableconfiguration" actions in favor of new ftw.tabbedview menu.
+  [jone]
+
 - Change ticket description to rich text field.
   Preserves consistency since ticket answers already use rich text fields.
   [jone]

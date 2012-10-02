@@ -11,11 +11,10 @@ class BaseTicketListingTab(CatalogListingView):
     types = ['Ticket']
 
     show_selects = False
+    show_menu = False
 
     sort_on = 'created'
     sort_reverse = True
-
-    enabled_actions = major_actions = ['reset_tableconfiguration']
 
     def __init__(self, *args, **kwargs):
         super(BaseTicketListingTab, self).__init__(*args, **kwargs)

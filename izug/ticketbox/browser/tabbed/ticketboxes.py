@@ -29,9 +29,8 @@ class GlobalTicketboxesTab(CatalogListingView):
 
     types = ['Ticket Box']
     show_selects = False
+    show_menu = False
     sort_on = 'sortable_title'
-
-    enabled_actions = major_actions = ['reset_tableconfiguration']
 
     columns = (
         {'column': 'Title',
