@@ -5,7 +5,9 @@ Changelog
 4.4.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Change ticket description to rich text field.
+  Preserves consistency since ticket answers already use rich text fields.
+  [jone]
 
 
 4.4.1 (2012-09-17)
