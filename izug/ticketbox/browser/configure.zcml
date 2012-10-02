@@ -96,7 +96,6 @@
         for="izug.ticketbox.interfaces.ITicket"
         name="notification_form_content"
         class=".notification.notificationform.NotificationForm"
-        template="notification/notificationform.pt"
         permission="zope2.View"
 		allowed_attributes="send_notification"
         />
