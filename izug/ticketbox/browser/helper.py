@@ -88,11 +88,10 @@ def map_watch_release(context, id_=None):
 def map_base(available_items, id_):
     """Basemapping for attributes in ticketbox
     """
-
     for available_item in available_items:
         if id_ == available_item.get('id'):
             return available_item.get('title')
-        return "-"
+    return "-"
 
 
 def readable_author(context):

@@ -1,5 +1,5 @@
 izug.ticketbox
-===============
+==============
 
 This Package provides a basic Tracker like Content-Type
 

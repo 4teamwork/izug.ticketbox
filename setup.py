@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '4.4.1.dev0'
+version = '4.4.2.dev0'
 maintainer = 'Mathias Leimgruber'
 
 tests_require = [
@@ -59,6 +59,7 @@ setup(name='izug.ticketbox',
         'ftw.notification.email',
         'ftw.tabbedview',
         'ftw.table',
+        'ftw.upgrade',
         'plone.principalsource',
         'zope.annotation',
         'zope.app.component',

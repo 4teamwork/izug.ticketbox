@@ -167,10 +167,27 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         ))
 
 
-TicketSchema['description'].widget = atapi.RichWidget(
-    label=_(u"label_description",
-            default=u"Description"),
-    rows=30)
+
+TicketSchema['description'] = atapi.TextField(
+    name='description',
+    default='',
+    searchable=True,
+    accessor="Description",
+
+    # Keep the original storage for backwards compatiblity:
+    storage=TicketSchema['description'].storage,
+
+    default_content_type='text/html',
+    allowable_content_types=('text/html',),
+    validators=('isTidyHtmlWithCleanup', ),
+    default_output_type='text/x-html-safe',
+    default_input_type='text/html',
+
+    widget = atapi.RichWidget(
+        label=_(u"label_description",
+                default=u"Description"),
+        rows=30))
+
 schemata.finalizeATCTSchema(TicketSchema, moveDiscussion=False)
 
 
