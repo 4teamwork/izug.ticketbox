@@ -9,6 +9,9 @@ Changelog
   Preserves consistency since ticket answers already use rich text fields.
   [jone]
 
+- Select responsible Manager by default.
+  [tschanzt]
+
 
 4.4.1 (2012-09-17)
 ------------------
@@ -24,7 +27,8 @@ Changelog
   [jone]
 
 - Disable setting default page for TicketBox and Ticket.
-  Those types are not normal folders and setting the default page is therefore not common.
+  Those typesSelect responsible Manager by default.
+   are not normal folders and setting the default page is therefore not common.
   [jone]
 
 - Make assignable users configurable on ticketbox level.
