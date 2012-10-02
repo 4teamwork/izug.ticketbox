@@ -10,5 +10,3 @@ class NotificationForm(base):
 
         self.pre_select.append(self.context.getResponsibleManager())
 
-    def __call__(self):
-        return self.template()

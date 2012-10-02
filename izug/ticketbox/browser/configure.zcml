@@ -92,13 +92,13 @@
         template="ticket_custom_header.pt"
         />
 
-    <!-- <browser:page
-         for="izug.ticketbox.interfaces.ITicket"
-         name="notification_form_content"
-         class=".notification.notificationform.NotificationForm"
-         permission="zope.Public"
-         allowed_attributes="send_notification"
-         /> -->
+    <browser:page
+        for="izug.ticketbox.interfaces.ITicket"
+        name="notification_form_content"
+        class=".notification.notificationform.NotificationForm"
+        permission="zope2.View"
+		allowed_attributes="send_notification"
+        />
 
     <adapter
         factory=".notification.ticket_notification.TicketEmailRepresentation"
