@@ -160,7 +160,30 @@ class TicketBoxTestCase(ptc.PloneTestCase, unittest2.TestCase):
         self.response2 = Response("response3")
         self.response3 = Response("response3")
 
-class FunctionalTestCase(ptc.FunctionalTestCase):
+class TicketboxFunctionalTestCase(ptc.FunctionalTestCase):
     """We use this class for functional integration tests that use doctest
     syntax. Again, we can put basic common utility or setup code in here.
     """
+    layer = ticketbox_integration_layer
+
+    def afterSetUp(self):
+        # Set up sessioning objects
+        ztc.utils.setupCoreSessions(self.app)
+
+        self.workflow = getToolByName(self.portal, 'portal_workflow')
+        self.acl_users = getToolByName(self.portal, 'acl_users')
+        self.types = getToolByName(self.portal, 'portal_types')
+
+        self.setRoles(('Manager',))
+
+        #Create a Ticketbox on ploneroot
+        self.portal.invokeFactory('Ticket Box', 'ticketbox')
+
+        self.ticketbox = self.portal['ticketbox']
+        self.ticketbox.getField('title').set(self.ticketbox, "Ticket Box Title")
+        self.ticketbox.getField('description').set(self.ticketbox, "A TicketBox description")
+        self.ticketbox.setIndividualIdentifier("ABC123")
+        self.ticketbox.setAvailableStates(MOCK_STATE)
+        self.ticketbox.setAvailableReleases(MOCK_RELEASE)
+        self.ticketbox.setAvailableAreas(MOCK_AREA)
+        self.ticketbox.setAvailablePriorities(MOCK_PRIORITY)
