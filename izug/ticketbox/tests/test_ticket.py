@@ -1,7 +1,6 @@
 import unittest
 from izug.ticketbox.tests.base import TicketBoxTestCase
 from DateTime import DateTime
-from Products.Five.testbrowser import Browser
 
 
 class TestTicket(TicketBoxTestCase):
@@ -26,7 +25,6 @@ class TestTicket(TicketBoxTestCase):
 
         self.assertEquals(due_date.Date(), date.Date())
         self.assertEquals(answer_date.Date(), date.Date())
-
 
 
 def test_suite():
