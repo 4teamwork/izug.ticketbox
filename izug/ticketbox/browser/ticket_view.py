@@ -1,7 +1,7 @@
 from izug.ticketbox.browser.helper import map_attribute, readable_author
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
+from DateTime import DateTime
 
 class TicketView(BrowserView):
 
@@ -57,3 +57,9 @@ class TicketView(BrowserView):
             return creator
         else:
             return user.getProperty('fullname', creator)
+
+    def getCreationDate(self):
+        context = self.context
+        creation_date = context.CreationDate()
+        date = DateTime(creation_date)
+        return date.strftime('%d.%m.%Y %H:%M')

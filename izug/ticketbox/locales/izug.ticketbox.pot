@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-07-09 15:13+0000\n"
+"POT-Creation-Date: 2012-08-27 15:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,7 +70,7 @@ msgid "ModificationDate"
 msgstr ""
 
 #: ./izug/ticketbox/browser/tabbed/base.py:69
-#: ./izug/ticketbox/content/ticketbox.py:223
+#: ./izug/ticketbox/content/ticketbox.py:225
 msgid "None"
 msgstr ""
 
@@ -369,7 +369,7 @@ msgid "help_areas"
 msgstr ""
 
 #. Default: "Select the users which should be assignable. New users are by default searchable."
-#: ./izug/ticketbox/content/ticketbox.py:179
+#: ./izug/ticketbox/content/ticketbox.py:181
 msgid "help_assignable_users"
 msgstr ""
 
@@ -441,13 +441,13 @@ msgid "info_view"
 msgstr ""
 
 #. Default: "Answer Date"
-#: ./izug/ticketbox/browser/ticket_view.pt:54
+#: ./izug/ticketbox/browser/ticket_view.pt:58
 #: ./izug/ticketbox/content/ticket.py:120
 msgid "label_AnswerDate"
 msgstr ""
 
 #. Default: "Area"
-#: ./izug/ticketbox/browser/ticket_view.pt:34
+#: ./izug/ticketbox/browser/ticket_view.pt:38
 msgid "label_Area"
 msgstr ""
 
@@ -457,7 +457,7 @@ msgid "label_Areas"
 msgstr ""
 
 #. Default: "Attachments"
-#: ./izug/ticketbox/browser/ticket_view.pt:58
+#: ./izug/ticketbox/browser/ticket_view.pt:62
 msgid "label_Attachment"
 msgstr ""
 
@@ -467,17 +467,17 @@ msgid "label_Description"
 msgstr ""
 
 #. Default: "Priority"
-#: ./izug/ticketbox/browser/ticket_view.pt:30
+#: ./izug/ticketbox/browser/ticket_view.pt:34
 msgid "label_Priority"
 msgstr ""
 
 #. Default: "References"
-#: ./izug/ticketbox/browser/ticket_view.pt:75
+#: ./izug/ticketbox/browser/ticket_view.pt:79
 msgid "label_References"
 msgstr ""
 
 #. Default: "Release"
-#: ./izug/ticketbox/browser/ticket_view.pt:42
+#: ./izug/ticketbox/browser/ticket_view.pt:46
 msgid "label_Releases"
 msgstr ""
 
@@ -487,7 +487,7 @@ msgid "label_Responsible"
 msgstr ""
 
 #. Default: "responsible Manager"
-#: ./izug/ticketbox/browser/ticket_view.pt:50
+#: ./izug/ticketbox/browser/ticket_view.pt:54
 msgid "label_ResponsibleManager"
 msgstr ""
 
@@ -502,7 +502,7 @@ msgid "label_Varieties"
 msgstr ""
 
 #. Default: "Variety"
-#: ./izug/ticketbox/browser/ticket_view.pt:38
+#: ./izug/ticketbox/browser/ticket_view.pt:42
 msgid "label_Variety"
 msgstr ""
 
@@ -528,7 +528,7 @@ msgid "label_areas"
 msgstr ""
 
 #. Default: "Assignable users"
-#: ./izug/ticketbox/content/ticketbox.py:177
+#: ./izug/ticketbox/content/ticketbox.py:179
 msgid "label_assignable_users"
 msgstr ""
 
@@ -564,7 +564,7 @@ msgid "label_description"
 msgstr ""
 
 #. Default: "Due Date"
-#: ./izug/ticketbox/browser/ticket_view.pt:22
+#: ./izug/ticketbox/browser/ticket_view.pt:26
 #: ./izug/ticketbox/content/ticket.py:32
 msgid "label_duedate"
 msgstr ""
@@ -691,9 +691,14 @@ msgstr ""
 
 #. Default: "State"
 #: ./izug/ticketbox/browser/response.py:551
-#: ./izug/ticketbox/browser/ticket_view.pt:26
+#: ./izug/ticketbox/browser/ticket_view.pt:30
 #: ./izug/ticketbox/content/ticket.py:42
 msgid "label_state"
+msgstr ""
+
+#. Default: "Submitted at"
+#: ./izug/ticketbox/browser/ticket_view.pt:22
+msgid "label_submitted"
 msgstr ""
 
 #. Default: "Submitter"
@@ -722,7 +727,7 @@ msgid "label_variety"
 msgstr ""
 
 #. Default: "Watched in release"
-#: ./izug/ticketbox/browser/ticket_view.pt:46
+#: ./izug/ticketbox/browser/ticket_view.pt:50
 msgid "label_watched_in_release"
 msgstr ""
 
@@ -810,7 +815,7 @@ msgstr ""
 msgid "my_tickets"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:275
+#: ./izug/ticketbox/content/ticketbox.py:298
 msgid "no"
 msgstr ""
 
@@ -864,7 +869,7 @@ msgstr ""
 msgid "unassigned"
 msgstr ""
 
-#: ./izug/ticketbox/content/ticketbox.py:274
+#: ./izug/ticketbox/content/ticketbox.py:297
 msgid "yes"
 msgstr ""
 

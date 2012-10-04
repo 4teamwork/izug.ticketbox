@@ -18,6 +18,10 @@
             <td i18n:translate='label_submitter'>Submitter</td>
             <td tal:content="view/get_crator" />
         </tr>
+        <tr>
+            <td i18n:translate='label_submitted'>Submitted at</td>
+            <td tal:content="view/getCreationDate" />
+        </tr>
         <tr tal:condition="python: context.getDueDate()">
             <td i18n:translate='label_duedate'>Due Date</td>
             <td tal:content="python: context.getDueDate().strftime('%d.%m.%Y %H:%M')" />
