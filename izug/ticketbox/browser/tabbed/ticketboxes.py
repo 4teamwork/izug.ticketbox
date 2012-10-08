@@ -19,7 +19,6 @@ def link_to_parent(item, value):
         value)
 
 
-
 class TicketboxesTabbedView(TabbedView):
 
     def get_tabs(self):
