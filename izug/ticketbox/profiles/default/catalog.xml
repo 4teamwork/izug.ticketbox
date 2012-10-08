@@ -1,15 +1,15 @@
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
-<!--
- Add indexes here on penalty of death or worse.
-         See INDEXES in config.py instead.
--->
-<column value="getState"/>
-<column value="getReleases"/>
-<column value="getWatchedRelease"/>
-<column value="getArea"/>
-<column value="getVariety"/>
-<column value="getPriority"/>
-<column value="getResponsibleManager"/>
-<column value="getDueDate"/>
-<column value="get_owner_index"/>
+    <!--
+        Add indexes here on penalty of death or worse.
+        See INDEXES in config.py instead.
+    -->
+    <column value="getState"/>
+    <column value="getReleases"/>
+    <column value="getWatchedRelease"/>
+    <column value="getArea"/>
+    <column value="getVariety"/>
+    <column value="getPriority"/>
+    <column value="getResponsibleManager"/>
+    <column value="getDueDate"/>
+    <column value="get_owner_index"/>
 </object>
