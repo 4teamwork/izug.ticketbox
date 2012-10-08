@@ -20,6 +20,7 @@ INDEXES = (('getState', 'FieldIndex'),
             ('sortable_responsibleManager', 'FieldIndex'),
             ('sortable_ticket_references', 'FieldIndex'),
             ('get_owner_index', 'FieldIndex'),
+           ('ticketbox_title', 'FieldIndex'),
            )
 
 # Add text/html to the list of mimetypes to allow HTML/kupu

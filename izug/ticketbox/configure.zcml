@@ -71,6 +71,10 @@
         name="get_owner_index"
         factory=".indexer.get_owner_index" />
 
+    <adapter
+        name="ticketbox_title"
+        factory=".indexer.ticketbox_title" />
+
     <utility component=".vocabularies.StatesVocabularyFactory"
              name="ticketbox_values_states"
              provides="zope.schema.interfaces.IVocabularyFactory"
