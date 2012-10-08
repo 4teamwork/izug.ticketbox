@@ -7,6 +7,18 @@ from izug.ticketbox.browser.tabbed.base import BaseTicketListingTab
 import os.path
 
 
+def link_to_parent(item, value):
+    """Tabbedview helper for linking the parent.
+    """
+
+    if isinstance(value, str):
+        value = value.decode('utf-8')
+
+    return u'<a href="%s">%s</a>' % (
+        os.path.dirname(item.getURL()),
+        value)
+
+
 class TicketboxesTabbedView(TabbedView):
 
     def get_tabs(self):
@@ -57,6 +69,14 @@ class GlobalTicketboxesTab(CatalogListingView):
 
 
 class GlobalTicketTabBase(BaseTicketListingTab):
+
+    @property
+    def columns(self):
+        columns = list(super(GlobalTicketTabBase, self).columns)
+        columns.append({'column': 'ticketbox_title',
+                        'column_title': _(u'Ticket Box'),
+                        'transform': link_to_parent})
+        return tuple(columns)
 
     def get_base_query(self):
         site = getToolByName(self.context, 'portal_url').getPortalObject()

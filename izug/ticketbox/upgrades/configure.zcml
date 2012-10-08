@@ -13,4 +13,23 @@
         profile="izug.ticketbox:default"
         />
 
+    <!-- 4000 -> 4100 -->
+    <genericsetup:upgradeStep
+        title="Add ticketbox_title catalog index and metadat for tickets."
+        description=""
+        source="4000"
+        destination="4100"
+        handler="izug.ticketbox.upgrades.to4100.AddTicketboxTitleIndex"
+        profile="izug.ticketbox:default"
+        />
+
+    <genericsetup:registerProfile
+        name="4100"
+        title="izug.ticketbox.upgrades.4100"
+        description=""
+        directory="profiles/4100"
+        for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
 </configure>

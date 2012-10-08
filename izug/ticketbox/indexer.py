@@ -1,3 +1,4 @@
+from Acquisition import aq_inner, aq_parent
 from Products.ATContentTypes.interface.file import IATFile
 from Products.CMFPlone.utils import safe_callable
 from Products.CMFPlone.utils import safe_unicode
@@ -64,3 +65,12 @@ def sortable_responsibleManager(obj):
     if isinstance(author, unicode):
         author = author.encode('utf-8')
     return author
+
+
+@indexer(ITicket)
+def ticketbox_title(obj):
+    """Indexer for indexing the ticketbox title on a ticket.
+    """
+
+    parent = aq_parent(aq_inner(obj))
+    return parent.Title()

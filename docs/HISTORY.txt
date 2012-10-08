@@ -5,6 +5,9 @@ Changelog
 4.4.2 (unreleased)
 ------------------
 
+- Add new "Ticket box" column to the global ticket listing tabs.
+  [jone]
+
 - Tabs: remove "reset_tableconfiguration" actions in favor of new ftw.tabbedview menu.
   [jone]
 

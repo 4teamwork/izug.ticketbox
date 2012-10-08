@@ -1,0 +1,9 @@
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+
+    <index name="ticketbox_title" meta_type="FieldIndex">
+        <indexed_attr value="ticketbox_title"/>
+    </index>
+
+    <column value="ticketbox_title" />
+
+</object>

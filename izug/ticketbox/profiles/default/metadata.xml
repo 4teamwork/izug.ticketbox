@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <metadata>
-    <version>4000</version>
+    <version>4100</version>
     <dependencies>
         <dependency>profile-Products.DataGridField:default</dependency>
         <dependency>profile-ftw.tabbedview:default</dependency>
