@@ -16,7 +16,6 @@
                 <div tal:attributes="id string:ticketbox-filter-${filter/filterid};"
                      tal:condition="filter/options">
                     <h2 tal:content="filter/label" />
-                    <p tal:content="python:len(filter['options'])" />
                     <ul>
                         <li tal:repeat="option filter/options">
                             <a tal:attributes="href string:#?filterid=${filter/filterid}&amp;filtervalue=${option/id}"
