@@ -5,7 +5,8 @@ Changelog
 4.5.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Only show filters in ticketbox overview if there are options to filter.
+  [Julian Infanger]
 
 
 4.5 (2012-10-10)
