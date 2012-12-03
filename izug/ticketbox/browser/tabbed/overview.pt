@@ -12,9 +12,9 @@
         <table class="ticketbox-overview"
                tal:define="filter_info view/get_filter_info"><tr>
             <td tal:repeat="column filter_info">
-
-                <div tal:repeat="filter column"
-                     tal:attributes="id string:ticketbox-filter-${filter/filterid}">
+              <tal:filters repeat="filter column">
+                <div tal:attributes="id string:ticketbox-filter-${filter/filterid};"
+                     tal:condition="filter/options">
                     <h2 tal:content="filter/label" />
                     <ul>
                         <li tal:repeat="option filter/options">
@@ -24,6 +24,7 @@
                         </li>
                     </ul>
                 </div>
+              </tal:filters>
 
             </td>
         </tr></table>
