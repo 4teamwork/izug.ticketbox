@@ -5,7 +5,7 @@ Changelog
 4.5.1 (unreleased)
 ------------------
 
-- Only show filters in ticketbox overview if there are options to filter.
+- Only show filters in ticket schema and  ticketbox overview if there are options to filter.
   [Julian Infanger]
 
 

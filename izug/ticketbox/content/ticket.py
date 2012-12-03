@@ -1,5 +1,6 @@
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_parent
+from borg.localrole.interfaces import IFactoryTempFolder
 from DateTime import DateTime
 from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.config import PROJECTNAME
@@ -17,6 +18,8 @@ from Products.ATContentTypes.content import schemata
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget \
     import ReferenceBrowserWidget
 from zope.interface import implements
+from zope.schema.interfaces import IVocabularyFactory
+from zope.component import getUtility
 from Products.Archetypes import atapi
 from Products.CMFCore.permissions import ManagePortal
 
@@ -48,6 +51,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             name='priority',
             vocabulary_factory='ticketbox_values_priorities',
             widget=SelectionWidget(
+                condition='python:here.has_items("ticketbox_values_priorities")',
                 format="select",
                 label=_(u"label_select_priority",
                         default=u"Select Priority"),
@@ -59,6 +63,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             name='area',
             vocabulary_factory='ticketbox_values_areas',
             widget=SelectionWidget(
+                condition='python:here.has_items("ticketbox_values_areas")',
                 format="select",
                 label=_(u"label_select_area", default=u'Select Area'),
                 description=_(u'help_area',
@@ -69,6 +74,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
                     vocabulary_factory='ticketbox_values_varieties',
 
                     widget=SelectionWidget(
+                condition='python:here.has_items("ticketbox_values_varieties")',
                 label=_(u"label_select_variety",
                         default=u'Select Variety'),
                 description=_(
@@ -82,6 +88,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             name='releases',
             vocabulary_factory='ticketbox_values_releases',
             widget=SelectionWidget(
+                condition='python:here.has_items("ticketbox_values_releases")',
                 format="select",
                 label=_(u'label_select_release', default=u'Select Release'),
                 description=_(u'help_release',
@@ -92,6 +99,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             name='watchedRelease',
             vocabulary_factory='ticketbox_values_releases',
             widget=SelectionWidget(
+                condition='python:here.has_items("ticketbox_values_releases")',
                 format="select",
                 label=_(u'label_select_watchedRelease',
                         default=u'Select watched in release'),
@@ -243,5 +251,13 @@ class Ticket(base.ATCTFolder):
     def canSetDefaultPage(self):
         return False
 
+    def has_items(self, voc_name):
+        factory = getUtility(IVocabularyFactory, name=voc_name)
+        parent = aq_parent(self)
+        obj = self
+        if IFactoryTempFolder.providedBy(parent):
+            obj = aq_parent(aq_parent(parent))
+
+        return len([term for term in factory(obj) if term.value])
 
 registerType(Ticket, PROJECTNAME)
