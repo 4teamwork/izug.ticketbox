@@ -5,8 +5,6 @@ version = '4.5.1.dev0'
 maintainer = 'Mathias Leimgruber'
 
 tests_require = [
-    'collective.testcaselayer',
-    'Products.PloneTestCase',
     'plone.app.testing',
     'unittest2',
     ]
