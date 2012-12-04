@@ -1,3 +1,4 @@
+from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
@@ -33,3 +34,5 @@ class TicketBoxLayer(PloneSandboxLayer):
 TICKETBOX_FIXTURE = TicketBoxLayer()
 TICKETBOX_INTEGRATION_TESTING = IntegrationTesting(
     bases=(TICKETBOX_FIXTURE, ), name="TicketBox:Integration")
+TICKETBOX_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(TICKETBOX_FIXTURE, ), name="TicketBox:Functional")
