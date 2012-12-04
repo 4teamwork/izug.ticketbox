@@ -5,6 +5,9 @@ Changelog
 4.5.1 (unreleased)
 ------------------
 
+- Use p.a.testing instead of Products.PloneTestCase.
+  [jone]
+
 - Support for diverging userid and login of a user.
   [jone]
 
