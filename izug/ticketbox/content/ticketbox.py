@@ -286,7 +286,7 @@ class TicketBox(folder.ATBTreeFolder):
 
         values = []
         for term in factory(self):
-            values.append((term.value, term.title))
+            values.append((term.token, term.title))
         return values
 
     def yes_no(self):
