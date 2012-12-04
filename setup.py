@@ -7,6 +7,7 @@ maintainer = 'Mathias Leimgruber'
 tests_require = [
     'collective.testcaselayer',
     'Products.PloneTestCase',
+    'plone.app.testing',
     'unittest2',
     ]
 
