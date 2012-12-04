@@ -5,6 +5,9 @@ Changelog
 4.5.1 (unreleased)
 ------------------
 
+- Support for diverging userid and login of a user.
+  [jone]
+
 - Only show filters in ticket schema and  ticketbox overview if there are options to filter.
   [Julian Infanger]
 
