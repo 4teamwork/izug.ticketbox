@@ -1,15 +1,26 @@
-from izug.ticketbox.tests.base import TicketBoxTestCase
+from izug.ticketbox.testing import TICKETBOX_INTEGRATION_TESTING
+from izug.ticketbox.tests import helpers
+from unittest2 import TestCase
 from zope.component import getMultiAdapter
-import unittest
 
 
-class TestTicketBox(TicketBoxTestCase):
+class TestTicketBox(TestCase):
 
-    def afterSetUp(self):
-        super(TestTicketBox, self).afterSetUp()
+    layer = TICKETBOX_INTEGRATION_TESTING
 
-    def beforeTearDown(self):
-        pass
+    def setUp(self):
+        super(TestTicketBox, self).setUp()
+
+        self.portal = self.layer['portal']
+        helpers.login_as_manager(self.portal)
+
+        self.ticketbox = helpers.create_ticketbox(self.portal)
+        self.ticket1 = helpers.create_ticket(self.ticketbox)
+        self.ticket2 = helpers.create_ticket(self.ticketbox, data_index=1)
+
+    def tearDown(self):
+        helpers.logout_manager(self.portal)
+        super(TestTicketBox, self).tearDown()
 
     def test_required_fields(self):
         title = self.ticketbox.getField('title')
@@ -110,12 +121,3 @@ class TestTicketBox(TicketBoxTestCase):
         self.assertIn(
             ('test_user_1_', 'test_user_1_'),
             self.ticketbox.assignable_users())
-
-
-def test_suite():
-    """This sets up a test suite that actually runs the tests in the class
-    above
-    """
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestTicketBox))
-    return suite
