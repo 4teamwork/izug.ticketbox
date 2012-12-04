@@ -1,23 +1,43 @@
-import unittest
-from izug.ticketbox.tests.base import TicketBoxTestCase
+from izug.ticketbox.adapters import Response
+from izug.ticketbox.interfaces import IResponseContainer
+from izug.ticketbox.testing import TICKETBOX_INTEGRATION_TESTING
+from izug.ticketbox.tests import helpers
+from unittest2 import TestCase
 
 
-class TestResponse(TicketBoxTestCase):
+class TestResponse(TestCase):
 
-    def afterSetUp(self):
-        super(TestResponse, self).afterSetUp()
+    layer = TICKETBOX_INTEGRATION_TESTING
 
-    def beforeTearDown(self):
-        pass
+    def setUp(self):
+        super(TestResponse, self).setUp()
+
+        portal = self.layer['portal']
+        helpers.login_as_manager(portal)
+
+        self.ticketbox = helpers.create_ticketbox(portal)
+        self.ticket1 = helpers.create_ticket(self.ticketbox)
+        self.ticket2 = helpers.create_ticket(self.ticketbox, data_index=1)
+
+        self.container1 = IResponseContainer(self.ticket1)
+        self.container2 = IResponseContainer(self.ticket2)
+
+    def tearDown(self):
+        helpers.remove_obj(self.ticketbox)
+        helpers.logout_manager(self.layer['portal'])
+        super(TestResponse, self).tearDown()
 
     def test_add_and_remove(self):
+        response1 = Response('response1')
+        response2 = Response('response3')
+        response3 = Response('response3')
 
         self.assertEquals(len(self.container1), 0)
         self.assertEquals(len(self.container2), 0)
 
-        self.container1.add(self.response1)
-        self.container1.add(self.response2)
-        self.container2.add(self.response3)
+        self.container1.add(response1)
+        self.container1.add(response2)
+        self.container2.add(response3)
 
         self.assertEquals(len(self.container1), 2)
         self.assertEquals(len(self.container2), 1)
@@ -25,15 +45,6 @@ class TestResponse(TicketBoxTestCase):
         self.container1.remove(0)
         self.container1.remove(1)
 
-        self.assertEquals(self.response1 in self.container1, False)
-        self.assertEquals(self.response2 in self.container1, False)
-        self.assertEquals(self.response3 in self.container2, True)
-
-
-def test_suite():
-    """This sets up a test suite that actually runs the tests in the class
-    above
-    """
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestResponse))
-    return suite
+        self.assertEquals(response1 in self.container1, False)
+        self.assertEquals(response2 in self.container1, False)
+        self.assertEquals(response3 in self.container2, True)

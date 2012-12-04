@@ -46,7 +46,8 @@ def remove_obj(obj):
     parent.manage_delObjects([obj.id])
 
 
-def create_ticket(ticketbox, id_='ticket1', data_index=0):
+def create_ticket(ticketbox, id_=None, data_index=0):
+    id_ = id_ or 'ticket%i' % data_index
     ticket = ticketbox.get(ticketbox.invokeFactory('Ticket', id_))
 
     ticket.getField('title').set(ticketbox, "Ticket Title")
