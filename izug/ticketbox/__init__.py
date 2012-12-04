@@ -2,7 +2,7 @@
 """
 
 from Products.Archetypes import atapi
-from Products.CMFCore import utils
+from Products.CMFCore.utils import ContentInit
 from izug.ticketbox import config
 from zope.i18nmessageid import MessageFactory
 
@@ -39,8 +39,8 @@ def initialize(context):
     # in the GenericSetup profile.
 
     for atype, constructor in zip(content_types, constructors):
-        utils.ContentInit('%s: %s' % (config.PROJECTNAME, atype.portal_type),
-                          content_types=(atype, ),
-                          permission=config.ADD_PERMISSIONS[atype.portal_type],
-                          extra_constructors=(constructor,),
-                          ).initialize(context)
+        ContentInit('%s: %s' % (config.PROJECTNAME, atype.portal_type),
+                    content_types=(atype, ),
+                    permission=config.ADD_PERMISSIONS[atype.portal_type],
+                    extra_constructors=(constructor,),
+                    ).initialize(context)
