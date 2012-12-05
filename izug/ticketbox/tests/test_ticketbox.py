@@ -1,7 +1,15 @@
+from Products.Archetypes.event import ObjectEditedEvent
+from copy import deepcopy
 from izug.ticketbox.testing import TICKETBOX_INTEGRATION_TESTING
 from izug.ticketbox.tests import helpers
 from unittest2 import TestCase
 from zope.component import getMultiAdapter
+from zope.event import notify
+
+def get_ids_and_titles(data):
+    """Returns all ids and titles of the dicts within the list data.
+    """
+    return [(item.get('id'), item.get('title')) for item in data]
 
 
 class TestTicketBox(TestCase):
@@ -121,3 +129,56 @@ class TestTicketBox(TestCase):
         self.assertIn(
             ('test_user_1_', 'test-user'),
             self.ticketbox.assignable_users())
+
+    def test_duplicate_state_ids(self):
+        # When changing a state and adding a state in a specific way it
+        # should not result in duplicate state ids.
+
+        states = [{'id': '',
+                   'title': 'Open',
+                   'show_in_all_tickets': '1',
+                   'show_in_my_tickets': '1'}]
+        self.ticketbox.setAvailableStates(states)
+        notify(ObjectEditedEvent(self.ticketbox))
+
+        states = self.ticketbox.getAvailableStates()
+        self.assertEqual(len(states), 1)
+        self.assertEqual(get_ids_and_titles(states), [('open', 'Open')])
+
+        states = list(deepcopy(states))
+        states[0]['title'] = 'Closed'
+        states.append({'id': '',
+                       'title': 'Open',
+                       'show_in_all_tickets': '1',
+                       'show_in_my_tickets': '1'})
+        self.ticketbox.setAvailableStates(states)
+        notify(ObjectEditedEvent(self.ticketbox))
+
+        states = self.ticketbox.getAvailableStates()
+        self.assertEqual(len(states), 2)
+        self.assertEqual(get_ids_and_titles(states), [
+                ('open', 'Closed'),
+                ('open-1', 'Open')])
+
+    def test_duplicate_release_ids(self):
+        releases = [{'id': '',
+                     'title': '1.x'}]
+        self.ticketbox.setAvailableReleases(releases)
+        notify(ObjectEditedEvent(self.ticketbox))
+
+        releases = self.ticketbox.getAvailableReleases()
+        self.assertEqual(len(releases), 1)
+        self.assertEqual(get_ids_and_titles(releases), [('1-x', '1.x')])
+
+        releases = list(deepcopy(releases))
+        releases[0]['title'] = '1.0'
+        releases.append({'id': '',
+                         'title': '1.x'})
+        self.ticketbox.setAvailableReleases(releases)
+        notify(ObjectEditedEvent(self.ticketbox))
+
+        releases = self.ticketbox.getAvailableReleases()
+        self.assertEqual(len(releases), 2)
+        self.assertEqual(get_ids_and_titles(releases),
+                         [('1-x', '1.0'),
+                          ('1-x-1', '1.x')])

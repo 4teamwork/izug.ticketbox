@@ -5,6 +5,10 @@ Changelog
 4.5.1 (unreleased)
 ------------------
 
+- Fix bug causing duplicate ids in ticketbox configurations (states, releases, etc).
+  Duplicate ids occured when an item with a already used title was added.
+  [jone]
+
 - Use p.a.testing instead of Products.PloneTestCase.
   [jone]
 
