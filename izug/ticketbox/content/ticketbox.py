@@ -279,13 +279,16 @@ class TicketBox(folder.ATBTreeFolder):
         users.
         """
         factory = queryUtility(IVocabularyFactory, name='assignable_users')
+
         if factory is None:
             factory = getUtility(IVocabularyFactory,
                                  name='plone.principalsource.Users',
                                  context=self)
-
+            terms = factory(self)
+        else:
+            terms = factory(self, membersonly=True)
         values = []
-        for term in factory(self):
+        for term in terms:
             values.append((term.token, term.title))
         return values
 
