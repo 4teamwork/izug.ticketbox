@@ -5,6 +5,9 @@ Changelog
 4.5.1 (unreleased)
 ------------------
 
+- Don't get Contacts from assignable_users vocabulary.
+  [tschanzt]
+
 - Fix bug causing duplicate ids in ticketbox configurations (states, releases, etc).
   Duplicate ids occured when an item with a already used title was added.
   [jone]
