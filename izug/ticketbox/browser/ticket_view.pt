@@ -62,7 +62,7 @@
             <td i18n:translate='label_Attachment'>Attachments</td>
             <td>
                 <div class="ticketAttachments" tal:repeat="att context/getAttachments">
-                    <a tal:attributes="href att/absolute_url">
+                    <a tal:attributes="href string:${att/absolute_url}/at_download/file">
                         <img tal:attributes="src att/getIcon" />
                         <span class="title" tal:content="att/title_or_id"><!-- Title --></span>
                     </a>

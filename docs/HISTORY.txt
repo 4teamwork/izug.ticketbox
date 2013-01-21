@@ -5,7 +5,8 @@ Changelog
 4.5.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix attachment download link on ticket view (use at_download).
+  [mathias.leimgruber]
 
 
 4.5.1 (2013-01-21)
