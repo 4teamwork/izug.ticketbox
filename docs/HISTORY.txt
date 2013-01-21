@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.5.1 (unreleased)
+4.5.1 (2013-01-21)
 ------------------
 
 - Don't get Contacts from assignable_users vocabulary.
