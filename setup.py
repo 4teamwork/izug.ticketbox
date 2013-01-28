@@ -17,16 +17,15 @@ setup(name='izug.ticketbox',
                             open(os.path.join('docs', 'HISTORY.txt')).read()),
 
       # Get more strings from
-      # http://pypi.python.org/pypi?:action=list_classifiers
+      # http://www.python.org/pypi?%3Aaction=list_classifiers
+
       classifiers=[
         'Framework :: Plone',
-        'Framework :: Plone :: 4.0',
         'Framework :: Plone :: 4.1',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: GNU General Public License (GPL)',
+        'Framework :: Plone :: 4.2',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.6',
-        'Topic :: Software Development :: Libraries :: Python Modules', ],
+        'Topic :: Software Development :: Libraries :: Python Modules',
+        ],
 
       keywords='ticketbox tracker ftw ',
       author='4teamwork GmbH',
