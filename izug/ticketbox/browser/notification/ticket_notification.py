@@ -15,14 +15,24 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
 
         return tracker
 
+    def get_responses(self):
+        base_response = self.context.restrictedTraverse('base_response')
+        return base_response.responses()
+
     def creator(self):
-        context = self.context.aq_inner
-        return context.Creator()
+        if self.infos()['response'] == True:
+            responses = self.get_responses()
+            response = responses[len(responses) - 1]
+            userid = response['response'].creator
+            member = self.context.portal_membership.getMemberById(userid)
+            return member.getUser().getProperty('fullname', userid)
+        else:
+            context = self.context.aq_inner
+            return context.Creator()
 
     def infos(self):
         """Returns Infos for email-template"""
-        base_response = self.context.restrictedTraverse('base_response')
-        responses = base_response.responses()
+        responses = self.get_responses()
         author = readable_author(self.context)
 
         if isinstance(author, Message):
