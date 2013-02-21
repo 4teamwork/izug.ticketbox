@@ -6,6 +6,7 @@ from zope.i18nmessageid import Message
 from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_inner
 
+
 class TicketEmailRepresentation(BaseEmailRepresentation):
 
     template = ViewPageTemplateFile('ticket.pt')
