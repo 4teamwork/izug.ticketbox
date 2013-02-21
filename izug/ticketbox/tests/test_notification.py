@@ -18,7 +18,7 @@ class TestResponseNotification(unittest.TestCase):
         regtool = getToolByName(self.portal, 'portal_registration')
         regtool.addMember('usera', 'usera',
                           properties={'username': 'usera',
-                                      'fullname': 'fuqllnamea',
+                                      'fullname': 'fullnamea',
                                       'email': 'usera@email.com'})
         self.ticketbox = helpers.create_ticketbox(self.portal)
         self.ticketbox.manage_addLocalRoles('usera', ['Contributor', 'Manager'])
@@ -37,4 +37,4 @@ class TestResponseNotification(unittest.TestCase):
         list_to = self.browser.getControl(name="to_list:list")
         list_to.controls[0].selected = True
         self.browser.getControl(name='form.button.Send').click()
-        self.assertIn('A new Answer has been Added by <span>fuqllnamea</span> in the Ticketbox', self.portal.MailHost.messages[0])
+        self.assertIn('A new Answer has been Added by <span>fullnamea</span> in the Ticketbox', self.portal.MailHost.messages[0])
