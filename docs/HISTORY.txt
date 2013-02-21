@@ -5,6 +5,9 @@ Changelog
 4.5.2 (unreleased)
 ------------------
 
+- Fix Creator when sendig a notification over a new response.
+  [tschanzt]
+
 - Fix attachment download link on ticket view (use at_download).
   [mathias.leimgruber]
 

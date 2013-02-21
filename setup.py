@@ -8,6 +8,8 @@ tests_require = [
     'unittest2',
     'ftw.testing',
     'plone.app.testing',
+    'collective.MockMailHost',
+    'ftw.notification.email'
     ]
 
 setup(name='izug.ticketbox',
