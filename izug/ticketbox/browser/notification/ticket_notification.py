@@ -3,7 +3,8 @@ from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.browser.helper import map_attribute, readable_author
 from zope.app.pagetemplate import ViewPageTemplateFile
 from zope.i18nmessageid import Message
-
+from Products.CMFCore.utils import getToolByName
+from Acquisition import aq_inner
 
 class TicketEmailRepresentation(BaseEmailRepresentation):
 
@@ -24,10 +25,11 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
             responses = self.get_responses()
             response = responses[len(responses) - 1]
             userid = response['response'].creator
-            member = self.context.portal_membership.getMemberById(userid)
+            mem_tool = getToolByName(self.context, 'portal_membership')
+            member = mem_tool.getMemberById(userid)
             return member.getUser().getProperty('fullname', userid)
         else:
-            context = self.context.aq_inner
+            context = aq_inner(self.context)
             return context.Creator()
 
     def infos(self):
