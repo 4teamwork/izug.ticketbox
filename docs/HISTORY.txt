@@ -5,6 +5,9 @@ Changelog
 4.5.2 (unreleased)
 ------------------
 
+- Fix html structure of answer form.
+  [mathias.leimgruber]
+
 - Fix Creator when sending a notification about a new response.
   [tschanzt]
 
