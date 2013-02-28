@@ -5,6 +5,9 @@ Changelog
 4.5.2 (unreleased)
 ------------------
 
+- Add vertical and listing class to ticket view.
+  [mathias.leimgruber]
+
 - Fix Creator when sending a notification about a new response.
   [tschanzt]
 
