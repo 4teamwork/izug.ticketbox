@@ -5,6 +5,10 @@ Changelog
 4.5.2 (unreleased)
 ------------------
 
+
+- Fix html structure of answer form.
+  [mathias.leimgruber]
+
 - Add vertical and listing class to ticket view.
   [mathias.leimgruber]
 

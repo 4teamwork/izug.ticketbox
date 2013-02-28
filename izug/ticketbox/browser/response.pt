@@ -199,12 +199,10 @@
                                 <tal:options
                                     repeat="option view/states_for_display">
                                     <option value="" id=""
+                                            tal:content="option/label"
                                             tal:attributes="value option/value;
                                                             id option/value;
                                                             selected option/checked;" />
-                                    <label
-                                        tal:attributes="for option/value"
-                                        tal:content="option/label" />
                                 </tal:options>
                             </select>
 
@@ -227,12 +225,10 @@
                                 <tal:options
                                     repeat="option view/priorities_for_display">
                                     <option value="" id=""
+                                            tal:content="option/label"
                                             tal:attributes="value option/value;
                                                             id option/value;
                                                             selected option/checked;" />
-                                    <label
-                                        tal:attributes="for option/value"
-                                        tal:content="option/label" />
                                 </tal:options>
                             </select>
                         </div>
@@ -255,12 +251,10 @@
                                 <tal:options
                                     repeat="option view/areas_for_display">
                                     <option value="" id=""
+                                            tal:content="option/label"
                                             tal:attributes="value option/value;
                                                             id option/value;
                                                             selected option/checked;" />
-                                    <label
-                                        tal:attributes="for option/value"
-                                        tal:content="option/label" />
                                 </tal:options>
                             </select>
                         </div>
@@ -283,12 +277,10 @@
                                 <tal:options
                                     repeat="option view/varieties_for_display">
                                     <option value="" id=""
+                                            tal:content="option/label"
                                             tal:attributes="value option/value;
                                                             id option/value;
                                                             selected option/checked;" />
-                                    <label
-                                        tal:attributes="for option/value"
-                                        tal:content="option/label" />
                                 </tal:options>
                             </select>
                         </div>
@@ -312,12 +304,10 @@
                                 <tal:options
                                     repeat="option view/releases_for_display">
                                     <option value="" id=""
+                                            tal:content="option/label"
                                             tal:attributes="value option/value;
                                                             id option/value;
                                                             selected option/checked;" />
-                                    <label
-                                        tal:attributes="for option/value"
-                                        tal:content="option/label" />
                                 </tal:options>
                             </select>
 
@@ -341,12 +331,10 @@
                                 <tal:options
                                     repeat="option view/watched_releases_for_display">
                                     <option value="" id=""
+                                            tal:content="option/label"
                                             tal:attributes="value option/value;
                                                             id option/value;
                                                             selected option/checked;" />
-                                    <label
-                                        tal:attributes="for option/value"
-                                        tal:content="option/label" />
                                 </tal:options>
                             </select>
 
@@ -402,12 +390,10 @@
                                 <tal:options
                                     repeat="option view/managers_for_display">
                                     <option value="" id=""
+                                            tal:content="option/label"
                                             tal:attributes="value option/value;
                                                             id option/value;
                                                             selected option/checked;" />
-                                    <label
-                                        tal:attributes="for option/value"
-                                        tal:content="option/label" />
                                 </tal:options>
                             </select>
 
