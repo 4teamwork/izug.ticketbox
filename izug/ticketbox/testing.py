@@ -1,3 +1,6 @@
+from ftw.builder.testing import BUILDER_LAYER
+from ftw.builder.testing import functional_session_factory
+from ftw.builder.testing import set_builder_session_factory
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
@@ -5,11 +8,12 @@ from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import applyProfile
 from plone.testing import z2
 from zope.configuration import xmlconfig
+import izug.ticketbox.tests.builder
 
 
 class TicketBoxLayer(PloneSandboxLayer):
 
-    defaultBases = (PLONE_FIXTURE, )
+    defaultBases = (PLONE_FIXTURE, BUILDER_LAYER)
 
     def setUpZope(self, app, configurationContext):
         import Products.DataGridField
@@ -52,5 +56,8 @@ class TicketBoxLayer(PloneSandboxLayer):
 TICKETBOX_FIXTURE = TicketBoxLayer()
 TICKETBOX_INTEGRATION_TESTING = IntegrationTesting(
     bases=(TICKETBOX_FIXTURE, ), name="TicketBox:Integration")
+
 TICKETBOX_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(TICKETBOX_FIXTURE, ), name="TicketBox:Functional")
+    bases=(TICKETBOX_FIXTURE,
+           set_builder_session_factory(functional_session_factory)),
+    name="TicketBox:Functional")

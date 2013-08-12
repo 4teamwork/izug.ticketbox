@@ -8,6 +8,7 @@ tests_require = [
     'unittest2',
     'ftw.testing',
     'plone.app.testing',
+    'ftw.builder',
     'collective.MockMailHost',
     ]
 
@@ -79,7 +80,8 @@ setup(name='izug.ticketbox',
         ],
 
       tests_require=tests_require,
-      extras_require=dict(tests=tests_require),
+      extras_require=dict(tests=tests_require,
+                          workspace=['ftw.workspace']),
 
       test_suite='izug.ticketbox.tests.test_docs.test_suite',
       entry_points="""

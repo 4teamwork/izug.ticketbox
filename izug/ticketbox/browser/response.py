@@ -112,7 +112,8 @@ class Base(BrowserView):
     def mock_reference_field(self):
         """Mocks reference field for response"""
 
-        startuppath = '/'.join(self.context.getPhysicalPath())
+        field = self.context.getField('ticketReferences')
+        startuppath = field.widget.getStartupDirectory(self.context, field)
 
         class Dummy(object):
             # Disable zope security

@@ -5,6 +5,7 @@ from DateTime import DateTime
 from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.config import PROJECTNAME
 from izug.ticketbox.interfaces import ITicket
+from izug.ticketbox.interfaces import ITicketReferenceStartupDirectory
 from Products.Archetypes.atapi import AttributeStorage
 from Products.Archetypes.atapi import DateTimeField, CalendarWidget
 from Products.Archetypes.atapi import FileField, FileWidget
@@ -20,6 +21,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget \
 from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory
 from zope.component import getUtility
+from zope.component import getMultiAdapter
 from Products.Archetypes import atapi
 from Products.CMFCore.permissions import ManagePortal
 
@@ -170,7 +172,8 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
                 label=_(u'label_references', default=u"References"),
                 allow_browse=True,
                 show_results_without_query=False,
-                restrict_browsing_to_startup_directory=False)),
+                restrict_browsing_to_startup_directory=False,
+                startup_directory_method='getReferenceStartupDirectory')),
 
         ))
 
@@ -259,5 +262,11 @@ class Ticket(base.ATCTFolder):
             obj = aq_parent(aq_parent(parent))
 
         return len([term for term in factory(obj) if term.value])
+
+    security.declarePrivate('getReferenceStartupDirectory')
+    def getReferenceStartupDirectory(self):
+        getter = getMultiAdapter((self, self.REQUEST),
+                                 ITicketReferenceStartupDirectory)
+        return getter.get()
 
 registerType(Ticket, PROJECTNAME)

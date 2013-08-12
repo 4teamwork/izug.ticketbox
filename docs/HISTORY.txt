@@ -5,6 +5,12 @@ Changelog
 4.5.4 (unreleased)
 ------------------
 
+- Make ticket reference browser startup directory configurable
+  with an adapter.
+  Add a conditional adapter for workspace integration which resets
+  the startup directory to the workspace.
+  [jone]
+
 - Add permissionmapping for ftw.lawgiver
   [elioschmutz]
 

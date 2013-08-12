@@ -116,4 +116,10 @@
                 handler=".handlers.move_document_to_reference" />
 
 
+    <adapter factory=".references.DefaultTicketReferenceStartupDirectory" />
+    <configure zcml:condition="installed ftw.workspace">
+        <adapter factory=".workspace.WorkspaceStartupDirectory" />
+    </configure>
+
+
 </configure>
