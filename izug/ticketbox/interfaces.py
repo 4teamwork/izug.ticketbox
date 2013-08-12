@@ -100,3 +100,17 @@ class IResponseAdder(IViewletManager):
         """
 
 directlyProvides(IResponseAdder, ITALNamespaceData)
+
+
+class ITicketReferenceStartupDirectory(Interface):
+    """Adapter for getting the startup directory for references in the
+    current ticket.
+    """
+
+    def __init__(ticket, request):
+        """Adapts the ticket and the request.
+        """
+
+    def get():
+        """Returns the startup directory path.
+        """
