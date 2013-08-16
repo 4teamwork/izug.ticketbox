@@ -1,4 +1,5 @@
 from AccessControl import ClassSecurityInfo
+from AccessControl import getSecurityManager
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
 from Products.Archetypes.atapi import ComputedField, MultiSelectionWidget
@@ -226,13 +227,16 @@ class TicketBox(folder.ATBTreeFolder):
 
         mtool = getToolByName(self, 'portal_membership')
         assignable_userids = self.getAssignableUserIds()
+        sm = getSecurityManager()
 
         for term in vocabulary:
             member = mtool.getMemberById(term.token)
             if member and member.getId() not in assignable_userids:
                 continue
 
-            if member and 'Contributor' in member.getRolesInContext(self):
+            has_permission = sm.checkPermission('izug.ticketbox: Add Ticket',
+                                                self)
+            if member and has_permission:
                 title = term.title
                 if not title:
                     title = term.value

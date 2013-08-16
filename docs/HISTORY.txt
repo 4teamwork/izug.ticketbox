@@ -5,7 +5,9 @@ Changelog
 4.5.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Check if the user has the permission to add a ticket instead of checking
+  for a local role.
+  [mathias.leimgruber]
 
 
 4.5.4 (2013-08-14)

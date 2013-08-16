@@ -119,13 +119,6 @@ class TestTicketBox(TestCase):
             self.ticketbox.assignable_users())
 
     def test_new_user_gets_assignable_automatically(self):
-        self.assertNotIn(
-            ('test_user_1_', 'test-user'),
-            self.ticketbox.assignable_users())
-
-        self.ticketbox.manage_setLocalRoles(
-            'test_user_1_', ['Contributor', 'Reader'])
-
         self.assertIn(
             ('test_user_1_', 'test-user'),
             self.ticketbox.assignable_users())
