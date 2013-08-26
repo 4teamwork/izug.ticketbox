@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.5.5 (unreleased)
+4.5.5 (2013-08-26)
 ------------------
 
 - Check if the user has the permission to add a ticket instead of checking
