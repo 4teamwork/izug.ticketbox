@@ -5,6 +5,9 @@ Changelog
 4.5.6 (unreleased)
 ------------------
 
+- Style "Add answer" link as button using default styling.
+  [jone]
+
 - Plone 4.3 support.
   [jone]
 
