@@ -26,17 +26,16 @@ table.ticketbox-overview td{
     vertical-align: top;
 }
 
-dl.collapsible dt.collapsibleHeader div.add_response {
-    background-color: #00538C;
-    border: 1px solid #666666;
-    color: #FFFFFF;
-    font-size: 1.1em;
-    font-style: inherit;
-    font-weight:bold;
-    height: 100%;
-    line-height: 1em;
-    padding: 0.4em 0.5em;
-    width: 115px;
+#addResponse {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+#addResponse > .collapsibleHeader {
+  font-size: 100%;
+  padding-left: 0;
+  background: none;
+  margin-top: -0.5em;
 }
 
 body.template-atct_edit #datagridwidget-table-availableStates tr th:first-child,

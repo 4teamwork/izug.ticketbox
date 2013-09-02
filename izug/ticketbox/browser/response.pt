@@ -105,12 +105,11 @@
     <!-- *************************************************** -->
     <!-- Add Response - with collabsible function -->
     <tal:add condition="python:user.has_permission('izug.ticketbox: Add Ticket', here)">
-        <dl id='addResponse' class='collapsible collapsedOnLoad' style='margin-bottom:10px;'>
+        <dl id="addResponse" class="collapsible collapsedOnLoad" onselectstart="return false;">
             <dt class='collapsibleHeader'>
-                <div i18n:translate="title_add_response" class='add_response'>Add response</div>
+                <div i18n:translate="title_add_response" class="add_response button">Add response</div>
             </dt>
 
-            <!-- <h3 i18n:translate="title_add_response">Add response</h3> -->
             <dd class="collapsibleContent">
                 <div>
                     <form method="post"
