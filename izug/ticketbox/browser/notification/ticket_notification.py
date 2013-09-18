@@ -22,16 +22,17 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
         return base_response.responses()
 
     def creator(self):
-        if self.infos()['response'] == True:
+        if self.infos()['response'] is True:
             responses = self.get_responses()
             response = responses[len(responses) - 1]
             userid = response['response'].creator
-            mem_tool = getToolByName(self.context, 'portal_membership')
-            member = mem_tool.getMemberById(userid)
-            return member.getUser().getProperty('fullname', userid)
         else:
             context = aq_inner(self.context)
-            return context.Creator()
+            userid = context.Creator()
+
+        mem_tool = getToolByName(self.context, 'portal_membership')
+        member = mem_tool.getMemberById(userid)
+        return member.getUser().getProperty('fullname', userid)
 
     def infos(self):
         """Returns Infos for email-template"""
