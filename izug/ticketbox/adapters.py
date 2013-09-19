@@ -169,10 +169,13 @@ class TicketBoxSubjectCreator(object):
             subject = default_subject
 
         else:
-            subject = '%s [%s] %s' % (
+            individual_identifier = object_.getIndividualIdentifier()
+            if individual_identifier:
+                individual_identifier = ' [%s]' % individual_identifier
+            subject = '%s%s %s' % (
                 sheet.getProperty('notification_email_subject',
                                   default_subject),
-                object_.getIndividualIdentifier(),
+                individual_identifier,
                 object_.Title())
 
         return subject
@@ -195,10 +198,15 @@ class TicketSubjectCreator(object):
             subject = default_subject
 
         else:
-            subject = '%s [%s] #%s - %s' % (
+            individual_identifier = aq_parent(
+                self.context).getIndividualIdentifier()
+            if individual_identifier:
+                individual_identifier = ' [%s]' % individual_identifier
+
+            subject = '%s%s #%s - %s' % (
                 sheet.getProperty('notification_email_subject',
                                   default_subject),
-                aq_parent(self.context).getIndividualIdentifier(),
+                individual_identifier,
                 object_.getId(),
                 object_.Title())
 
