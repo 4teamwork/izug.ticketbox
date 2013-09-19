@@ -44,7 +44,6 @@ setup(name='izug.ticketbox',
 
       install_requires=[
         'setuptools',
-
         'AccessControl',
         'Acquisition',
         'Plone',

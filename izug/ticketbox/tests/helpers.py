@@ -50,8 +50,8 @@ def create_ticket(ticketbox, id_=None, data_index=0):
     id_ = id_ or 'ticket%i' % data_index
     ticket = ticketbox.get(ticketbox.invokeFactory('Ticket', id_))
 
-    ticket.getField('title').set(ticketbox, "Ticket Title")
-    ticket.getField('description').set(ticketbox, "A Ticket description")
+    ticket.getField('title').set(ticket, "Ticket Title")
+    ticket.getField('description').set(ticket, "A Ticket description")
     ticket.getField('state').set(ticket, STATE_DATA[data_index]['id'])
     ticket.getField('area').set(ticket, AREA_DATA[data_index]['id'])
     ticket.getField('priority').set(ticket, PRIORITY_DATA[data_index]['id'])
