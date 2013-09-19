@@ -3,10 +3,8 @@ from izug.ticketbox.testing import TICKETBOX_FUNCTIONAL_TESTING
 from plone.testing.z2 import Browser
 import transaction
 from izug.ticketbox.tests import helpers
-from izug.ticketbox.adapters import Response
-from plone.app.testing import TEST_USER_NAME
-from plone.app.testing import TEST_USER_PASSWORD
 from Products.CMFCore.utils import getToolByName
+
 
 class TestResponseNotification(unittest.TestCase):
 
@@ -21,7 +19,8 @@ class TestResponseNotification(unittest.TestCase):
                                       'fullname': 'fullnamea',
                                       'email': 'usera@email.com'})
         self.ticketbox = helpers.create_ticketbox(self.portal)
-        self.ticketbox.manage_addLocalRoles('usera', ['Contributor', 'Manager'])
+        self.ticketbox.manage_addLocalRoles('usera',
+                                           ['Contributor', 'Manager'])
         self.ticket1 = helpers.create_ticket(self.ticketbox)
         transaction.commit()
         self.browser = Browser(self.layer['app'])
@@ -37,4 +36,7 @@ class TestResponseNotification(unittest.TestCase):
         list_to = self.browser.getControl(name="to_list:list")
         list_to.controls[0].selected = True
         self.browser.getControl(name='form.button.Send').click()
-        self.assertIn('A new Answer has been Added by <span>fullnamea</span> in the Ticketbox', self.portal.MailHost.messages[0])
+        self.assertIn(
+            'A new Answer has been Added by <span>fullnamea</span> in the '
+            'Ticketbox',
+            self.portal.MailHost.messages[0])
