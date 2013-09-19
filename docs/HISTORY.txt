@@ -5,6 +5,12 @@ Changelog
 4.5.6 (unreleased)
 ------------------
 
+- Better handling of individual identifier in subject generation.
+  [mathias.leimgruber]
+
+- Use fullname also for notifications on Tickets not only on Answers.
+  [mathias.leimgruber]
+
 - Style "Add answer" link as button using default styling.
   [jone]
 
