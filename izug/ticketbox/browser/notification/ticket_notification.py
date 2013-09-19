@@ -58,7 +58,8 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                         'releases': map_attribute(self.context, "releases"),
                         'watchedRelease': map_attribute(self.context,
                                                         "watchedRelease"),
-                        'answerDate': self.context.getAnswerDate(),
+                        'answerDate': self.context.toLocalizedTime(
+                            self.context.getAnswerDate(), long_format=True),
                         'response': False}
         if responses == []:
             return ticket_infos
