@@ -1,0 +1,24 @@
+from ftw.upgrade import ProgressLogger
+from ftw.upgrade import UpgradeStep
+from izug.ticketbox.content.attachment import TicketAttachment
+import logging
+
+
+LOG = logging.getLogger('ftw.workspace.upgrades')
+
+
+class UpdateTicketAttachmentClass(UpgradeStep):
+
+    def __call__(self):
+        self.update_fti()
+        self.migrate_existing_attachments()
+
+    def update_fti(self):
+        LOG.info('TabbedViewFolder FTI: update factory')
+        self.setup_install_profile(
+            'profile-izug.ticketbox.upgrades:4200')
+
+    def migrate_existing_attachments(self):
+        for obj in self.objects({'portal_type':'TicketAttachment'}, "Migrate TicketAttachment class"):
+            self.migrate_class(obj, TicketAttachment)
+        
