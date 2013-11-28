@@ -32,4 +32,31 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <genericsetup:upgradeStep
+        title="Migrate TicketAttachment to new class"
+        description=""
+        source="4100"
+        destination="4200"
+        handler="izug.ticketbox.upgrades.to4200.UpdateTicketAttachmentClass"
+        profile="izug.ticketbox:default"
+        />
+
+    <genericsetup:registerProfile
+        name="4200"
+        title="izug.ticketbox.upgrades.4200"
+        description=""
+        directory="profiles/4200"
+        for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:upgradeStep
+        title="Migrate TicketAttachment to new class"
+        description=""
+        source="4200"
+        destination="4201"
+        handler="izug.ticketbox.upgrades.to4201.ReindexIcons"
+        profile="izug.ticketbox:default"
+        />
+
 </configure>

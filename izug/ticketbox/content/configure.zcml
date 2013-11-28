@@ -19,4 +19,11 @@
             />
     </class>
 
+    <class class=".attachment.TicketAttachment">
+        <require
+            permission="zope2.View"
+            interface="..interfaces.IAttachment"
+            />
+    </class>
+
 </configure>

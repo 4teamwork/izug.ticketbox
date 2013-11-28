@@ -15,4 +15,9 @@
         permissions="izug.ticketbox: Add Ticket Box"
         />
 
+    <lawgiver:map_permissions
+        action_group="add"
+        permissions="izug.ticketbox: Add Attachment"
+        />
+
 </configure>

@@ -7,7 +7,9 @@ ADD_PERMISSIONS = {
     # -*- extra stuff goes here -*-
     'Ticket': 'izug.ticketbox: Add Ticket',
     'TicketBox': 'izug.ticketbox: Add Ticket Box',
-}
+    'TicketAttachment': 'izug.ticketbox: Add Attachment'
+    }
+
 INDEXES = (('getState', 'FieldIndex'),
             ('getReleases', 'FieldIndex'),
             ('getWatchedRelease', 'FieldIndex'),
