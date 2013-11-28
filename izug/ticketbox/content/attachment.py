@@ -1,15 +1,15 @@
-from Products.ATContentTypes.content.file import ATFile
-from izug.ticketbox.interfaces import IAttachment
-from zope.interface import implements
-from Products.Archetypes import atapi
+from AccessControl import ClassSecurityInfo
 from izug.ticketbox.config import PROJECTNAME
+from izug.ticketbox.interfaces import IAttachment
+from Products.Archetypes import atapi
 from Products.Archetypes.BaseContent import BaseContent
 from Products.ATContentTypes.config import ICONMAP
-from AccessControl import ClassSecurityInfo
+from Products.ATContentTypes.content.file import ATFile
 from Products.CMFCore.utils import getToolByName
 from Products.MimetypesRegistry.common import MimeTypeException
-import logging
 from urllib import quote
+from zope.interface import implements
+import logging
 
 
 class TicketAttachment(ATFile):
@@ -17,7 +17,6 @@ class TicketAttachment(ATFile):
     """
     implements(IAttachment)
     security = ClassSecurityInfo()
-
 
     security.declarePublic('getIcon')
     def getIcon(self, relative_to_portal=0):
@@ -40,7 +39,9 @@ class TicketAttachment(ATFile):
             mimetypeitem = mtr.lookup(contenttype)
         except MimeTypeException, msg:
             LOG = logging.getLogger('ATCT')
-            LOG.error('MimeTypeException for %s. Error is: %s' % (self.absolute_url(), str(msg)))
+            LOG.error('MimeTypeException for {0}. Error is: {1}'.format(
+                self.absolute_url(),
+                str(msg)))
         if not mimetypeitem:
             icon = None
         else:
@@ -53,7 +54,6 @@ class TicketAttachment(ATFile):
                 icon = quote(ICONMAP[contenttype_major])
             else:
                 return BaseContent.getIcon(self, relative_to_portal)
-
 
         if relative_to_portal:
             return icon

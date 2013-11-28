@@ -1,4 +1,3 @@
-from ftw.upgrade import ProgressLogger
 from ftw.upgrade import UpgradeStep
 from izug.ticketbox.content.attachment import TicketAttachment
 import logging
@@ -19,6 +18,6 @@ class UpdateTicketAttachmentClass(UpgradeStep):
             'profile-izug.ticketbox.upgrades:4200')
 
     def migrate_existing_attachments(self):
-        for obj in self.objects({'portal_type':'TicketAttachment'}, "Migrate TicketAttachment class"):
+        query = {'portal_type': 'TicketAttachment'}
+        for obj in self.objects(query, "Migrate TicketAttachment class"):
             self.migrate_class(obj, TicketAttachment)
-        

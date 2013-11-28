@@ -115,5 +115,6 @@ class ITicketReferenceStartupDirectory(Interface):
         """Returns the startup directory path.
         """
 
+
 class IAttachment(Interface):
     """Marker interface for a TicketAttachment"""

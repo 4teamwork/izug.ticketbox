@@ -1,9 +1,9 @@
 from izug.ticketbox.testing import TICKETBOX_INTEGRATION_TESTING
+from plone.app.testing import login, setRoles
+from plone.app.testing import TEST_USER_NAME, TEST_USER_ID
+from Products.CMFCore.utils import getToolByName
 from unittest2 import TestCase
 import os
-from Products.CMFCore.utils import getToolByName
-from plone.app.testing import TEST_USER_NAME, TEST_USER_ID
-from plone.app.testing import login, setRoles
 
 
 class TestGetIcon(TestCase):

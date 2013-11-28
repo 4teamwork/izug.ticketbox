@@ -1,12 +1,12 @@
 from ftw.builder import Builder
 from ftw.builder import create
-from unittest2 import TestCase
 from izug.ticketbox.testing import TICKETBOX_FUNCTIONAL_TESTING
 from izug.ticketbox.tests import helpers
 from plone.app.testing import TEST_USER_NAME, TEST_USER_PASSWORD
 from plone.testing.z2 import Browser
-import transaction
 from StringIO import StringIO
+from unittest2 import TestCase
+import transaction
 
 
 class TestAttachmentCreation(TestCase):
@@ -36,12 +36,18 @@ class TestAttachmentCreation(TestCase):
                         .titled('The Ticket')
                         .within(ticketbox))
 
-        self.browser.open(ticket.absolute_url()+ '/folder_factories')
+        self.browser.open(ticket.absolute_url() + '/folder_factories')
         self.browser.getControl('TicketAttachment').click()
         self.browser.getControl(name='form.button.Add').click()
+
         file_field = self.browser.getControl(name="file_file")
-        file_field.add_file(StringIO('GIF89a\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00\x00\x00'
-                            '\x00!\xf9\x04\x04\x00\x00\x00\x00,\x00\x00\x00\x00\x01\x00'
-                            '\x01\x00\x00\x02\x02\x01\x00;'), 'image/gif', 'peter.gif')
+        file_field.add_file(
+            StringIO('GIF89a\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00\x00\x00'
+                            '\x00!\xf9\x04\x04\x00\x00\x00\x00,\x00\x00\x00'
+                            '\x00\x01\x00\x01\x00\x00\x02\x02\x01\x00;'),
+            'image/gif',
+            'peter.gif')
         self.browser.getControl(name="form.button.save").click()
-        self.assertEqual(self.browser.url, 'http://nohost/plone/the-ticket-box/the-ticket/peter.gif/view')
+        self.assertEqual(
+            self.browser.url,
+            'http://nohost/plone/the-ticket-box/the-ticket/peter.gif/view')
