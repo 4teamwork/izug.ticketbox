@@ -5,7 +5,8 @@ Changelog
 4.5.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add French and English translations.
+  [jone]
 
 
 4.5.7 (2013-11-28)

@@ -12,20 +12,20 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 
 msgid "all_tickets"
-msgstr "Alle Aufträge"
+msgstr "Tous les tâches"
 
 msgid "attachments"
-msgstr "Anhänge"
+msgstr "Pièces jointes"
 
 msgid "info_view"
 msgstr "Info"
 
 msgid "issued_tickets"
-msgstr "Erteilte Aufträge"
+msgstr "Tâches allouées"
 
 msgid "my_tickets"
-msgstr "Meine Aufträge"
+msgstr "Mes tâches"
 
 msgid "overview"
-msgstr "Übersicht"
+msgstr "Sommaire"
 
