@@ -92,7 +92,7 @@ class BaseTicketListingTab(CatalogListingView):
         if getter_name not in box_cache:
             box_cache[getter_name] = {}
 
-            box = self.context.restrictedTraverse(box_path)
+            box = self.context.unrestrictedTraverse(box_path)
             for option in getattr(box, getter_name)():
                 box_cache[getter_name][option['id']] = option['title']
 

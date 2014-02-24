@@ -5,6 +5,9 @@ Changelog
 4.5.8 (unreleased)
 ------------------
 
+- Use unrestrictedTraverse in _get_cached_options_for, since some parents couldn't
+  be accessible for the logged-in user.
+
 - Add French and English translations.
   [jone]
 
