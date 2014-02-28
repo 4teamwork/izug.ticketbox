@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.5.8 (unreleased)
+4.5.8 (2014-02-28)
 ------------------
 
 - Use unrestrictedTraverse in _get_cached_options_for, since some parents couldn't
