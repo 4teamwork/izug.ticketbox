@@ -60,4 +60,8 @@ class TestGetIcon(TestCase):
             )
         #and then we remove it again so we won't find it in the registry.
         self.mtr.manage_delObjects(['image/x-custom-image'])
-        self.assertEqual('plone/image_icon.gif', plonefile.getIcon())
+
+        self.assertIn(plonefile.getIcon(), (
+                'plone/image_icon.gif'  # Plone <= 4.3.2
+                'plone/image_icon.png'  # Plone >= 4.3.3
+                ))
