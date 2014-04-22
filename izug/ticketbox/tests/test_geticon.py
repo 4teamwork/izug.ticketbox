@@ -62,6 +62,6 @@ class TestGetIcon(TestCase):
         self.mtr.manage_delObjects(['image/x-custom-image'])
 
         self.assertIn(plonefile.getIcon(), (
-                'plone/image_icon.gif'  # Plone <= 4.3.2
-                'plone/image_icon.png'  # Plone >= 4.3.3
+                'plone/image_icon.gif',  # Plone <= 4.3.2
+                'plone/image_icon.png',  # Plone >= 4.3.3
                 ))
