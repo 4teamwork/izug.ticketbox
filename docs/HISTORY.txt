@@ -132,7 +132,7 @@ Changelog
 
 - Disable setting default page for TicketBox and Ticket.
   Those typesSelect responsible Manager by default.
-   are not normal folders and setting the default page is therefore not common.
+  are not normal folders and setting the default page is therefore not common.
   [jone]
 
 - Make assignable users configurable on ticketbox level.
