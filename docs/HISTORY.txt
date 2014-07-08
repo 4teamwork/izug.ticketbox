@@ -5,7 +5,8 @@ Changelog
 4.5.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Don't show User which can't add Tickets in assignable users.
+  [tschanzt]
 
 
 4.5.8 (2014-02-28)
