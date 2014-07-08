@@ -1,5 +1,7 @@
 from AccessControl import ClassSecurityInfo
 from AccessControl import getSecurityManager
+from AccessControl.SecurityManagement import newSecurityManager
+from AccessControl.SecurityManagement import setSecurityManager
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
 from Products.Archetypes.atapi import ComputedField, MultiSelectionWidget
@@ -227,15 +229,21 @@ class TicketBox(folder.ATBTreeFolder):
 
         mtool = getToolByName(self, 'portal_membership')
         assignable_userids = self.getAssignableUserIds()
-        sm = getSecurityManager()
 
         for term in vocabulary:
             member = mtool.getMemberById(term.token)
             if member and member.getId() not in assignable_userids:
                 continue
-
-            has_permission = sm.checkPermission('izug.ticketbox: Add Ticket',
-                                                self)
+            user = member.getUser()
+            #We do this the same way plone.api does.
+            #  But can't use plone.api due to a bug.
+            old_security_manager = getSecurityManager()
+            newSecurityManager(self.REQUEST, user)
+            has_permission = user.checkPermission(
+                'izug.ticketbox: Add Ticket',
+                self
+                )
+            setSecurityManager(old_security_manager)
             if member and has_permission:
                 title = term.title
                 if not title:

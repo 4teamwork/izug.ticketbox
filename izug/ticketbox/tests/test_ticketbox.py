@@ -5,6 +5,11 @@ from izug.ticketbox.tests import helpers
 from unittest2 import TestCase
 from zope.component import getMultiAdapter
 from zope.event import notify
+from Products.CMFCore.utils import getToolByName
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import setRoles
+from ftw.builder import create
+from ftw.builder import Builder
 
 def get_ids_and_titles(data):
     """Returns all ids and titles of the dicts within the list data.
@@ -18,8 +23,9 @@ class TestTicketBox(TestCase):
 
     def setUp(self):
         super(TestTicketBox, self).setUp()
-
         self.portal = self.layer['portal']
+        self.wf_tool = getToolByName(self.portal, 'portal_workflow')
+        self.wf_tool.setDefaultChain('simple_publication_workflow')
         helpers.login_as_manager(self.portal)
 
         self.ticketbox = helpers.create_ticketbox(self.portal)
@@ -98,12 +104,12 @@ class TestTicketBox(TestCase):
             self.ticketbox.assignable_users())
 
     def test_make_user_not_assignable(self):
+        setRoles(self.portal, TEST_USER_ID, ['Member'])
         field = self.ticketbox.getField('assignable_user_ids')
         mutator = field.getMutator(self.ticketbox)
 
         self.ticketbox.manage_setLocalRoles(
             'test_user_1_', ['Contributor', 'Reader'])
-
         self.assertIn(
             ('test_user_1_', 'test-user'),
             self.ticketbox.assignable_users())
@@ -119,8 +125,29 @@ class TestTicketBox(TestCase):
             self.ticketbox.assignable_users())
 
     def test_new_user_gets_assignable_automatically(self):
+        user1 = create(Builder('user'))
+        #You should never set localroles on a plonesite but we do it here since
+        # it is our only parent and we do require local roles.
+        self.portal.manage_setLocalRoles(
+            'john.doe', ['Contributor', 'Reader'])
         self.assertIn(
-            ('test_user_1_', 'test-user'),
+            ('john.doe', 'Doe John'),
+            self.ticketbox.assignable_users())
+
+    def test_only_with_add_permission(self):
+        user1 = create(Builder('user'))
+        user2 = create(Builder('user').named('James','Bond'))
+        self.ticketbox.manage_setLocalRoles(
+            user1.id, ['Contributor', 'Reader'])
+        self.ticketbox.manage_setLocalRoles(
+            user2.id, ['Reader'])
+
+        self.assertIn(
+            ('john.doe', 'Doe John'),
+            self.ticketbox.assignable_users())
+
+        self.assertNotIn(
+            ('james.bond', 'Bond James'),
             self.ticketbox.assignable_users())
 
     def test_duplicate_state_ids(self):
