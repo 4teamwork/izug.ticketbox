@@ -1,5 +1,6 @@
 from Products.Five.browser import BrowserView
 from izug.ticketbox import ticketboxMessageFactory as _
+from Products.CMFCore.utils import getToolByName
 
 
 def format_date(date):
@@ -73,11 +74,12 @@ class TicketsExport(BrowserView):
             [field.encode('utf-8') for field in headers]))
 
         # Data
+        pt = getToolByName(self.context, 'portal_transforms')
         for brain in brains:
             row = []
             row.append(brain.getId)
             row.append(brain.Title)
-            row.append(brain.Description)
+            row.append(pt.convertTo('text/plain', brain.Description).getData())
             row.append(self.fullname(brain.Creator))
             row.append(format_date(brain.created))
             row.append(self.fullname(brain.getResponsibleManager))
