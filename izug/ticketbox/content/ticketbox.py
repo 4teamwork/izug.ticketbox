@@ -232,7 +232,9 @@ class TicketBox(folder.ATBTreeFolder):
 
         for term in vocabulary:
             member = mtool.getMemberById(term.token)
-            if member and member.getId() not in assignable_userids:
+            if member is None:
+                continue
+            if member.getId() not in assignable_userids:
                 continue
             user = member.getUser()
             #We do this the same way plone.api does.

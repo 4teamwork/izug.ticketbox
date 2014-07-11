@@ -5,7 +5,8 @@ Changelog
 4.5.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix AttributeError when a user is deleted.
+  [tschanzt]
 
 
 4.5.9 (2014-07-11)
