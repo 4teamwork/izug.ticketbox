@@ -5,6 +5,9 @@ Changelog
 4.5.9 (unreleased)
 ------------------
 
+- Transform description to Text.
+  [tschanzt]
+
 - Don't show User which can't add Tickets in assignable users.
   [tschanzt]
 
