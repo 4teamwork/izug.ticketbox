@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.5.9 (unreleased)
+4.5.9 (2014-07-11)
 ------------------
 
 - Transform description to Text.
