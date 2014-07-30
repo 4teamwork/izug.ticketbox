@@ -5,7 +5,8 @@ Changelog
 4.5.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Reenable document_actions on ticket_view.
+  [tschanzt]
 
 
 4.5.10 (2014-07-11)

@@ -3,10 +3,12 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="izug.ticketbox">
 
-<div metal:fill-slot="main">
-  <div metal:define-macro="body">
-
+<div metal:fill-slot="content-title">
     <metal:block metal:use-macro="here/@@custom_header/macros/header | here/base/macros/header" />
+</div>
+
+<div metal:fill-slot="content-core">
+  <div metal:define-macro="content-core">
 
     <div id="ticket-content">
     <table class="listing vertical">
