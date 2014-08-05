@@ -5,6 +5,9 @@ Changelog
 4.5.11 (unreleased)
 -------------------
 
+- Hide description on ticket_view.
+  [tschanzt]
+
 - Reenable document_actions on ticket_view.
   [tschanzt]
 

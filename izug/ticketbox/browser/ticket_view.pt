@@ -6,6 +6,7 @@
 <div metal:fill-slot="content-title">
     <metal:block metal:use-macro="here/@@custom_header/macros/header | here/base/macros/header" />
 </div>
+<div metal:fill-slot="content-description"></div>
 
 <div metal:fill-slot="content-core">
   <div metal:define-macro="content-core">
