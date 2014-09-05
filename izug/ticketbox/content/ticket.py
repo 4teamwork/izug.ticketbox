@@ -199,6 +199,9 @@ TicketSchema['description'] = atapi.TextField(
                 default=u"Description"),
         rows=30))
 
+
+TicketSchema['title'].accessor = 'getTitle'
+
 schemata.finalizeATCTSchema(TicketSchema, moveDiscussion=False)
 
 
@@ -217,8 +220,7 @@ class Ticket(base.ATCTFolder):
     schema = TicketSchema
 
     def Title(self):
-        title = super(Ticket, self).Title()
-        return '#{} - {}'.format(self.getId(), title)
+        return '#{} - {}'.format(self.getId(), self.getTitle())
 
     def generateNewId(self):
         """generate a new ticket id.
