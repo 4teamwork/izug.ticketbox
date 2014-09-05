@@ -21,6 +21,14 @@ class TicketBoxLayer(PloneSandboxLayer):
                        context=configurationContext)
         z2.installProduct(app, 'Products.DataGridField')
 
+        import collective.lastmodifier
+        xmlconfig.file('configure.zcml', collective.lastmodifier,
+                       context=configurationContext)
+
+        import ftw.activity
+        xmlconfig.file('configure.zcml', ftw.activity,
+                       context=configurationContext)
+
         import ftw.tabbedview
         xmlconfig.file('configure.zcml', ftw.tabbedview,
                        context=configurationContext)
