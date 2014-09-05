@@ -24,174 +24,174 @@ from zope.schema.interfaces import IVocabularyFactory
 
 TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
 
-        #Individual Identifier
-        StringField(
-            name='individualIdentifier',
-            searchable=True,
+    # Individual Identifier
+    StringField(
+        name='individualIdentifier',
+        searchable=True,
 
-            widget=StringWidget(
-                maxlength=7,
-                label=_(u"label_individualIdentifier",
-                        default=u"Individual identifier"),
-                description=_(
-                    u"help_individualIdentifier",
-                    default=u"Enter a individual identifier " +
-                    u"(max 7 positions)"))),
+        widget=StringWidget(
+            maxlength=7,
+            label=_(u"label_individualIdentifier",
+                    default=u"Individual identifier"),
+            description=_(
+                u"help_individualIdentifier",
+                default=u"Enter a individual identifier " +
+                u"(max 7 positions)"))),
 
-        #Available States
-        DataGridField(
-            name='availableStates',
-            searchable=True,
-            allow_empty_rows=False,
+    # Available States
+    DataGridField(
+        name='availableStates',
+        searchable=True,
+        allow_empty_rows=False,
 
-            default=(
-                {'id': '',
-                 'title': "offen",
-                 'show_in_all_tickets': '1',
-                 'show_in_my_tickets': '1',
-                 },
+        default=(
+            {'id': '',
+             'title': "offen",
+             'show_in_all_tickets': '1',
+             'show_in_my_tickets': '1',
+             },
 
-                {'id': '',
-                 'title': "in Bearbeitung",
-                 'show_in_all_tickets': '1',
-                 'show_in_my_tickets': '1',
-                 },
+            {'id': '',
+             'title': "in Bearbeitung",
+             'show_in_all_tickets': '1',
+             'show_in_my_tickets': '1',
+             },
 
-                {'id': '',
-                 'title': "zur\xc3\xbcckgewiesen",
-                 'show_in_all_tickets': '1',
-                 'show_in_my_tickets': '1',
-                 },
+            {'id': '',
+             'title': "zur\xc3\xbcckgewiesen",
+             'show_in_all_tickets': '1',
+             'show_in_my_tickets': '1',
+             },
 
-                {'id': '',
-                 'title': "zum Testen",
-                 'show_in_all_tickets': '1',
-                 'show_in_my_tickets': '1',
-                 },
+            {'id': '',
+             'title': "zum Testen",
+             'show_in_all_tickets': '1',
+             'show_in_my_tickets': '1',
+             },
 
-                {'id': '',
-                 'title': "erledigt",
-                 'show_in_all_tickets': '1',
-                 'show_in_my_tickets': '0',
-                 },
+            {'id': '',
+             'title': "erledigt",
+             'show_in_all_tickets': '1',
+             'show_in_my_tickets': '0',
+             },
 
-                {'id': '',
-                 'title': "verschoben",
-                 'show_in_all_tickets': '1',
-                 'show_in_my_tickets': '1',
-                 },
-                ),
+            {'id': '',
+             'title': "verschoben",
+             'show_in_all_tickets': '1',
+             'show_in_my_tickets': '1',
+             },
+            ),
 
-            columns=("id",
-                     "title",
-                     "show_in_all_tickets",
-                     "show_in_my_tickets"),
+        columns=("id",
+                 "title",
+                 "show_in_all_tickets",
+                 "show_in_my_tickets"),
 
-            widget=DataGridWidget(
-                visible={'view': 'invisible', 'edit': 'visible'},
-                label=_(u"Define states"),
-                description=_(u"add or delete possible state-information"),
+        widget=DataGridWidget(
+            visible={'view': 'invisible', 'edit': 'visible'},
+            label=_(u"Define states"),
+            description=_(u"add or delete possible state-information"),
 
-                columns={
-                    'id': Column(_(u"id")),
-                    'title': Column(_(u"title")),
-                    'show_in_all_tickets': SelectColumn(
-                        _(u"show in 'all tickets'"),
-                        # DatagridFields SelectColumn doesn not behave like an
-                        # archetype field. It always does
-                        # a getattr to get the vocab.
-                        vocabulary="yes_no"),
-                    'show_in_my_tickets': SelectColumn(
-                        _(u"show in 'my tickets'"),
-                        vocabulary="yes_no")})),
+            columns={
+                'id': Column(_(u"id")),
+                'title': Column(_(u"title")),
+                'show_in_all_tickets': SelectColumn(
+                    _(u"show in 'all tickets'"),
+                    # DatagridFields SelectColumn doesn not behave like an
+                    # archetype field. It always does
+                    # a getattr to get the vocab.
+                    vocabulary="yes_no"),
+                'show_in_my_tickets': SelectColumn(
+                    _(u"show in 'my tickets'"),
+                    vocabulary="yes_no")})),
 
-        #Available Releases
-        DataGridField(
-            name='availableReleases',
-            allow_empty_rows=False,
-            columns=('id', 'title'),
+    # Available Releases
+    DataGridField(
+        name='availableReleases',
+        allow_empty_rows=False,
+        columns=('id', 'title'),
 
-            widget=DataGridWidget(
-                visible={'view': 'invisible', 'edit': 'visible'},
-                label=_(u'label_availableReleases',
-                        default=u"Available Releases"),
-                description=_(u'help_avialableReleases',
-                              default=u"Enter the Available Releases " +
-                              u"for this tracker."),
-                column_names=(_(u'Releases_id'), _(u'Releases_title')))),
+        widget=DataGridWidget(
+            visible={'view': 'invisible', 'edit': 'visible'},
+            label=_(u'label_availableReleases',
+                    default=u"Available Releases"),
+            description=_(u'help_avialableReleases',
+                          default=u"Enter the Available Releases " +
+                          u"for this tracker."),
+            column_names=(_(u'Releases_id'), _(u'Releases_title')))),
 
-        #Available Priorities
-        DataGridField(
-            name='availablePriorities',
-            allow_empty_rows=False,
-            columns=('id', 'title'),
+    # Available Priorities
+    DataGridField(
+        name='availablePriorities',
+        allow_empty_rows=False,
+        columns=('id', 'title'),
 
-            widget=DataGridWidget(
-                visible={'view': 'invisible', 'edit': 'visible'},
-                label=_(u'label_availablePriorities',
-                        u"Available priorities"),
-                description=_(u'help_availablePriorities',
-                              default=u"Enter the different type of " +
-                              u"issue severities that should be " +
-                              u"available, one per line."),
-                column_names=(
-                    _(u'Priorities_id'),
-                    _(u'Priorities_title')))),
+        widget=DataGridWidget(
+            visible={'view': 'invisible', 'edit': 'visible'},
+            label=_(u'label_availablePriorities',
+                    u"Available priorities"),
+            description=_(u'help_availablePriorities',
+                          default=u"Enter the different type of " +
+                          u"issue severities that should be " +
+                          u"available, one per line."),
+            column_names=(
+                _(u'Priorities_id'),
+                _(u'Priorities_title')))),
 
-        #Available Areas
-        DataGridField(
-            name='availableAreas',
-            allow_empty_rows=False,
-            columns=('id', 'title'),
+    # Available Areas
+    DataGridField(
+        name='availableAreas',
+        allow_empty_rows=False,
+        columns=('id', 'title'),
 
-            widget=DataGridWidget(
-                visible={'view': 'invisible', 'edit': 'visible'},
-                label=_(u'label_Areas', default=u"Areas"),
-                description=_(u'help_areas',
-                              default=u"Enter the issue topics/areas" +
-                              u" for this tracker."),
-                column_names=(
-                    _(u'Areas_id'),
-                    _(u'Areas_title')))),
+        widget=DataGridWidget(
+            visible={'view': 'invisible', 'edit': 'visible'},
+            label=_(u'label_Areas', default=u"Areas"),
+            description=_(u'help_areas',
+                          default=u"Enter the issue topics/areas" +
+                          u" for this tracker."),
+            column_names=(
+                _(u'Areas_id'),
+                _(u'Areas_title')))),
 
-        #Available Varieties
-        DataGridField(
-            name='availableVarieties',
-            allow_empty_rows=False,
-            columns=('id', 'title'),
+    # Available Varieties
+    DataGridField(
+        name='availableVarieties',
+        allow_empty_rows=False,
+        columns=('id', 'title'),
 
-            widget=DataGridWidget(
-                label=_(u'label_Varieties', default=u"Varieties"),
-                description=_(u'help_varieties',
-                              default=u"Enter the issue varieties for " +
+        widget=DataGridWidget(
+            label=_(u'label_Varieties', default=u"Varieties"),
+            description=_(u'help_varieties',
+                          default=u"Enter the issue varieties for " +
                                   u"this tracker."),
-                column_names=(
-                    _(u'Varieties_id'),
-                    _(u'Varieties_title')))),
+            column_names=(
+                _(u'Varieties_id'),
+                _(u'Varieties_title')))),
 
-        ComputedField(
-            name='assignable_user_ids',
-            mode='wr',
-            accessor='getAssignableUserIds',
-            edit_accessor='getAssignableUserIds',
-            mutator='setAssignableUserIds',
-            vocabulary='unfilteredAssignableUsersVocabulary',
+    ComputedField(
+        name='assignable_user_ids',
+        mode='wr',
+        accessor='getAssignableUserIds',
+        edit_accessor='getAssignableUserIds',
+        mutator='setAssignableUserIds',
+        vocabulary='unfilteredAssignableUsersVocabulary',
 
-            widget=MultiSelectionWidget(
-                format='checkbox',
-                label=_(u'label_assignable_users',
-                        default=u'Assignable users'),
-                description=_(
-                    u'help_assignable_users',
-                    default=u'Select the users which should be assignable. '
-                    'New users are by default searchable.'))),
+        widget=MultiSelectionWidget(
+            format='checkbox',
+            label=_(u'label_assignable_users',
+                    default=u'Assignable users'),
+            description=_(
+                u'help_assignable_users',
+                default=u'Select the users which should be assignable. '
+                'New users are by default searchable.'))),
 
-        LinesField(
-            name='not_assignable_user_ids',
-            widget=MultiSelectionWidget(
-                modes=())),
+    LinesField(
+        name='not_assignable_user_ids',
+        widget=MultiSelectionWidget(
+            modes=())),
 
-        ))
+))
 
 
 schemata.finalizeATCTSchema(
@@ -237,7 +237,7 @@ class TicketBox(folder.ATBTreeFolder):
             if member.getId() not in assignable_userids:
                 continue
             user = member.getUser()
-            #We do this the same way plone.api does.
+            # We do this the same way plone.api does.
             #  But can't use plone.api due to a bug.
             old_security_manager = getSecurityManager()
             newSecurityManager(self.REQUEST, user)
@@ -311,9 +311,9 @@ class TicketBox(folder.ATBTreeFolder):
         contents: yes and no
         """
         return DisplayList((
-                ("1", _(u"yes")),
-                ("0", _(u"no")),
-                ))
+            ("1", _(u"yes")),
+            ("0", _(u"no")),
+        ))
 
     security.declarePublic('canSetDefaultPage')
     def canSetDefaultPage(self):
