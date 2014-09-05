@@ -481,31 +481,31 @@ class Create(Base):
         new_response.type = self.determine_response_type(new_response)
 
         issue_has_changed = False
-        #Unassigned is no member in portal_membership.
-        #So we have to set it manually
+        # Unassigned is no member in portal_membership.
+        # So we have to set it manually
         unassigned = _(u'label_unassigned', default=u'unassigned')
         responsible_after = form.get('responsibleManager', u'')
         if responsible_after != context.getResponsibleManager():
 
-            #get ResponsibleManager and member-infos before changes
+            # get ResponsibleManager and member-infos before changes
             responsible_before = context.getResponsibleManager()
             member_before = self.context.portal_membership.getMemberById(
                 responsible_before)
 
             context.setResponsibleManager(responsible_after)
 
-            #get member-infos after changes
+            # get member-infos after changes
             member_after = self.context.portal_membership.getMemberById(
                 responsible_after)
 
-            #get fullname from member before changes
+            # get fullname from member before changes
             if member_before:
                 before = member_before.getProperty(
                     'fullname', responsible_before)
             else:
                 before = unassigned
 
-            #get fullname from member after changes
+            # get fullname from member after changes
             if member_after:
                 after = member_after.getProperty(
                     'fullname', responsible_after)
@@ -518,7 +518,7 @@ class Create(Base):
                                     before, after)
             issue_has_changed = True
 
-        #Answerdate
+        # Answerdate
         answerdate_after = form.get('answerdate')
         if answerdate_after:
             answerdate_after = DateTime(answerdate_after).strftime(
@@ -584,9 +584,9 @@ class Create(Base):
             # local full path
             filename = attachment.filename
             filename = filename[max(
-                    filename.rfind('/'),
-                    filename.rfind('\\'),
-                    filename.rfind(':')) + 1:]
+                filename.rfind('/'),
+                filename.rfind('\\'),
+                filename.rfind(':')) + 1:]
 
             # File(id, title, file)
             data = File(filename, filename, attachment)
