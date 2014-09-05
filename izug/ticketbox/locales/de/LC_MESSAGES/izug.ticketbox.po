@@ -25,7 +25,7 @@ msgstr "Bereiche"
 
 #: ./izug/ticketbox/content/ticketbox.py:153
 msgid "Areas_title"
-msgstr "Bereichname"
+msgstr "Titel"
 
 msgid "CSV export"
 msgstr "CSV Export"
@@ -247,7 +247,7 @@ msgstr "Typen"
 
 #: ./izug/ticketbox/content/ticketbox.py:168
 msgid "Varieties_title"
-msgstr "Typnamen"
+msgstr "Titel"
 
 #: ./izug/ticketbox/content/ticketbox.py:91
 msgid "add or delete possible state-information"
@@ -361,7 +361,7 @@ msgstr "Wählen Sie den Bereich des Tickets"
 #. Default: "Enter the issue topics/areas for this tracker."
 #: ./izug/ticketbox/content/ticketbox.py:148
 msgid "help_areas"
-msgstr "Geben Sie die Auftragsbereiche der Aufträge dieser Auftragsbox<br>(Beispiel: Hardware, Internet, Grafik/Layout usw.)"
+msgstr "Geben Sie die auswählbaren Optionen an<br>(Beispiel: Direktor/in, Generalsekretär/in usw.)"
 
 #. Default: "Select the users which should be assignable. New users are by default searchable."
 #: ./izug/ticketbox/content/ticketbox.py:182
@@ -416,7 +416,7 @@ msgstr "Definieren Sie welchen Status dieser Auftrag hat"
 #. Default: "Enter the issue varieties for this tracker."
 #: ./izug/ticketbox/content/ticketbox.py:163
 msgid "help_varieties"
-msgstr "Geben Sie die verfügbaren Typen für diese Auftragsbox an<br>(Beispiel: Fehler, Erweiterung)"
+msgstr "Geben Sie die verfügbaren Antwortentwürfe an<br>(Beispiel: Papier BVE, Regierungsrat)"
 
 #. Default: "Select the Variety of the ticket"
 #: ./izug/ticketbox/content/ticket.py:82
@@ -449,7 +449,7 @@ msgstr "Bereich"
 #. Default: "Areas"
 #: ./izug/ticketbox/content/ticketbox.py:147
 msgid "label_Areas"
-msgstr "Bereiche"
+msgstr "Besprechen mit"
 
 #. Default: "Attachments"
 #: ./izug/ticketbox/browser/ticket_view.pt:62
@@ -494,12 +494,12 @@ msgstr "Status:"
 #. Default: "Varieties"
 #: ./izug/ticketbox/content/ticketbox.py:162
 msgid "label_Varieties"
-msgstr "Typen"
+msgstr "Antwortentwürfe"
 
 #. Default: "Variety"
 #: ./izug/ticketbox/browser/ticket_view.pt:42
 msgid "label_Variety"
-msgstr "Typ"
+msgstr "Anwtwortentwurf"
 
 #. Default: "on"
 #: ./izug/ticketbox/browser/response.pt:16
@@ -515,12 +515,12 @@ msgstr "Antwort erbeten bis"
 #. Default: "Area:"
 #: ./izug/ticketbox/browser/notification/ticket.pt:26
 msgid "label_area"
-msgstr "Bereich"
+msgstr "Besprechen mit"
 
 #. Default: "Area"
 #: ./izug/ticketbox/browser/response.py:556
 msgid "label_areas"
-msgstr "Bereich"
+msgstr "Besprechen mit"
 
 #. Default: "Assignable users"
 #: ./izug/ticketbox/content/ticketbox.py:180
@@ -577,7 +577,7 @@ msgstr "Geben Sie hier ihre Antwort ein"
 #. Default: "By area"
 #: ./izug/ticketbox/browser/tabbed/overview.py:137
 msgid "label_heading_by_area"
-msgstr "Nach Bereich"
+msgstr "Nach Besprechen mit"
 
 #. Default: "By release"
 #: ./izug/ticketbox/browser/tabbed/overview.py:125
@@ -601,7 +601,7 @@ msgstr "Nach Status"
 
 #: ./izug/ticketbox/browser/tabbed/overview.py:141
 msgid "label_heading_by_varieties"
-msgstr "Nach Typ"
+msgstr "Nach Antwortentwurf"
 
 #: ./izug/ticketbox/browser/tabbed/overview.py:129
 msgid "label_heading_by_watched_release"

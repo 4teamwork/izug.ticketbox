@@ -45,11 +45,6 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
         allow_empty_rows=False,
 
         default=(
-            {'id': '',
-             'title': "offen",
-             'show_in_all_tickets': '1',
-             'show_in_my_tickets': '1',
-             },
 
             {'id': '',
              'title': "in Bearbeitung",
@@ -58,13 +53,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
              },
 
             {'id': '',
-             'title': "zur\xc3\xbcckgewiesen",
-             'show_in_all_tickets': '1',
-             'show_in_my_tickets': '1',
-             },
-
-            {'id': '',
-             'title': "zum Testen",
+             'title': "zur Unterschrift",
              'show_in_all_tickets': '1',
              'show_in_my_tickets': '1',
              },
@@ -75,12 +64,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
              'show_in_my_tickets': '0',
              },
 
-            {'id': '',
-             'title': "verschoben",
-             'show_in_all_tickets': '1',
-             'show_in_my_tickets': '1',
-             },
-            ),
+        ),
 
         columns=("id",
                  "title",
@@ -112,7 +96,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
         columns=('id', 'title'),
 
         widget=DataGridWidget(
-            visible={'view': 'invisible', 'edit': 'visible'},
+            visible={'view': 'invisible', 'edit': 'invisible'},
             label=_(u'label_availableReleases',
                     default=u"Available Releases"),
             description=_(u'help_avialableReleases',
@@ -120,12 +104,23 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
                           u"for this tracker."),
             column_names=(_(u'Releases_id'), _(u'Releases_title')))),
 
+
     # Available Priorities
     DataGridField(
         name='availablePriorities',
         allow_empty_rows=False,
         columns=('id', 'title'),
+        default=(
 
+            {'id': '',
+             'title': "normal",
+             },
+
+            {'id': '',
+             'title': "hoch",
+             },
+
+        ),
         widget=DataGridWidget(
             visible={'view': 'invisible', 'edit': 'visible'},
             label=_(u'label_availablePriorities',
@@ -178,6 +173,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
         vocabulary='unfilteredAssignableUsersVocabulary',
 
         widget=MultiSelectionWidget(
+            visible={'view': 'invisible', 'edit': 'invisible'},
             format='checkbox',
             label=_(u'label_assignable_users',
                     default=u'Assignable users'),
