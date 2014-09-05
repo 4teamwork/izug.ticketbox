@@ -216,6 +216,10 @@ class Ticket(base.ATCTFolder):
     meta_type = "Ticket"
     schema = TicketSchema
 
+    def Title(self):
+        title = super(Ticket, self).Title()
+        return '#{} - {}'.format(self.getId(), title)
+
     def generateNewId(self):
         """generate a new ticket id.
         get all tickets from parent (ticketbox)
