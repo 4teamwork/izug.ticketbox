@@ -199,6 +199,8 @@ TicketSchema['description'] = atapi.TextField(
                 default=u"Description"),
         rows=30))
 
+TicketSchema['title'].accessor = 'getTitle'
+
 schemata.finalizeATCTSchema(TicketSchema, moveDiscussion=False)
 
 
