@@ -115,6 +115,13 @@
                      Products.Archetypes.interfaces.IObjectEditedEvent"
                 handler=".handlers.move_document_to_reference" />
 
+    <subscriber for=".interfaces.ITicket
+                     Products.Archetypes.interfaces.IObjectInitializedEvent"
+                handler=".handlers.set_workflow_state" />
+
+    <subscriber for=".interfaces.ITicket
+                     Products.Archetypes.interfaces.IObjectEditedEvent"
+                handler=".handlers.set_workflow_state" />
 
     <adapter factory=".references.DefaultTicketReferenceStartupDirectory" />
     <configure zcml:condition="installed ftw.workspace">

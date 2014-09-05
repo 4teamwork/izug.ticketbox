@@ -5,6 +5,8 @@ from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.utils import uniquify_ids
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from zope.component import queryUtility
+from Products.CMFCore.utils import getToolByName
+from DateTime import DateTime
 
 
 def generate_datagrid_column_id(obj, event):
@@ -47,3 +49,20 @@ def move_document_to_reference(obj, event):
         obj.setAttachments(references)
         obj.setAttachment('DELETE_FILE')
         obj.reindexObject()
+
+
+def set_workflow_state(obj, event):
+    mtool = getToolByName(obj, 'portal_membership')
+    current_user = mtool.getAuthenticatedMember().getId()
+    wftool = getToolByName(obj, 'portal_workflow')
+    wf_ids = wftool.getChainFor(obj)
+    state = obj.getClassification()
+    wf_id = wf_ids[0]
+    comment = 'State set to: %s' % state
+    wftool.setStatusOf(wf_id, obj, {'review_state': state,
+                                    'action': state,
+                                    'actor': current_user,
+                                    'time': DateTime(),
+                                    'comments': comment, })
+    wftool = wftool.getWorkflowById(wf_id)
+    wftool.updateRoleMappingsFor(obj)
