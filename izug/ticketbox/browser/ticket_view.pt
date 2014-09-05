@@ -15,12 +15,16 @@
             <td tal:content="structure here/Description" />
         </tr>
         <tr>
+            <th i18n:translate='label_client'>Client</th>
+            <td tal:content="structure context/getClient" />
+        </tr>
+        <tr>
             <th i18n:translate='label_submitter'>Submitter</th>
             <td tal:content="view/get_crator" />
         </tr>
         <tr>
             <th i18n:translate='label_submitted'>Submitted at</th>
-            <td tal:content="view/getCreationDate" />
+            <td tal:content="python: context.getSubmissionDate().strftime('%d.%m.%Y %H:%M')" />
         </tr>
         <tr tal:condition="python: context.getDueDate()">
             <th i18n:translate='label_duedate'>Due Date</th>
@@ -35,20 +39,16 @@
             <td tal:content="view/map_priority"/>
         </tr>
         <tr>
+            <th i18n:translate='label_classification'>Classification</th>
+            <td><metal:field use-macro="python:context.widget('classification', mode='view')">classified</metal:field></td>
+        </tr>
+        <tr>
             <th i18n:translate='label_Area'>Area</th>
             <td tal:content="view/map_area" />
         </tr>
         <tr>
             <th i18n:translate='label_Variety'>Variety</th>
             <td tal:content="view/map_variety" />
-        </tr>
-        <tr>
-            <th i18n:translate='label_Releases'>Release</th>
-            <td tal:content="view/map_release" />
-        </tr>
-        <tr>
-            <th i18n:translate='label_watched_in_release'>Watched in release</th>
-            <td tal:content="view/map_watched_release" />
         </tr>
         <tr>
             <th i18n:translate='label_ResponsibleManager'>responsible Manager</th>

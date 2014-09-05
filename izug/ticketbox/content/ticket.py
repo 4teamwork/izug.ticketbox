@@ -25,8 +25,34 @@ from zope.component import getUtility
 from zope.component import getMultiAdapter
 from Products.Archetypes import atapi
 from Products.CMFCore.permissions import ManagePortal
+from Products.CMFCore.utils import getToolByName
+from Products.Archetypes.utils import DisplayList
+
 
 TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
+
+    atapi.TextField(
+        name='client',
+        widget=atapi.TextAreaWidget(
+            label=_(u"label_client", default=u"Client"),
+            description=_(u"help_client",
+                          default=u"Name, Address, Phone or E-Mail"),
+        ),
+        default_content_type='text/plain',
+        allowable_content_types=('text/plain',),
+        default_output_type='text/html',
+    ),
+
+    DateTimeField(
+        name='submissionDate',
+        default_method=DateTime,
+        required=True,
+        validators=('isValidDate'),
+        widget=CalendarWidget(
+            label=_(u"label_submision_date", default=u"Submission Date"),
+            description=_(u"help_submission_date", default=u""),
+        ),
+    ),
 
     # Due-Date (default: x + 14 days)
     DateTimeField(
@@ -36,8 +62,8 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         validators=('isValidDate'),
         widget=CalendarWidget(
             label=_(u"label_duedate", default=u"Due Date"),
-            description=_(u"help_duedate",
-                          default=u"Due-date of the ticket"))),
+        ),
+    ),
 
     # State
     StringField(
@@ -61,6 +87,15 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             description=_(u"help_priority",
                           default=u"Select the Priority"))),
 
+    StringField(
+        name='classification',
+        vocabulary='getAvailableWorkflowStates',
+        required=True,
+        widget=SelectionWidget(
+            label=_(u"label_classification", default=u"Classification"),
+        ),
+    ),
+
     # Area
     StringField(
         name='area',
@@ -69,8 +104,8 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             condition='python:here.has_items("ticketbox_values_areas")',
             format="select",
             label=_(u"label_select_area", default=u'Select Area'),
-            description=_(u'help_area',
-                          default=u'Select the Area of the ticket'))),
+        ),
+    ),
 
     # Variety
     StringField(
@@ -130,8 +165,8 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         widget=CalendarWidget(
             label=_(u'label_AnswerDate',
                     default=u"Answer Date"),
-            description=_(u'help_answerdated',
-                          default=u"Answer-date of the ticket"))),
+            ),
+    ),
 
     # Attachment
     FileField(
@@ -188,16 +223,14 @@ TicketSchema['description'] = atapi.TextField(
     # Keep the original storage for backwards compatiblity:
     storage=TicketSchema['description'].storage,
 
-    default_content_type='text/html',
-    allowable_content_types=('text/html',),
-    validators=('isTidyHtmlWithCleanup', ),
-    default_output_type='text/x-html-safe',
-    default_input_type='text/html',
+    default_content_type='text/plain',  # text/x-web-intelligent
+    allowable_content_types=('text/plain'),
+    default_output_type='text/html',
 
-    widget = atapi.RichWidget(
+    widget = atapi.TextAreaWidget(
         label=_(u"label_description",
                 default=u"Description"),
-        rows=30))
+        rows=7))
 
 TicketSchema['title'].accessor = 'getTitle'
 
@@ -289,5 +322,16 @@ class Ticket(base.ATCTFolder):
         getter = getMultiAdapter((self, self.REQUEST),
                                  ITicketReferenceStartupDirectory)
         return getter.get()
+
+    def getAvailableWorkflowStates(self):
+        """Returns a list with all available workflow states for this object.
+        """
+        wftool = getToolByName(self, 'portal_workflow')
+        wf_ids = wftool.getChainFor(self)
+        wf = wftool.getWorkflowById(wf_ids[0])
+        wf_states = DisplayList()
+        for wf_state_id, wf_state in wf.states.objectItems():
+            wf_states.add(wf_state_id, wf_state.title)
+        return wf_states
 
 registerType(Ticket, PROJECTNAME)
