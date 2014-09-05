@@ -102,4 +102,13 @@
         <permission value="View"/>
     </action>
 
+    <action action_id="activity"
+            visible="True"
+            url_expr="string:${object_url}#activity"
+            title="Activity"
+            category="tabbedview-tabs"
+            condition_expr="">
+        <permission value="View"/>
+    </action>
+
 </object>

@@ -34,6 +34,9 @@ class TicketboxesTabbedView(TabbedView):
 
             {'id': _('global-my_issued_tickets'),
              'class': ''},
+
+            {'id': 'activity',
+             'class': ''},
             )
 
 
