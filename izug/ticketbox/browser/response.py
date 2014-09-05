@@ -475,7 +475,6 @@ class Create(Base):
     def __call__(self):
         form = self.request.form
         context = aq_inner(self.context)
-        modifiedDate = context.modified()
         response_text = form.get('response', u'')
         new_response = Response(response_text)
         new_response.mimetype = self.mimetype
@@ -654,7 +653,6 @@ class Create(Base):
             # this must be the last modifying access
             context.reindexObject()
             self.folder.add(new_response)
-            context.setModificationDate(modifiedDate)
             catalog_tool.catalog_object(context,
                                         '/'.join(context.getPhysicalPath()))
         if form.get('sendNotification', None):
