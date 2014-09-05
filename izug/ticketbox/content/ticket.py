@@ -1,5 +1,6 @@
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_parent
+from Acquisition import aq_inner
 from borg.localrole.interfaces import IFactoryTempFolder
 from DateTime import DateTime
 from izug.ticketbox import ticketboxMessageFactory as _
@@ -214,6 +215,20 @@ class Ticket(base.ATCTFolder):
     security = ClassSecurityInfo()
     meta_type = "Ticket"
     schema = TicketSchema
+
+    def Title(self):
+        ticketbox = aq_parent(aq_inner(self))
+        if ticketbox:
+            identifier = ticketbox.getIndividualIdentifier()
+        else:
+            identifier = '-'
+        year = self.created().strftime('%Y')
+
+        return '{}/{}/{} {}'.format(
+            identifier,
+            year,
+            self.getId(),
+            self.getTitle())
 
     def generateNewId(self):
         """generate a new ticket id.
