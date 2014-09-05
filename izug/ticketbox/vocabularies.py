@@ -1,4 +1,4 @@
-from Acquisition import aq_parent
+from izug.ticketbox.utils import find_ticketbox
 from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary
@@ -12,7 +12,7 @@ class TicketBoxVocabulary(object):
         self.field = field
 
     def __call__(self, context):
-        tracker = aq_parent(context)
+        tracker = find_ticketbox(context)
         myField = tracker.getField(self.field)
         result = []
         for item in myField.get(tracker):

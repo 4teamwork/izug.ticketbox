@@ -6,6 +6,10 @@
       <role name="Manager" />
       <role name="Contributor" />
     </permission>
+    <permission name="izug.ticketbox: Add SubTicket" acquire="False">
+      <role name="Manager" />
+      <role name="Contributor" />
+    </permission>
     <permission name="izug.ticketbox: Add Ticket Box" acquire="False">
       <role name="Manager" />
       <role name="Contributor" />

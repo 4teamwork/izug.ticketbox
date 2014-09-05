@@ -10,6 +10,8 @@
   <!-- -*- extra stuff goes here -*- -->
   <object name="Ticket"
     meta_type="Factory-based Type Information with dynamic views" />
+  <object name="SubTicket"
+    meta_type="Factory-based Type Information with dynamic views" />
   <object name="Ticket Box"
     meta_type="Factory-based Type Information with dynamic views" />
   <object name="TicketAttachment"

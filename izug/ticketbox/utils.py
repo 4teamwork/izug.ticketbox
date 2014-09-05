@@ -1,4 +1,8 @@
+from Acquisition import aq_inner
+from Acquisition import aq_parent
+from izug.ticketbox.interfaces import ITicketBox
 from plone.i18n.normalizer.interfaces import IIDNormalizer
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from zope.component import queryUtility
 
 
@@ -43,3 +47,11 @@ def create_uniqe_id(title, existing_ids):
         id_ = '%s-%i' % (base_id, index)
 
     return id_
+
+
+def find_ticketbox(ticket):
+    obj = ticket
+    while not IPloneSiteRoot.providedBy(ticket):
+        if ITicketBox.providedBy(obj):
+            return obj
+        obj = aq_parent(aq_inner(obj))

@@ -6,6 +6,7 @@ PROJECTNAME = 'izug.ticketbox'
 ADD_PERMISSIONS = {
     # -*- extra stuff goes here -*-
     'Ticket': 'izug.ticketbox: Add Ticket',
+    'SubTicket': 'izug.ticketbox: Add SubTicket',
     'TicketBox': 'izug.ticketbox: Add Ticket Box',
     'TicketAttachment': 'izug.ticketbox: Add Attachment'
     }

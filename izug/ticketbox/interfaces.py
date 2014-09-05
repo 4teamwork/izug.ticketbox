@@ -18,6 +18,10 @@ class ITicket(Interface):
     """A ticket for the Ticketbox"""
 
 
+class ISubTicket(Interface):
+    """A ticket for the Ticketbox"""
+
+
 class IResponseContainer(Interface):
     """holds the responses for a ticket"""
     pass

@@ -12,6 +12,12 @@
             interface="..interfaces.ITicket"
             />
     </class>
+    <class class=".subticket.SubTicket">
+        <require
+            permission="zope2.View"
+            interface="..interfaces.ISubTicket"
+            />
+    </class>
     <class class=".ticketbox.TicketBox">
         <require
             permission="zope2.View"
