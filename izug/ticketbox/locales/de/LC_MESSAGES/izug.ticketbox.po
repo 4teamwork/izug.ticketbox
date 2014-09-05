@@ -221,7 +221,7 @@ msgstr "Status"
 
 #: ./izug/ticketbox/profiles/default/types/SubTicket.xml
 msgid "SubTicket"
-msgstr "Unteraufgabe"
+msgstr "Unterauftrag"
 
 #: ./izug/ticketbox/profiles/default/types/Ticket.xml
 msgid "Ticket"
