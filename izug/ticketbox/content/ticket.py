@@ -261,7 +261,7 @@ class Ticket(base.ATCTFolder):
             identifier = ticketbox.getIndividualIdentifier()
         else:
             identifier = '-'
-        year = self.created().strftime('%Y')
+        year = self.getSubmissionDate().strftime('%Y')
         return '/'.join((identifier, year, self.getId()))
 
     def SearchableText(self, *args, **kwargs):
