@@ -93,6 +93,15 @@
         <permission value="View"/>
     </action>
 
+    <action action_id="issued_subtickets"
+            visible="True"
+            url_expr="string:${object_url}#issued_subtickets"
+            title="My issued subtickets"
+            category="tabbedview-tabs"
+            condition_expr="">
+        <permission value="View"/>
+    </action>
+
     <action action_id="attachments"
             visible="True"
             url_expr="string:${object_url}#attachments"

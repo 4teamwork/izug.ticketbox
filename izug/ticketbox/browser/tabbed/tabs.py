@@ -62,6 +62,8 @@ class MyIssuedTicketsTab(BaseTicketListingTab):
     """Tab listing all tickets where the current user is the creator.
     """
 
+    types = ['Ticket']
+
     def get_base_query(self):
         query = super(MyIssuedTicketsTab, self).get_base_query()
 
@@ -73,6 +75,11 @@ class MyIssuedTicketsTab(BaseTicketListingTab):
                              if state['show_in_my_tickets'] == '1']
 
         return query
+
+
+class MyIssuedSubTicketsTab(BaseTicketListingTab):
+
+    types = ['SubTicket']
 
 
 class AttachmentsTab(CatalogListingView):

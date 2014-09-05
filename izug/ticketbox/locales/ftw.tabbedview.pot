@@ -35,3 +35,6 @@ msgstr ""
 
 msgid "issued_tickets"
 msgstr ""
+
+msgid "issued_subtickets"
+msgstr ""

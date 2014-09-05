@@ -20,6 +20,9 @@ msgstr "Anhänge"
 msgid "info_view"
 msgstr "Info"
 
+msgid "issued_subtickets"
+msgstr "Delegierte Aufträge"
+
 msgid "issued_tickets"
 msgstr "Erteilte Aufträge"
 
@@ -28,5 +31,3 @@ msgstr "Meine Aufträge"
 
 msgid "overview"
 msgstr "Übersicht"
-
-
