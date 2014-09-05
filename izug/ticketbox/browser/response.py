@@ -29,7 +29,7 @@ class Base(BrowserView):
         self.context = context
         self.request = request
         self.folder = IResponseContainer(context)
-        self.mimetype = DEFAULT_ISSUE_MIME_TYPE
+        self.mimetype = 'text/plain'
         self.use_wysiwyg = (self.mimetype == 'text/html')
 
     def responses(self):

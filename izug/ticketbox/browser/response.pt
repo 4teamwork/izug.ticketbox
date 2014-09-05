@@ -151,7 +151,7 @@
 
                                 <textarea
                                     tal:condition="not:view/use_wysiwyg"
-                                    cols="40" rows="15" name="response" id="response"></textarea>
+                                    cols="40" rows="7" name="response" id="response"></textarea>
 
                             </div>
 
@@ -230,113 +230,6 @@
                                                             selected option/checked;" />
                                 </tal:options>
                             </select>
-                        </div>
-
-                        <!-- dropdown for area -->
-                        <div class="field"
-                             tal:condition="view/multiple_areas">
-                            <label for="area"
-                                   i18n:translate="Response_label_new_areas">
-                                Change issue areas
-                            </label>
-
-                            <div class="formHelp" id="area_help"
-                                 i18n:translate="Response_help_new_area">
-                                Select the area for this issue
-                            </div>
-
-
-                            <select name="area">
-                                <tal:options
-                                    repeat="option view/areas_for_display">
-                                    <option value="" id=""
-                                            tal:content="option/label"
-                                            tal:attributes="value option/value;
-                                                            id option/value;
-                                                            selected option/checked;" />
-                                </tal:options>
-                            </select>
-                        </div>
-
-                        <!-- dropdown for variety -->
-                        <div class="field"
-                             tal:condition="view/multiple_varieties">
-                            <label for="variety"
-                                   i18n:translate="Response_label_new_varieties">
-                                Change issue variety
-                            </label>
-
-                            <div class="formHelp" id="variety_help"
-                                 i18n:translate="Response_help_new_variety">
-                                Select the variety for this issue
-                            </div>
-
-
-                            <select name="variety">
-                                <tal:options
-                                    repeat="option view/varieties_for_display">
-                                    <option value="" id=""
-                                            tal:content="option/label"
-                                            tal:attributes="value option/value;
-                                                            id option/value;
-                                                            selected option/checked;" />
-                                </tal:options>
-                            </select>
-                        </div>
-
-
-                        <!-- dropdown for releases -->
-                        <div class="field"
-                             tal:condition="view/show_target_releases">
-                            <label for="releases"
-                                   i18n:translate="Response_label_newTargetRelease">
-                                Change target release
-                            </label>
-
-                            <div class="formHelp" id="newTargetRelease_help"
-                                 i18n:translate="Response_help_newTargetRelease">
-                                Set the target release for this issue
-                            </div>
-
-
-                            <select name="releases">
-                                <tal:options
-                                    repeat="option view/releases_for_display">
-                                    <option value="" id=""
-                                            tal:content="option/label"
-                                            tal:attributes="value option/value;
-                                                            id option/value;
-                                                            selected option/checked;" />
-                                </tal:options>
-                            </select>
-
-                        </div>
-
-                        <!-- dropdown for watched releases -->
-                        <div class="field"
-                             tal:condition="view/show_watched_releases">
-                            <label for="watchedRelease"
-                                   i18n:translate="Response_label_newWatchedRelease">
-                                Change watched in release
-                            </label>
-
-                            <div class="formHelp" id="newWatchedRelease_help"
-                                 i18n:translate="Response_help_newWatchedRelease">
-                                Set watched in release for this issue
-                            </div>
-
-
-                            <select name="watchedRelease">
-                                <tal:options
-                                    repeat="option view/watched_releases_for_display">
-                                    <option value="" id=""
-                                            tal:content="option/label"
-                                            tal:attributes="value option/value;
-                                                            id option/value;
-                                                            selected option/checked;" />
-                                </tal:options>
-                            </select>
-
                         </div>
 
                         <!-- Answerdate -->
