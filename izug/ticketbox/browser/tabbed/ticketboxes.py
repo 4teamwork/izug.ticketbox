@@ -62,14 +62,6 @@ class GlobalTicketboxesTab(CatalogListingView):
          'transform': helper.readable_author},
         )
 
-    def get_base_query(self):
-        site = getToolByName(self.context, 'portal_url').getPortalObject()
-        site_path = '/'.join(site.getPhysicalPath())
-
-        query = super(GlobalTicketboxesTab, self).get_base_query()
-        query['path']['query'] = site_path
-        return query
-
 
 class GlobalTicketTabBase(BaseTicketListingTab):
 
@@ -80,14 +72,6 @@ class GlobalTicketTabBase(BaseTicketListingTab):
                         'column_title': _(u'Ticket Box'),
                         'transform': link_to_parent})
         return tuple(columns)
-
-    def get_base_query(self):
-        site = getToolByName(self.context, 'portal_url').getPortalObject()
-        site_path = '/'.join(site.getPhysicalPath())
-
-        query = super(GlobalTicketTabBase, self).get_base_query()
-        query['path']['query'] = site_path
-        return query
 
     def _get_ticketbox_path_for(self, item):
         path = item.getPath()
