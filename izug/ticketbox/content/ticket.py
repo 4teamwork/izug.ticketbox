@@ -27,156 +27,155 @@ from Products.CMFCore.permissions import ManagePortal
 
 TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
 
-        #Due-Date (default: x + 14 days)
-        DateTimeField(
-            name='dueDate',
-            default_method='default_due_date',
-            required=True,
-            validators=('isValidDate'),
-            widget=CalendarWidget(
-                label=_(u"label_duedate", default=u"Due Date"),
-                description=_(u"help_duedate",
-                              default=u"Due-date of the ticket"))),
+    # Due-Date (default: x + 14 days)
+    DateTimeField(
+        name='dueDate',
+        default_method='default_due_date',
+        required=True,
+        validators=('isValidDate'),
+        widget=CalendarWidget(
+            label=_(u"label_duedate", default=u"Due Date"),
+            description=_(u"help_duedate",
+                          default=u"Due-date of the ticket"))),
 
-        #State
-        StringField(
-            name='state',
-            vocabulary_factory='ticketbox_values_states',
-            widget=SelectionWidget(
-                format="select",
-                label=_(u"label_state", default=u"State"),
-                description=_(u"help_state",
-                              default=u"Define Which State the Ticket has"))),
+    # State
+    StringField(
+        name='state',
+        vocabulary_factory='ticketbox_values_states',
+        widget=SelectionWidget(
+            format="select",
+            label=_(u"label_state", default=u"State"),
+            description=_(u"help_state",
+                          default=u"Define Which State the Ticket has"))),
 
-        #Priority
-        StringField(
-            name='priority',
-            vocabulary_factory='ticketbox_values_priorities',
-            widget=SelectionWidget(
-                condition='python:here.has_items("ticketbox_values_priorities")',
-                format="select",
-                label=_(u"label_select_priority",
-                        default=u"Select Priority"),
-                description=_(u"help_priority",
-                              default=u"Select the Priority"))),
+    # Priority
+    StringField(
+        name='priority',
+        vocabulary_factory='ticketbox_values_priorities',
+        widget=SelectionWidget(
+            condition='python:here.has_items("ticketbox_values_priorities")',
+            format="select",
+            label=_(u"label_select_priority",
+                    default=u"Select Priority"),
+            description=_(u"help_priority",
+                          default=u"Select the Priority"))),
 
-        #Area
-        StringField(
-            name='area',
-            vocabulary_factory='ticketbox_values_areas',
-            widget=SelectionWidget(
-                condition='python:here.has_items("ticketbox_values_areas")',
-                format="select",
-                label=_(u"label_select_area", default=u'Select Area'),
-                description=_(u'help_area',
-                              default=u'Select the Area of the ticket'))),
+    # Area
+    StringField(
+        name='area',
+        vocabulary_factory='ticketbox_values_areas',
+        widget=SelectionWidget(
+            condition='python:here.has_items("ticketbox_values_areas")',
+            format="select",
+            label=_(u"label_select_area", default=u'Select Area'),
+            description=_(u'help_area',
+                          default=u'Select the Area of the ticket'))),
 
-        #Variety
-        StringField(name='variety',
-                    vocabulary_factory='ticketbox_values_varieties',
+    # Variety
+    StringField(
+        name='variety',
+        vocabulary_factory='ticketbox_values_varieties',
+        widget=SelectionWidget(
+            condition='python:here.has_items("ticketbox_values_varieties")',
+            label=_(u"label_select_variety",
+                    default=u'Select Variety'),
+            description=_(
+                u'help_variety',
+                default=u'Select the Variety of the ticket'),
+            format="select")),
 
-                    widget=SelectionWidget(
-                condition='python:here.has_items("ticketbox_values_varieties")',
-                label=_(u"label_select_variety",
-                        default=u'Select Variety'),
-                description=_(
-                    u'help_variety',
-                    default=u'Select the Variety of the ticket'),
-                format="select")),
+    # Releases
+    # XXX: RENAME TO RELEASE
+    StringField(
+        name='releases',
+        vocabulary_factory='ticketbox_values_releases',
+        widget=SelectionWidget(
+            condition='python:here.has_items("ticketbox_values_releases")',
+            format="select",
+            label=_(u'label_select_release', default=u'Select Release'),
+            description=_(u'help_release',
+                          default=u'Select the Release of the ticket'))),
 
-        #Releases
-        # XXX: RENAME TO RELEASE
-        StringField(
-            name='releases',
-            vocabulary_factory='ticketbox_values_releases',
-            widget=SelectionWidget(
-                condition='python:here.has_items("ticketbox_values_releases")',
-                format="select",
-                label=_(u'label_select_release', default=u'Select Release'),
-                description=_(u'help_release',
-                              default=u'Select the Release of the ticket'))),
+    # Watched in release
+    StringField(
+        name='watchedRelease',
+        vocabulary_factory='ticketbox_values_releases',
+        widget=SelectionWidget(
+            condition='python:here.has_items("ticketbox_values_releases")',
+            format="select",
+            label=_(u'label_select_watchedRelease',
+                    default=u'Select watched in release'),
+            description=_(
+                u'help_watchedRelease',
+                default=u'Select in which release you watched it'))),
 
-        #Watched in release
-        StringField(
-            name='watchedRelease',
-            vocabulary_factory='ticketbox_values_releases',
-            widget=SelectionWidget(
-                condition='python:here.has_items("ticketbox_values_releases")',
-                format="select",
-                label=_(u'label_select_watchedRelease',
-                        default=u'Select watched in release'),
-                description=_(
-                    u'help_watchedRelease',
-                    default=u'Select in which release you watched it'))),
+    # Responsible
+    StringField(
+        name='responsibleManager',
+        index="FieldIndex:schema",
+        vocabulary='assignable_users',
+        widget=SelectionWidget(
+            format="select",
+            label=_(u'label_Responsible',
+                    default=u"Responsible"),
+            description=_(u'help_responsible',
+                          default=u"Select which manager, if any," +
+                          " is responsible for this issue."))),
 
-        #Responsible
-        StringField(
-            name='responsibleManager',
-            index="FieldIndex:schema",
-            vocabulary='assignable_users',
-            widget=SelectionWidget(
-                format="select",
-                label=_(u'label_Responsible',
-                        default=u"Responsible"),
-                description=_(u'help_responsible',
-                              default=u"Select which manager, if any," +
-                              " is responsible for this issue."))),
+    # Answer-date (default: x + 14 days)
+    DateTimeField(
+        name='answerDate',
+        default_method='default_answer_date',
+        widget=CalendarWidget(
+            label=_(u'label_AnswerDate',
+                    default=u"Answer Date"),
+            description=_(u'help_answerdated',
+                          default=u"Answer-date of the ticket"))),
 
-        #Answer-date (default: x + 14 days)
-        DateTimeField(
-            name='answerDate',
-            default_method='default_answer_date',
-            widget=CalendarWidget(
-                label=_(u'label_AnswerDate',
-                        default=u"Answer Date"),
-                description=_(u'help_answerdated',
-                              default=u"Answer-date of the ticket"))),
+    # Attachment
+    FileField(
+        name='attachment',
+        storage=AttributeStorage(),
+        widget=FileWidget(
+            label=_(u'label_attachment', default=u"Attachment"),
+            description=_(
+                u'help_attachment',
+                default=u"You may optionally upload a file attachment. " +
+                "Please do not upload unnecessarily large files."))),
 
-        #Attachment
-        FileField(
-            name='attachment',
-            storage=AttributeStorage(),
-            widget=FileWidget(
-                label=_(u'label_attachment', default=u"Attachment"),
-                description=_(
-                    u'help_attachment',
-                    default=u"You may optionally upload a file attachment. " +
-                    "Please do not upload unnecessarily large files."))),
+    # References for Atachments
+    ReferenceField(
+        name='attachments',
+        allowed_types=('TicketAttachment'),
+        multiValued=1,
+        schemata='default',
+        relationship='TicketAttachment',
 
-        #References for Atachments
-        ReferenceField(
-            name='attachments',
-            allowed_types=('TicketAttachment'),
-            multiValued=1,
-            schemata='default',
-            relationship='TicketAttachment',
+        widget=ReferenceBrowserWidget(
+            label=_(u'label_attachments', default=u"Attachments"),
+            allow_browse=True,
+            show_results_without_query=True,
+            restrict_browsing_to_startup_directory=True,
+            base_query={
+                "portal_type": "TicketAttachment",
+                "sort_on": "sortable_title"},
+            visible={'view': 'visible', 'edit': 'invisible'})),
 
-            widget=ReferenceBrowserWidget(
-                label=_(u'label_attachments', default=u"Attachments"),
-                allow_browse=True,
-                show_results_without_query=True,
-                restrict_browsing_to_startup_directory=True,
-                base_query={
-                    "portal_type": "TicketAttachment",
-                    "sort_on": "sortable_title"},
-                visible={'view': 'visible', 'edit': 'invisible'})),
+    # References
+    ReferenceField(
+        name='ticketReferences',
+        multiValued=1,
+        schemata='default',
+        relationship='TicketBox',
 
-        #References
-        ReferenceField(
-            name='ticketReferences',
-            multiValued=1,
-            schemata='default',
-            relationship='TicketBox',
+        widget=ReferenceBrowserWidget(
+            label=_(u'label_references', default=u"References"),
+            allow_browse=True,
+            show_results_without_query=False,
+            restrict_browsing_to_startup_directory=False,
+            startup_directory_method='getReferenceStartupDirectory')),
 
-            widget=ReferenceBrowserWidget(
-                label=_(u'label_references', default=u"References"),
-                allow_browse=True,
-                show_results_without_query=False,
-                restrict_browsing_to_startup_directory=False,
-                startup_directory_method='getReferenceStartupDirectory')),
-
-        ))
-
+    ))
 
 
 TicketSchema['description'] = atapi.TextField(
@@ -199,9 +198,6 @@ TicketSchema['description'] = atapi.TextField(
                 default=u"Description"),
         rows=30))
 
-
-TicketSchema['title'].accessor = 'getTitle'
-
 schemata.finalizeATCTSchema(TicketSchema, moveDiscussion=False)
 
 
@@ -218,9 +214,6 @@ class Ticket(base.ATCTFolder):
     security = ClassSecurityInfo()
     meta_type = "Ticket"
     schema = TicketSchema
-
-    def Title(self):
-        return '#{} - {}'.format(self.getId(), self.getTitle())
 
     def generateNewId(self):
         """generate a new ticket id.
@@ -257,6 +250,7 @@ class Ticket(base.ATCTFolder):
         return aq_parent(self).assignable_users()
 
     security.declarePublic('canSetDefaultPage')
+
     def canSetDefaultPage(self):
         return False
 
@@ -270,6 +264,7 @@ class Ticket(base.ATCTFolder):
         return len([term for term in factory(obj) if term.value])
 
     security.declarePrivate('getReferenceStartupDirectory')
+
     def getReferenceStartupDirectory(self):
         getter = getMultiAdapter((self, self.REQUEST),
                                  ITicketReferenceStartupDirectory)
