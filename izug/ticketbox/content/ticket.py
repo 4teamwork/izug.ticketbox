@@ -219,18 +219,21 @@ class Ticket(base.ATCTFolder):
     schema = TicketSchema
 
     def Title(self):
+        return ' '.join((self.ticketIdentifier(), self.getTitle()))
+
+    def ticketIdentifier(self):
         ticketbox = aq_parent(aq_inner(self))
         if ticketbox:
             identifier = ticketbox.getIndividualIdentifier()
         else:
             identifier = '-'
         year = self.created().strftime('%Y')
+        return '/'.join((identifier, year, self.getId()))
 
-        return '{}/{}/{} {}'.format(
-            identifier,
-            year,
-            self.getId(),
-            self.getTitle())
+    def SearchableText(self, *args, **kwargs):
+        return ' '.join((
+                self.ticketIdentifier(),
+                super(Ticket, self).SearchableText(*args, **kwargs)))
 
     def generateNewId(self):
         """generate a new ticket id.
