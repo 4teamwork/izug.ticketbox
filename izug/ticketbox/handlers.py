@@ -66,3 +66,4 @@ def set_workflow_state(obj, event):
                                     'comments': comment, })
     wftool = wftool.getWorkflowById(wf_id)
     wftool.updateRoleMappingsFor(obj)
+    obj.reindexObjectSecurity()
