@@ -2,6 +2,24 @@
 <object name="portal_javascripts" meta_type="JavaScripts Registry">
 
     <javascript
+        id="++resource++izug.ticketbox.select2/select2.js"
+        enabled="1"
+        cacheable="True"
+        compression="safe"
+        cookable="True"
+        expression=""
+        />
+
+    <javascript
+        id="++resource++izug.ticketbox.javascripts/ticketresponse.js"
+        enabled="1"
+        cacheable="True"
+        compression="safe"
+        cookable="True"
+        expression=""
+        />
+
+    <javascript
         id="++resource++izug.ticketbox.javascripts/overview.js"
         enabled="1"
         cacheable="True"

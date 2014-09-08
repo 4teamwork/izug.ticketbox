@@ -22,6 +22,11 @@
         directory="javascripts"
         />
 
+    <browser:resourceDirectory
+        name="izug.ticketbox.select2"
+        directory="select2-3.5.1"
+        />
+
     <browser:page
         name="ticket_view"
         for="izug.ticketbox.interfaces.ITicket"
