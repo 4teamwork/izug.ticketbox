@@ -35,7 +35,6 @@
         for="izug.ticketbox.interfaces.ITicketBox"
         permission="zope2.View"
         class=".ticket_export.TicketsExport"
-        template="ticket_view.pt"
         />
 
     <browser:page

@@ -6,6 +6,7 @@ from DateTime import DateTime
 class TicketView(BrowserView):
 
     template = ViewPageTemplateFile('ticket_view.pt')
+    ticket_body_template = ViewPageTemplateFile('ticket_body.pt')
 
     # HELPER Methods for ftw.table generator
     def map_state(self):

@@ -2,6 +2,7 @@ from ftw.tabbedview.browser.listing import CatalogListingView
 from ftw.table import helper
 from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.browser.tabbed.base import BaseTicketListingTab
+from izug.ticketbox.browser.ticket_view import TicketView
 
 
 def icon(item, value):
@@ -133,3 +134,7 @@ class TicketboxesTab(CatalogListingView):
          'column_title': _(u"Responsible"),
          'transform': helper.readable_author},
         )
+
+
+class TicketTab(TicketView):
+    pass

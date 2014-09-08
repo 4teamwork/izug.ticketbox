@@ -40,10 +40,28 @@
         />
 
     <browser:page
-        for="izug.ticketbox.interfaces.ITicketBox"
+        for="*"
         name="tabbedview_view-attachments"
         permission="zope2.View"
         class=".tabs.AttachmentsTab"
+        />
+
+
+    <!-- tabbed view on ticket -->
+    <browser:page
+        name="tabbed_view"
+        for="izug.ticketbox.interfaces.ITicket"
+        permission="zope2.View"
+        class=".ticket.TicketTabbedView"
+        allowed_attributes="listing select_all reorder setgridstate set_default_tab"
+        />
+
+    <browser:page
+        for="izug.ticketbox.interfaces.ITicket"
+        name="tabbedview_view-ticket"
+        permission="zope2.View"
+        class=".tabs.TicketTab"
+        template="ticket.pt"
         />
 
     <!-- global tabbed view -->

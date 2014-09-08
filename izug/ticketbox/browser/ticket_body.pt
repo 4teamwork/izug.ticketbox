@@ -1,0 +1,85 @@
+<div id="ticket-content"
+     i18n:domain="izug.ticketbox">
+  <table class="listing vertical">
+    <tr>
+      <th i18n:translate='label_description'>Description</th>
+      <td tal:content="structure here/Description" />
+    </tr>
+    <tr>
+      <th i18n:translate='label_client'>Client</th>
+      <td tal:content="structure context/getClient" />
+    </tr>
+    <tr>
+      <th i18n:translate='label_submitter'>Submitter</th>
+      <td tal:content="view/get_crator" />
+    </tr>
+    <tr>
+      <th i18n:translate='label_submitted'>Submitted at</th>
+      <td tal:content="python: context.getSubmissionDate().strftime('%d.%m.%Y %H:%M')" />
+    </tr>
+    <tr tal:condition="python: context.getDueDate()">
+      <th i18n:translate='label_duedate'>Due Date</th>
+      <td tal:content="python: context.getDueDate().strftime('%d.%m.%Y %H:%M')" />
+    </tr>
+    <tr>
+      <th i18n:translate='label_state'>State</th>
+      <td tal:content="view/map_state" />
+    </tr>
+    <tr>
+      <th i18n:translate='label_Priority'>Priority</th>
+      <td tal:content="view/map_priority"/>
+    </tr>
+    <tr>
+      <th i18n:translate='label_classification'>Classification</th>
+      <td><metal:field use-macro="python:context.widget('classification', mode='view')">classified</metal:field></td>
+    </tr>
+    <tr>
+      <th i18n:translate='label_Area'>Area</th>
+      <td tal:content="view/map_area" />
+    </tr>
+    <tr>
+      <th i18n:translate='label_Variety'>Variety</th>
+      <td tal:content="view/map_variety" />
+    </tr>
+    <tr>
+      <th i18n:translate='label_ResponsibleManager'>responsible Manager</th>
+      <td tal:content="view/map_author" />
+    </tr>
+    <tr tal:condition="python: context.getAnswerDate()">
+      <th i18n:translate='label_AnswerDate'>Answer Date</th>
+      <td tal:content="python:context.getAnswerDate().strftime('%d.%m.%Y %H:%M')" />
+    </tr>
+    <tr tal:condition="python: context.getAttachments()">
+      <th i18n:translate='label_Attachment'>Attachments</th>
+      <td>
+        <div class="ticketAttachments" tal:repeat="att context/getAttachments">
+          <a tal:attributes="href string:${att/absolute_url}/at_download/file">
+            <img tal:attributes="src att/getIcon" />
+            <span class="title" tal:content="att/title_or_id"><!-- Title --></span>
+          </a>
+          <span class="discreet">
+            &mdash;
+            <span tal:content="python:att.lookupMime(att.Schema()['file'].getContentType(att))" />
+            <span tal:content="att/getObjSize"><!-- Size --></span>
+          </span>
+        </div>
+
+      </td>
+    </tr>
+    <tr tal:condition="here/getTicketReferences">
+      <th i18n:translate='label_References'>References</th>
+      <td>
+        <div tal:repeat="ref here/getTicketReferences">
+          <a tal:attributes="href ref/absolute_url">
+            <tal:if condition="python:ref.portal_type == 'Ticket'">
+              #<span tal:replace="ref/getId">ID</span>
+            </tal:if>
+            <span tal:replace="ref/title">Title</span>
+          </a>
+        </div>
+
+      </td>
+    </tr>
+  </table>
+  <div class="collapsible" tal:content="structure provider:ticketbox.response.add"></div>
+</div>
