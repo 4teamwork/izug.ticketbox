@@ -234,15 +234,6 @@
 
                         <!-- Answerdate -->
                         <div class="field">
-                            <script type="text/javascript" src="jscalendar/calendar_stripped.js">
-                                jscalendar/calendar_stripped.js
-                            </script>
-                            <script type="text/javascript" src="jscalendar/calendar-en.js">
-                                jscalendar/calendar-en.js
-                            </script>
-
-                            <link rel="stylesheet" type="text/css" href="jscalendar/calendar-system.css" />
-
                             <label for="answerdate"
                                    i18n:translate="Response_label_newAnswerDate">
                                 Change answer date
@@ -256,8 +247,9 @@
                             <tal:vars define="uniqueItemIndex python: dict(next=0);
                                               formname string:response-add-form;
                                               inputname string:answerdate;
-                                              inputvalue python: context.getAnswerDate()">
-                                <metal:box use-macro="here/calendar_macros/macros/calendarDatePickerBox">
+                                              inputvalue python: context.getAnswerDate();
+                                              plone_view here/@@plone">
+                                <metal:box use-macro="here/picker/macros/ftw_calendarDatePickerBox">
                                     a calendar, hopefully
                                 </metal:box>
                             </tal:vars>
