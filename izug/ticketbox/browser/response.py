@@ -4,6 +4,7 @@ from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.adapters import Response
 from izug.ticketbox.browser.helper import map_attribute
 from izug.ticketbox.config import DEFAULT_ISSUE_MIME_TYPE
+from izug.ticketbox.hashtag import create_hash_tag_links
 from izug.ticketbox.interfaces import IResponseAdder
 from izug.ticketbox.interfaces import IResponseContainer
 from OFS.Image import File
@@ -38,6 +39,7 @@ class Base(BrowserView):
         """Returns all Responses in the ticket
         """
         context = aq_inner(self.context)
+        utool = getToolByName(context, 'portal_url')
         trans = context.portal_transforms
         items = []
         for id_, response in enumerate(self.folder):
@@ -54,7 +56,7 @@ class Base(BrowserView):
                                            mimetype=response.mimetype)
                     html = html.getData()
                 response.rendered_text = html
-            html = response.rendered_text
+            html = create_hash_tag_links(response.rendered_text, utool())
             info = dict(id=id_,
                         response=response,
                         attachment=self.attachment_info(id_),

@@ -5,6 +5,7 @@ from borg.localrole.interfaces import IFactoryTempFolder
 from DateTime import DateTime
 from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.config import PROJECTNAME
+from izug.ticketbox.hashtag import create_hash_tag_links
 from izug.ticketbox.interfaces import ITicket
 from izug.ticketbox.interfaces import ITicketReferenceStartupDirectory
 from izug.ticketbox.interfaces import IResponseContainer
@@ -348,5 +349,11 @@ class Ticket(base.ATCTFolder):
         for wf_state_id, wf_state in wf.states.objectItems():
             wf_states.add(wf_state_id, wf_state.title)
         return wf_states
+
+    def DescriptionWithDMSLinks(self):
+        utool = getToolByName(self, 'portal_url')
+        desc = self.Description()
+        return create_hash_tag_links(desc, utool())
+
 
 registerType(Ticket, PROJECTNAME)

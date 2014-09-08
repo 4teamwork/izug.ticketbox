@@ -3,7 +3,7 @@
   <table class="listing vertical">
     <tr>
       <th i18n:translate='label_description'>Description</th>
-      <td tal:content="structure here/Description" />
+      <td tal:content="structure here/DescriptionWithDMSLinks" />
     </tr>
     <tr>
       <th i18n:translate='label_client'>Client</th>
