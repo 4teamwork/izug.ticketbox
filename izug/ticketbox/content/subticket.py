@@ -1,4 +1,6 @@
 from AccessControl import ClassSecurityInfo
+from Acquisition import aq_inner
+from Acquisition import aq_parent
 from izug.ticketbox.config import PROJECTNAME
 from izug.ticketbox.content.ticket import Ticket
 from izug.ticketbox.interfaces import ISubTicket
@@ -21,14 +23,15 @@ class SubTicket(Ticket):
         get all tickets from parent (ticketbox)
         and looks for the higherst id and add one to be unique
         """
-        parent = self.aq_parent
-        maxId = 0
-        for id_ in parent.objectIds():
-            try:
-                intId = int(id_)
-                maxId = max(maxId, intId)
-            except (TypeError, ValueError):
-                pass
-        return '.'.join((parent.getId(), str(maxId + 1)))
+        parent = aq_parent(aq_inner(self))
+        existing = parent.objectIds()
+        prefix = parent.getId()
+
+        counter = 0
+        while True:
+            counter += 1
+            new_id = '.'.join((prefix, str(counter)))
+            if new_id not in existing:
+                return new_id
 
 registerType(SubTicket, PROJECTNAME)
