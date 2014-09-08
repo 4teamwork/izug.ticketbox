@@ -34,7 +34,7 @@
 
     <browser:page
         name="tabbedview_view-issued_subtickets"
-        for="izug.ticketbox.interfaces.ITicketBox"
+        for="*"
         permission="zope2.View"
         class=".tabs.MyIssuedSubTicketsTab"
         />
