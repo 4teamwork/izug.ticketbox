@@ -5,6 +5,7 @@
         <dependency>profile-Products.DataGridField:default</dependency>
         <dependency>profile-ftw.tabbedview:default</dependency>
         <dependency>profile-ftw.activity:default</dependency>
+        <dependency>profile-ftw.file:default</dependency>
     </dependencies>
 
 </metadata>

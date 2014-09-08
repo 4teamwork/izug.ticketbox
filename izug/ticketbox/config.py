@@ -8,7 +8,6 @@ ADD_PERMISSIONS = {
     'Ticket': 'izug.ticketbox: Add Ticket',
     'SubTicket': 'izug.ticketbox: Add SubTicket',
     'TicketBox': 'izug.ticketbox: Add Ticket Box',
-    'TicketAttachment': 'izug.ticketbox: Add Attachment'
     }
 
 INDEXES = (('getState', 'FieldIndex'),

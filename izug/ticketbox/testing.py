@@ -29,6 +29,10 @@ class TicketBoxLayer(PloneSandboxLayer):
         xmlconfig.file('configure.zcml', ftw.activity,
                        context=configurationContext)
 
+        import ftw.file
+        xmlconfig.file('configure.zcml', ftw.file,
+                       context=configurationContext)
+
         import ftw.tabbedview
         xmlconfig.file('configure.zcml', ftw.tabbedview,
                        context=configurationContext)
@@ -49,6 +53,7 @@ class TicketBoxLayer(PloneSandboxLayer):
         xmlconfig.file('configure.zcml', collective.MockMailHost,
                        context=configurationContext)
 
+        z2.installProduct(app, 'ftw.file')
         z2.installProduct(app, 'ftw.notification.base')
         z2.installProduct(app, 'ftw.notification.email')
         z2.installProduct(app, 'izug.ticketbox')

@@ -37,7 +37,7 @@ class TestAttachmentCreation(TestCase):
                         .within(ticketbox))
 
         self.browser.open(ticket.absolute_url() + '/folder_factories')
-        self.browser.getControl('TicketAttachment').click()
+        self.browser.getControl('File').click()
         self.browser.getControl(name='form.button.Add').click()
 
         file_field = self.browser.getControl(name="file_file")
@@ -50,4 +50,4 @@ class TestAttachmentCreation(TestCase):
         self.browser.getControl(name="form.button.save").click()
         self.assertEqual(
             self.browser.url,
-            'http://nohost/plone/the-ticket-box/the-ticket/peter.gif/view')
+            'http://nohost/plone/the-ticket-box/the-ticket/peter.gif/file_view')

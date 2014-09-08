@@ -183,10 +183,10 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
     # References for Atachments
     ReferenceField(
         name='attachments',
-        allowed_types=('TicketAttachment'),
+        allowed_types=('File'),
         multiValued=1,
         schemata='default',
-        relationship='TicketAttachment',
+        relationship='File',
 
         widget=ReferenceBrowserWidget(
             label=_(u'label_attachments', default=u"Attachments"),
@@ -194,7 +194,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             show_results_without_query=True,
             restrict_browsing_to_startup_directory=True,
             base_query={
-                "portal_type": "TicketAttachment",
+                "portal_type": "File",
                 "sort_on": "sortable_title"},
             visible={'view': 'visible', 'edit': 'invisible'})),
 

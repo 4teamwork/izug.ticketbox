@@ -118,7 +118,3 @@ class ITicketReferenceStartupDirectory(Interface):
     def get():
         """Returns the startup directory path.
         """
-
-
-class IAttachment(Interface):
-    """Marker interface for a TicketAttachment"""

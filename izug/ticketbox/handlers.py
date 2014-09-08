@@ -32,7 +32,7 @@ def move_document_to_reference(obj, event):
             obj.setAttachment('DELETE_FILE')
             return
         new_file_id = obj.invokeFactory(
-            type_name="TicketAttachment",
+            type_name="File",
             id=new_id,
             title=file_.filename,
             file=file_)

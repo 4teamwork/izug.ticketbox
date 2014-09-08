@@ -80,7 +80,7 @@ class Base(BrowserView):
         return plone.portal_url()
 
     def attachment_info(self, id_):
-        """Return TicketAttachment object
+        """Return File object
         """
         context = aq_inner(self.context)
         response = self.folder[id_]
@@ -592,7 +592,7 @@ class Create(Base):
             data = File(filename, filename, attachment)
             if not hasattr(data, 'filename'):
                 setattr(data, 'filename', filename)
-            # Create TicketAttachment and save the uid in attachment attr of
+            # Create File and save the uid in attachment attr of
             # new_response
             new_id = queryUtility(IIDNormalizer).normalize(
                 filename.decode('utf-8'))
@@ -602,7 +602,7 @@ class Create(Base):
                 context.setAttachment('DELETE_FILE')
                 return self.request.response.redirect(context.absolute_url())
             new_file_id = context.invokeFactory(
-                type_name="TicketAttachment",
+                type_name="File",
                 id=new_id,
                 title=filename,
                 file=data)

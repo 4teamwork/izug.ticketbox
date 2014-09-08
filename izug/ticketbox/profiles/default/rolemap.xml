@@ -14,9 +14,5 @@
       <role name="Manager" />
       <role name="Contributor" />
     </permission>
-    <permission name="izug.ticketbox: Add Attachment" acquire="False">
-      <role name="Manager" />
-      <role name="Contributor" />
-    </permission>
   </permissions>
 </rolemap>

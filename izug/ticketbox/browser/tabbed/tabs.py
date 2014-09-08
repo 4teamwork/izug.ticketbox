@@ -84,7 +84,7 @@ class MyIssuedSubTicketsTab(BaseTicketListingTab):
 
 class AttachmentsTab(CatalogListingView):
 
-    types = ['TicketAttachment']
+    types = ['File']
 
     show_selects = False
     show_menu = False
