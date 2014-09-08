@@ -218,7 +218,7 @@ msgid "after"
 msgstr "Nachher"
 
 msgid "all_tickets"
-msgstr "Alle Aufträge"
+msgstr "Alle Geschäfte"
 
 #: ./izug/ticketbox/browser/tabbed/ticket.py:12
 msgid "attachments"
@@ -295,15 +295,15 @@ msgstr "Beobachtet in"
 
 #: ./izug/ticketbox/browser/tabbed/ticketboxes.py:29
 msgid "global-all_tickets"
-msgstr "Alle Aufträge"
+msgstr "Alle Geschäfte"
 
 #: ./izug/ticketbox/browser/tabbed/ticketboxes.py:35
 msgid "global-my_issued_tickets"
-msgstr "Erteilte Aufträge"
+msgstr "Erteilte Geschäfte"
 
 #: ./izug/ticketbox/browser/tabbed/ticketboxes.py:32
 msgid "global-my_tickets"
-msgstr "Meine Aufträge"
+msgstr "Meine Geschäfte"
 
 #: ./izug/ticketbox/browser/tabbed/ticketboxes.py:26
 msgid "global-ticketboxes"
@@ -728,7 +728,7 @@ msgid "msg_restricted_delete"
 msgstr "Sie sind nicht berechtigt Antworten zu löschen."
 
 msgid "my_tickets"
-msgstr "Meine Aufträge"
+msgstr "Meine Geschäfte"
 
 #: ./izug/ticketbox/content/ticketbox.py:311
 msgid "no"
@@ -750,11 +750,11 @@ msgstr "Zuständig"
 
 #: ./izug/ticketbox/content/ticketbox.py:83
 msgid "show in 'all tickets'"
-msgstr "Zeige in 'Alle Aufträge'"
+msgstr "Zeige in 'Alle Geschäfte'"
 
 #: ./izug/ticketbox/content/ticketbox.py:89
 msgid "show in 'my tickets'"
-msgstr "Zeige in 'Meine Aufträge'"
+msgstr "Zeige in 'Meine Geschäfte'"
 
 #: ./izug/ticketbox/browser/response.py:601
 #: ./izug/ticketbox/handlers.py:31
