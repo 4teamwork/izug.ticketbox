@@ -1,4 +1,5 @@
 <tal:BODY replace="structure view/ticket_body_template" />
 <script type="text/javascript">
   activateCollapsibles();
+  init_datepicker();
 </script>
