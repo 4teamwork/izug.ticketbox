@@ -7,6 +7,7 @@ from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.config import PROJECTNAME
 from izug.ticketbox.interfaces import ITicket
 from izug.ticketbox.interfaces import ITicketReferenceStartupDirectory
+from izug.ticketbox.interfaces import IResponseContainer
 from Products.Archetypes.atapi import AttributeStorage
 from Products.Archetypes.atapi import DateTimeField, CalendarWidget
 from Products.Archetypes.atapi import FileField, FileWidget
@@ -267,7 +268,20 @@ class Ticket(base.ATCTFolder):
     def SearchableText(self, *args, **kwargs):
         return ' '.join((
                 self.ticketIdentifier(),
-                super(Ticket, self).SearchableText(*args, **kwargs)))
+                super(Ticket, self).SearchableText(*args, **kwargs),
+                self.searchable_text_of_answers()))
+
+    def searchable_text_of_answers(self):
+        trans = getToolByName(self, 'portal_transforms')
+        text = []
+
+        for id_, response in enumerate(IResponseContainer(self)):
+            text.append(trans.convertTo(
+                    'text/plain',
+                    response.text,
+                    mimetype=response.mimetype).getData())
+
+        return ' '.join(text)
 
     def generateNewId(self):
         """generate a new ticket id.
