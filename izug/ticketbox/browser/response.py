@@ -9,9 +9,11 @@ from izug.ticketbox.interfaces import IResponseContainer
 from OFS.Image import File
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.memoize.view import memoize
+from Products.Archetypes.event import ObjectEditedEvent
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
+from zope import event
 from zope.cachedescriptors.property import Lazy
 from zope.component import getUtility
 from zope.component import queryUtility
@@ -653,8 +655,11 @@ class Create(Base):
             # this must be the last modifying access
             context.reindexObject()
             self.folder.add(new_response)
+            # XXX: why cataloging again?
             catalog_tool.catalog_object(context,
                                         '/'.join(context.getPhysicalPath()))
+            event.notify(ObjectEditedEvent(context))
+
         if form.get('sendNotification', None):
             self.request.response.redirect(
                 context.absolute_url() + '/notification_form')
