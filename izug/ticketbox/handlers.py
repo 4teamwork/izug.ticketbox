@@ -67,3 +67,11 @@ def set_workflow_state(obj, event):
     wftool = wftool.getWorkflowById(wf_id)
     wftool.updateRoleMappingsFor(obj)
     obj.reindexObjectSecurity()
+
+
+def authorize_assigned_user(obj, event):
+    assigned_user = obj.getResponsibleManager()
+    current_roles = dict(obj.get_local_roles()).get(assigned_user, ())
+    new_roles = list(set(list(current_roles) + ['Editor']))
+    obj.manage_setLocalRoles(assigned_user, new_roles)
+    obj.reindexObjectSecurity()

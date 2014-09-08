@@ -123,6 +123,14 @@
                      Products.Archetypes.interfaces.IObjectEditedEvent"
                 handler=".handlers.set_workflow_state" />
 
+   <subscriber for=".interfaces.ITicket
+                     Products.Archetypes.interfaces.IObjectInitializedEvent"
+                handler=".handlers.authorize_assigned_user" />
+
+    <subscriber for=".interfaces.ITicket
+                     Products.Archetypes.interfaces.IObjectEditedEvent"
+                handler=".handlers.authorize_assigned_user" />
+
     <adapter factory=".references.DefaultTicketReferenceStartupDirectory" />
     <configure zcml:condition="installed ftw.workspace">
         <adapter factory=".workspace.WorkspaceStartupDirectory" />
