@@ -52,6 +52,9 @@ def move_document_to_reference(obj, event):
 
 
 def set_workflow_state(obj, event):
+    if not obj.getField('classification'):
+        return
+
     mtool = getToolByName(obj, 'portal_membership')
     current_user = mtool.getAuthenticatedMember().getId()
     wftool = getToolByName(obj, 'portal_workflow')

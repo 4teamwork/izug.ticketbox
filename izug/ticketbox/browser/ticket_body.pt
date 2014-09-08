@@ -29,7 +29,7 @@
       <th i18n:translate='label_Priority'>Priority</th>
       <td tal:content="view/map_priority"/>
     </tr>
-    <tr>
+    <tr tal:condition="python:here.getField('classification')">
       <th i18n:translate='label_classification'>Classification</th>
       <td><metal:field use-macro="python:context.widget('classification', mode='view')">classified</metal:field></td>
     </tr>

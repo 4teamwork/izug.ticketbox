@@ -5,18 +5,20 @@ from izug.ticketbox.config import PROJECTNAME
 from izug.ticketbox.content.ticket import Ticket
 from izug.ticketbox.interfaces import ISubTicket
 from Products.Archetypes.atapi import registerType
+from Products.ATContentTypes.content import schemata
 from zope.interface import implements
 
 
-schema = Ticket.schema.copy()
-
+subticket_schema = Ticket.schema.copy()
+del subticket_schema['classification']
+schemata.finalizeATCTSchema(subticket_schema, moveDiscussion=False)
 
 class SubTicket(Ticket):
     implements(ISubTicket)
 
     security = ClassSecurityInfo()
     meta_type = "SubTicket"
-    schema = schema
+    schema = subticket_schema
 
     def generateNewId(self):
         """generate a new ticket id.
