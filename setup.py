@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '4.5.11.dev0'
+version = '5.0-BVE-DEV'
 maintainer = 'Mathias Leimgruber'
 
 tests_require = [

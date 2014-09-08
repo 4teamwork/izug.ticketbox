@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-4.5.11 (unreleased)
--------------------
+5.0-BVE-DEV (unreleased)
+------------------------
 
 - Hide description on ticket_view.
   [tschanzt]
