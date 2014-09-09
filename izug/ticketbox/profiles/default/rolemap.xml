@@ -14,5 +14,12 @@
       <role name="Manager" />
       <role name="Contributor" />
     </permission>
+
+    <permission name="izug.ticketbox: Modify responses" acquire="False">
+      <role name="Manager" />
+    </permission>
+    <permission name="izug.ticketbox: Delete responses" acquire="False">
+      <role name="Manager" />
+    </permission>
   </permissions>
 </rolemap>

@@ -25,4 +25,15 @@
         permissions="izug.ticketbox: Add Attachment"
         />
 
+
+    <lawgiver:map_permissions
+        action_group="modify responses"
+        permissions="izug.ticketbox: Modify responses"
+        />
+
+    <lawgiver:map_permissions
+        action_group="delete responses"
+        permissions="izug.ticketbox: Delete responses"
+        />
+
 </configure>

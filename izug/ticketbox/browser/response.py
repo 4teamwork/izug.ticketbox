@@ -145,14 +145,16 @@ class Base(BrowserView):
     def can_edit_response(self):
         context = aq_inner(self.context)
         return self.memship.checkPermission(
-            'Modify portal content',
+            'izug.ticketbox: Modify responses',
             context)
 
     @property
     @memoize
     def can_delete_response(self):
         context = aq_inner(self.context)
-        return self.memship.checkPermission('Delete objects', context)
+        return self.memship.checkPermission(
+            'izug.ticketbox: Delete responses',
+            context)
 
     def validate_response_id(self):
         """Validate the response id from the request.
