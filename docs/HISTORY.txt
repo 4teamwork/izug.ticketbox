@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.5.11 (unreleased)
+4.5.11 (2014-09-09)
 -------------------
 
 - Hide description on ticket_view.
