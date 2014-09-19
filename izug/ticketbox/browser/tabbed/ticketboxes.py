@@ -88,6 +88,8 @@ class GlobalMyTicketsTab(GlobalTicketTabBase):
     """Tab listing all tickets where the current user is responsible.
     """
 
+    types = ['Ticket', 'SubTicket']
+
     def get_base_query(self):
         query = super(GlobalMyTicketsTab, self).get_base_query()
 

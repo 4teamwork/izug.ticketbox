@@ -8,7 +8,7 @@ class BaseTicketListingTab(CatalogListingView):
     """base tabbedview tab for listing tickets.
     """
 
-    types = ['Ticket', 'SubTicket']
+    types = ['Ticket']
 
     show_selects = False
     show_menu = False
