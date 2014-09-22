@@ -255,6 +255,9 @@ class Ticket(base.ATCTFolder):
     schema = TicketSchema
 
     def Title(self):
+        if getattr(self, 'in_templates', None):
+            return self.getTitle()
+
         return ' '.join((self.ticketIdentifier(), self.getTitle()))
 
     def ticketIdentifier(self):
