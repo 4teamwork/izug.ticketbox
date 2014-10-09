@@ -512,7 +512,7 @@ msgstr "Klassifikation"
 #: ./izug/ticketbox/browser/ticket_body.pt:9
 #: ./izug/ticketbox/content/ticket.py:38
 msgid "label_client"
-msgstr "Auftraggeber"
+msgstr "Absender"
 
 #. Default: "Description"
 #: ./izug/ticketbox/browser/ticket_body.pt:5
