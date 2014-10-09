@@ -161,6 +161,17 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
                           default=u"Select which manager, if any," +
                           " is responsible for this issue."))),
 
+    # Issuer
+    StringField(
+        name='issuer',
+        index="FieldIndex:schema",
+        vocabulary='issuer_users',
+        widget=SelectionWidget(
+            format="select",
+            label=_(u'label_Issuer', default=u"Issuer"),
+        ),
+    ),
+
     # Answer-date (default: x + 14 days)
     DateTimeField(
         name='answerDate',
@@ -320,6 +331,11 @@ class Ticket(base.ATCTFolder):
         """
 
         return aq_parent(self).assignable_users()
+
+    def issuer_users(self):
+        users = self.assignable_users()
+        users[0] = ('(NOISSUER)', _(u'No Issuer'))
+        return users
 
     security.declarePublic('canSetDefaultPage')
 

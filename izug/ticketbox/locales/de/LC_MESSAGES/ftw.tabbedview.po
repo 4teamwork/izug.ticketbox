@@ -31,3 +31,5 @@ msgstr "Meine Geschäfte"
 
 msgid "overview"
 msgstr "Übersicht"
+
+
