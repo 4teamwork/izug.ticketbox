@@ -55,7 +55,7 @@ def map_area(context, id_=None):
     if not id_ and getattr(context, 'getArea', None):
         id_ = context.getArea()
 
-    return map_base(context.getAvailableAreas(), id_)
+    return map_base(context.getAvailableAreas(), id_, fallback_value='')
 
 
 def map_variety(context, id_=None):
@@ -64,7 +64,7 @@ def map_variety(context, id_=None):
     if not id_ and getattr(context, 'getVariety', None):
         id_ = context.getVariety()
 
-    return map_base(context.getAvailableVarieties(), id_)
+    return map_base(context.getAvailableVarieties(), id_, fallback_value='')
 
 
 def map_release(context, id_=None):
@@ -73,7 +73,7 @@ def map_release(context, id_=None):
     if not id_ and getattr(context, 'getReleases', None):
         id_ = context.getReleases()
 
-    return map_base(context.getAvailableReleases(), id_)
+    return map_base(context.getAvailableReleases(), id_, fallback_value='')
 
 
 def map_watch_release(context, id_=None):
@@ -82,16 +82,16 @@ def map_watch_release(context, id_=None):
     if not id_ and getattr(context, 'getWatchedRelease', None):
         id_ = context.getWatchedRelease()
 
-    return map_base(context.getAvailableReleases(), id_)
+    return map_base(context.getAvailableReleases(), id_, fallback_value='')
 
 
-def map_base(available_items, id_):
+def map_base(available_items, id_, fallback_value='-'):
     """Basemapping for attributes in ticketbox
     """
     for available_item in available_items:
         if id_ == available_item.get('id'):
             return available_item.get('title')
-    return "-"
+    return fallback_value
 
 
 def readable_author(context):

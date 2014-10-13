@@ -616,7 +616,7 @@ msgstr "Hinzugefügt von"
 #. Default: "Responsible:"
 #: ./izug/ticketbox/browser/notification/ticket.pt:22
 msgid "label_responsible"
-msgstr "Verantwortlich"
+msgstr "Zuständig"
 
 #. Default: "Responsible"
 #: ./izug/ticketbox/browser/response.py:522
