@@ -12,7 +12,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 
 msgid "all_tickets"
-msgstr "Alle Geschäfte"
+msgstr "Alle Aufträge"
 
 msgid "attachments"
 msgstr "Anhänge"
@@ -21,13 +21,13 @@ msgid "info_view"
 msgstr "Info"
 
 msgid "issued_subtickets"
-msgstr "Delegierte Geschäfte"
+msgstr "Delegierte Aufträge"
 
 msgid "issued_tickets"
-msgstr "Erteilte Geschäfte"
+msgstr "Erteilte Aufträge"
 
 msgid "my_tickets"
-msgstr "Meine Geschäfte"
+msgstr "Meine Aufträge"
 
 msgid "overview"
 msgstr "Übersicht"

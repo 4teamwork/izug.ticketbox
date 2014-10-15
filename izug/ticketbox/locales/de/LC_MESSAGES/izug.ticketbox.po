@@ -40,7 +40,7 @@ msgstr "Beschreibung"
 
 #: ./izug/ticketbox/browser/tabbed/base.py:52
 msgid "DueDate"
-msgstr "Fälligkeit des Geschäftes"
+msgstr "Fälligkeit des Auftrages"
 
 #: ./izug/ticketbox/browser/response.pt:82
 msgid "Edit"
@@ -52,7 +52,7 @@ msgstr "Nr."
 
 #: ./izug/ticketbox/browser/notification/ticket.pt:11
 msgid "Issue Information"
-msgstr "Informationen zum Geschäft"
+msgstr "Informationen zum Auftrag"
 
 #: ./izug/ticketbox/browser/tabbed/tabs.py:130
 #: ./izug/ticketbox/browser/tabbed/ticketboxes.py:57
@@ -103,7 +103,7 @@ msgstr "Anhang zur Antwort hinzufügen"
 #. Default: "Select a change of state in the issue this response is for, if applicable"
 #: ./izug/ticketbox/browser/response.pt:190
 msgid "Response_help_issueTransition"
-msgstr "Status dieses Geschäftes"
+msgstr "Status dieses Auftrages"
 
 #. Default: "Set the new answer date for this issue"
 #: ./izug/ticketbox/browser/response.pt:242
@@ -113,17 +113,17 @@ msgstr "Antwort erbeten bis"
 #. Default: "Select the responsible manager for this issue"
 #: ./izug/ticketbox/browser/response.pt:266
 msgid "Response_help_newResponsibleManager"
-msgstr "Zuständigkeit für dieses Geschäft."
+msgstr "Zuständigkeit für diesen Auftrag."
 
 #. Default: "Select the severity for this issue"
 #: ./izug/ticketbox/browser/response.pt:218
 msgid "Response_help_newSeverity"
-msgstr "Priorität für dieses Geschäft"
+msgstr "Priorität für diesen Auftrag"
 
 #. Default: "Choose Referenced contents"
 #: ./izug/ticketbox/browser/response.pt:291
 msgid "Response_help_reference"
-msgstr "Diese Verweise werden ebenfalls auf dem Geschäft gespeichert."
+msgstr "Diese Verweise werden ebenfalls auf dem Auftrag gespeichert."
 
 #. Default: "Please enter your response below"
 #: ./izug/ticketbox/browser/response.pt:124
@@ -181,20 +181,20 @@ msgstr "Status"
 
 #: ./izug/ticketbox/profiles/default/types/SubTicket.xml
 msgid "SubTicket"
-msgstr "Delegiertes Geschäft"
+msgstr "Delegierter Auftrag"
 
 #: ./izug/ticketbox/profiles/default/types/Ticket.xml
 msgid "Ticket"
-msgstr "Geschäft"
+msgstr "Auftrag"
 
 #: ./izug/ticketbox/browser/tabbed/ticketboxes.py:72
 #: ./izug/ticketbox/profiles/default/types/Ticket_Box.xml
 msgid "Ticket Box"
-msgstr "Geschäftskontrolle"
+msgstr "Auftragskontrolle"
 
 #: ./izug/ticketbox/browser/tabbed/tabs.py:110
 msgid "Ticketnr"
-msgstr "Geschäftsnr"
+msgstr "Auftragsnr"
 
 #: ./izug/ticketbox/browser/tabbed/tabs.py:103
 #: ./izug/ticketbox/browser/tabbed/ticketboxes.py:52
@@ -222,7 +222,7 @@ msgid "after"
 msgstr "Nachher"
 
 msgid "all_tickets"
-msgstr "Alle Geschäfte"
+msgstr "Alle Aufträge"
 
 #: ./izug/ticketbox/browser/tabbed/ticket.py:14
 msgid "attachments"
@@ -299,15 +299,15 @@ msgstr "Beobachtet in"
 
 #: ./izug/ticketbox/browser/tabbed/ticketboxes.py:29
 msgid "global-all_tickets"
-msgstr "Alle Geschäfte"
+msgstr "Alle Aufträge"
 
 #: ./izug/ticketbox/browser/tabbed/ticketboxes.py:35
 msgid "global-my_issued_tickets"
-msgstr "Erteilte Geschäfte"
+msgstr "Erteilte Aufträge"
 
 #: ./izug/ticketbox/browser/tabbed/ticketboxes.py:32
 msgid "global-my_tickets"
-msgstr "Meine Geschäfte"
+msgstr "Meine Aufträge"
 
 #: ./izug/ticketbox/browser/tabbed/ticketboxes.py:26
 msgid "global-ticketboxes"
@@ -336,7 +336,7 @@ msgstr "Geben Sie verschiedene Prioritäten an, welche verfügbar sein sollten. 
 #. Default: "Enter the Available Releases for this tracker."
 #: ./izug/ticketbox/content/ticketbox.py:102
 msgid "help_avialableReleases"
-msgstr "Geben Sie die verfügbaren Lieferpakete für diese Geschäftskontrolle ein<br>(Beispiel: nächster Release, übernächster Release usw.)"
+msgstr "Geben Sie die verfügbaren Lieferpakete für diese Auftragskontrolle ein<br>(Beispiel: nächster Release, übernächster Release usw.)"
 
 #. Default: "Name, Address, Phone or E-Mail"
 #: ./izug/ticketbox/content/ticket.py:40
@@ -356,17 +356,17 @@ msgstr "Wählen Sie die Priorität aus"
 #. Default: "Select the Release of the ticket"
 #: ./izug/ticketbox/content/ticket.py:135
 msgid "help_release"
-msgstr "Wählen Sie das Lieferpaket für dieses Geschäft aus"
+msgstr "Wählen Sie das Lieferpaket für diesen Auftrag aus"
 
 #. Default: "Select which manager, if any, is responsible for this issue."
 #: ./izug/ticketbox/content/ticket.py:160
 msgid "help_responsible"
-msgstr "Wählen Sie die zuständige Person für dieses Geschäft aus"
+msgstr "Wählen Sie die zuständige Person für diesen Auftrag aus"
 
 #. Default: "Define Which State the Ticket has"
 #: ./izug/ticketbox/content/ticket.py:77
 msgid "help_state"
-msgstr "Definieren Sie welchen Status dieses Geschäft hat"
+msgstr "Definieren Sie welchen Status dieser Auftrag hat"
 
 #: ./izug/ticketbox/content/ticket.py:55
 msgid "help_submission_date"
@@ -380,12 +380,12 @@ msgstr "Geben Sie die verfügbaren Antwortentwürfe an<br>(Beispiel: Papier BVE,
 #. Default: "Select the Variety of the ticket"
 #: ./izug/ticketbox/content/ticket.py:121
 msgid "help_variety"
-msgstr "Wählen Sie den Geschäftstyp"
+msgstr "Wählen Sie den Auftragstyp"
 
 #. Default: "Select in which release you watched it"
 #: ./izug/ticketbox/content/ticket.py:147
 msgid "help_watchedRelease"
-msgstr "Wählen Sie das Lieferpaket aus, aus welchem das Geschäft stammt"
+msgstr "Wählen Sie das Lieferpaket aus, aus welchem der Auftrag stammt"
 
 #: ./izug/ticketbox/content/ticketbox.py:80
 msgid "id"
@@ -626,7 +626,7 @@ msgstr "Zuständige Person"
 #. Default: "Return to issue."
 #: ./izug/ticketbox/browser/edit_response.pt:21
 msgid "label_return_to_issue"
-msgstr "Zurück zum Geschäft"
+msgstr "Zurück zum Auftrag"
 
 #. Default: "Submit"
 #: ./izug/ticketbox/browser/edit_response.pt:88
@@ -715,12 +715,12 @@ msgstr "Bitte loggen sie sich ein bevor sie das Formular abschicken"
 #. Default: "A new Ticket has been created by ${creator} in the Ticketbox ${tracker_name}(${tracker_url})"
 #: ./izug/ticketbox/browser/notification/ticket.pt:3
 msgid "message_text"
-msgstr "Ein neues Geschäft wurde von ${creator} in der Geschäftskontrolle ${tracker_name} (${tracker_url}) erstellt."
+msgstr "Ein neuer Auftrag wurde von ${creator} in der Auftragskontrolle ${tracker_name} (${tracker_url}) erstellt."
 
 #. Default: "A new Answer has been Added by ${creator} in the Ticketbox ${tracker_name} (${tracker_url})"
 #: ./izug/ticketbox/browser/notification/ticket.pt:6
 msgid "message_text_response"
-msgstr "Eine neue Antwort wurde von ${creator} in der Geschäftskontrolle ${tracker_name} (${tracker_url}) erstellt."
+msgstr "Eine neue Antwort wurde von ${creator} in der Auftragskontrolle ${tracker_name} (${tracker_url}) erstellt."
 
 #. Default: "Changes Saved"
 #: ./izug/ticketbox/browser/response.py:729
@@ -740,7 +740,7 @@ msgstr "Die Antwort IF ${response_id} existiert nicht"
 #. Default: "No response text added and no issue changes made."
 #: ./izug/ticketbox/browser/response.py:628
 msgid "msg_no_changes"
-msgstr "Es wurde kein Antworttext hinzugefügt und keine Änderungen am Geschäft gemacht"
+msgstr "Es wurde kein Antworttext hinzugefügt und keine Änderungen am Auftrag gemacht"
 
 #. Default: "No Response was selected"
 #: ./izug/ticketbox/browser/response.py:170
@@ -783,7 +783,7 @@ msgid "msg_restricted_delete"
 msgstr "Sie sind nicht berechtigt Antworten zu löschen."
 
 msgid "my_tickets"
-msgstr "Meine Geschäfte"
+msgstr "Meine Aufträge"
 
 #: ./izug/ticketbox/content/ticketbox.py:311
 msgid "no"
@@ -805,11 +805,11 @@ msgstr "Zuständig"
 
 #: ./izug/ticketbox/content/ticketbox.py:83
 msgid "show in 'all tickets'"
-msgstr "Zeige in 'Alle Geschäfte'"
+msgstr "Zeige in 'Alle Aufträge'"
 
 #: ./izug/ticketbox/content/ticketbox.py:89
 msgid "show in 'my tickets'"
-msgstr "Zeige in 'Meine Geschäfte'"
+msgstr "Zeige in 'Meine Aufträge'"
 
 #: ./izug/ticketbox/browser/response.py:607
 #: ./izug/ticketbox/handlers.py:31
@@ -818,7 +818,7 @@ msgstr "Es existiert breits eine Datei mit dem gleichen Namen. Die Datei wurde d
 
 #: ./izug/ticketbox/browser/tabbed/ticket.py:11
 msgid "ticket"
-msgstr "Geschäft"
+msgstr "Auftrag"
 
 #: ./izug/ticketbox/content/ticketbox.py:81
 msgid "title"
