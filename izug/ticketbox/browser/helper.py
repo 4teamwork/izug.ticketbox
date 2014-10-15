@@ -94,20 +94,33 @@ def map_base(available_items, id_, fallback_value='-'):
     return fallback_value
 
 
-def readable_author(context):
+def readable_user(user_id, context):
     """
     get the full name of a user-id
+    """
+    user = context.acl_users.getUserById(user_id)
+    if user:
+        return user.getProperty('fullname', user_id) or user_id
+    return None
+
+
+def readable_author(context):
+    """
+    get the full name of the author
     """
     author = context.getResponsibleManager()
 
     if not author:
         return '-'
-    name = author
-    user = context.acl_users.getUserById(author)
-    if user is None:
-        return _(u"unassigned")
-    else:
-        name = user.getProperty('fullname', author)
-        if not len(name):
-            name = author
-    return name
+    return readable_user(user_id=author, context=context) or _(u"unassigned")
+
+
+def readable_issuer(context):
+    """
+    get the full name of the issuer
+    """
+    issuer = context.getIssuer()
+
+    if not issuer:
+        return '-'
+    return readable_user(user_id=issuer, context=context) or _(u'No Issuer')
