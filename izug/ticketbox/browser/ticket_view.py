@@ -1,7 +1,9 @@
-from izug.ticketbox.browser.helper import map_attribute, readable_author
+from izug.ticketbox.browser.helper import (map_attribute, readable_author,
+                                           readable_issuer)
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from DateTime import DateTime
+
 
 class TicketView(BrowserView):
 
@@ -47,9 +49,15 @@ class TicketView(BrowserView):
 
     def map_author(self):
         """
-        get the full name of a user-id
+        get the full name of the author
         """
         return readable_author(self.context)
+
+    def map_issuer(self):
+        """
+        get the full name of the issuer
+        """
+        return readable_issuer(self.context)
 
     def get_crator(self):
         creator = self.context.Creator()

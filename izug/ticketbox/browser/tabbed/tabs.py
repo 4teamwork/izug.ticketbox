@@ -3,6 +3,7 @@ from ftw.table import helper
 from izug.ticketbox import ticketboxMessageFactory as _
 from izug.ticketbox.browser.tabbed.base import BaseTicketListingTab
 from izug.ticketbox.browser.ticket_view import TicketView
+from Products.CMFCore.utils import getToolByName
 
 
 def icon(item, value):
@@ -78,9 +79,16 @@ class MyIssuedTicketsTab(BaseTicketListingTab):
         return query
 
 
+def get_current_user_id(context):
+    portal_membership = getToolByName(context, 'portal_membership')
+    user = portal_membership.getAuthenticatedMember()
+    return user.getId()
+
+
 class MyIssuedSubTicketsTab(BaseTicketListingTab):
 
     types = ['SubTicket']
+    search_options = {'Creator': get_current_user_id}
 
 
 class AttachmentsTab(CatalogListingView):

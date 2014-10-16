@@ -47,7 +47,7 @@
     </action>
 
     <action action_id="csv_export"
-            visible="True"
+            visible="False"
             url_expr="string:${object_url}/tickets_export"
             title="CSV export"
             category="object"

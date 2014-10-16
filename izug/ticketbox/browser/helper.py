@@ -55,7 +55,7 @@ def map_area(context, id_=None):
     if not id_ and getattr(context, 'getArea', None):
         id_ = context.getArea()
 
-    return map_base(context.getAvailableAreas(), id_)
+    return map_base(context.getAvailableAreas(), id_, fallback_value='')
 
 
 def map_variety(context, id_=None):
@@ -64,7 +64,7 @@ def map_variety(context, id_=None):
     if not id_ and getattr(context, 'getVariety', None):
         id_ = context.getVariety()
 
-    return map_base(context.getAvailableVarieties(), id_)
+    return map_base(context.getAvailableVarieties(), id_, fallback_value='')
 
 
 def map_release(context, id_=None):
@@ -73,7 +73,7 @@ def map_release(context, id_=None):
     if not id_ and getattr(context, 'getReleases', None):
         id_ = context.getReleases()
 
-    return map_base(context.getAvailableReleases(), id_)
+    return map_base(context.getAvailableReleases(), id_, fallback_value='')
 
 
 def map_watch_release(context, id_=None):
@@ -82,32 +82,45 @@ def map_watch_release(context, id_=None):
     if not id_ and getattr(context, 'getWatchedRelease', None):
         id_ = context.getWatchedRelease()
 
-    return map_base(context.getAvailableReleases(), id_)
+    return map_base(context.getAvailableReleases(), id_, fallback_value='')
 
 
-def map_base(available_items, id_):
+def map_base(available_items, id_, fallback_value='-'):
     """Basemapping for attributes in ticketbox
     """
     for available_item in available_items:
         if id_ == available_item.get('id'):
             return available_item.get('title')
-    return "-"
+    return fallback_value
+
+
+def readable_user(user_id, context):
+    """
+    get the full name of a user-id
+    """
+    user = context.acl_users.getUserById(user_id)
+    if user:
+        return user.getProperty('fullname', user_id) or user_id
+    return None
 
 
 def readable_author(context):
     """
-    get the full name of a user-id
+    get the full name of the author
     """
     author = context.getResponsibleManager()
 
     if not author:
         return '-'
-    name = author
-    user = context.acl_users.getUserById(author)
-    if user is None:
-        return _(u"unassigned")
-    else:
-        name = user.getProperty('fullname', author)
-        if not len(name):
-            name = author
-    return name
+    return readable_user(user_id=author, context=context) or _(u"unassigned")
+
+
+def readable_issuer(context):
+    """
+    get the full name of the issuer
+    """
+    issuer = context.getIssuer()
+
+    if not issuer:
+        return '-'
+    return readable_user(user_id=issuer, context=context) or _(u'No Issuer')
