@@ -57,3 +57,7 @@ body.template-atct_edit #datagridwidget-table-availableVarieties tr td:first-chi
 body.template-ticket_view.portaltype-ticket #plone-contentmenu-factories{
     display:none;
 }
+
+.LSDescr {
+    display: none;
+}
