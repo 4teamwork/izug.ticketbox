@@ -67,11 +67,6 @@ body.template-ticket_view.portaltype-ticket #plone-contentmenu-factories{
     display: none;
 }
 
-
-#plone-contentmenu-actions.deactivated {
-    display: none;
-}
-
 #searchGadget {
     font-size: 15px;
 }
