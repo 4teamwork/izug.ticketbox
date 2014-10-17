@@ -525,7 +525,13 @@ class Create(Base):
             issue_has_changed = True
 
         # Answerdate
-        answerdate_after = form.get('answerdate')
+        answerdate_after = '{0}/{1}/{2} {3}:{4}'.format(
+            form.get('answerdate_year'),
+            form.get('answerdate_month'),
+            form.get('answerdate_day'),
+            form.get('answerdate_hour'),
+            form.get('answerdate_minute'),
+        )
         if answerdate_after:
             answerdate_after = DateTime(answerdate_after).strftime(
                 '%d.%m.%Y %H:%M')
