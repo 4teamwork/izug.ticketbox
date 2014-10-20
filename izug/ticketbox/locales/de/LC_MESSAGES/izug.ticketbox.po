@@ -13,11 +13,11 @@ msgstr ""
 
 #: ./izug/ticketbox/browser/tabbed/base.py:62
 msgid "Area"
-msgstr "Bereich"
+msgstr "Besprechen mit"
 
 #: ./izug/ticketbox/content/ticketbox.py:149
 msgid "Areas_id"
-msgstr "Bereiche"
+msgstr "Besprechen mit"
 
 #: ./izug/ticketbox/content/ticketbox.py:150
 msgid "Areas_title"
@@ -207,7 +207,7 @@ msgstr "Typ"
 
 #: ./izug/ticketbox/content/ticketbox.py:164
 msgid "Varieties_id"
-msgstr "Typen"
+msgstr "Antwortentwurf"
 
 #: ./izug/ticketbox/content/ticketbox.py:165
 msgid "Varieties_title"
@@ -235,7 +235,7 @@ msgstr "Vorher"
 #. Default: "Area"
 #: ./izug/ticketbox/browser/ticket_export.py:63
 msgid "csv_heading_area"
-msgstr "Bereich"
+msgstr "Besprechen mit"
 
 #. Default: "Created"
 #: ./izug/ticketbox/browser/ticket_export.py:57
@@ -285,7 +285,7 @@ msgstr "Titel"
 #. Default: "Variety"
 #: ./izug/ticketbox/browser/ticket_export.py:64
 msgid "csv_heading_variety"
-msgstr "Nach Typ"
+msgstr "Nach Antwortentwurf"
 
 #. Default: "Duedate"
 #: ./izug/ticketbox/browser/ticket_export.py:69
@@ -380,7 +380,7 @@ msgstr "Geben Sie die verfügbaren Antwortentwürfe an<br>(Beispiel: Papier BVE,
 #. Default: "Select the Variety of the ticket"
 #: ./izug/ticketbox/content/ticket.py:121
 msgid "help_variety"
-msgstr "Wählen Sie den Auftragstyp"
+msgstr "Wählen Sie den Antwortentwurf"
 
 #. Default: "Select in which release you watched it"
 #: ./izug/ticketbox/content/ticket.py:147
@@ -403,7 +403,7 @@ msgstr "Interne Frist"
 #. Default: "Area"
 #: ./izug/ticketbox/browser/ticket_body.pt:37
 msgid "label_Area"
-msgstr "Bereich"
+msgstr "Besprechen mit"
 
 #. Default: "Areas"
 #: ./izug/ticketbox/content/ticketbox.py:144
@@ -694,12 +694,12 @@ msgstr "Nicht zugewiesen"
 #. Default: "Variety"
 #: ./izug/ticketbox/browser/response.py:565
 msgid "label_varieties"
-msgstr "Typen"
+msgstr "Antwortentwürfe"
 
 #. Default: "Variety"
 #: ./izug/ticketbox/browser/notification/ticket.pt:28
 msgid "label_variety"
-msgstr "Typ"
+msgstr "Antwortentwurf"
 
 #. Default: "Watched Release"
 #: ./izug/ticketbox/browser/notification/ticket.pt:32
