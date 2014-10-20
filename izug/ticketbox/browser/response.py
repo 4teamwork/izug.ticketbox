@@ -63,8 +63,6 @@ class Base(BrowserView):
                         references=self.references_info(id_),
                         html=html)
             items.append(info)
-
-        items = sorted(items, key=lambda k: k['response'].date, reverse=True)
         return items
 
     def get_years(self):
