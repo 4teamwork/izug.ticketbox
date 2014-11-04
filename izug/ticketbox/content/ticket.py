@@ -291,7 +291,8 @@ class Ticket(base.ATCTFolder):
         text = []
 
         for id_, response in enumerate(IResponseContainer(self)):
-            text.append(trans.convertTo(
+            if response is not None:
+                text.append(trans.convertTo(
                     'text/plain',
                     response.text,
                     mimetype=response.mimetype).getData())
