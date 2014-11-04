@@ -53,6 +53,11 @@ class BaseTicketListingTab(CatalogListingView):
                  'transform': helper.readable_date_time_text,
                  },
 
+                {'column': 'getAnswerDate',
+                 'column_title': _(u"InternalDueDate"),
+                 'transform': helper.readable_date_time_text,
+                 },
+
                 {'column': 'getPriority',
                  'column_title': _(u"Priority"),
                  'transform': self.priority_helper,

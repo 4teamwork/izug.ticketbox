@@ -11,6 +11,7 @@
     <column value="getPriority"/>
     <column value="getResponsibleManager"/>
     <column value="getDueDate"/>
+    <column value="getAnswerDate"/>
     <column value="get_owner_index"/>
     <column value="ticketbox_title" />
 </object>

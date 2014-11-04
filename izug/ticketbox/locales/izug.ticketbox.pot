@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-11-04 11:11+0000\n"
+"POT-Creation-Date: 2014-11-04 11:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0\n"
 "Preferred-Encodings: utf-8 latin1\n"
 
-#: ./izug/ticketbox/browser/tabbed/base.py:62
+#: ./izug/ticketbox/browser/tabbed/base.py:67
 msgid "Area"
 msgstr ""
 
@@ -53,6 +53,10 @@ msgstr ""
 msgid "Id"
 msgstr ""
 
+#: ./izug/ticketbox/browser/tabbed/base.py:57
+msgid "InternalDueDate"
+msgstr ""
+
 #: ./izug/ticketbox/browser/notification/ticket.pt:11
 msgid "Issue Information"
 msgstr ""
@@ -63,11 +67,11 @@ msgid "ModificationDate"
 msgstr ""
 
 #: ./izug/ticketbox/browser/helper.py:126
-#: ./izug/ticketbox/content/ticket.py:341
+#: ./izug/ticketbox/content/ticket.py:337
 msgid "No Issuer"
 msgstr ""
 
-#: ./izug/ticketbox/browser/tabbed/base.py:68
+#: ./izug/ticketbox/browser/tabbed/base.py:73
 #: ./izug/ticketbox/content/ticketbox.py:224
 msgid "None"
 msgstr ""
@@ -83,7 +87,7 @@ msgstr ""
 msgid "Priorities_title"
 msgstr ""
 
-#: ./izug/ticketbox/browser/tabbed/base.py:57
+#: ./izug/ticketbox/browser/tabbed/base.py:62
 msgid "Priority"
 msgstr ""
 
@@ -462,7 +466,7 @@ msgstr ""
 
 #. Default: "Answerdate"
 #: ./izug/ticketbox/browser/notification/ticket.pt:18
-#: ./izug/ticketbox/browser/response.py:549
+#: ./izug/ticketbox/browser/response.py:547
 msgid "label_answerdate"
 msgstr ""
 
@@ -472,7 +476,7 @@ msgid "label_area"
 msgstr ""
 
 #. Default: "Area"
-#: ./izug/ticketbox/browser/response.py:569
+#: ./izug/ticketbox/browser/response.py:567
 msgid "label_areas"
 msgstr ""
 
@@ -581,7 +585,7 @@ msgid "label_priority"
 msgstr ""
 
 #. Default: "Priority"
-#: ./izug/ticketbox/browser/response.py:557
+#: ./izug/ticketbox/browser/response.py:555
 msgid "label_priority_"
 msgstr ""
 
@@ -596,7 +600,7 @@ msgid "label_release"
 msgstr ""
 
 #. Default: "Target Release"
-#: ./izug/ticketbox/browser/response.py:561
+#: ./izug/ticketbox/browser/response.py:559
 msgid "label_releases"
 msgstr ""
 
@@ -611,7 +615,7 @@ msgid "label_responsible"
 msgstr ""
 
 #. Default: "Responsible"
-#: ./izug/ticketbox/browser/response.py:524
+#: ./izug/ticketbox/browser/response.py:522
 msgid "label_responsibleManager"
 msgstr ""
 
@@ -622,7 +626,7 @@ msgstr ""
 
 #. Default: "Submit"
 #: ./izug/ticketbox/browser/edit_response.pt:88
-#: ./izug/ticketbox/browser/response.pt:318
+#: ./izug/ticketbox/browser/response.pt:319
 msgid "label_save_response"
 msgstr ""
 
@@ -653,7 +657,7 @@ msgstr ""
 
 #. Default: "State"
 #: ./izug/ticketbox/browser/notification/ticket.pt:20
-#: ./izug/ticketbox/browser/response.py:565
+#: ./izug/ticketbox/browser/response.py:563
 #: ./izug/ticketbox/browser/ticket_body.pt:33
 msgid "label_state"
 msgstr ""
@@ -679,12 +683,12 @@ msgid "label_title"
 msgstr ""
 
 #. Default: "unassigned"
-#: ./izug/ticketbox/browser/response.py:494
+#: ./izug/ticketbox/browser/response.py:492
 msgid "label_unassigned"
 msgstr ""
 
 #. Default: "Variety"
-#: ./izug/ticketbox/browser/response.py:573
+#: ./izug/ticketbox/browser/response.py:571
 msgid "label_varieties"
 msgstr ""
 
@@ -695,12 +699,12 @@ msgstr ""
 
 #. Default: "Watched Release"
 #: ./izug/ticketbox/browser/notification/ticket.pt:32
-#: ./izug/ticketbox/browser/response.py:577
+#: ./izug/ticketbox/browser/response.py:575
 msgid "label_watched_release"
 msgstr ""
 
 #. Default: "If you can, please log in before submitting a reaction."
-#: ./izug/ticketbox/browser/response.pt:337
+#: ./izug/ticketbox/browser/response.pt:338
 msgid "login_suggestion_response"
 msgstr ""
 
@@ -715,62 +719,62 @@ msgid "message_text_response"
 msgstr ""
 
 #. Default: "Changes Saved"
-#: ./izug/ticketbox/browser/response.py:737
+#: ./izug/ticketbox/browser/response.py:735
 msgid "msg_changes_saved"
 msgstr ""
 
 #. Default: "Response does not exist anymore;                     perhaps it was removed by another user."
-#: ./izug/ticketbox/browser/response.py:718
+#: ./izug/ticketbox/browser/response.py:716
 msgid "msg_doesnt_exists"
 msgstr ""
 
 #. Default: "The Response ID ${response_id} doesn't exist."
-#: ./izug/ticketbox/browser/response.py:187
+#: ./izug/ticketbox/browser/response.py:185
 msgid "msg_invalid"
 msgstr ""
 
 #. Default: "No response text added and no issue changes made."
-#: ./izug/ticketbox/browser/response.py:636
+#: ./izug/ticketbox/browser/response.py:634
 msgid "msg_no_changes"
 msgstr ""
 
 #. Default: "No Response was selected"
-#: ./izug/ticketbox/browser/response.py:172
+#: ./izug/ticketbox/browser/response.py:170
 msgid "msg_no_response"
 msgstr ""
 
 #. Default: "No response selected for removal."
-#: ./izug/ticketbox/browser/response.py:766
+#: ./izug/ticketbox/browser/response.py:764
 msgid "msg_no_response_delete"
 msgstr ""
 
 #. Default: "No response selected for saving."
-#: ./izug/ticketbox/browser/response.py:713
+#: ./izug/ticketbox/browser/response.py:711
 msgid "msg_no_response_selected"
 msgstr ""
 
 #. Default: "No responses can be added."
-#: ./izug/ticketbox/browser/response.pt:329
+#: ./izug/ticketbox/browser/response.pt:330
 msgid "msg_no_responses_can_be_added"
 msgstr ""
 
 #. Default: "Response id ${response_id} is no integer."
-#: ./izug/ticketbox/browser/response.py:180
+#: ./izug/ticketbox/browser/response.py:178
 msgid "msg_nointeger"
 msgstr ""
 
 #. Default: "You are not allowed to edit responses."
-#: ./izug/ticketbox/browser/response.py:728
+#: ./izug/ticketbox/browser/response.py:726
 msgid "msg_not_restricted"
 msgstr ""
 
 #. Default: "Removed response."
-#: ./izug/ticketbox/browser/response.py:792
+#: ./izug/ticketbox/browser/response.py:790
 msgid "msg_removed"
 msgstr ""
 
 #. Default: "You are not allowed to delete Responses"
-#: ./izug/ticketbox/browser/response.py:759
+#: ./izug/ticketbox/browser/response.py:757
 msgid "msg_restricted_delete"
 msgstr ""
 
@@ -803,7 +807,7 @@ msgstr ""
 msgid "show in 'my tickets'"
 msgstr ""
 
-#: ./izug/ticketbox/browser/response.py:615
+#: ./izug/ticketbox/browser/response.py:613
 #: ./izug/ticketbox/handlers.py:31
 msgid "text_file_exists_error"
 msgstr ""
