@@ -40,6 +40,13 @@
         />
 
     <browser:page
+        name="tabbedview_view-issued_subtickets_all_boxes"
+        for="*"
+        permission="zope2.View"
+        class=".tabs.MyIssuedSubTicketsAllBoxesTag"
+        />
+
+    <browser:page
         for="*"
         name="tabbedview_view-attachments"
         permission="zope2.View"
