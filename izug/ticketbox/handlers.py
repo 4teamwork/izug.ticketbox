@@ -23,7 +23,7 @@ def move_document_to_reference(obj, event):
     """Create own File and add it to References"""
 
     file_ = obj.getAttachment()
-    if file_.data != '':
+    if file_ and file_.data != '':
         new_id = queryUtility(IIDNormalizer).normalize(
             file_.filename.decode('utf-8'))
         if obj.get(new_id, None):
