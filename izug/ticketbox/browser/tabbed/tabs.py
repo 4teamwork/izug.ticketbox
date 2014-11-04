@@ -91,6 +91,43 @@ class MyIssuedSubTicketsTab(BaseTicketListingTab):
     search_options = {'Creator': get_current_user_id}
 
 
+class MyIssuedSubTicketsAllBoxesTag(MyIssuedSubTicketsTab):
+    """This tab view lists all sub tickets from all ticket boxes
+    created by the current user.
+    """
+
+    def _get_cached_options_for(self, item, getter_name):
+        """Returns all available options for the field with the
+        getter name `getter_name` of the ticket box of the
+        current item.
+        """
+        if self._cached_ticketbox_options is None:
+            self._cached_ticketbox_options = {}
+
+        catalog = getToolByName(self.context, 'portal_catalog')
+        boxes = [brain.getObject() for brain
+                 in catalog(portal_type="Ticket Box")]
+
+        for box in boxes:
+            box_path = self._get_ticketbox_path_for(box)
+            if box_path not in self._cached_ticketbox_options:
+                self._cached_ticketbox_options[box_path] = {}
+            box_cache = self._cached_ticketbox_options[box_path]
+
+            if getter_name not in box_cache:
+                box_cache[getter_name] = {}
+            box = self.context.unrestrictedTraverse(box_path)
+            for option in getattr(box, getter_name)():
+                box_cache[getter_name][option['id']] = option['title']
+
+        return box_cache[getter_name]
+
+    def _get_ticketbox_path_for(self, item):
+        """Returns the ticketbox path for an item.
+        """
+        return '/'.join(item.getPhysicalPath())
+
+
 class AttachmentsTab(CatalogListingView):
 
     types = ['File']
