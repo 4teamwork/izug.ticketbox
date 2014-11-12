@@ -89,6 +89,7 @@
   </table>
   <tal:TICKET tal:condition="python:context.portal_type == 'Ticket'">
     <a class="button delegate-button" href="./createObject?type_name=SubTicket">Delegieren</a>
+    <a class="button delegate-button" href="./notification_form">Benachrichtigen</a>
   </tal:TICKET>
   <div class="collapsible" tal:content="structure provider:ticketbox.response.add"></div>
 </div>

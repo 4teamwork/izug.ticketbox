@@ -306,15 +306,6 @@
 
 
 
-                        <div>
-                            <input id="sendNotification" class="noborder" type="checkbox" name="sendNotification:boolean" value="off" />
-                            <input type="hidden" name="sendNotification:boolean:default" value="" originalvalue="" />
-                            <label class="formQuestion" for="sendNotification"
-                                   i18n:translate="">
-                                Send notification
-                            </label>
-                            <br />
-                        </div>
                         <div class="formControls">
                             <input class="submit" value="Submit" type="submit" name="submit" i18n:attributes="value label_save_response"/>
                         </div>
