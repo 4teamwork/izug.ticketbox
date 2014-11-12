@@ -362,12 +362,14 @@ class Ticket(base.ATCTFolder):
     def getAvailableWorkflowStates(self):
         """Returns a list with all available workflow states for this object.
         """
+        from zope.i18nmessageid import MessageFactory
+        _pmf = MessageFactory('plone')
         wftool = getToolByName(self, 'portal_workflow')
         wf_ids = wftool.getChainFor(self)
         wf = wftool.getWorkflowById(wf_ids[0])
         wf_states = DisplayList()
         for wf_state_id, wf_state in wf.states.objectItems():
-            wf_states.add(wf_state_id, wf_state.title)
+            wf_states.add(wf_state_id, _pmf(wf_state_id))
         return wf_states
 
     def DescriptionWithDMSLinks(self):
