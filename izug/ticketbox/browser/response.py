@@ -670,11 +670,7 @@ class Create(Base):
                                         '/'.join(context.getPhysicalPath()))
             event.notify(ObjectEditedEvent(context))
 
-        if form.get('sendNotification', None):
-            self.request.response.redirect(
-                context.absolute_url() + '/notification_form')
-        else:
-            self.request.response.redirect(context.absolute_url())
+        self.request.response.redirect(context.absolute_url())
 
 
 class Edit(Base):
