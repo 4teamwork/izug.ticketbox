@@ -664,6 +664,13 @@ class Create(Base):
             # re-set the modification date -
             # this must be the last modifying access
             context.reindexObject()
+
+            # When a response is added to a ticket, the modification
+            # date of the ticket is greater than the date of the response.
+            # This will prevent the response from being included in the
+            # notification email in izug.ticketbox.browser.notification.ticket_notification.TicketEmailRepresentation#infos.
+            new_response.date = DateTime()
+
             self.folder.add(new_response)
             # XXX: why cataloging again?
             catalog_tool.catalog_object(context,
