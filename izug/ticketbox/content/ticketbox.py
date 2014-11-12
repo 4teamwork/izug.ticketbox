@@ -47,6 +47,12 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
         default=(
 
             {'id': '',
+             'title': "offen",
+             'show_in_all_tickets': '1',
+             'show_in_my_tickets': '1',
+             },
+
+            {'id': '',
              'title': "in Bearbeitung",
              'show_in_all_tickets': '1',
              'show_in_my_tickets': '1',
