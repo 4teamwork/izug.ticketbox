@@ -10,18 +10,20 @@ tests_require = [
     'plone.app.testing',
     'ftw.builder',
     'collective.MockMailHost',
-    ]
+    'xlrd',
+]
 
-setup(name='izug.ticketbox',
-      version=version,
-      description="A tracker-like task management system for plone.",
-      long_description=(open('README.rst').read() + '\n' + \
-                            open(os.path.join('docs', 'HISTORY.txt')).read()),
+setup(
+    name='izug.ticketbox',
+    version=version,
+    description="A tracker-like task management system for plone.",
+    long_description=(open('README.rst').read() + '\n' + \
+                      open(os.path.join('docs', 'HISTORY.txt')).read()),
 
-      # Get more strings from
-      # http://www.python.org/pypi?%3Aaction=list_classifiers
+    # Get more strings from
+    # http://www.python.org/pypi?%3Aaction=list_classifiers
 
-      classifiers=[
+    classifiers=[
         'Framework :: Plone',
         'Framework :: Plone :: 4.1',
         'Framework :: Plone :: 4.2',
@@ -30,19 +32,19 @@ setup(name='izug.ticketbox',
         'Topic :: Software Development :: Libraries :: Python Modules',
         ],
 
-      keywords='ticketbox tracker ftw ',
-      author='4teamwork GmbH',
-      author_email='mailto:info@4teamwork.ch',
-      maintainer=maintainer,
-      url='https://github.com/4teamwork/izug.ticketbox',
-      license='GPL2',
+    keywords='ticketbox tracker ftw ',
+    author='4teamwork GmbH',
+    author_email='mailto:info@4teamwork.ch',
+    maintainer=maintainer,
+    url='https://github.com/4teamwork/izug.ticketbox',
+    license='GPL2',
 
-      packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['izug', ],
-      include_package_data=True,
-      zip_safe=False,
+    packages=find_packages(exclude=['ez_setup']),
+    namespace_packages=['izug', ],
+    include_package_data=True,
+    zip_safe=False,
 
-      install_requires=[
+    install_requires=[
         'setuptools',
         'AccessControl',
         'Acquisition',
@@ -76,17 +78,17 @@ setup(name='izug.ticketbox',
         'zope.lifecycleevent',
         'zope.schema',
         'zope.viewlet',
+        'XlsxWriter',
+    ],
 
-        ],
+    tests_require=tests_require,
+    extras_require=dict(tests=tests_require,
+                        workspace=['ftw.workspace']),
 
-      tests_require=tests_require,
-      extras_require=dict(tests=tests_require,
-                          workspace=['ftw.workspace']),
-
-      test_suite='izug.ticketbox.tests.test_docs.test_suite',
-      entry_points="""
-      # -*- entry_points -*-
-      [z3c.autoinclude.plugin]
-      target = plone
-      """,
-      )
+    test_suite='izug.ticketbox.tests.test_docs.test_suite',
+    entry_points="""
+    # -*- entry_points -*-
+    [z3c.autoinclude.plugin]
+    target = plone
+    """,
+)

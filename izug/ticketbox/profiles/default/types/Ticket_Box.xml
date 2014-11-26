@@ -55,6 +55,15 @@
         <permission value="View" />
     </action>
 
+    <action action_id="xlsx_export"
+            visible="True"
+            url_expr="string:${object_url}/tickets_export_xlsx"
+            title="XLSX export"
+            category="object"
+            condition_expr="">
+        <permission value="View" />
+    </action>
+
 
     <!-- overview tabs -->
     <action action_id="overview"
