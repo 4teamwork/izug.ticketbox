@@ -8,6 +8,9 @@ Changelog
 - Export the tickets to a XLSX file.
   [mbaechtold]
 
+- Show the title of the ticketbox on the overview tab.
+  [mbaechtold]
+
 
 4.5.11 (2014-09-09)
 -------------------
