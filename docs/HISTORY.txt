@@ -5,7 +5,8 @@ Changelog
 4.5.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Export the tickets to a XLSX file.
+  [mbaechtold]
 
 
 4.5.11 (2014-09-09)
