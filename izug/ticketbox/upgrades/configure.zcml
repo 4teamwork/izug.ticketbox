@@ -32,6 +32,7 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <!-- 4100 -> 4200 -->
     <genericsetup:upgradeStep
         title="Migrate TicketAttachment to new class"
         description=""
@@ -50,6 +51,7 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <!-- 4200 -> 4201 -->
     <genericsetup:upgradeStep
         title="Migrate TicketAttachment to new class"
         description=""
@@ -57,6 +59,25 @@
         destination="4201"
         handler="izug.ticketbox.upgrades.to4201.ReindexIcons"
         profile="izug.ticketbox:default"
+        />
+
+    <!-- 4201 -> 4202 -->
+    <genericsetup:upgradeStep
+        title="Enable XLSX export of tickets."
+        description=""
+        source="4201"
+        destination="4202"
+        handler="izug.ticketbox.upgrades.to4202.EnableXlsxExport"
+        profile="izug.ticketbox:default"
+        />
+
+    <genericsetup:registerProfile
+        name="4202"
+        title="izug.ticketbox.upgrades.4202"
+        description=""
+        directory="profiles/4202"
+        for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
 </configure>
