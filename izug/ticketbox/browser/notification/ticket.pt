@@ -13,8 +13,8 @@
 <br /><br />
 <span i18n:translate="label_title">Title:</span><br />
 <span tal:content="string:#${infos/ticket_id} -" /> <span tal:content="structure infos/title" /> (<span tal:content="infos/url" />)<br /><br />
-<span tal:condition="infos/text" i18n:translate="label_description">Description</span>:<br />
-<span tal:content="structure infos/text" />
+<tal:if condition="infos/text"><span i18n:translate="label_description">Description</span>:<br />
+<span tal:content="structure infos/text" /></tal:if>
 <span tal:condition="infos/answerDate|nothing"><br /><br /><span i18n:translate="label_answerdate">Answerdate</span>:<br /></span>
 <span tal:content="structure infos/answerDate" />
 <span tal:condition="infos/state|nothing"><br /><br /><span i18n:translate="label_state">State</span>:<br /></span>
