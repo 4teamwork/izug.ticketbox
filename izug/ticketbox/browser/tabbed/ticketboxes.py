@@ -16,7 +16,7 @@ def link_to_parent(item, value):
         value = value.decode('utf-8')
 
     parent = aq_parent(aq_inner(item.getObject()))
-    title = parent.Description()
+    title = parent.Description().decode('utf-8')
 
     return u'<a href="%s" title="%s">%s</a>' % (
         os.path.dirname(item.getURL()),
