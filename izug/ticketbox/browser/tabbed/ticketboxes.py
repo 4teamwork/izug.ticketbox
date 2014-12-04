@@ -1,3 +1,4 @@
+from Acquisition import aq_inner, aq_parent
 from Products.CMFCore.utils import getToolByName
 from ftw.tabbedview.browser.listing import CatalogListingView
 from ftw.tabbedview.browser.tabbed import TabbedView
@@ -14,8 +15,12 @@ def link_to_parent(item, value):
     if isinstance(value, str):
         value = value.decode('utf-8')
 
-    return u'<a href="%s">%s</a>' % (
+    parent = aq_parent(aq_inner(item.getObject()))
+    title = parent.Description().decode('utf-8')
+
+    return u'<a href="%s" title="%s">%s</a>' % (
         os.path.dirname(item.getURL()),
+        title,
         value)
 
 
