@@ -65,8 +65,11 @@ class MyTicketsTab(BaseTicketListingTab):
 
 
 class MyIssuedTicketsTab(BaseTicketListingTab):
-    """Tab listing all tickets where the current user is the creator.
+    """Tab listing all tickets and sub ticketswhere the current user is the
+    creator.
     """
+
+    types = ['Ticket', 'SubTicket']
 
     def get_base_query(self):
         query = super(MyIssuedTicketsTab, self).get_base_query()
