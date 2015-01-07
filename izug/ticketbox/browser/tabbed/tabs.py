@@ -30,8 +30,10 @@ def attachment_ticketnr(item, nothing):
 
 
 class AllTicketsTab(BaseTicketListingTab):
-    """Tab listing all tickets in this ticketbox.
+    """Tab listing all tickets and sub tickets in this ticketbox.
     """
+
+    types = ['Ticket', 'SubTicket']
 
     def get_base_query(self):
         query = super(AllTicketsTab, self).get_base_query()

@@ -84,8 +84,10 @@ class GlobalTicketTabBase(BaseTicketListingTab):
 
 
 class GlobalAllTicketsTab(GlobalTicketTabBase):
-    """Global tickets tab listing all (visible) tickets.
+    """Global tickets tab listing all (visible) tickets and sub tickets.
     """
+
+    types = ['Ticket', 'SubTicket']
 
 
 class GlobalMyTicketsTab(GlobalTicketTabBase):
