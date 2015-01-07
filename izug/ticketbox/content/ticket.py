@@ -67,6 +67,16 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         ),
     ),
 
+    # Answer-date (default: x + 14 days)
+    DateTimeField(
+        name='answerDate',
+        default_method='default_answer_date',
+        widget=CalendarWidget(
+            label=_(u'label_AnswerDate',
+                    default=u"Answer Date"),
+            ),
+    ),
+
     # State
     StringField(
         name='state',
@@ -170,16 +180,6 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
             format="select",
             label=_(u'label_Issuer', default=u"Issuer"),
         ),
-    ),
-
-    # Answer-date (default: x + 14 days)
-    DateTimeField(
-        name='answerDate',
-        default_method='default_answer_date',
-        widget=CalendarWidget(
-            label=_(u'label_AnswerDate',
-                    default=u"Answer Date"),
-            ),
     ),
 
     # Attachment
