@@ -246,8 +246,6 @@ TicketSchema['description'] = atapi.TextField(
                 default=u"Description"),
         rows=7))
 
-TicketSchema['title'].accessor = 'getTitle'
-
 schemata.finalizeATCTSchema(TicketSchema, moveDiscussion=False)
 
 
@@ -264,12 +262,6 @@ class Ticket(base.ATCTFolder):
     security = ClassSecurityInfo()
     meta_type = "Ticket"
     schema = TicketSchema
-
-    def Title(self):
-        if getattr(self, 'in_templates', None):
-            return self.getTitle()
-
-        return ' '.join((self.ticketIdentifier(), self.getTitle()))
 
     def ticketIdentifier(self):
         ticketbox = aq_parent(aq_inner(self))
