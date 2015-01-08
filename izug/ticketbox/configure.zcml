@@ -17,7 +17,6 @@
     <!-- Include the sub-packages that use their own configure.zcml files. -->
     <include package=".browser" />
     <include package=".content" />
-    <include package=".upgrades" />
 
     <include file="permissions.zcml" />
     <include zcml:condition="installed ftw.lawgiver" file="lawgiver.zcml" />
@@ -31,6 +30,7 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <include package=".upgrades" />
 
     <!-- Register the import step -->
     <genericsetup:importStep
@@ -64,6 +64,10 @@
     <adapter
         name="sortable_responsibleManager"
         factory=".indexer.sortable_responsibleManager"
+        />
+    <adapter
+        name="sortable_issuer"
+        factory=".indexer.sortable_issuer"
         />
     <adapter
         name="sortable_ticket_references"

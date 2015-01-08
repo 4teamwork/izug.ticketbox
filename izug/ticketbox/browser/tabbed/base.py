@@ -66,14 +66,24 @@ class BaseTicketListingTab(CatalogListingView):
                 {'column': 'getArea',
                  'column_title': _(u"Area"),
                  'transform': self.area_helper,
+                 },
+
+                {'column': 'getIssuer',
+                 'column_title': _(u'Issuer'),
+                 'sort_index': 'sortable_issuer',
+                 'transform': self.readable_author_helper,
+                 },
+
+                {'column': 'Creator',
+                 'column_title': _(u'Creator'),
+                 'transform': self.readable_author_helper,
                  })
 
     def readable_author_helper(self, item, userid):
-        if userid == '(UNASSIGNED)':
-            return translate(_(u'None'), context=self.request)
-
-        else:
-            return helper.readable_author(item, userid)
+        name = helper.readable_author(item, userid)
+        if name in ['(UNASSIGNED)', '(NOISSUER)', '-']:
+            name = ''
+        return name
 
     def _get_ticketbox_path_for(self, item):
         """Returns the ticketbox path for an item.
