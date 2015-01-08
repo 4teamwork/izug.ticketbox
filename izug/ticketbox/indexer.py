@@ -2,7 +2,7 @@ from Acquisition import aq_inner, aq_parent
 from Products.ATContentTypes.interface.file import IATFile
 from Products.CMFPlone.utils import safe_callable
 from Products.CMFPlone.utils import safe_unicode
-from izug.ticketbox.browser.helper import readable_author
+from izug.ticketbox.browser.helper import get_fullname_by_user_id
 from izug.ticketbox.interfaces import ITicket
 from izug.ticketbox.interfaces import ITicketBox
 from plone.indexer.decorator import indexer
@@ -60,11 +60,29 @@ def zero_fill(matchobj):
 
 @indexer(ITicket)
 def sortable_responsibleManager(obj):
-    """get the fullname of the author to sort correctly"""
-    author = readable_author(obj)
-    if isinstance(author, unicode):
-        author = author.encode('utf-8')
-    return author
+    """
+    This indexer stores the full name of the responsible manager in order to
+    correctly sort the table by the responsible manager. If the responsible
+    manager does not have a full name (i.e. zopemaster or admin user), then
+    the user id will be used.
+    """
+    user_id = obj.getResponsibleManager()
+    if user_id == '(UNASSIGNED)':
+        user_id = ''
+    return get_fullname_by_user_id(user_id) or user_id
+
+
+@indexer(ITicket)
+def sortable_issuer(obj):
+    """
+    This indexer stores the full name of the issuer in order to correctly
+    sort the table by the issuer. If the issuer does not have a full name
+    (i.e. zopemaster or admin user), then the user id will be used.
+    """
+    user_id = obj.getIssuer()
+    if user_id == '(NOISSUER)':
+        user_id = ''
+    return get_fullname_by_user_id(user_id) or user_id
 
 
 @indexer(ITicket)

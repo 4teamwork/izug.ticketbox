@@ -10,6 +10,7 @@
     <column value="getVariety"/>
     <column value="getPriority"/>
     <column value="getResponsibleManager"/>
+    <column value="getIssuer"/>
     <column value="getDueDate"/>
     <column value="getAnswerDate"/>
     <column value="get_owner_index"/>

@@ -1,4 +1,6 @@
+from Products.CMFCore.utils import getToolByName
 from izug.ticketbox import ticketboxMessageFactory as _
+from zope.component.hooks import getSite
 
 
 def map_attribute(context, listname, id_=None):
@@ -94,14 +96,21 @@ def map_base(available_items, id_, fallback_value='-'):
     return fallback_value
 
 
-def readable_user(user_id, context):
+def get_fullname_by_user_id(user_id):
     """
-    get the full name of a user-id
+    This method returns the full name of the given user id. En empty string
+    is returned if the user is not found.
     """
-    user = context.acl_users.getUserById(user_id)
-    if user:
-        return user.getProperty('fullname', user_id) or user_id
-    return None
+    acl_users = getToolByName(getSite(), 'acl_users')
+    user = acl_users.getUserById(user_id)
+    if not user:
+        return ''
+    fullname = user.getProperty('fullname', user_id)
+    if not fullname:
+        return ''
+    if isinstance(fullname, unicode):
+        fullname = fullname.encode('utf-8')
+    return fullname
 
 
 def readable_author(context):
@@ -112,7 +121,7 @@ def readable_author(context):
 
     if not author:
         return '-'
-    return readable_user(user_id=author, context=context) or _(u"unassigned")
+    return get_fullname_by_user_id(author) or _(u'unassigned')
 
 
 def readable_issuer(context):
@@ -123,4 +132,4 @@ def readable_issuer(context):
 
     if not issuer:
         return '-'
-    return readable_user(user_id=issuer, context=context) or _(u'No Issuer')
+    return get_fullname_by_user_id(issuer) or _(u'No Issuer')
