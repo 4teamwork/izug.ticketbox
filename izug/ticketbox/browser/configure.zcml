@@ -43,6 +43,13 @@
         />
 
     <browser:page
+        name="create_subticket"
+        for="izug.ticketbox.interfaces.ITicket"
+        permission="zope2.View"
+        class=".subticket.Create"
+        />
+
+    <browser:page
         name="base_response"
         for="izug.ticketbox.interfaces.ITicket"
         permission="zope2.View"
