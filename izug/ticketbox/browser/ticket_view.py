@@ -3,6 +3,7 @@ from izug.ticketbox.browser.helper import (map_attribute, readable_author,
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from DateTime import DateTime
+from plone import api
 
 
 class TicketView(BrowserView):
@@ -72,3 +73,6 @@ class TicketView(BrowserView):
         creation_date = context.CreationDate()
         date = DateTime(creation_date)
         return date.strftime('%d.%m.%Y %H:%M')
+
+    def get_uuid(self):
+        return api.content.get_uuid(obj=self.context)
