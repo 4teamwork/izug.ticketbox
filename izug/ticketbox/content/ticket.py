@@ -335,7 +335,8 @@ class Ticket(base.ATCTFolder):
 
     def issuer_users(self):
         users = self.assignable_users()
-        users[0] = ('(NOISSUER)', _(u'No Issuer'))
+        users[0] = ('(NOISSUER)', '-')
+        users.insert(1, ('(CREATOR)', _(u'Creator')))
         return users
 
     security.declarePublic('canSetDefaultPage')

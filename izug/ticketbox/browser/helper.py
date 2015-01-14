@@ -130,6 +130,8 @@ def readable_issuer(context):
     """
     issuer = context.getIssuer()
 
-    if not issuer:
+    if not issuer or issuer == '(NOISSUER)':
         return '-'
-    return get_fullname_by_user_id(issuer) or _(u'No Issuer')
+    elif issuer == '(CREATOR)':
+        return _(u'Creator')
+    return get_fullname_by_user_id(issuer) or issuer
