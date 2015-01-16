@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-01-08 08:42+0000\n"
+"POT-Creation-Date: 2015-01-08 16:08+0000\n"
 "PO-Revision-Date: 2012-03-01 17:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,10 +38,6 @@ msgstr "Status"
 msgid "Delete"
 msgstr "Löschen"
 
-#: ./izug/ticketbox/browser/tabbed/base.py:35
-msgid "Description"
-msgstr "Beschreibung"
-
 #: ./izug/ticketbox/browser/tabbed/base.py:52
 msgid "DueDate"
 msgstr "Fälligkeit des Auftrages"
@@ -71,8 +67,8 @@ msgstr "Im Auftrag von"
 msgid "ModificationDate"
 msgstr "Änderungsdatum"
 
-#: ./izug/ticketbox/browser/helper.py:133
-#: ./izug/ticketbox/content/ticket.py:338
+#: ./izug/ticketbox/browser/helper.py:135
+#: ./izug/ticketbox/content/ticket.py:335
 msgid "No Issuer"
 msgstr "Kein Auftraggeber"
 
@@ -204,6 +200,7 @@ msgstr "Auftragskontrolle"
 msgid "Ticketnr"
 msgstr "Auftragsnr"
 
+#: ./izug/ticketbox/browser/tabbed/base.py:35
 #: ./izug/ticketbox/browser/tabbed/tabs.py:153
 #: ./izug/ticketbox/browser/tabbed/ticketboxes.py:56
 msgid "Title"
@@ -843,7 +840,7 @@ msgstr "Antwort bearbeiten"
 msgid "title_error_no_response"
 msgstr "Fehler: Keine Antwort zum bearbeiten gefunden."
 
-#: ./izug/ticketbox/browser/helper.py:123
+#: ./izug/ticketbox/browser/helper.py:124
 msgid "unassigned"
 msgstr "Nicht zugewiesen"
 

@@ -32,7 +32,7 @@ class BaseTicketListingTab(CatalogListingView):
                  },
 
                 {'column': 'Title',
-                 'column_title': _(u"Description"),
+                 'column_title': _(u"Title"),
                  'sort_index': 'sortable_title',
                  'transform': helper.linked_without_icon,
                  },
