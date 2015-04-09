@@ -9,6 +9,8 @@ tests_require = [
     'ftw.testing',
     'plone.app.testing',
     'ftw.builder',
+    'ftw.testbrowser',
+    'ftw.zipexport',
     'collective.MockMailHost',
     'xlrd',
 ]
@@ -83,7 +85,8 @@ setup(
 
     tests_require=tests_require,
     extras_require=dict(tests=tests_require,
-                        workspace=['ftw.workspace']),
+                        workspace=['ftw.workspace'],
+                        zip_export=['ftw.zipexport']),
 
     test_suite='izug.ticketbox.tests.test_docs.test_suite',
     entry_points="""

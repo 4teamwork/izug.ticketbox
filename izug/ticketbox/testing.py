@@ -41,10 +41,15 @@ class TicketBoxLayer(PloneSandboxLayer):
         xmlconfig.file('configure.zcml', collective.MockMailHost,
                        context=configurationContext)
 
+        import ftw.zipexport
+        xmlconfig.file('configure.zcml', ftw.zipexport,
+                       context=configurationContext)
+
         z2.installProduct(app, 'ftw.notification.base')
         z2.installProduct(app, 'ftw.notification.email')
         z2.installProduct(app, 'izug.ticketbox')
         z2.installProduct(app, 'collective.MockMailHost')
+        z2.installProduct(app, 'ftw.zipexport')
 
     def setUpPloneSite(self, portal):
         # Install into Plone site using portal_setup
@@ -52,6 +57,7 @@ class TicketBoxLayer(PloneSandboxLayer):
         applyProfile(portal, 'ftw.notification.email:default')
         applyProfile(portal, 'izug.ticketbox:default')
         applyProfile(portal, 'collective.MockMailHost:default')
+        applyProfile(portal, 'ftw.zipexport:default')
 
 TICKETBOX_FIXTURE = TicketBoxLayer()
 TICKETBOX_INTEGRATION_TESTING = IntegrationTesting(
