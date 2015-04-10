@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-01-27 16:03+0000\n"
+"POT-Creation-Date: 2015-04-10 07:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,18 +19,18 @@ msgstr "Une tâche pour une boîte des tâches"
 msgid "Area"
 msgstr "Domaine"
 
-#: ./izug/ticketbox/content/ticketbox.py:152
+#: ./izug/ticketbox/content/ticketbox.py:154
 msgid "Areas_id"
 msgstr "Domaines"
 
-#: ./izug/ticketbox/content/ticketbox.py:153
+#: ./izug/ticketbox/content/ticketbox.py:155
 msgid "Areas_title"
 msgstr "Nom du domaine"
 
 msgid "CSV export"
 msgstr "Export CSV"
 
-#: ./izug/ticketbox/content/ticketbox.py:90
+#: ./izug/ticketbox/content/ticketbox.py:92
 msgid "Define states"
 msgstr "Statut"
 
@@ -59,23 +59,23 @@ msgid "Issue Information"
 msgstr "Informations sur la tâche"
 
 #: ./izug/ticketbox/browser/tabbed/tabs.py:122
-#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:54
+#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:59
 msgid "ModificationDate"
 msgstr "Date de modification"
 
 #: ./izug/ticketbox/browser/tabbed/base.py:68
-#: ./izug/ticketbox/content/ticketbox.py:226
+#: ./izug/ticketbox/content/ticketbox.py:228
 msgid "None"
 msgstr "Pas alloué"
 
 msgid "Overview"
 msgstr "Sommaire"
 
-#: ./izug/ticketbox/content/ticketbox.py:136
+#: ./izug/ticketbox/content/ticketbox.py:138
 msgid "Priorities_id"
 msgstr "Priorités"
 
-#: ./izug/ticketbox/content/ticketbox.py:137
+#: ./izug/ticketbox/content/ticketbox.py:139
 msgid "Priorities_title"
 msgstr "Nom de la priorité"
 
@@ -83,11 +83,11 @@ msgstr "Nom de la priorité"
 msgid "Priority"
 msgstr "Priorité"
 
-#: ./izug/ticketbox/content/ticketbox.py:119
+#: ./izug/ticketbox/content/ticketbox.py:121
 msgid "Releases_id"
 msgstr "Paquet de livraison"
 
-#: ./izug/ticketbox/content/ticketbox.py:119
+#: ./izug/ticketbox/content/ticketbox.py:121
 msgid "Releases_title"
 msgstr "Nom du paquet de livraison"
 
@@ -207,7 +207,7 @@ msgid "Response_label_response"
 msgstr "Réponse"
 
 #: ./izug/ticketbox/browser/tabbed/tabs.py:126
-#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:58
+#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:63
 msgid "Responsible"
 msgstr "Responsable"
 
@@ -223,7 +223,7 @@ msgstr "Statut"
 msgid "Ticket"
 msgstr "Tâche"
 
-#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:77
+#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:82
 #: ./izug/ticketbox/profiles/default/types/Ticket_Box.xml
 msgid "Ticket Box"
 msgstr "Boîte des tâches"
@@ -233,7 +233,7 @@ msgid "Ticketnr"
 msgstr "No de la tâche"
 
 #: ./izug/ticketbox/browser/tabbed/tabs.py:95
-#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:49
+#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:54
 msgid "Title"
 msgstr "Titre"
 
@@ -241,15 +241,15 @@ msgstr "Titre"
 msgid "Type"
 msgstr "Type"
 
-#: ./izug/ticketbox/content/ticketbox.py:167
+#: ./izug/ticketbox/content/ticketbox.py:169
 msgid "Varieties_id"
 msgstr "Types"
 
-#: ./izug/ticketbox/content/ticketbox.py:168
+#: ./izug/ticketbox/content/ticketbox.py:170
 msgid "Varieties_title"
 msgstr "Nom du type"
 
-#: ./izug/ticketbox/content/ticketbox.py:91
+#: ./izug/ticketbox/content/ticketbox.py:93
 msgid "add or delete possible state-information"
 msgstr "Saisissez les statuts à disposition."
 
@@ -268,83 +268,83 @@ msgid "before"
 msgstr "Précédant"
 
 #. Default: "Area"
-#: ./izug/ticketbox/browser/ticket_export.py:62
-msgid "csv_heading_area"
+#: ./izug/ticketbox/export.py:47
+msgid "export_heading_area"
 msgstr "Domaine"
 
 #. Default: "Created"
-#: ./izug/ticketbox/browser/ticket_export.py:56
-msgid "csv_heading_created"
+#: ./izug/ticketbox/export.py:39
+msgid "export_heading_created"
 msgstr "Déposé le"
 
 #. Default: "Creator"
-#: ./izug/ticketbox/browser/ticket_export.py:55
-msgid "csv_heading_creator"
+#: ./izug/ticketbox/export.py:37
+msgid "export_heading_creator"
 msgstr "Déposé par"
 
 #. Default: "Description"
-#: ./izug/ticketbox/browser/ticket_export.py:54
-msgid "csv_heading_description"
+#: ./izug/ticketbox/export.py:35
+msgid "export_heading_description"
 msgstr "Description"
 
-#. Default: "Nr."
-#: ./izug/ticketbox/browser/ticket_export.py:51
-msgid "csv_heading_nr"
+#. Default: "No."
+#: ./izug/ticketbox/export.py:31
+msgid "export_heading_nr"
 msgstr "No"
 
 #. Default: "Priorities"
-#: ./izug/ticketbox/browser/ticket_export.py:61
-msgid "csv_heading_priorities"
+#: ./izug/ticketbox/export.py:45
+msgid "export_heading_priorities"
 msgstr "Priorité"
 
 #. Default: "Releases"
-#: ./izug/ticketbox/browser/ticket_export.py:64
-msgid "csv_heading_releases"
+#: ./izug/ticketbox/export.py:51
+msgid "export_heading_releases"
 msgstr "Paquet de livraison"
 
 #. Default: "Responsible"
-#: ./izug/ticketbox/browser/ticket_export.py:58
-msgid "csv_heading_responsible"
+#: ./izug/ticketbox/export.py:41
+msgid "export_heading_responsible"
 msgstr "Responsabilité"
 
 #. Default: "State"
-#: ./izug/ticketbox/browser/ticket_export.py:59
-msgid "csv_heading_state"
+#: ./izug/ticketbox/export.py:43
+msgid "export_heading_state"
 msgstr "Statut"
 
 #. Default: "Title"
-#: ./izug/ticketbox/browser/ticket_export.py:52
-msgid "csv_heading_title"
+#: ./izug/ticketbox/export.py:33
+msgid "export_heading_title"
 msgstr "Titre"
 
 #. Default: "Variety"
-#: ./izug/ticketbox/browser/ticket_export.py:63
-msgid "csv_heading_variety"
-msgstr "Selon type"
+#: ./izug/ticketbox/export.py:49
+msgid "export_heading_variety"
+msgstr "Type"
 
-#. Default: "Duedate"
-#: ./izug/ticketbox/browser/ticket_export.py:68
-msgid "csv_heading_watched_duedate"
-msgstr "Délai"
+#. Default: "Due date"
+#: ./izug/ticketbox/export.py:55
+msgid "export_heading_watched_due_date"
+msgstr "Date d'échéance"
 
 #. Default: "Watched release"
-#: ./izug/ticketbox/browser/ticket_export.py:66
-msgid "csv_heading_watched_release"
+#: ./izug/ticketbox/export.py:53
+msgid "export_heading_watched_release"
 msgstr "Observé dans"
 
-#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:29
+#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:34
 msgid "global-all_tickets"
 msgstr "Tous les tâches"
 
-#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:35
+#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:40
 msgid "global-my_issued_tickets"
 msgstr "Tâches allouées"
 
-#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:32
+#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:37
 msgid "global-my_tickets"
 msgstr "Mes tâches"
 
-#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:26
+#: ./izug/ticketbox/browser/tabbed/ticketboxes.py:31
 msgid "global-ticketboxes"
 msgstr "Sommaire"
 
@@ -359,12 +359,12 @@ msgid "help_area"
 msgstr "Choisissez le domaine du ticket"
 
 #. Default: "Enter the issue topics/areas for this tracker."
-#: ./izug/ticketbox/content/ticketbox.py:148
+#: ./izug/ticketbox/content/ticketbox.py:150
 msgid "help_areas"
 msgstr "Saisissez les domaines des tâches de cette boîte des tâches<br>(Exemple: Hardware, Internet, Mise en page, etc.)"
 
 #. Default: "Select the users which should be assignable. New users are by default searchable."
-#: ./izug/ticketbox/content/ticketbox.py:182
+#: ./izug/ticketbox/content/ticketbox.py:184
 msgid "help_assignable_users"
 msgstr "Tâches peuvent être allouées à tous les participants choisis. Tâches peuvent être allouées à tous les nouveaux participants."
 
@@ -374,12 +374,12 @@ msgid "help_attachment"
 msgstr "Vous pouvez télécharger optionnellement un fichier comme pièce jointe. Ne téléchargez pas des fichiers de grande taille."
 
 #. Default: "Enter the different type of issue severities that should be available, one per line."
-#: ./izug/ticketbox/content/ticketbox.py:131
+#: ./izug/ticketbox/content/ticketbox.py:133
 msgid "help_availablePriorities"
 msgstr "Saisissez les différentes priorités qui doivent être à disposition. Une priorité par ligne (Exemple: Priorité haute, normal, express, etc.)"
 
 #. Default: "Enter the Available Releases for this tracker."
-#: ./izug/ticketbox/content/ticketbox.py:116
+#: ./izug/ticketbox/content/ticketbox.py:118
 msgid "help_avialableReleases"
 msgstr "Saisissez les paquets de livraison disponible pour ce domaine des tâches <br>(Exemple: prochaine actualisation)"
 
@@ -389,7 +389,7 @@ msgid "help_duedate"
 msgstr "Délai de cette tâche<br>Date actuel plus deux semaines"
 
 #. Default: "Enter a individual identifier (max 7 positions)"
-#: ./izug/ticketbox/content/ticketbox.py:34
+#: ./izug/ticketbox/content/ticketbox.py:36
 msgid "help_individualIdentifier"
 msgstr "Saisissez un numéro d'identification précis (max. 7 caractères)<br>Exemple: Nom du projet, acronymes des départements participants, etc.)"
 
@@ -414,7 +414,7 @@ msgid "help_state"
 msgstr "Choisissez le statut de cette tâche"
 
 #. Default: "Enter the issue varieties for this tracker."
-#: ./izug/ticketbox/content/ticketbox.py:163
+#: ./izug/ticketbox/content/ticketbox.py:165
 msgid "help_varieties"
 msgstr "Saisissez les types disponibles pour cette boite des tâches<br>(Exemple: Faute, extension"
 
@@ -428,7 +428,7 @@ msgstr "Choisissez le type de la tâche"
 msgid "help_watchedRelease"
 msgstr "Choisissez le paquet de livraison du quelle la tâche provient"
 
-#: ./izug/ticketbox/content/ticketbox.py:94
+#: ./izug/ticketbox/content/ticketbox.py:96
 msgid "id"
 msgstr "ID"
 
@@ -436,23 +436,23 @@ msgid "info_view"
 msgstr "Info"
 
 #. Default: "Answer Date"
-#: ./izug/ticketbox/browser/ticket_view.pt:58
+#: ./izug/ticketbox/browser/ticket_view.pt:61
 #: ./izug/ticketbox/content/ticket.py:130
 msgid "label_AnswerDate"
 msgstr "Date de la réponse"
 
 #. Default: "Area"
-#: ./izug/ticketbox/browser/ticket_view.pt:38
+#: ./izug/ticketbox/browser/ticket_view.pt:41
 msgid "label_Area"
 msgstr "Domaine"
 
 #. Default: "Areas"
-#: ./izug/ticketbox/content/ticketbox.py:147
+#: ./izug/ticketbox/content/ticketbox.py:149
 msgid "label_Areas"
 msgstr "Domaines"
 
 #. Default: "Attachments"
-#: ./izug/ticketbox/browser/ticket_view.pt:62
+#: ./izug/ticketbox/browser/ticket_view.pt:65
 msgid "label_Attachment"
 msgstr "Pièce jointe"
 
@@ -462,17 +462,17 @@ msgid "label_Description"
 msgstr "Description:"
 
 #. Default: "Priority"
-#: ./izug/ticketbox/browser/ticket_view.pt:34
+#: ./izug/ticketbox/browser/ticket_view.pt:37
 msgid "label_Priority"
 msgstr "Priorité"
 
 #. Default: "References"
-#: ./izug/ticketbox/browser/ticket_view.pt:79
+#: ./izug/ticketbox/browser/ticket_view.pt:82
 msgid "label_References"
 msgstr "Références"
 
 #. Default: "Release"
-#: ./izug/ticketbox/browser/ticket_view.pt:46
+#: ./izug/ticketbox/browser/ticket_view.pt:49
 msgid "label_Releases"
 msgstr "Paquet de livraison"
 
@@ -482,7 +482,7 @@ msgid "label_Responsible"
 msgstr "Responsable"
 
 #. Default: "responsible Manager"
-#: ./izug/ticketbox/browser/ticket_view.pt:54
+#: ./izug/ticketbox/browser/ticket_view.pt:57
 msgid "label_ResponsibleManager"
 msgstr "Responsable"
 
@@ -492,12 +492,12 @@ msgid "label_State"
 msgstr "Statut:"
 
 #. Default: "Varieties"
-#: ./izug/ticketbox/content/ticketbox.py:162
+#: ./izug/ticketbox/content/ticketbox.py:164
 msgid "label_Varieties"
 msgstr "Types"
 
 #. Default: "Variety"
-#: ./izug/ticketbox/browser/ticket_view.pt:42
+#: ./izug/ticketbox/browser/ticket_view.pt:45
 msgid "label_Variety"
 msgstr "Type"
 
@@ -523,7 +523,7 @@ msgid "label_areas"
 msgstr "Domaine"
 
 #. Default: "Assignable users"
-#: ./izug/ticketbox/content/ticketbox.py:180
+#: ./izug/ticketbox/content/ticketbox.py:182
 msgid "label_assignable_users"
 msgstr "Participants à disposition"
 
@@ -543,23 +543,23 @@ msgid "label_automated"
 msgstr "Cette réponse a été générée automatiquement, ne pas répondre s.v.p."
 
 #. Default: "Available priorities"
-#: ./izug/ticketbox/content/ticketbox.py:129
+#: ./izug/ticketbox/content/ticketbox.py:131
 msgid "label_availablePriorities"
 msgstr "Priorités à disposition"
 
 #. Default: "Available Releases"
-#: ./izug/ticketbox/content/ticketbox.py:114
+#: ./izug/ticketbox/content/ticketbox.py:116
 msgid "label_availableReleases"
 msgstr "Paquets de livraison à disposition"
 
 #. Default: "Description"
-#: ./izug/ticketbox/browser/ticket_view.pt:14
+#: ./izug/ticketbox/browser/ticket_view.pt:17
 #: ./izug/ticketbox/content/ticket.py:198
 msgid "label_description"
 msgstr "Description"
 
 #. Default: "Due Date"
-#: ./izug/ticketbox/browser/ticket_view.pt:26
+#: ./izug/ticketbox/browser/ticket_view.pt:29
 #: ./izug/ticketbox/content/ticket.py:37
 msgid "label_duedate"
 msgstr "Délai de la tâche"
@@ -604,7 +604,7 @@ msgid "label_heading_by_watched_release"
 msgstr "Observé à"
 
 #. Default: "Individual identifier"
-#: ./izug/ticketbox/content/ticketbox.py:32
+#: ./izug/ticketbox/content/ticketbox.py:34
 msgid "label_individualIdentifier"
 msgstr "No d'identification individuel"
 
@@ -686,18 +686,18 @@ msgstr "Observé dans le paquet de livraison"
 
 #. Default: "State"
 #: ./izug/ticketbox/browser/response.py:552
-#: ./izug/ticketbox/browser/ticket_view.pt:30
+#: ./izug/ticketbox/browser/ticket_view.pt:33
 #: ./izug/ticketbox/content/ticket.py:47
 msgid "label_state"
 msgstr "Statut"
 
 #. Default: "Submitted at"
-#: ./izug/ticketbox/browser/ticket_view.pt:22
+#: ./izug/ticketbox/browser/ticket_view.pt:25
 msgid "label_submitted"
 msgstr "Déposé le"
 
 #. Default: "Submitter"
-#: ./izug/ticketbox/browser/ticket_view.pt:18
+#: ./izug/ticketbox/browser/ticket_view.pt:21
 msgid "label_submitter"
 msgstr "Déposé par"
 
@@ -722,7 +722,7 @@ msgid "label_variety"
 msgstr "Type"
 
 #. Default: "Watched in release"
-#: ./izug/ticketbox/browser/ticket_view.pt:50
+#: ./izug/ticketbox/browser/ticket_view.pt:53
 msgid "label_watched_in_release"
 msgstr "Observé dans le paquet de livraison"
 
@@ -810,7 +810,7 @@ msgstr "Vous n'êtes pas autorisé(e) de supprimer des réponses."
 msgid "my_tickets"
 msgstr "Mes tâches"
 
-#: ./izug/ticketbox/content/ticketbox.py:305
+#: ./izug/ticketbox/content/ticketbox.py:315
 msgid "no"
 msgstr "Non"
 
@@ -828,11 +828,11 @@ msgstr "Nouvelles références:"
 msgid "responsibleManager"
 msgstr "Responsable"
 
-#: ./izug/ticketbox/content/ticketbox.py:97
+#: ./izug/ticketbox/content/ticketbox.py:99
 msgid "show in 'all tickets'"
 msgstr "Montrer dans \"Tous les tâches\""
 
-#: ./izug/ticketbox/content/ticketbox.py:103
+#: ./izug/ticketbox/content/ticketbox.py:105
 msgid "show in 'my tickets'"
 msgstr "Montrer dans \"Mes tâches\""
 
@@ -841,7 +841,7 @@ msgstr "Montrer dans \"Mes tâches\""
 msgid "text_file_exists_error"
 msgstr "Un fichier avec le même nom existe déjà. Le fichier n'a pas pu téléchargé"
 
-#: ./izug/ticketbox/content/ticketbox.py:95
+#: ./izug/ticketbox/content/ticketbox.py:97
 msgid "title"
 msgstr "Titre"
 
@@ -864,7 +864,8 @@ msgstr "Faute: Aucune réponse pour modifier n'a été trouvée."
 msgid "unassigned"
 msgstr "Pas alloué"
 
-#: ./izug/ticketbox/content/ticketbox.py:304
+#: ./izug/ticketbox/content/ticketbox.py:314
 msgid "yes"
 msgstr "Oui"
+
 

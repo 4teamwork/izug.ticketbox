@@ -121,5 +121,8 @@
         <adapter factory=".workspace.WorkspaceStartupDirectory" />
     </configure>
 
+    <configure zcml:condition="installed ftw.zipexport">
+        <adapter factory=".zip_export.TicketBoxZipRepresentation" />
+    </configure>
 
 </configure>

@@ -5,7 +5,8 @@ Changelog
 4.6.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Export ticketboxes as a ZIP file with the help of ftw.zipexport.
+  [mbaechtold]
 
 
 4.6.0 (2014-12-04)

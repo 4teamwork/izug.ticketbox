@@ -16,6 +16,8 @@ Usage
     eggs +=
         izug.ticketbox
 
+- Use ``izug.ticketbox [zip_export]`` if you want to enable zip export.
+
 - Install the generic setup profiles of those packages.
 
 - Edit any content: on the bottom of the form there is new checkbox "Send
