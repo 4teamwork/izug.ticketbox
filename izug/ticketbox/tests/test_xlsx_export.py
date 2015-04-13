@@ -1,17 +1,13 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 from DateTime import DateTime
-from ftw.testing import freeze
 from ftw.builder import Builder
 from ftw.builder import create
-from ftw.testbrowser import browsing
+from ftw.testing import freeze
 from izug.ticketbox.testing import TICKETBOX_INTEGRATION_TESTING
-from izug.ticketbox.testing import TICKETBOX_FUNCTIONAL_TESTING
 from izug.ticketbox.tests import helpers
-from StringIO import StringIO
 from unittest2 import TestCase
 from xlrd import open_workbook
-from zipfile import ZipFile
 
 
 class TestXlsxExport(TestCase):
@@ -56,71 +52,6 @@ class TestXlsxExport(TestCase):
                 {
                     u'Created': u'01.11.2010 08:25',
                     u'Due date': u'10.11.2010 17:14',
-                    u'No.': u'1',
-                    u'Description': u' This is a test. ',
-                    u'Releases': u'-',
-                    u'Creator': u'test_user_1_',
-                    u'Responsible': u'',
-                    u'Watched release': u'-',
-                    u'Priorities': u'-',
-                    u'State': u'-',
-                    u'Variety': u'-',
-                    u'Title': u'Täst',
-                    u'Area': u'-',
-                }
-            ],
-            second=data
-        )
-
-
-class TestZipExport(TestCase):
-
-    layer = TICKETBOX_FUNCTIONAL_TESTING
-
-    def setUp(self):
-        super(TestZipExport, self).setUp()
-
-        portal = self.layer['portal']
-        helpers.login_as_manager(portal)
-
-    @browsing
-    def test_zip_export(self, browser):
-        ticketbox = create(Builder('ticket box')
-                           .titled(u'My Tickät Box'))
-
-        ticket_builder = Builder('ticket')
-        ticket_builder.titled(u'Täst')
-        ticket_builder.with_id('1')
-        ticket_builder.having(dueDate=DateTime(2011, 11, 10, 17, 14, 35),
-                              description="<p>This is a<br />test.</p>")
-        ticket_builder.within(ticketbox)
-
-        with freeze(datetime(2011, 2, 3, 5, 7, 11)):
-            create(ticket_builder)
-
-        browser.login().visit(ticketbox, view='zip_export')
-        self.assertEquals('application/zip', browser.headers['Content-Type'])
-
-        zipfile = ZipFile(StringIO(browser.contents))
-        self.assertEquals(['my-tickat-box.xlsx'], zipfile.namelist())
-
-        xlsx = zipfile.read('my-tickat-box.xlsx')
-
-        workbook = open_workbook(file_contents=xlsx)
-        sheet = workbook.sheet_by_index(0)
-
-        data = map(sheet.row_values, range(sheet.nrows))
-        headers = data.pop(0)
-        data = map(
-            lambda row: dict(zip(headers, row)),
-            data
-        )
-        self.maxDiff = None
-        self.assertEquals(
-            first=[
-                {
-                    u'Created': u'03.02.2011 05:07',
-                    u'Due date': u'10.11.2011 17:14',
                     u'No.': u'1',
                     u'Description': u' This is a test. ',
                     u'Releases': u'-',

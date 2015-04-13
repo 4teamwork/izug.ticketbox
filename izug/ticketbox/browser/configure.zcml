@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="izug.ticketbox">
 
     <include package="plone.app.contentmenu" />
@@ -112,6 +113,15 @@
         factory=".notification.ticket_notification.TicketEmailRepresentation"
         for="izug.ticketbox.interfaces.ITicket"
         provides="ftw.notification.email.interfaces.IEMailRepresentation"
+        />
+
+    <browser:page
+        name="zipexport-enabled"
+        for="izug.ticketbox.interfaces.ITicket"
+        class=".zip_export.ZipExportDisabled"
+        permission="zope2.View"
+        allowed_attributes="zipexport_enabled"
+        zcml:condition="installed ftw.zipexport"
         />
 
 </configure>
