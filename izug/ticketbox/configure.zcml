@@ -123,6 +123,7 @@
 
     <configure zcml:condition="installed ftw.zipexport">
         <adapter factory=".zip_export.TicketBoxZipRepresentation" />
+        <adapter factory=".zip_export.TicketZipRepresentation" />
     </configure>
 
 </configure>

@@ -5,7 +5,11 @@ Changelog
 4.6.1 (unreleased)
 ------------------
 
-- Export ticketboxes as a ZIP file with the help of ftw.zipexport.
+- Export ticketboxes as a ZIP file with the help of ftw.zipexport:
+
+  - XLSX file containing data from all tickets
+  - attachments of all tickets in separate folders
+
   [mbaechtold]
 
 
