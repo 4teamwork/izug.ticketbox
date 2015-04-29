@@ -176,6 +176,7 @@ TicketBoxSchema = folder.ATBTreeFolderSchema.copy() + Schema((
             edit_accessor='getAssignableUserIds',
             mutator='setAssignableUserIds',
             vocabulary='unfilteredAssignableUsersVocabulary',
+            expression='context.getAssignableUserIds()',
 
             widget=MultiSelectionWidget(
                 format='checkbox',
