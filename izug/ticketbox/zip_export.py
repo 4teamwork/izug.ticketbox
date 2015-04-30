@@ -3,6 +3,7 @@ from ftw.zipexport.representations.archetypes import FolderZipRepresentation
 from ftw.zipexport.representations.general import NullZipRepresentation
 from izug.ticketbox.export import get_header, get_data, create_xlsx
 from izug.ticketbox.interfaces import ITicketBox, ITicket
+from Products.CMFPlone.utils import safe_unicode
 from StringIO import StringIO
 from zope.component import adapts
 from zope.interface import implements, Interface
@@ -22,9 +23,10 @@ class TicketBoxZipRepresentation(FolderZipRepresentation):
         data = get_data(self.context)
         xlsx = create_xlsx(header, data)
 
-        filename = u'{0}.xlsx'.format(self.context.getId())
+        filename = '{0}.xlsx'.format(self.context.getId())
 
-        yield (u'{0}/{1}'.format(path_prefix, filename), xlsx)
+        yield (u'{0}/{1}'.format(safe_unicode(path_prefix),
+                                 safe_unicode(filename)), xlsx)
 
         # Recursively export folder contents.
         folder_contents = super(TicketBoxZipRepresentation, self).get_files(
@@ -42,14 +44,11 @@ class TicketZipRepresentation(NullZipRepresentation):
         attachments = self.context.getAttachments()
 
         # Put the attachments in a folder per ticket.
-        path_prefix = u'{0}/{1}'.format(path_prefix,
-                                        self.context.Title().decode('utf-8'))
+        path_prefix = u'{0}/{1}'.format(safe_unicode(path_prefix),
+                                        safe_unicode(self.context.Title()))
 
         for attachment in attachments:
             filename = attachment.getFilename()
-
-            if not isinstance(filename, unicode):
-                filename = filename.decode('utf-8')
-
-            yield (u'{0}/{1}'.format(path_prefix, filename),
+            yield (u'{0}/{1}'.format(safe_unicode(path_prefix),
+                                     safe_unicode(filename)),
                    StringIO(attachment.data))
