@@ -51,5 +51,5 @@ class TicketZipRepresentation(NullZipRepresentation):
             if not isinstance(filename, unicode):
                 filename = filename.decode('utf-8')
 
-            yield (u'{0}/{1}'.format(path_prefix.decode('utf-8'), filename),
+            yield (u'{0}/{1}'.format(path_prefix, filename),
                    StringIO(attachment.data))
