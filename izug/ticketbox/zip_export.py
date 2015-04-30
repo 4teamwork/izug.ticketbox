@@ -47,5 +47,9 @@ class TicketZipRepresentation(NullZipRepresentation):
 
         for attachment in attachments:
             filename = attachment.getFilename()
-            yield (u'{0}/{1}'.format(path_prefix, filename),
+
+            if not isinstance(filename, unicode):
+                filename = filename.decode('utf-8')
+
+            yield (u'{0}/{1}'.format(path_prefix.decode('utf-8'), filename),
                    StringIO(attachment.data))

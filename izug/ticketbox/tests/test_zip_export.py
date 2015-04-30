@@ -84,7 +84,7 @@ class TestZipExport(TestCase):
         file_ = StringIO('GIF89a\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00'
                          '\x00\x00\x00!\xf9\x04\x04\x00\x00\x00\x00,\x00'
                          '\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01\x00;')
-        file_.filename = 'image.gif'
+        file_.filename = 'im\xc3\xa4ge.gif'
         file_.content_type = 'image/gif'
 
         browser.login()
@@ -93,5 +93,5 @@ class TestZipExport(TestCase):
 
         browser.visit(self.ticketbox, view='zip_export')
         zipfile = ZipFile(StringIO(browser.contents))
-        image = zipfile.read('Ticket/image.gif')
+        image = zipfile.read(u'Ticket/im\xe4ge.gif')
         self.assertEqual(file_.getvalue(), image)
