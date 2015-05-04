@@ -49,8 +49,7 @@ class TicketEmailRepresentation(BaseEmailRepresentation):
                         'individualIdendifier':
                             self.context.aq_parent.getIndividualIdentifier,
                         'url': self.context.absolute_url(),
-                        'text': self.context.Schema()[
-                            'ticket_description'].get(self.context),
+                        'text': self.context.getTicket_description(),
                         'state': map_attribute(self.context, "state"),
                         'responsibleManager': author,
                         'priority': map_attribute(self.context, "priority"),

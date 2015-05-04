@@ -15,7 +15,7 @@
     <table class="listing vertical">
         <tr>
             <th i18n:translate='label_description'>Description</th>
-            <td tal:content="structure python:context.Schema()['ticket_description'].get(context)" />
+            <td tal:content="structure here/getTicket_description" />
         </tr>
         <tr>
             <th i18n:translate='label_submitter'>Submitter</th>

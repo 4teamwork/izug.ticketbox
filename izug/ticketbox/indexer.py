@@ -26,7 +26,7 @@ def get_owner_index(obj):
 @indexer(ITicket)
 def get_ticket_description(obj):
     pt = getToolByName(obj, 'portal_transforms')
-    description = obj.Schema()['ticket_description'].get(obj)
+    description = obj.getTicket_description()
     return pt.convertTo('text/plain', description).getData()
 
 

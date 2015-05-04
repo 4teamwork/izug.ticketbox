@@ -72,7 +72,7 @@ def get_data(context):
     pt = getToolByName(context, 'portal_transforms')
     for brain in brains:
         obj = brain.getObject()
-        ticket_description = obj.Schema()['ticket_description'].get(obj)
+        ticket_description = obj.getTicket_description()
         row = [
             brain.getId,
             brain.Title,
