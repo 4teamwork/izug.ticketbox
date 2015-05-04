@@ -29,7 +29,7 @@ class TestZipExport(TestCase):
         ticket_builder.titled(u'T\xc3st')
         ticket_builder.with_id('1')
         ticket_builder.having(dueDate=DateTime(2011, 11, 10, 17, 14, 35),
-                              description='<p>This is a<br />test.</p>')
+                              ticket_description='<p>This is a<br />test.</p>')
         ticket_builder.within(self.ticketbox)
 
         with freeze(datetime(2011, 2, 3, 5, 7, 11)):

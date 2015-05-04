@@ -5,6 +5,10 @@ Changelog
 4.6.1 (unreleased)
 ------------------
 
+- No longer recycle Description as TextField.
+  This lead into problems with tinymce (Somehow).
+  [mathias.leimgruber]
+
 - Export ticketboxes as a ZIP file with the help of ftw.zipexport:
 
   - XLSX file containing data from all tickets

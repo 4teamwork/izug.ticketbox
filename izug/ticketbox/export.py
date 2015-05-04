@@ -71,10 +71,12 @@ def get_data(context):
 
     pt = getToolByName(context, 'portal_transforms')
     for brain in brains:
+        obj = brain.getObject()
+        ticket_description = obj.Schema()['ticket_description'].get(obj)
         row = [
             brain.getId,
             brain.Title,
-            pt.convertTo('text/plain', brain.Description).getData(),
+            pt.convertTo('text/plain', ticket_description).getData(),
             fullname(context, brain.Creator),
             format_date(brain.created),
             fullname(context, brain.getResponsibleManager),

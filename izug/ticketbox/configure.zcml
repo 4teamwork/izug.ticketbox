@@ -71,6 +71,9 @@
     <adapter
         name="get_owner_index"
         factory=".indexer.get_owner_index" />
+    <adapter
+        name="Description"
+        factory=".indexer.get_ticket_description" />
 
     <adapter
         name="ticketbox_title"
