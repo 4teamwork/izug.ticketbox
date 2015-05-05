@@ -1,11 +1,12 @@
 from Acquisition import aq_inner, aq_parent
-from Products.ATContentTypes.interface.file import IATFile
-from Products.CMFPlone.utils import safe_callable
-from Products.CMFPlone.utils import safe_unicode
 from izug.ticketbox.browser.helper import readable_author
 from izug.ticketbox.interfaces import ITicket
 from izug.ticketbox.interfaces import ITicketBox
 from plone.indexer.decorator import indexer
+from Products.ATContentTypes.interface.file import IATFile
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_callable
+from Products.CMFPlone.utils import safe_unicode
 import re
 
 
@@ -20,6 +21,13 @@ def get_owner_index(obj):
     if callable(userid):
         userid = userid()
     return userid or ''
+
+
+@indexer(ITicket)
+def get_ticket_description(obj):
+    pt = getToolByName(obj, 'portal_transforms')
+    description = obj.getTicket_description()
+    return pt.convertTo('text/plain', description).getData()
 
 
 @indexer(ITicket)

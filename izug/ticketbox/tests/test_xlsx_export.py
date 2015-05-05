@@ -28,7 +28,7 @@ class TestXlsxExport(TestCase):
         ticket_builder.titled(u'Täst')
         ticket_builder.with_id('1')
         ticket_builder.having(dueDate=DateTime(2010, 11, 10, 17, 14, 35),
-                              description="<p>This is a<br />test.</p>")
+                              ticket_description="<p>This is a<br />test.</p>")
         ticket_builder.within(ticketbox)
 
         with freeze(datetime(2010, 11, 1, 8, 25, 20)):

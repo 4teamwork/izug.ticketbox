@@ -14,6 +14,7 @@ from Products.Archetypes.atapi import registerType
 from Products.Archetypes.atapi import Schema
 from Products.Archetypes.atapi import SelectionWidget
 from Products.Archetypes.atapi import StringField
+from Products.Archetypes.atapi import TextField
 from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content import schemata
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget \
@@ -26,6 +27,22 @@ from Products.Archetypes import atapi
 from Products.CMFCore.permissions import ManagePortal
 
 TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
+
+        TextField(
+            name='ticket_description',
+            default='',
+            searchable=True,
+
+            default_content_type='text/html',
+            allowable_content_types=('text/html',),
+            validators=('isTidyHtmlWithCleanup', ),
+            default_output_type='text/x-html-safe',
+            default_input_type='text/html',
+
+            widget = atapi.RichWidget(
+                label=_(u"label_description",
+                        default=u"Description"),
+                rows=30)),
 
         #Due-Date (default: x + 14 days)
         DateTimeField(
@@ -178,29 +195,8 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         ))
 
 
-
-TicketSchema['description'] = atapi.TextField(
-    name='description',
-    default='',
-    searchable=True,
-    accessor="Description",
-
-    # Keep the original storage for backwards compatiblity:
-    storage=TicketSchema['description'].storage,
-
-    default_content_type='text/html',
-    allowable_content_types=('text/html',),
-    validators=('isTidyHtmlWithCleanup', ),
-    default_output_type='text/x-html-safe',
-    default_input_type='text/html',
-
-    widget = atapi.RichWidget(
-        label=_(u"label_description",
-                default=u"Description"),
-        rows=30))
-
+TicketSchema['description'].widget.visible = -1
 schemata.finalizeATCTSchema(TicketSchema, moveDiscussion=False)
-
 
 # Hide all unimportant fields except default-schamata-fields
 for field in TicketSchema.keys():

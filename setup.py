@@ -64,7 +64,7 @@ setup(
         'ftw.notification.email',
         'ftw.tabbedview',
         'ftw.table',
-        'ftw.upgrade',
+        'ftw.upgrade >= 1.14.0',
         'plone.principalsource',
         'zope.annotation',
         'zope.app.component',
