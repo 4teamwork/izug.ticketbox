@@ -93,5 +93,5 @@ class TestZipExport(TestCase):
 
         browser.visit(self.ticketbox, view='zip_export')
         zipfile = ZipFile(StringIO(browser.contents))
-        image = zipfile.read(u'Ticket/im\xe4ge.gif')
+        image = zipfile.read(u'Ticket/image.gif')
         self.assertEqual(file_.getvalue(), image)
