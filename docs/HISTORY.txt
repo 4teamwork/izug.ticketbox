@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.6.1 (unreleased)
+4.7.0 (2015-05-08)
 ------------------
 
 - No longer recycle Description as TextField.
