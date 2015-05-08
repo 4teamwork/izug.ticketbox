@@ -35,7 +35,7 @@ setup(
         ],
 
     keywords='ticketbox tracker ftw ',
-    author='4teamwork GmbH',
+    author='4teamwork AG',
     author_email='mailto:info@4teamwork.ch',
     maintainer=maintainer,
     url='https://github.com/4teamwork/izug.ticketbox',
