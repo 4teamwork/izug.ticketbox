@@ -142,6 +142,25 @@ def readable_issuer(context):
     return get_fullname_by_user_id(issuer) or issuer
 
 
+def get_box_states(context):
+    catalog = getToolByName(context, 'portal_catalog')
+    states = {'active': set(),
+              'inactive': set()}
+    for brain in catalog({'portal_type': 'Ticket Box'}):
+        box = brain.getObject()
+        box_is_template = any(filter(brain.getPath().startswith,
+                                     get_template_factory_paths(box)))
+        if not box_is_template:
+            for state in box.getAvailableStates():
+                if state['show_in_all_tickets'] == '1':
+                    states['active'].add(state['id'])
+                else:
+                    states['inactive'].add(state['id'])
+    for state in states:
+        states[state] = list(states[state])
+    return states
+
+
 def get_template_factory_paths(obj):
     template_factory = getMultiAdapter((obj, obj.REQUEST), ICreateFromTemplate)
     template_factory_paths = template_factory.templatefolder_locations()

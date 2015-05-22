@@ -1,7 +1,7 @@
 from ftw.tabbedview.browser.listing import CatalogListingView
 from ftw.table import helper
 from izug.ticketbox import ticketboxMessageFactory as _
-from zope.i18n import translate
+from izug.ticketbox.browser.helper import get_box_states
 
 
 class BaseTicketListingTab(CatalogListingView):
@@ -23,6 +23,11 @@ class BaseTicketListingTab(CatalogListingView):
         self._state_map = None
         self._priority_map = None
         self._area_map = None
+
+    def get_base_query(self):
+        query = super(BaseTicketListingTab, self).get_base_query()
+        query['getState'] = [item for item in get_box_states(self.context)['active']]
+        return query
 
     @property
     def columns(self):

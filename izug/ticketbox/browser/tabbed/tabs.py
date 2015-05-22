@@ -1,6 +1,7 @@
 from ftw.tabbedview.browser.listing import CatalogListingView
 from ftw.table import helper
 from izug.ticketbox import ticketboxMessageFactory as _
+from izug.ticketbox.browser.helper import get_box_states
 from izug.ticketbox.browser.tabbed.base import BaseTicketListingTab
 from izug.ticketbox.browser.ticket_view import TicketView
 from Products.CMFCore.utils import getToolByName
@@ -35,13 +36,16 @@ class AllTicketsTab(BaseTicketListingTab):
 
     types = ['Ticket', 'SubTicket']
 
+
+class InactiveTicketsTab(BaseTicketListingTab):
+    """Tab listing all inactive tickets and sub tickets in this ticketbox.
+    """
+
+    types = ['Ticket', 'SubTicket']
+
     def get_base_query(self):
-        query = super(AllTicketsTab, self).get_base_query()
-
-        query['getState'] = [state['id']
-                             for state in self.context.getAvailableStates()
-                             if state['show_in_all_tickets'] == '1']
-
+        query = super(InactiveTicketsTab, self).get_base_query()
+        query['getState'] = get_box_states(self.context)['inactive']
         return query
 
 
@@ -57,10 +61,6 @@ class MyTicketsTab(BaseTicketListingTab):
         member = self.context.restrictedTraverse(
             '@@plone_portal_state').member()
         query['getResponsibleManager'] = member.getId()
-        query['getState'] = [state['id']
-                             for state in self.context.getAvailableStates()
-                             if state['show_in_my_tickets'] == '1']
-
         return query
 
 
@@ -77,10 +77,6 @@ class MyIssuedTicketsTab(BaseTicketListingTab):
         member = self.context.restrictedTraverse(
             '@@plone_portal_state').member()
         query['Creator'] = member.getId()
-        query['getState'] = [state['id']
-                             for state in self.context.getAvailableStates()
-                             if state['show_in_my_tickets'] == '1']
-
         return query
 
 

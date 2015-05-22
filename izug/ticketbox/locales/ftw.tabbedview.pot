@@ -27,6 +27,9 @@ msgstr ""
 msgid "my_tickets"
 msgstr ""
 
+msgid "inactive_tickets"
+msgstr ""
+
 msgid "info_view"
 msgstr ""
 

@@ -84,6 +84,15 @@
         <permission value="View"/>
     </action>
 
+    <action action_id="inactive_tickets"
+            visible="True"
+            url_expr="string:${object_url}#inactive_tickets"
+            title="Inactive tickets"
+            category="tabbedview-tabs"
+            condition_expr="">
+        <permission value="View"/>
+    </action>
+
     <action action_id="issued_tickets"
             visible="True"
             url_expr="string:${object_url}#issued_tickets"
