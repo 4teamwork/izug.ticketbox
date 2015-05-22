@@ -1,6 +1,11 @@
-from Products.CMFCore.utils import getToolByName
+from ftw.contenttemplates.interfaces import ICreateFromTemplate
+from functools import partial
 from izug.ticketbox import ticketboxMessageFactory as _
+from plone import api
+from Products.CMFCore.utils import getToolByName
+from zope.component import getMultiAdapter
 from zope.component.hooks import getSite
+import os
 
 
 def map_attribute(context, listname, id_=None):
@@ -135,3 +140,15 @@ def readable_issuer(context):
     elif issuer == '(CREATOR)':
         return _(u'Creator')
     return get_fullname_by_user_id(issuer) or issuer
+
+
+def get_template_factory_paths(obj):
+    template_factory = getMultiAdapter((obj, obj.REQUEST), ICreateFromTemplate)
+    template_factory_paths = template_factory.templatefolder_locations()
+
+    # Prepend portal path to each template factory path
+    prepend_portal_path = partial(os.path.join,
+                                  *('/',) + api.portal.get().getPhysicalPath())
+    template_factory_paths = map(prepend_portal_path, template_factory_paths)
+
+    return template_factory_paths

@@ -103,7 +103,7 @@ TicketSchema = schemata.ATContentTypeSchema.copy() + Schema((
         name='classification',
         vocabulary='getAvailableWorkflowStates',
         required=True,
-        default='bve_ticket_workflow--STATUS--offentlich',
+        default='bve_ticket_workflow--STATUS--vertraulich',
         widget=SelectionWidget(
             label=_(u"label_classification", default=u"Classification"),
         ),

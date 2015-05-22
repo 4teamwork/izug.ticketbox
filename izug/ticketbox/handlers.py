@@ -1,12 +1,12 @@
-
 # # -*- coding: utf-8 -*-
-from Products.statusmessages.interfaces import IStatusMessage
+from DateTime import DateTime
 from izug.ticketbox import ticketboxMessageFactory as _
+from izug.ticketbox.browser.helper import get_template_factory_paths
 from izug.ticketbox.utils import uniquify_ids
 from plone.i18n.normalizer.interfaces import IIDNormalizer
-from zope.component import queryUtility
 from Products.CMFCore.utils import getToolByName
-from DateTime import DateTime
+from Products.statusmessages.interfaces import IStatusMessage
+from zope.component import queryUtility
 
 
 def generate_datagrid_column_id(obj, event):
@@ -60,6 +60,20 @@ def set_workflow_state(obj, event):
     wftool = getToolByName(obj, 'portal_workflow')
     wf_ids = wftool.getChainFor(obj)
     state = obj.getClassification()
+
+    # The default value of ticket.classification has been changed from
+    # "offentlich" to "vertraulich" to set the initial value in the form
+    # when creating a new template ticket.
+    # This would change the workflow state to "vertraulich" but the templates
+    # must have the state "offentlich", otherwise users won't be able to
+    # create tickets from this template. We simply set the state to
+    # "offentlich" when a ticket is created in the template folder.
+    # Start of customization:
+    obj_path = '/'.join(obj.getPhysicalPath())
+    if any(filter(obj_path.startswith, get_template_factory_paths(obj))):
+        state = 'bve_ticket_workflow--STATUS--offentlich'
+    # End of customization.
+
     wf_id = wf_ids[0]
     comment = 'State set to: %s' % state
     wftool.setStatusOf(wf_id, obj, {'review_state': state,
