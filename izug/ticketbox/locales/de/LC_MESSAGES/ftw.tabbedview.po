@@ -17,6 +17,9 @@ msgstr "Alle Aufträge"
 msgid "attachments"
 msgstr "Anhänge"
 
+msgid "inactive_tickets"
+msgstr "Erledigte Aufträge"
+
 msgid "info_view"
 msgstr "Info"
 

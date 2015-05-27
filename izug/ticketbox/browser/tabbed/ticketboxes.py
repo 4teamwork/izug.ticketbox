@@ -1,8 +1,8 @@
-from Products.CMFCore.utils import getToolByName
 from ftw.tabbedview.browser.listing import CatalogListingView
 from ftw.tabbedview.browser.tabbed import TabbedView
 from ftw.table import helper
 from izug.ticketbox import ticketboxMessageFactory as _
+from izug.ticketbox.browser.helper import get_box_states
 from izug.ticketbox.browser.tabbed.base import BaseTicketListingTab
 import os.path
 
@@ -27,6 +27,9 @@ class TicketboxesTabbedView(TabbedView):
              'class': ''},
 
             {'id': _('global-all_tickets'),
+             'class': ''},
+
+            {'id': _('global-inactive_tickets'),
              'class': ''},
 
             {'id': _('global-my_tickets'),
@@ -88,6 +91,18 @@ class GlobalAllTicketsTab(GlobalTicketTabBase):
     """
 
     types = ['Ticket', 'SubTicket']
+
+
+class GlobalInactiveTicketsTab(GlobalTicketTabBase):
+    """Global tickets tab listing all (inactive) tickets and sub tickets.
+    """
+
+    types = ['Ticket', 'SubTicket']
+
+    def get_base_query(self):
+        query = super(GlobalInactiveTicketsTab, self).get_base_query()
+        query['getState'] = get_box_states(self.context)['inactive']
+        return query
 
 
 class GlobalMyTicketsTab(GlobalTicketTabBase):

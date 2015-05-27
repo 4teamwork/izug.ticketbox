@@ -19,6 +19,13 @@
         />
 
     <browser:page
+        name="tabbedview_view-inactive_tickets"
+        for="izug.ticketbox.interfaces.ITicketBox"
+        permission="zope2.View"
+        class=".tabs.InactiveTicketsTab"
+        />
+
+    <browser:page
         name="tabbedview_view-my_tickets"
         for="izug.ticketbox.interfaces.ITicketBox"
         permission="zope2.View"
@@ -91,6 +98,13 @@
         for="*"
         permission="zope2.View"
         class=".ticketboxes.GlobalAllTicketsTab"
+        />
+
+    <browser:page
+        name="tabbedview_view-global-inactive_tickets"
+        for="*"
+        permission="zope2.View"
+        class=".ticketboxes.GlobalInactiveTicketsTab"
         />
 
     <browser:page
