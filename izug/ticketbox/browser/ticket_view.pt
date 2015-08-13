@@ -29,27 +29,27 @@
             <th i18n:translate='label_duedate'>Due Date</th>
             <td tal:content="python: context.getDueDate().strftime('%d.%m.%Y %H:%M')" />
         </tr>
-        <tr>
+        <tr tal:condition="view/map_state">
             <th i18n:translate='label_state'>State</th>
             <td tal:content="view/map_state" />
         </tr>
-        <tr>
+        <tr tal:condition="view/map_priority">
             <th i18n:translate='label_Priority'>Priority</th>
             <td tal:content="view/map_priority"/>
         </tr>
-        <tr>
+        <tr tal:content="view/map_area">
             <th i18n:translate='label_Area'>Area</th>
             <td tal:content="view/map_area" />
         </tr>
-        <tr>
+        <tr tal:content="view/map_variety">
             <th i18n:translate='label_Variety'>Variety</th>
             <td tal:content="view/map_variety" />
         </tr>
-        <tr>
+        <tr tal:content="view/map_release">
             <th i18n:translate='label_Releases'>Release</th>
             <td tal:content="view/map_release" />
         </tr>
-        <tr>
+        <tr tal:content="view/map_watched_release">
             <th i18n:translate='label_watched_in_release'>Watched in release</th>
             <td tal:content="view/map_watched_release" />
         </tr>
