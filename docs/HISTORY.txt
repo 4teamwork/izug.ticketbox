@@ -5,6 +5,9 @@ Changelog
 4.7.1 (unreleased)
 ------------------
 
+- Use ftw.calendarwidget on responseform.
+  [tschanzt]
+
 - Hide unused files in Ticketview.
   [tschanzt]
 

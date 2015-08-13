@@ -33,6 +33,10 @@ class TicketBoxLayer(PloneSandboxLayer):
         xmlconfig.file('configure.zcml', ftw.notification.email,
                        context=configurationContext)
 
+        import ftw.calendarwidget
+        xmlconfig.file('configure.zcml', ftw.calendarwidget,
+                       context=configurationContext)
+
         import izug.ticketbox
         xmlconfig.file('configure.zcml', izug.ticketbox,
                        context=configurationContext)
@@ -47,6 +51,7 @@ class TicketBoxLayer(PloneSandboxLayer):
 
         z2.installProduct(app, 'ftw.notification.base')
         z2.installProduct(app, 'ftw.notification.email')
+        z2.installProduct(app, 'ftw.calendarwidget')
         z2.installProduct(app, 'izug.ticketbox')
         z2.installProduct(app, 'collective.MockMailHost')
         z2.installProduct(app, 'ftw.zipexport')
