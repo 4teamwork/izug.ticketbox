@@ -91,7 +91,7 @@ def map_base(available_items, id_):
     for available_item in available_items:
         if id_ == available_item.get('id'):
             return available_item.get('title')
-    return "-"
+    return ""
 
 
 def readable_author(context):

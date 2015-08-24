@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# * coding: utf8 *
 from datetime import datetime
 from DateTime import DateTime
 from ftw.builder import Builder
@@ -54,15 +54,15 @@ class TestXlsxExport(TestCase):
                     u'Due date': u'10.11.2010 17:14',
                     u'No.': u'1',
                     u'Description': u' This is a test. ',
-                    u'Releases': u'-',
+                    u'Releases': u'',
                     u'Creator': u'test_user_1_',
                     u'Responsible': u'',
-                    u'Watched release': u'-',
-                    u'Priorities': u'-',
-                    u'State': u'-',
-                    u'Variety': u'-',
+                    u'Watched release': u'',
+                    u'Priorities': u'',
+                    u'State': u'',
+                    u'Variety': u'',
                     u'Title': u'Täst',
-                    u'Area': u'-',
+                    u'Area': u'',
                 }
             ],
             second=data
