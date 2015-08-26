@@ -60,6 +60,7 @@ setup(
         'Products.statusmessages',
         'ZODB3',
         'Zope2',
+        'ftw.calendarwidget',
         'ftw.notification.base',
         'ftw.notification.email',
         'ftw.tabbedview',

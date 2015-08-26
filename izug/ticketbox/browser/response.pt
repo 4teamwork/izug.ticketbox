@@ -360,11 +360,12 @@
                                 Set the new answer date for this issue
                             </div>
 
-                            <tal:vars define="uniqueItemIndex python: dict(next=0);
+                            <tal:vars define="plone_view context/@@plone;
+                                              uniqueItemIndex python: dict(next=0);
                                               formname string:response-add-form;
                                               inputname string:answerdate;
                                               inputvalue python: context.getAnswerDate()">
-                                <metal:box use-macro="here/calendar_macros/macros/calendarDatePickerBox">
+                                <metal:box use-macro="here/picker/macros/ftw_calendarDatePickerBox">
                                     a calendar, hopefully
                                 </metal:box>
                             </tal:vars>
