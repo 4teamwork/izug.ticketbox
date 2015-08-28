@@ -5,6 +5,9 @@ Changelog
 4.7.1 (unreleased)
 ------------------
 
+- Remove unnecessary viewletmanager from template since it leads to duplicate Bylines.
+  [tschanzt]
+
 - Use ftw.calendarwidget on responseform.
   [tschanzt]
 
