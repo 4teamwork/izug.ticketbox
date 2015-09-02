@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.7.1 (unreleased)
+4.7.1 (2015-09-02)
 ------------------
 
 - Remove unnecessary viewletmanager from template since it leads to duplicate Bylines.
