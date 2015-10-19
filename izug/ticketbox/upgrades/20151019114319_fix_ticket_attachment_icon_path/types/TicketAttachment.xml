@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<object name="TicketAttachment">
+    <property name="content_icon">++resource++izug.ticketbox.icons/icon_funktion_download.gif</property>
+</object>
