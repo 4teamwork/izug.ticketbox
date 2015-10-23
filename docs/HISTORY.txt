@@ -5,6 +5,10 @@ Changelog
 4.7.2 (unreleased)
 ------------------
 
+- Add upgrade step for the icons of the ticket and ticket box types (the icons
+  have been moved to a resources directory).
+  [mbaechtold]
+
 - Fix ticket attachment type icon.
   [jone]
 

@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<object name="Ticket">
+    <property name="content_icon">++resource++izug.ticketbox.icons/icon_objekt_aufgabe.gif</property>
+</object>
