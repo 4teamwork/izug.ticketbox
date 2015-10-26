@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<object name="Ticket Box">
+    <property name="content_icon">++resource++izug.ticketbox.icons/icon_objekt_auftragsbox.gif</property>
+</object>
