@@ -6,7 +6,7 @@
 	A new Answer has been Added by <span i18n:name="creator" tal:content="view/creator" /> in the Ticketbox <span i18n:name="tracker_name" tal:content="infos/tracker_title" /> (<span i18n:name="tracker_url" tal:content="infos/tracker_url" />)
 </p>
 <span tal:condition="view/comment" i18n:translate="" i18n:domain="ftw.notification.email">comment</span>
-<p tal:condition="view/comment" tal:content="view/comment"></p>
+<p tal:condition="view/comment" tal:content="structure view/comment"></p>
 <br />
 <span tal:condition="python: infos['response']==False" i18n:translate="">Issue Information</span>
 <span tal:condition="python: infos['response']==True" i18n:translate="">Response Information</span>
