@@ -5,7 +5,10 @@ Changelog
 4.7.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix answerdate in ticket response
+  It was not possible to set a answerdate in the response of a ticket.
+  Neither through manual input nor calendar widget.
+  [elioschmutz]
 
 
 4.7.2 (2015-12-22)

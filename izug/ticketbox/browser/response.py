@@ -519,16 +519,23 @@ class Create(Base):
                                     before, after)
             issue_has_changed = True
 
-        #Answerdate
-        answerdate_after = form.get('answerdate')
-        if answerdate_after:
-            answerdate_after = DateTime(answerdate_after).strftime(
-                '%d.%m.%Y %H:%M')
+        # Answerdate
         answerdate_before = context.getAnswerDate()
         if answerdate_before:
             answerdate_before = answerdate_before.strftime('%d.%m.%Y %H:%M')
         else:
             answerdate_before = ''
+
+        answerdate_after = answerdate_before
+        year = int(form.get('answerdate_year', 0))
+        month = int(form.get('answerdate_month', 0))
+        day = int(form.get('answerdate_day', 0))
+
+        if year and month and day:
+            hour = int(form.get('answerdate_hour', 0))
+            minute = int(form.get('answerdate_minute', 0))
+            answerdate_after = DateTime(
+                year, month, day, hour, minute).strftime('%d.%m.%Y %H:%M')
 
         if answerdate_before != answerdate_after:
             context.setAnswerDate(answerdate_after)
