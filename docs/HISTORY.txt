@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.7.3 (unreleased)
+4.7.3 (2016-01-13)
 ------------------
 
 - Fix answerdate in ticket response
