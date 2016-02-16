@@ -16,38 +16,15 @@ class TicketBoxLayer(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE, BUILDER_LAYER)
 
     def setUpZope(self, app, configurationContext):
-        import Products.DataGridField
-        xmlconfig.file('configure.zcml', Products.DataGridField,
-                       context=configurationContext)
-        z2.installProduct(app, 'Products.DataGridField')
+        xmlconfig.string(
+            '<configure xmlns="http://namespaces.zope.org/zope">'
+            '  <include package="z3c.autoinclude" file="meta.zcml" />'
+            '  <includePlugins package="plone" />'
+            '  <includePluginsOverrides package="plone" />'
 
-        import ftw.tabbedview
-        xmlconfig.file('configure.zcml', ftw.tabbedview,
-                       context=configurationContext)
-
-        import ftw.notification.base
-        xmlconfig.file('configure.zcml', ftw.notification.base,
-                       context=configurationContext)
-
-        import ftw.notification.email
-        xmlconfig.file('configure.zcml', ftw.notification.email,
-                       context=configurationContext)
-
-        import ftw.calendarwidget
-        xmlconfig.file('configure.zcml', ftw.calendarwidget,
-                       context=configurationContext)
-
-        import izug.ticketbox
-        xmlconfig.file('configure.zcml', izug.ticketbox,
-                       context=configurationContext)
-
-        import collective.MockMailHost
-        xmlconfig.file('configure.zcml', collective.MockMailHost,
-                       context=configurationContext)
-
-        import ftw.zipexport
-        xmlconfig.file('configure.zcml', ftw.zipexport,
-                       context=configurationContext)
+            '  <include package="Products.DataGridField" />'
+            '</configure>',
+            context=configurationContext)
 
         z2.installProduct(app, 'ftw.notification.base')
         z2.installProduct(app, 'ftw.notification.email')
