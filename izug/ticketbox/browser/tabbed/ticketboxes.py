@@ -28,18 +28,18 @@ class TicketboxesTabbedView(TabbedView):
 
     def get_tabs(self):
         return (
-            {'id': _('global-ticketboxes'),
-             'class': ''},
-
-            {'id': _('global-all_tickets'),
-             'class': ''},
-
             {'id': _('global-my_tickets'),
              'class': ''},
 
             {'id': _('global-my_issued_tickets'),
              'class': ''},
-            )
+
+            {'id': _('global-all_tickets'),
+             'class': ''},
+
+            {'id': _('global-ticketboxes'),
+             'class': ''},
+        )
 
 
 class GlobalTicketboxesTab(CatalogListingView):
@@ -62,7 +62,7 @@ class GlobalTicketboxesTab(CatalogListingView):
         {'column': 'get_owner_index',
          'column_title': _(u"Responsible"),
          'transform': helper.readable_author},
-        )
+    )
 
     def get_base_query(self):
         site = getToolByName(self.context, 'portal_url').getPortalObject()
