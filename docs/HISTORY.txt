@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.7.4 (unreleased)
+4.8.0 (2016-02-24)
 ------------------
 
 - Change global tab order. [jone]
