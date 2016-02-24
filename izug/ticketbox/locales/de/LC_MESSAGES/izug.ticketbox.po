@@ -346,7 +346,7 @@ msgstr "Meine Aufträge"
 
 #: ./izug/ticketbox/browser/tabbed/ticketboxes.py:31
 msgid "global-ticketboxes"
-msgstr "Übersicht"
+msgstr "Auftragsboxen"
 
 #. Default: "Answer-date of the ticket"
 #: ./izug/ticketbox/content/ticket.py:132
@@ -871,5 +871,3 @@ msgstr "Nicht zugewiesen"
 #: ./izug/ticketbox/content/ticketbox.py:314
 msgid "yes"
 msgstr "Ja"
-
-
