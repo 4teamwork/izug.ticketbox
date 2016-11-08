@@ -5,7 +5,8 @@ Changelog
 4.8.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed display bug in ticket.
+  [lknoepfel]
 
 
 4.8.0 (2016-02-24)
