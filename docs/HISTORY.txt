@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.8.1 (unreleased)
+4.8.1 (2016-11-09)
 ------------------
 
 - Fixed display bug in ticket.
