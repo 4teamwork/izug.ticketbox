@@ -1,20 +1,15 @@
-
 # # -*- coding: utf-8 -*-
-from Products.statusmessages.interfaces import IStatusMessage
 from izug.ticketbox import ticketboxMessageFactory as _
-from izug.ticketbox.utils import uniquify_ids
+from izug.ticketbox.interfaces import ITicketboxDatagridIdUpdater
 from plone.i18n.normalizer.interfaces import IIDNormalizer
+from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import queryUtility
 
 
 def generate_datagrid_column_id(obj, event):
-    """Generate column-ids for all datagrids in the ticketbox."""
-
-    uniquify_ids(obj.getAvailableStates())
-    uniquify_ids(obj.getAvailableReleases())
-    uniquify_ids(obj.getAvailablePriorities())
-    uniquify_ids(obj.getAvailableAreas())
-    uniquify_ids(obj.getAvailableVarieties())
+    """Generate column-ids for all datagrids in the ticketbox
+    """
+    ITicketboxDatagridIdUpdater(obj)()
 
 
 def move_document_to_reference(obj, event):

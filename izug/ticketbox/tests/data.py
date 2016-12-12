@@ -1,17 +1,17 @@
 STATE_DATA = [
-    {'id': 'test_id_1',
+    {'id': 'show-all-tickets',
      'title': "Show All Tickets",
      'show_in_all_tickets': '1',
      'show_in_my_tickets': '0',
      },
 
-    {'id': 'test_id_2',
+    {'id': 'show-my-tickets',
      'title': "Show My Tickets",
      'show_in_all_tickets': '0',
      'show_in_my_tickets': '1',
      },
 
-    {'id': '',
+    {'id': 'test-id-state',
      'title': "Test Id State",
      'show_in_all_tickets': '1',
      'show_in_my_tickets': '1',
@@ -19,15 +19,15 @@ STATE_DATA = [
 
 
 AREA_DATA = [
-    {'id': u'test_id_1',
+    {'id': u'internet',
      'title': u'Internet',
      },
 
-    {'id': u'test_id_2',
+    {'id': u'intranet',
      'title': u'Intranet',
      },
 
-    {'id': u'',
+    {'id': u'test-id-area',
      'title': u'Test Id Area',
      }]
 
@@ -41,21 +41,21 @@ RELEASE_DATA = [
      'title': u'Version 2',
      },
 
-    {'id': u'',
+    {'id': u'test-id-release',
      'title': u'Test Id Release',
      }]
 
 
 PRIORITY_DATA = [
-    {'id': u'test_id_1',
+    {'id': u'high',
      'title': u'High',
      },
 
-    {'id': u'test_id_2',
+    {'id': u'low',
      'title': u'Low',
      },
 
-    {'id': u'',
+    {'id': u'test-id-priority',
      'title': u'Test Id Priority',
      }]
 
