@@ -5,6 +5,9 @@ Changelog
 4.8.2 (unreleased)
 ------------------
 
+- Drop Plone 4.1 support.
+  [elioschmutz]
+
 - Fix ticket ordering and grouping if you rename datagrid-titles on the ticketbox.
   [elioschmutz]
 
