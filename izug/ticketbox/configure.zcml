@@ -57,6 +57,12 @@
         />
 
     <adapter
+        provides="izug.ticketbox.interfaces.ITicketboxDatagridIdUpdater"
+        factory=".adapters.TicketboxDatagridIdUpdater"
+        for=".interfaces.ITicketBox"
+        />
+
+    <adapter
         name="sortable_id"
         factory=".indexer.sortable_id"
         />

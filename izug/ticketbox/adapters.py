@@ -1,19 +1,209 @@
 from AccessControl import getSecurityManager
+from Acquisition import aq_inner, aq_parent
+from copy import deepcopy
 from DateTime import DateTime
 from izug.ticketbox.interfaces import ITicket, IResponseContainer, IResponse
+from izug.ticketbox.interfaces import ITicketboxDatagridIdUpdater
 from persistent import Persistent
 from persistent.list import PersistentList
+from plone.i18n.normalizer.interfaces import IIDNormalizer
+from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
+from zope.app.component import hooks
+from zope.app.component.hooks import getSite
 from zope.app.container.contained import ObjectAddedEvent
 from zope.app.container.contained import ObjectRemovedEvent
 from zope.app.container.interfaces import UnaddableError
 from zope.component import adapts
+from zope.component import queryUtility
 from zope.event import notify
 from zope.interface import implements
-from Products.CMFCore.utils import getToolByName
-from zope.app.component import hooks
-from Acquisition import aq_inner, aq_parent
-from zope.app.component.hooks import getSite
+
+
+class TicketboxDatagridIdUpdater(object):
+    """A Ticketbox has a lot of datagrid fields to define different
+    attributes dynamically (i.e. state, priorities...).
+
+    For each datagrid-row we generate an id wich will be used
+    to query the catalog and to reference in a ticket.
+
+    If the user changes a title of a ticketbox datagrid row, we have
+    to change the id too. Otherwise, orderings and groupings wont
+    work properly again.
+
+    We look for changes in the datagrid fields and updates the ids.
+    If we have found changes, we update all tickets which where referenced
+    with one of the changed ids.
+
+    """
+
+    implements(ITicketboxDatagridIdUpdater)
+
+    ticketbox_ticket_field_mapping = {
+        'availableStates': 'state',
+        'availableReleases': 'releases',
+        'availablePriorities': 'priority',
+        'availableAreas': 'area',
+        'availableVarieties': 'variety',
+    }
+
+    def __init__(self, context):
+        self.context = context
+        self.catalog = getToolByName(context, 'portal_catalog')
+
+    def __call__(self):
+        self.update()
+
+    def update(self):
+        """Search for changed rows in the ticketbox and updates the datagrid-ids
+        and all its related tickets
+        """
+
+        # changed_fields contains all changed ids in the datagrid.
+        #
+        # The key is the ticketbox field name which contains changes.
+        # The value is a list with tuples containing the old id as
+        # the first entry and the new id as the new id
+        #
+        # ``changed_fields`` example:
+        #
+        # >>> {'availableAreas': [('my-Area', 'my-cool-area')],
+        # ...  'availablePriorities': [('', 'high'), ('lower', 'low')],
+        # ...  'availableStates': [('a-state', 'd-state')]}
+        changed_fields = {}
+        for field_name in self.ticketbox_ticket_field_mapping.keys():
+            values = self.context.getField(field_name).get(self.context)
+            changed_rows = self.uniquify_ids(values)
+            if changed_rows:
+                changed_fields[field_name] = changed_rows
+
+        return self.update_tickets(changed_fields)
+
+    def update_tickets(self, changed_fields={}):
+        """Updates all ticket ids referencing to an old ticketbox
+        datagrid id and reindexes modified tickets.
+        """
+        updated_tickets = []
+        if not changed_fields:
+            # Do nothing if nothing changed in the datagrid
+            return updated_tickets
+
+        for ticket in self.context.listFolderContents({'portal_type': 'Ticket'}):
+            updated_fields = []
+
+            # Iterate over all changed attributes
+            for field_name, changes in changed_fields.items():
+
+                # Do nothing if there where no changes for this attribute
+                if not changes:
+                    continue
+
+                # Iterate over all changes for this attribute
+                for old_id, new_id in changes:
+                    if not old_id:
+                        # This seems to be a new entry and there was no
+                        # id generated yet. We don't have to do anything
+                        continue
+
+                    field = ticket.getField(
+                        self.ticketbox_ticket_field_mapping.get(field_name))
+
+                    current_id = field.get(ticket)
+
+                    if old_id != current_id:
+                        # Do not update the ticket if it is not related with
+                        # a changed datagrid row.
+                        continue
+
+                    # Set the new id to the tickets field
+                    field.set(ticket, new_id)
+
+                    updated_fields.append(field)
+
+            if updated_fields:
+                updated_tickets.append(ticket)
+                self.reindex_ticket(ticket, updated_fields)
+
+        return updated_tickets
+
+    def reindex_ticket(self, ticket, updated_fields):
+        idxs = []
+        for field in updated_fields:
+            idxs.append(field.accessor)
+
+        self.catalog.reindexObject(ticket, idxs=idxs)
+
+    def uniquify_ids(self, data):
+        """Creates unique ids within a list of dicts.
+        Sets the "id" key of each dicts, creates the id with the value of
+        "title" within the dict.
+
+        ``data`` example:
+
+        >>> [{'id': '', 'title': 'Foo'},
+        ...  {'id': 'bar', 'title': 'Bar'}]
+
+        if the ID is already set but the title changed, it will update
+        the id with a newly generated one.
+
+        example:
+
+        >>> uniquify_ids([
+        ...    {'id': 'foo', 'title': 'Chuck'},
+               {'id': 'bar', 'title': 'Bar'}])
+
+        >>> [{'id': 'chuck', 'title': 'Chuck'}, [{'id': 'bar', 'title': 'Bar'},
+
+        if the title changed to an already existing title it will update to a
+        new unique id:
+
+        >>> uniquify_ids([
+        ...    {'id': 'foo', 'title': 'Bar'},
+               {'id': 'bar', 'title': 'Bar'}])
+
+        >>> [{'id': 'bar-1', 'title': 'Bar'}, [{'id': 'bar', 'title': 'Bar'},
+
+
+        if the title didn't change, it will do nothing.
+        """
+        existing_ids = set([item.get('id') for item in data if item.get('id')])
+        changes = []
+        for item in data:
+            old_id = item.get('id')
+
+            existing_ids_without_old_id = deepcopy(existing_ids)
+            existing_ids_without_old_id.difference_update([old_id])
+
+            new_id = self.create_uniqe_id(
+                item.get('title'), existing_ids_without_old_id)
+
+            if old_id == new_id:
+                continue
+
+            item['id'] = new_id
+            existing_ids.add(new_id)
+
+            changes.append((old_id, new_id))
+
+        return changes
+
+    def create_uniqe_id(self, title, existing_ids):
+        """Creates a uniqe id by using the IIDNormalizer utility.
+        """
+
+        id_ = queryUtility(IIDNormalizer).normalize(title)
+
+        if id_ not in existing_ids:
+            return id_
+
+        base_id = id_
+        index = 0
+
+        while id_ in existing_ids:
+            index += 1
+            id_ = '%s-%i' % (base_id, index)
+
+        return id_
 
 
 class ResponseContainer(Persistent):

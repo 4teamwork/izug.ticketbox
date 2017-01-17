@@ -118,3 +118,10 @@ class ITicketReferenceStartupDirectory(Interface):
 
 class IAttachment(Interface):
     """Marker interface for a TicketAttachment"""
+
+
+class ITicketboxDatagridIdUpdater(Interface):
+    """Adapter for generating and updating the ids of
+    the datagrid-colums in a ticketbock and its related
+    tickets.
+    """

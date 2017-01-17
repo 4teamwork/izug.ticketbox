@@ -1,15 +1,17 @@
-from Products.Archetypes.event import ObjectEditedEvent
 from copy import deepcopy
+from ftw.builder import Builder
+from ftw.builder import create
+from izug.ticketbox.browser.helper import map_attribute
 from izug.ticketbox.testing import TICKETBOX_INTEGRATION_TESTING
 from izug.ticketbox.tests import helpers
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from Products.Archetypes.event import ObjectEditedEvent
+from Products.CMFCore.utils import getToolByName
 from unittest2 import TestCase
 from zope.component import getMultiAdapter
 from zope.event import notify
-from Products.CMFCore.utils import getToolByName
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import setRoles
-from ftw.builder import create
-from ftw.builder import Builder
+
 
 def get_ids_and_titles(data):
     """Returns all ids and titles of the dicts within the list data.
@@ -27,6 +29,8 @@ class TestTicketBox(TestCase):
         self.wf_tool = getToolByName(self.portal, 'portal_workflow')
         self.wf_tool.setDefaultChain('simple_publication_workflow')
         helpers.login_as_manager(self.portal)
+
+        self.catalog = getToolByName(self.portal, 'portal_catalog')
 
         self.ticketbox = helpers.create_ticketbox(self.portal)
         self.ticket1 = helpers.create_ticket(self.ticketbox)
@@ -68,16 +72,16 @@ class TestTicketBox(TestCase):
             self.portal.REQUEST.set('filtervalue', None)
             return contents
 
-        ticket_state = get_filtered_tickets('getState', 'test_id_1')
-        ticket_area = get_filtered_tickets('getArea', 'test_id_1')
-        ticket_priority = get_filtered_tickets('getPriority', 'test_id_1')
+        ticket_state = get_filtered_tickets('getState', 'show-all-tickets')
+        ticket_area = get_filtered_tickets('getArea', 'internet')
+        ticket_priority = get_filtered_tickets('getPriority', 'high')
         ticket_responsible = get_filtered_tickets('getResponsibleManager',
                                                   'test_user_1_')
 
-        self.assertEquals(ticket_state[0].getObject().getState(), "test_id_1")
-        self.assertEquals(ticket_area[0].getObject().getArea(), "test_id_1")
+        self.assertEquals(ticket_state[0].getObject().getState(), "show-all-tickets")
+        self.assertEquals(ticket_area[0].getObject().getArea(), "internet")
         self.assertEquals(ticket_priority[0].getObject().getPriority(),
-                          "test_id_1")
+                          "high")
         self.assertEquals(
             ticket_responsible[0].getObject().getResponsibleManager(),
             "test_user_1_")
@@ -166,7 +170,6 @@ class TestTicketBox(TestCase):
         self.assertEqual(get_ids_and_titles(states), [('open', 'Open')])
 
         states = list(deepcopy(states))
-        states[0]['title'] = 'Closed'
         states.append({'id': '',
                        'title': 'Open',
                        'show_in_all_tickets': '1',
@@ -177,7 +180,7 @@ class TestTicketBox(TestCase):
         states = self.ticketbox.getAvailableStates()
         self.assertEqual(len(states), 2)
         self.assertEqual(get_ids_and_titles(states), [
-                ('open', 'Closed'),
+                ('open', 'Open'),
                 ('open-1', 'Open')])
 
     def test_duplicate_release_ids(self):
@@ -191,7 +194,6 @@ class TestTicketBox(TestCase):
         self.assertEqual(get_ids_and_titles(releases), [('1-x', '1.x')])
 
         releases = list(deepcopy(releases))
-        releases[0]['title'] = '1.0'
         releases.append({'id': '',
                          'title': '1.x'})
         self.ticketbox.setAvailableReleases(releases)
@@ -200,5 +202,61 @@ class TestTicketBox(TestCase):
         releases = self.ticketbox.getAvailableReleases()
         self.assertEqual(len(releases), 2)
         self.assertEqual(get_ids_and_titles(releases),
-                         [('1-x', '1.0'),
+                         [('1-x', '1.x'),
                           ('1-x-1', '1.x')])
+
+    def test_sorted_tickets_after_changing_datagrid_titles(self):
+        STATE_DATA = [
+            {'id': '',
+             'title': "A state",
+             'show_in_all_tickets': '1',
+             'show_in_my_tickets': '0',
+             },
+
+            {'id': '',
+             'title': "B state",
+             'show_in_all_tickets': '0',
+             'show_in_my_tickets': '1',
+             },
+
+            {'id': '',
+             'title': "C state",
+             'show_in_all_tickets': '1',
+             'show_in_my_tickets': '1',
+             }]
+
+        # Set new states to the ticketbox and let it generate the
+        # ids for each state by notify the edited-event.
+        self.ticketbox.setAvailableStates(STATE_DATA)
+        notify(ObjectEditedEvent(self.ticketbox))
+
+        states = self.ticketbox.getAvailableStates()
+
+        # Use the new states for the tickets
+        self.ticket1.setState(states[2].get('id'))
+        self.ticket1.setTitle('Ticket 1')
+        self.ticket1.reindexObject()
+
+        self.ticket2.setState(states[0].get('id'))
+        self.ticket2.setTitle('Ticket 2')
+        self.ticket2.reindexObject()
+
+        query = {'portal_type': 'Ticket', 'sort_on': 'getState'}
+
+        # Check the sorting by state
+        tickets = [ticket.getObject() for ticket in self.catalog(query)]
+        self.assertEqual(
+            [['A state', 'Ticket 2'], ['C state', 'Ticket 1']],
+            [[map_attribute(ticket, "state"), ticket.Title()] for ticket in tickets])
+
+        # Rename the title of the first state in the ticketbox...
+        states[0]['title'] = 'D state'
+        notify(ObjectEditedEvent(self.ticketbox))
+
+        # And check the sort-order of the tickets again
+        tickets = [ticket.getObject() for ticket in self.catalog(query)]
+        self.assertEqual(
+            [['C state', 'Ticket 1'], ['D state', 'Ticket 2']],
+            [[map_attribute(ticket, "state"), ticket.Title()] for ticket in tickets],
+            "The sort-order should have been changed because we changed the state title "
+            "on the ticketbox.")
