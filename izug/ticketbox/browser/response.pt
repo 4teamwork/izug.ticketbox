@@ -34,7 +34,7 @@
             </div>
             <span tal:replace="structure html" />
 
-            <div class="issue-attachment" tal:condition="attachment">
+            <div class="issue-attachment" tal:condition="nocall:attachment">
                 <div class="issue-attachment-label" i18n:translate="response_label_attachment">Attached:</div>
                 <tal:file define="file attachment/getFile">
                     <a tal:define="icon file/getBestIcon | nothing;

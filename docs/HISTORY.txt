@@ -5,7 +5,8 @@ Changelog
 4.9.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Performance improvements when rendering a ticket having many responses.
+  [mbaechtold]
 
 
 4.9.0 (2017-01-17)
