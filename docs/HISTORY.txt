@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.9.1 (unreleased)
+4.9.1 (2017-11-02)
 ------------------
 
 - Performance improvements when rendering a ticket having many responses.
