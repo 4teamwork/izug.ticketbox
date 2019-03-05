@@ -28,16 +28,16 @@ class TicketboxesTabbedView(TabbedView):
 
     def get_tabs(self):
         return (
-            {'id': _('global-my_tickets'),
+            {'id': 'global-my_tickets',
              'class': ''},
 
-            {'id': _('global-my_issued_tickets'),
+            {'id': 'global-my_issued_tickets',
              'class': ''},
 
-            {'id': _('global-all_tickets'),
+            {'id': 'global-all_tickets',
              'class': ''},
 
-            {'id': _('global-ticketboxes'),
+            {'id': 'global-ticketboxes',
              'class': ''},
         )
 

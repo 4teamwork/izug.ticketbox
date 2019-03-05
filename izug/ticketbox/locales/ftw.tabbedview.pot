@@ -35,3 +35,15 @@ msgstr ""
 
 msgid "issued_tickets"
 msgstr ""
+
+msgid "global-my_tickets"
+msgstr ""
+
+msgid "global-my_issued_tickets"
+msgstr ""
+
+msgid "global-all_tickets"
+msgstr ""
+
+msgid "global-ticketboxes"
+msgstr ""
