@@ -59,6 +59,7 @@ class TestResponse(TestCase):
         ticketbox = create(Builder('ticket box'))
         ticket = create(Builder('ticket')
                         .having(answerDate=DateTime(2015, 12, 31))
+                        .having(state="offen")
                         .within(ticketbox))
 
         browser.login().visit(ticket)
@@ -75,7 +76,7 @@ class TestResponse(TestCase):
             "There should be one response visible")
 
         self.assertEqual(
-            ['31.12.2015 00:00', '12.04.2021 10:05'],
+            ['unassigned', 'unassigned', '31.12.2015 00:00', '12.04.2021 10:05'],
             browser.css('.response-reply .issueChange').text,
             "The answerdate before and the answerdatedate after should "
             "be visible in the answer")
@@ -88,6 +89,8 @@ class TestResponse(TestCase):
                         .within(ticketbox))
 
         browser.login().visit(ticket)
+
+        browser.forms['form-1'].submit()
 
         browser.fill({
             'answerdate_year': '2015',
@@ -109,6 +112,8 @@ class TestResponse(TestCase):
 
         browser.login().visit(ticket)
 
+        browser.forms['form-1'].submit()
+
         browser.fill({
             'answerdate_year': '--',
             'answerdate_month': 'April',
@@ -129,6 +134,8 @@ class TestResponse(TestCase):
 
         browser.login().visit(ticket)
 
+        browser.forms['form-1'].submit()
+
         browser.fill({
             'answerdate_year': '2021',
             'answerdate_month': '--',
@@ -148,6 +155,8 @@ class TestResponse(TestCase):
                         .within(ticketbox))
 
         browser.login().visit(ticket)
+
+        browser.forms['form-1'].submit()
 
         browser.fill({
             'answerdate_year': '2021',

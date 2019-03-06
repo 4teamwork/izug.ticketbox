@@ -27,7 +27,6 @@ setup(
 
     classifiers=[
         'Framework :: Plone',
-        'Framework :: Plone :: 4.2',
         'Framework :: Plone :: 4.3',
         'Programming Language :: Python',
         'Topic :: Software Development :: Libraries :: Python Modules',
@@ -60,7 +59,7 @@ setup(
         'ZODB3',
         'Zope2',
         'ftw.calendarwidget',
-        'ftw.notification.base',
+        'ftw.notification.base < 1.3.0',
         'ftw.notification.email',
         'ftw.tabbedview',
         'ftw.table',
