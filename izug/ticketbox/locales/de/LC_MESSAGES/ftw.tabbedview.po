@@ -17,6 +17,18 @@ msgstr "Alle Aufträge"
 msgid "attachments"
 msgstr "Anhänge"
 
+msgid "global-all_tickets"
+msgstr "Alle Aufträge"
+
+msgid "global-my_issued_tickets"
+msgstr "Erteilte Aufträge"
+
+msgid "global-my_tickets"
+msgstr "Meine Aufträge"
+
+msgid "global-ticketboxes"
+msgstr "Auftragsboxen"
+
 msgid "info_view"
 msgstr "Info"
 

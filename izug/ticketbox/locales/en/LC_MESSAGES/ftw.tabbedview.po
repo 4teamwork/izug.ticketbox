@@ -17,6 +17,18 @@ msgstr "All tickets"
 msgid "attachments"
 msgstr "Attachments"
 
+msgid "global-all_tickets"
+msgstr "All tickets"
+
+msgid "global-my_issued_tickets"
+msgstr "Issued tickets"
+
+msgid "global-my_tickets"
+msgstr "My tickets"
+
+msgid "global-ticketboxes"
+msgstr "Ticketboxes"
+
 msgid "info_view"
 msgstr "Info"
 
@@ -28,3 +40,4 @@ msgstr "My tickets"
 
 msgid "overview"
 msgstr "Overview"
+

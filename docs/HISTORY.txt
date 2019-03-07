@@ -5,6 +5,8 @@ Changelog
 4.9.2 (unreleased)
 ------------------
 
+- Fix tabbed view. [mbaechtold]
+
 - Drop support for Plone 4.2. [mbaechtold]
 
 

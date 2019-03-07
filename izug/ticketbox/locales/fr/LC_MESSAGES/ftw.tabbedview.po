@@ -17,6 +17,18 @@ msgstr "Tous les tâches"
 msgid "attachments"
 msgstr "Pièces jointes"
 
+msgid "global-all_tickets"
+msgstr "Tous les tâches"
+
+msgid "global-my_issued_tickets"
+msgstr "Tâches allouées"
+
+msgid "global-my_tickets"
+msgstr "Mes tâches"
+
+msgid "global-ticketboxes"
+msgstr "Ticketboxes"
+
 msgid "info_view"
 msgstr "Info"
 
