@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-4.9.2 (unreleased)
-------------------
+4.10.0 (2019-03-07)
+-------------------
 
 - Fix tabbed view. [mbaechtold]
 
